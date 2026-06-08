@@ -1,0 +1,59 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-dark text-white/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="hover:text-teal transition-colors">Home</a></li>
+          <li><a href="/about" class="hover:text-teal transition-colors">About</a></li>
+          <li><a href="/adopt" class="hover:text-teal transition-colors">Adopt</a></li>
+          <li><a href="/past-rescues" class="hover:text-teal transition-colors">Past Rescues</a></li>
+          <li><a href="/your-impact" class="hover:text-teal transition-colors">Your Impact</a></li>
+          <li><a href="/donate" class="hover:text-teal transition-colors">Donate</a></li>
+          <li><a href="/contact" class="hover:text-teal transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-4">Connect</h3>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="https://www.facebook.com/profile.php?id=61590021437450"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-teal transition-colors"
+            >
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a href="mailto:mypawsbosnia@gmail.com" class="hover:text-teal transition-colors">
+              mypawsbosnia@gmail.com
+            </a>
+          </li>
+        </ul>
+        <div class="mt-4">
+          <p class="text-sm text-white/60">PayPal donations:</p>
+          <p class="text-sm text-white">mypawsbosnia@gmail.com</p>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-4">Location</h3>
+        <p>Brcko, Bosnia &amp; Herzegovina</p>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/50">
+      <p>&copy; {currentYear} My Paws Bosnia. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

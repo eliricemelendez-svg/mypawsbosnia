@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+
+// Load photos directly from asset folders
+const foodImports = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/food/*.{jpeg,jpg,png}", { eager: true }
+);
+const vetImports = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/vet/*.{jpeg,jpg,png}", { eager: true }
+);
+const shelterImports = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/shelter/*.{jpeg,jpg,png}", { eager: true }
+);
+
+const foodPhotos = Object.values(foodImports).map((m) => m.default);
+const vetPhotos = Object.values(vetImports).map((m) => m.default);
+const shelterPhotos = Object.values(shelterImports).map((m) => m.default);
+---
+
+<Layout title="Your Impact - My Paws Bosnia" description="See how donations are used to help the dogs.">
+  <!-- Header -->
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Your impact</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">
+        Every donation makes a direct difference. Here is where your support goes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Food -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-bold text-slate-dark mb-2">Food</h2>
+    <p class="text-body mb-8">
+      Feeding 60 dogs requires regular bulk deliveries of dry and wet food. Donations cover
+      monthly food purchases and delivery to the shelter.
+    </p>
+    {foodPhotos.length > 0 ? (
+      <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">
+        {foodPhotos.map((photo, i) => (
+          <Image src={photo} alt={`Food delivery ${i + 1}`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 bg-light-bg rounded-2xl">
+        <p class="text-4xl mb-2">📸</p>
+        <p class="text-body">Photos coming soon.</p>
+      </div>
+    )}
+  </section>
+
+  <!-- Vet Care -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-100">
+    <h2 class="text-2xl font-bold text-slate-dark mb-2">Veterinary care</h2>
+    <p class="text-body mb-8">
+      Every dog receives vaccinations, deworming, microchipping, and spay/neuter surgery.
+      Emergency treatments and surgeries are also covered by donations.
+    </p>
+    {vetPhotos.length > 0 ? (
+      <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">
+        {vetPhotos.map((photo, i) => (
+          <Image src={photo} alt={`Vet visit ${i + 1}`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 bg-light-bg rounded-2xl">
+        <p class="text-4xl mb-2">📸</p>
+        <p class="text-body">Photos coming soon.</p>
+      </div>
+    )}
+  </section>
+
+  <!-- Shelter -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-gray-100">
+    <h2 class="text-2xl font-bold text-slate-dark mb-2">Shelter improvements</h2>
+    <p class="text-body mb-8">
+      Fencing, kennels, weatherproofing, and general upkeep of the property where the dogs live.
+    </p>
+    {shelterPhotos.length > 0 ? (
+      <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">
+        {shelterPhotos.map((photo, i) => (
+          <Image src={photo} alt={`Shelter ${i + 1}`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12 bg-light-bg rounded-2xl">
+        <p class="text-4xl mb-2">📸</p>
+        <p class="text-body">Photos coming soon.</p>
+      </div>
+    )}
+  </section>
+</Layout>

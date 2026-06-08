@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import { currentDogs } from "../../data/current-dogs";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return currentDogs.map((dog) => ({
+    params: { slug: dog.slug },
+    props: { dog },
+  }));
+};
+
+const { dog } = Astro.props;
+
+// Load all photos for this dog
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/current-dogs/**/*.{jpeg,jpg,png}",
+  { eager: true }
+);
+
+const prefix = `../../assets/current-dogs/${dog.slug}/`;
+const dogPhotos = Object.entries(allPhotos)
+  .filter(([path]) => path.startsWith(prefix))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, mod]) => mod.default);
+
+const leadPhoto = dogPhotos[0] ?? null;
+const extraPhotos = dogPhotos.slice(1);
+
+function getTimeAtShelter(arrivedAt?: string): string {
+  if (!arrivedAt) return "Unknown";
+  const arrived = new Date(arrivedAt);
+  const now = new Date();
+  const months = (now.getFullYear() - arrived.getFullYear()) * 12 + (now.getMonth() - arrived.getMonth());
+  if (months < 1) return "Less than a month";
+  if (months === 1) return "1 month";
+  if (months < 12) return `${months} months`;
+  const years = Math.floor(months / 12);
+  const remaining = months % 12;
+  if (remaining === 0) return years === 1 ? "1 year" : `${years} years`;
+  return years === 1 ? `1 year, ${remaining} months` : `${years} years, ${remaining} months`;
+}
+---
+
+<Layout title={`${dog.name} - My Paws Bosnia`} description={dog.shortLine} ogImage={leadPhoto?.src}>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <a href="/adopt" class="inline-flex items-center text-teal font-medium hover:underline mb-6">
+      &larr; Back to all dogs
+    </a>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
+      {leadPhoto ? (
+        <Image
+          src={leadPhoto}
+          alt={dog.name}
+          width={500}
+          class="w-full rounded-2xl"
+        />
+      ) : (
+        <div class="aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-8xl">
+          🐕
+        </div>
+      )}
+
+      <div>
+        <h1 class="text-4xl font-bold text-slate-dark">{dog.name}</h1>
+
+        <!-- Vital stats -->
+        <div class="flex flex-wrap gap-3 mt-4">
+          <div class="bg-light-bg rounded-xl px-5 py-3 text-center">
+            <p class="text-xs text-body uppercase tracking-wide">Age</p>
+            <p class="text-base font-semibold text-slate-dark mt-1">
+              {dog.ageYears ? `${dog.ageYears} years` : dog.age}
+            </p>
+          </div>
+          <div class="bg-light-bg rounded-xl px-5 py-3 text-center">
+            <p class="text-xs text-body uppercase tracking-wide">Size</p>
+            <p class="text-base font-semibold text-slate-dark mt-1 capitalize">{dog.size}</p>
+          </div>
+          <div class="bg-light-bg rounded-xl px-5 py-3 text-center">
+            <p class="text-xs text-body uppercase tracking-wide">Sex</p>
+            <p class="text-base font-semibold text-slate-dark mt-1 capitalize">{dog.sex}</p>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mt-6">
+          <p class="text-body leading-relaxed">{dog.description}</p>
+
+      {dog.traits && dog.traits.length > 0 && (
+        <ul class="mt-4 space-y-2">
+          {dog.traits.map((trait) => (
+            <li class="flex items-start gap-2 text-body">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span>{trait}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+        </div>
+      </div>
+    </div>
+
+    <!-- More photos -->
+    {extraPhotos.length > 0 && (
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold text-slate-dark mb-4">More photos</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {extraPhotos.map((photo, i) => (
+            <Image
+              src={photo}
+              alt={`${dog.name} photo ${i + 2}`}
+              width={400}
+              height={400}
+              class="w-full aspect-square object-cover rounded-xl"
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Adopt CTA -->
+    <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Interested in adopting {dog.name}?</h2>
+      <p class="text-body mb-6">
+        Send us a message on our Facebook page to learn more about the adoption process.
+      </p>
+      <a
+        href="https://www.facebook.com/profile.php?id=61590021437450"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors"
+      >
+        Message us on Facebook
+      </a>
+    </div>
+  </section>
+</Layout>

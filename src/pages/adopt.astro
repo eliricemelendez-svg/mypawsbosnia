@@ -1,0 +1,186 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DogCard from "../components/DogCard.astro";
+import { currentDogs } from "../data/current-dogs";
+
+const total = currentDogs.length;
+---
+
+<Layout title="Adopt a Dog - My Paws Bosnia" description="Meet the dogs currently available for adoption.">
+  <!-- Header -->
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Adopt a dog</h1>
+      <p class="mt-4 text-lg text-body">
+        {total} dogs currently looking for a home.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-wrap items-center gap-3" id="filter-bar">
+      <span class="text-sm font-semibold text-slate-dark mr-2">Filter:</span>
+
+      <!-- Size filters -->
+      <button data-filter="size" data-value="small" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">
+        Small
+      </button>
+      <button data-filter="size" data-value="medium" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">
+        Medium
+      </button>
+      <button data-filter="size" data-value="large" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">
+        Large
+      </button>
+
+      <span class="w-px h-5 bg-gray-200"></span>
+
+      <!-- Time at shelter filters -->
+      <button data-filter="time" data-value="under3" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">
+        Under 3 months
+      </button>
+      <button data-filter="time" data-value="3to12" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">
+        3-12 months
+      </button>
+      <button data-filter="time" data-value="over1y" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">
+        Over a year
+      </button>
+
+      <a href="/adopt" id="clear-filters" class="hidden text-xs font-medium text-teal hover:underline ml-2">
+        Clear filters
+      </a>
+    </div>
+
+    <p id="dog-count" class="text-sm text-body mt-4">
+      Showing {total} of {total} dogs
+    </p>
+  </section>
+
+  <!-- Dog Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div id="dog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {currentDogs.map((dog) => {
+        let timeCategory = "";
+        if (dog.arrivedAt) {
+          const arrived = new Date(dog.arrivedAt);
+          const now = new Date();
+          const months = (now.getFullYear() - arrived.getFullYear()) * 12 + (now.getMonth() - arrived.getMonth());
+          if (months < 3) timeCategory = "under3";
+          else if (months < 12) timeCategory = "3to12";
+          else timeCategory = "over1y";
+        }
+        return (
+          <div class="dog-card-wrapper" data-sex={dog.sex} data-age={dog.age} data-size={dog.size} data-time={timeCategory}>
+            <DogCard
+              slug={dog.slug}
+              name={dog.name}
+              shortLine={dog.shortLine}
+              sex={dog.sex}
+              age={dog.age}
+              size={dog.size}
+              linkPrefix="/adopt"
+            />
+          </div>
+        );
+      })}
+    </div>
+
+    <div id="empty-state" class="hidden text-center py-16">
+      <div class="text-4xl mb-3">🔍</div>
+      <p class="text-lg font-medium text-slate-dark">No dogs match your filters</p>
+      <p class="text-body mt-2">Try removing some filters to see more dogs.</p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const pills = document.querySelectorAll<HTMLButtonElement>(".filter-pill");
+  const cards = document.querySelectorAll<HTMLElement>(".dog-card-wrapper");
+  const countEl = document.getElementById("dog-count");
+  const emptyEl = document.getElementById("empty-state");
+  const gridEl = document.getElementById("dog-grid");
+  const clearEl = document.getElementById("clear-filters");
+  const total = cards.length;
+
+  const activeFilters: Record<string, Set<string>> = {
+    size: new Set(),
+    age: new Set(),
+    time: new Set(),
+  };
+
+  function readFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ["size", "age", "time"]) {
+      const val = params.get(key);
+      if (val) {
+        val.split(",").forEach((v) => activeFilters[key].add(v));
+      }
+    }
+    pills.forEach((pill) => {
+      const f = pill.dataset.filter!;
+      const v = pill.dataset.value!;
+      if (activeFilters[f].has(v)) {
+        pill.classList.add("bg-teal", "text-white", "border-teal");
+        pill.classList.remove("text-body", "border-gray-200");
+      }
+    });
+    applyFilters();
+  }
+
+  function updateURL() {
+    const params = new URLSearchParams();
+    for (const key of ["size", "age", "time"]) {
+      if (activeFilters[key].size > 0) {
+        params.set(key, Array.from(activeFilters[key]).join(","));
+      }
+    }
+    const qs = params.toString();
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState({}, "", url);
+  }
+
+  function applyFilters() {
+    let visible = 0;
+    const hasFilters = Object.values(activeFilters).some((s) => s.size > 0);
+
+    cards.forEach((card) => {
+      let show = true;
+      for (const key of ["size", "age", "time"]) {
+        if (activeFilters[key].size > 0) {
+          const val = card.dataset[key] ?? "";
+          if (!activeFilters[key].has(val)) {
+            show = false;
+            break;
+          }
+        }
+      }
+      card.classList.toggle("hidden", !show);
+      if (show) visible++;
+    });
+
+    if (countEl) countEl.textContent = `Showing ${visible} of ${total} dogs`;
+    if (emptyEl) emptyEl.classList.toggle("hidden", visible > 0);
+    if (gridEl) gridEl.classList.toggle("hidden", visible === 0);
+    if (clearEl) clearEl.classList.toggle("hidden", !hasFilters);
+  }
+
+  pills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const f = pill.dataset.filter!;
+      const v = pill.dataset.value!;
+      if (activeFilters[f].has(v)) {
+        activeFilters[f].delete(v);
+        pill.classList.remove("bg-teal", "text-white", "border-teal");
+        pill.classList.add("text-body", "border-gray-200");
+      } else {
+        activeFilters[f].add(v);
+        pill.classList.add("bg-teal", "text-white", "border-teal");
+        pill.classList.remove("text-body", "border-gray-200");
+      }
+      updateURL();
+      applyFilters();
+    });
+  });
+
+  readFromURL();
+</script>

@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  slug: string;
+  name: string;
+  shortLine: string;
+  sex: "male" | "female";
+  age: "puppy" | "young" | "adult" | "senior";
+  size: "small" | "medium" | "large";
+  linkPrefix: string;
+  adoptedTo?: string;
+}
+
+const { slug, name, shortLine, sex, age, size, linkPrefix, adoptedTo } = Astro.props;
+
+const pillColors: Record<string, string> = {
+  male: "bg-blue-100 text-blue-700",
+  female: "bg-pink-100 text-pink-700",
+  puppy: "bg-amber-100 text-amber-700",
+  young: "bg-green-100 text-green-700",
+  adult: "bg-slate-100 text-slate-700",
+  senior: "bg-purple-100 text-purple-700",
+  small: "bg-teal/10 text-teal",
+  medium: "bg-teal/10 text-teal",
+  large: "bg-teal/10 text-teal",
+};
+
+// Load lead photo (first alphabetically from the dog's folder)
+const allCurrentPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/current-dogs/**/*.{jpeg,jpg,png}",
+  { eager: true }
+);
+const allPastPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/past-rescues/**/*.{jpeg,jpg,png}",
+  { eager: true }
+);
+
+const allPhotos = { ...allCurrentPhotos, ...allPastPhotos };
+const prefix = linkPrefix === "/adopt"
+  ? `../assets/current-dogs/${slug}/`
+  : `../assets/past-rescues/${slug}/`;
+
+const dogPhotos = Object.entries(allPhotos)
+  .filter(([path]) => path.startsWith(prefix))
+  .sort(([a], [b]) => a.localeCompare(b));
+
+const leadPhoto = dogPhotos[0]?.[1]?.default ?? null;
+---
+
+<a
+  href={`${linkPrefix}/${slug}`}
+  class="group block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+  data-sex={sex}
+  data-age={age}
+  data-size={size}
+>
+  <div class="bg-gray-50">
+    {leadPhoto ? (
+      <Image
+        src={leadPhoto}
+        alt={name}
+        width={600}
+        class="w-full"
+      />
+    ) : (
+      <div class="aspect-[4/3] bg-gray-100 flex items-center justify-center text-6xl">
+        🐕
+      </div>
+    )}
+  </div>
+
+  <div class="p-5">
+    <h3 class="text-lg font-semibold text-slate-dark group-hover:text-teal transition-colors">
+      {name}
+    </h3>
+    <p class="text-sm text-body mt-1">{shortLine}</p>
+
+    {adoptedTo && (
+      <p class="text-sm text-teal font-medium mt-2">Adopted to: {adoptedTo}</p>
+    )}
+
+    <div class="flex flex-wrap gap-2 mt-3">
+      <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${pillColors[sex]}`}>
+        {sex}
+      </span>
+      <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${pillColors[age]}`}>
+        {age}
+      </span>
+      <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${pillColors[size]}`}>
+        {size}
+      </span>
+    </div>
+  </div>
+</a>

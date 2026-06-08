@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Pacifico&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-teal: #13B5C4;
+  --color-slate-dark: #243137;
+  --color-light-bg: #F4F6F7;
+  --color-body: #5a6a73;
+  --font-sans: 'Poppins', sans-serif;
+  --font-script: 'Pacifico', cursive;
+}
+
+/* Hide scrollbar for horizontal scroll sections */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

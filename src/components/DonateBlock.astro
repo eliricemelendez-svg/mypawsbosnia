@@ -1,0 +1,68 @@
+---
+const paypalEmail = "donate2mypaws@gmail.com";
+const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
+---
+
+<section class="bg-teal/5 rounded-2xl p-8 md:p-12 text-center">
+  <div class="max-w-lg mx-auto">
+    <div class="text-5xl mb-4">💛</div>
+    <h2 class="text-2xl font-bold text-slate-dark mb-3">Donate via PayPal</h2>
+    <p class="text-body mb-6">
+      Send any amount directly. Every euro goes to the dogs.
+    </p>
+
+    <!-- Step 1: Copy the email -->
+    <div class="bg-white rounded-xl p-4 flex items-center justify-between gap-3 shadow-sm mb-4">
+      <span id="paypal-email" class="text-sm md:text-base font-mono font-medium text-slate-dark">
+        {paypalEmail}
+      </span>
+      <button
+        id="copy-paypal"
+        type="button"
+        data-email={paypalEmail}
+        class="shrink-0 px-5 py-2.5 text-sm font-bold text-white bg-teal rounded-full hover:bg-teal/90 transition-colors"
+      >
+        Copy
+      </button>
+    </div>
+
+    <!-- Step 2: Open PayPal -->
+    <a
+      href={paypalSendLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block w-full px-8 py-4 text-lg font-bold text-white bg-slate-dark rounded-full hover:bg-slate-dark/90 transition-colors"
+    >
+      Open PayPal &rarr;
+    </a>
+
+    <p class="text-xs text-body/60 mt-4">
+      1. Copy the email above &nbsp; 2. Click "Open PayPal" &nbsp; 3. Paste and send
+    </p>
+    <p class="text-xs text-body/60 mt-1">
+      Use Friends &amp; Family to avoid fees.
+    </p>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById("copy-paypal");
+  if (btn) {
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.email ?? "");
+        btn.textContent = "Copied!";
+        btn.classList.add("bg-green-500");
+        btn.classList.remove("bg-teal");
+        setTimeout(() => {
+          btn.textContent = "Copy";
+          btn.classList.remove("bg-green-500");
+          btn.classList.add("bg-teal");
+        }, 3000);
+      } catch {
+        btn.textContent = "Failed";
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+      }
+    });
+  }
+</script>
