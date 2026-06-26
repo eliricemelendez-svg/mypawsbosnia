@@ -35,11 +35,17 @@ const allPastPhotos = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/past-rescues/**/*.{jpeg,jpg,png}",
   { eager: true }
 );
+const allSuccessPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/success-stories/**/*.{jpeg,jpg,png}",
+  { eager: true }
+);
 
-const allPhotos = { ...allCurrentPhotos, ...allPastPhotos };
-const prefix = linkPrefix === "/adopt"
-  ? `../assets/current-dogs/${slug}/`
-  : `../assets/past-rescues/${slug}/`;
+const allPhotos = { ...allCurrentPhotos, ...allPastPhotos, ...allSuccessPhotos };
+const prefixMap: Record<string, string> = {
+  "/adopt": `../assets/current-dogs/${slug}/`,
+  "/success-stories": `../assets/success-stories/${slug}/`,
+};
+const prefix = prefixMap[linkPrefix] ?? `../assets/past-rescues/${slug}/`;
 
 const dogPhotos = Object.entries(allPhotos)
   .filter(([path]) => path.startsWith(prefix))
