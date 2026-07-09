@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import DogCard from "../components/DogCard.astro";
 import { currentDogs } from "../data/current-dogs";
 
-const featured = currentDogs.slice(0, 3);
+const featured = currentDogs;
 
 // Hero: specific dogs for the slideshow
 import flintImg from "../assets/current-dogs/flint/flint-1.jpeg";
@@ -76,9 +76,9 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
     <div class="text-center mb-10">
       <h2 class="text-3xl font-bold text-slate-dark">Dogs looking for homes</h2>
-      <p class="text-body mt-2">60 dogs in our care. Here are three who need you most.</p>
+      <p class="text-body mt-2">60 dogs in our care. These are the ones looking for families right now.</p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {featured.map((dog) => (
         <DogCard
           slug={dog.slug}
