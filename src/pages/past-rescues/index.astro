@@ -13,7 +13,7 @@ const photos = Object.entries(allPhotos)
   .map(([, mod]) => mod.default);
 ---
 
-<Layout title="Past Rescues - My Paws Bosnia" description="Dogs we have rescued and rehomed across Europe since 2019.">
+<Layout title="Past Rescues | Dogs Rehomed Across Europe | My Paws Bosnia" description="See the rescue dogs we've rehomed to families in Switzerland, Germany, the UK, and across Europe since 2019. From stray dogs in Bosnia to loved family pets.">
   <!-- Header -->
   <section class="bg-light-bg py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -33,7 +33,7 @@ const photos = Object.entries(allPhotos)
         {photos.map((photo, i) => (
           <Image
             src={photo}
-            alt={`Rescued dog ${i + 1}`}
+            alt={`Rescue dog successfully rehomed from Bosnia to a family in Europe`}
             width={200}
             height={200}
             class="w-full aspect-square object-cover rounded-lg"

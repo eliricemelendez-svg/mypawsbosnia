@@ -43,7 +43,26 @@ function getTimeAtShelter(arrivedAt?: string): string {
 }
 ---
 
-<Layout title={`${dog.name} - My Paws Bosnia`} description={dog.shortLine} ogImage={leadPhoto?.src}>
+<Layout
+  title={`Adopt ${dog.name} | Rescue Dog Available in Europe | My Paws Bosnia`}
+  description={`${dog.shortLine} ${dog.name} is a ${dog.age} ${dog.size} ${dog.sex} rescue dog in Bosnia, ready for adoption and transport to families across Europe.`}
+  ogImage={leadPhoto?.src}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `Adopt ${dog.name} — Rescue Dog`,
+    description: dog.description,
+    image: leadPhoto ? new URL(leadPhoto.src, Astro.site ?? "https://mypawsbosnia.org").href : undefined,
+    brand: { "@type": "Organization", name: "My Paws Bosnia" },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Adoption — contact us on Facebook",
+    },
+  }}
+>
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <a href="/adopt" class="inline-flex items-center text-teal font-medium hover:underline mb-6">
       &larr; Back to all dogs
@@ -53,7 +72,7 @@ function getTimeAtShelter(arrivedAt?: string): string {
       {leadPhoto ? (
         <Image
           src={leadPhoto}
-          alt={dog.name}
+          alt={`${dog.name}, a ${dog.size} rescue dog available for adoption from Bosnia`}
           width={500}
           class="w-full rounded-2xl"
         />

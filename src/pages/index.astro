@@ -29,7 +29,7 @@ const pastPhotos = import.meta.glob<{ default: ImageMetadata }>(
 const pastList = Object.values(pastPhotos).map((m) => m.default);
 ---
 
-<Layout title="My Paws Bosnia - Rescuing Dogs in Bosnia">
+<Layout title="Adopt a Rescue Dog from Bosnia | My Paws Bosnia" description="Rescue dogs available for adoption in Europe. My Paws Bosnia rescues stray dogs in Bosnia and rehomes them to families in Switzerland, Germany, the UK, and beyond.">
   <!-- Hero: specific dog stories -->
   <section class="bg-light-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
@@ -138,7 +138,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
         <div class="flex-none w-28 md:w-32 snap-start">
           <Image
             src={photo}
-            alt={`Rescued dog ${i + 1}`}
+            alt={`Rescue dog rehomed from Bosnia to a family in Europe`}
             width={150}
             height={150}
             class="w-full aspect-square object-cover rounded-lg"

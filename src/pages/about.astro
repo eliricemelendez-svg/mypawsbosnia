@@ -20,7 +20,7 @@ const shelterPhotos = import.meta.glob<{ default: ImageMetadata }>(
 const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 4);
 ---
 
-<Layout title="About - My Paws Bosnia" description="Learn about Vesna and how My Paws Bosnia rescues and rehomes dogs.">
+<Layout title="About Us | My Paws Bosnia - Dog Rescue in Brcko, Bosnia" description="Meet Vesna and her family who run a dog rescue shelter in Brcko, Bosnia. Since 2019, they've rescued stray dogs and rehomed them to families across Europe.">
   <!-- Header with Vesna photo -->
   <section class="relative overflow-hidden">
     <Image
@@ -74,7 +74,7 @@ const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 
         {vesnaList.map((photo, i) => (
           <Image
             src={photo}
-            alt={`Vesna at the shelter ${i + 1}`}
+            alt={`Vesna caring for rescue dogs at the shelter in Brcko, Bosnia`}
             width={150}
             height={150}
             class="w-full aspect-square object-cover rounded-lg"
@@ -143,7 +143,7 @@ const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 
           {shelterList.map((photo, i) => (
             <Image
               src={photo}
-              alt={`The shelter ${i + 1}`}
+              alt={`Dog rescue shelter in Brcko, Bosnia`}
               width={150}
               height={150}
               class="w-full aspect-square object-cover rounded-lg"

@@ -18,7 +18,7 @@ const vetPhotos = Object.values(vetImports).map((m) => m.default);
 const shelterPhotos = Object.values(shelterImports).map((m) => m.default);
 ---
 
-<Layout title="Your Impact - My Paws Bosnia" description="See how donations are used to help the dogs.">
+<Layout title="Your Impact | How Donations Help Rescue Dogs | My Paws Bosnia" description="See exactly where your donation goes — food for 60 dogs, veterinary care, vaccinations, spay/neuter surgery, and shelter improvements at our rescue in Brcko, Bosnia.">
   <!-- Header -->
   <section class="bg-light-bg py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -39,7 +39,7 @@ const shelterPhotos = Object.values(shelterImports).map((m) => m.default);
     {foodPhotos.length > 0 ? (
       <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">
         {foodPhotos.map((photo, i) => (
-          <Image src={photo} alt={`Food delivery ${i + 1}`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
+          <Image src={photo} alt={`Bulk dog food delivery to the rescue shelter in Bosnia`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
         ))}
       </div>
     ) : (
@@ -60,7 +60,7 @@ const shelterPhotos = Object.values(shelterImports).map((m) => m.default);
     {vetPhotos.length > 0 ? (
       <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">
         {vetPhotos.map((photo, i) => (
-          <Image src={photo} alt={`Vet visit ${i + 1}`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
+          <Image src={photo} alt={`Veterinary care for rescue dogs at the Bosnia shelter`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
         ))}
       </div>
     ) : (
@@ -80,7 +80,7 @@ const shelterPhotos = Object.values(shelterImports).map((m) => m.default);
     {shelterPhotos.length > 0 ? (
       <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">
         {shelterPhotos.map((photo, i) => (
-          <Image src={photo} alt={`Shelter ${i + 1}`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
+          <Image src={photo} alt={`Dog rescue shelter facilities in Brcko, Bosnia`} width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />
         ))}
       </div>
     ) : (

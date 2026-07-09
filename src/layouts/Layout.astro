@@ -7,11 +7,40 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description = "Rescuing and rehoming dogs in Bosnia since 2019", ogImage } = Astro.props;
+const { title, description = "Adopt a rescue dog from Bosnia. My Paws Bosnia rescues, rehabilitates, and rehomes stray dogs to families across Europe.", ogImage, jsonLd } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://mypawsbosnia.org");
-const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? "https://mypawsbosnia.org").href : undefined;
+const siteURL = Astro.site?.href ?? "https://mypawsbosnia.org";
+const ogImageURL = ogImage ? new URL(ogImage, siteURL).href : `${siteURL}favicon.svg`;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "My Paws Bosnia",
+  alternateName: "Moje Šape",
+  url: siteURL,
+  logo: `${siteURL}favicon.svg`,
+  description: "Dog rescue shelter in Brcko, Bosnia rescuing and rehoming stray dogs to families across Europe since 2019.",
+  email: "donate2mypaws@gmail.com",
+  location: {
+    "@type": "Place",
+    name: "Brcko",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Brcko",
+      addressCountry: "BA",
+    },
+  },
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61590021437450",
+  ],
+};
+
+const allJsonLd = jsonLd
+  ? Array.isArray(jsonLd) ? [orgSchema, ...jsonLd] : [orgSchema, jsonLd]
+  : [orgSchema];
 ---
 
 <!doctype html>
@@ -20,11 +49,29 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? "https://mypawsbosni
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#2ba5b5" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="My Paws Bosnia" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Structured Data -->
+    {allJsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

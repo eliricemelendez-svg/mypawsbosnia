@@ -28,7 +28,40 @@ const allPhotos = [
 ];
 ---
 
-<Layout title="Donations - My Paws Bosnia" description="Support the dogs with a donation via PayPal.">
+<Layout
+  title="Donate to Help Rescue Dogs in Bosnia | My Paws Bosnia"
+  description="Your donation feeds, vaccinates, and shelters 60 rescue dogs in Bosnia. €25 feeds a dog for a week. Every euro goes directly to the dogs — no admin costs."
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How does my donation help rescue dogs in Bosnia?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Every euro goes directly to the dogs. €25 feeds a dog for a week, €60 covers one vet visit with treatment, and €10 pays for basic medications. There are no admin costs — the shelter is run entirely by one family.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I adopt a rescue dog from Bosnia?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Contact us through our Facebook page. All dogs are vaccinated, dewormed, microchipped, and spayed or neutered before adoption. We arrange transport to families in Switzerland, Germany, the United Kingdom, and other European countries.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where are the dogs transported to?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Dogs are transported from our shelter in Brcko, Bosnia to adoptive families across Europe, including Switzerland, Germany, the United Kingdom, and other countries.",
+        },
+      },
+    ],
+  }}
+>
   <!-- Header — short, emotional -->
   <section class="bg-light-bg py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -81,7 +114,7 @@ const allPhotos = [
         {allPhotos.map((photo, i) => (
           <Image
             src={photo}
-            alt={`Life at the shelter ${i + 1}`}
+            alt={`Daily life at the dog rescue shelter in Bosnia`}
             width={120}
             height={120}
             class="w-full aspect-square object-cover rounded-md"

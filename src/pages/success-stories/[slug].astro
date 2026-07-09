@@ -29,7 +29,20 @@ const leadPhoto = dogPhotos[0] ?? null;
 const extraPhotos = dogPhotos.slice(1);
 ---
 
-<Layout title={`${dog.name}'s Story - My Paws Bosnia`} description={dog.shortLine} ogImage={leadPhoto?.src}>
+<Layout
+  title={`${dog.name}'s Adoption Story | Rescue Dog Success | My Paws Bosnia`}
+  description={`${dog.shortLine} Read how ${dog.name} went from a shelter in Bosnia to a loving home in Europe.`}
+  ogImage={leadPhoto?.src}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${dog.name}'s Adoption Story`,
+    description: dog.story,
+    image: leadPhoto ? new URL(leadPhoto.src, Astro.site ?? "https://mypawsbosnia.org").href : undefined,
+    author: { "@type": "Organization", name: "My Paws Bosnia" },
+    publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  }}
+>
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <a href="/success-stories" class="inline-flex items-center text-teal font-medium hover:underline mb-6">
       &larr; Back to success stories
@@ -39,7 +52,7 @@ const extraPhotos = dogPhotos.slice(1);
       {leadPhoto ? (
         <Image
           src={leadPhoto}
-          alt={dog.name}
+          alt={`${dog.name}, a rescue dog from Bosnia who found a forever home`}
           width={500}
           class="w-full rounded-2xl"
         />
