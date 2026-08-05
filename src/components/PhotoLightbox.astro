@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  photos: ImageMetadata[];
+  name: string;
+}
+
+const { photos, name } = Astro.props;
+---
+
+<!-- Lightbox overlay -->
+{photos.length > 0 && (
+  <div
+    id="lightbox"
+    class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center"
+    data-lightbox
+  >
+    <button
+      type="button"
+      class="absolute top-4 right-4 text-white text-4xl leading-none hover:text-gray-300 transition-colors z-10 bg-transparent border-0 cursor-pointer w-12 h-12 flex items-center justify-center"
+      data-lightbox-close
+      aria-label="Close lightbox"
+    >&times;</button>
+
+    {photos.length > 1 && (
+      <button
+        type="button"
+        class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl leading-none hover:text-gray-300 transition-colors z-10 bg-transparent border-0 cursor-pointer w-12 h-12 flex items-center justify-center"
+        data-lightbox-prev
+        aria-label="Previous photo"
+      >&#8249;</button>
+    )}
+
+    {photos.length > 1 && (
+      <button
+        type="button"
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl leading-none hover:text-gray-300 transition-colors z-10 bg-transparent border-0 cursor-pointer w-12 h-12 flex items-center justify-center"
+        data-lightbox-next
+        aria-label="Next photo"
+      >&#8250;</button>
+    )}
+
+    <div class="max-w-5xl max-h-[90vh] w-full px-16 flex items-center justify-center">
+      {photos.map((photo, i) => (
+        <Image
+          src={photo}
+          alt={`${name} photo ${i + 1}`}
+          width={1200}
+          class={`max-h-[85vh] w-auto max-w-full object-contain rounded-lg ${i === 0 ? '' : 'hidden'}`}
+          data-lightbox-slide={i}
+        />
+      ))}
+    </div>
+
+    {photos.length > 1 && (
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2" data-lightbox-dots>
+        {photos.map((_, i) => (
+          <button
+            type="button"
+            class={`w-3 h-3 rounded-full border-0 cursor-pointer transition-colors ${i === 0 ? 'bg-white' : 'bg-white/40'}`}
+            data-lightbox-dot={i}
+            aria-label={`Go to photo ${i + 1}`}
+          />
+        ))}
+      </div>
+    )}
+
+    <div class="absolute top-4 left-4 text-white/70 text-sm" data-lightbox-counter>
+      1 / {photos.length}
+    </div>
+  </div>
+)}
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const lightbox = document.querySelector('[data-lightbox]') as HTMLElement;
+    if (!lightbox) return;
+
+    const slides = lightbox.querySelectorAll('[data-lightbox-slide]');
+    const dots = lightbox.querySelectorAll('[data-lightbox-dot]');
+    const counter = lightbox.querySelector('[data-lightbox-counter]');
+    const count = slides.length;
+    let current = 0;
+
+    function show(i: number) {
+      current = (i + count) % count;
+      slides.forEach((s, idx) => s.classList.toggle('hidden', idx !== current));
+      dots.forEach((d, idx) => {
+        d.className = `w-3 h-3 rounded-full border-0 cursor-pointer transition-colors ${idx === current ? 'bg-white' : 'bg-white/40'}`;
+      });
+      if (counter) counter.textContent = `${current + 1} / ${count}`;
+    }
+
+    (window as any).__lightboxOpen = (i: number) => {
+      show(i);
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+
+    function close() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    lightbox.querySelector('[data-lightbox-close]')?.addEventListener('click', close);
+    lightbox.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => show(current - 1));
+    lightbox.querySelector('[data-lightbox-next]')?.addEventListener('click', () => show(current + 1));
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const i = parseInt(dot.getAttribute('data-lightbox-dot') || '0');
+        show(i);
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    let startX = 0;
+    lightbox.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) show(current + (diff > 0 ? 1 : -1));
+    });
+  });
+</script>

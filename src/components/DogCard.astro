@@ -51,7 +51,8 @@ const dogPhotos = Object.entries(allPhotos)
   .filter(([path]) => path.startsWith(prefix))
   .sort(([a], [b]) => a.localeCompare(b));
 
-const leadPhoto = dogPhotos[0]?.[1]?.default ?? null;
+const photos = dogPhotos.map(([, mod]) => mod.default);
+const leadPhoto = photos[0] ?? null;
 ---
 
 <a
@@ -61,8 +62,30 @@ const leadPhoto = dogPhotos[0]?.[1]?.default ?? null;
   data-age={age}
   data-size={size}
 >
-  <div class="bg-gray-50">
-    {leadPhoto ? (
+  <div class="bg-gray-50 relative overflow-hidden">
+    {photos.length > 1 ? (
+      <div class="card-carousel relative" data-card-carousel>
+        <div class="flex transition-transform duration-300 ease-in-out" data-carousel-track>
+          {photos.map((photo, i) => (
+            <div class="w-full flex-shrink-0">
+              <Image
+                src={photo}
+                alt={`${name} photo ${i + 1}`}
+                width={600}
+                class="w-full"
+              />
+            </div>
+          ))}
+        </div>
+        <button type="button" data-carousel-prev class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-8 h-8 flex items-center justify-center shadow text-slate-700 opacity-0 group-hover:opacity-100 transition-opacity z-10" aria-label="Previous photo" onclick="event.preventDefault(); event.stopPropagation();">&#8249;</button>
+        <button type="button" data-carousel-next class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-8 h-8 flex items-center justify-center shadow text-slate-700 opacity-0 group-hover:opacity-100 transition-opacity z-10" aria-label="Next photo" onclick="event.preventDefault(); event.stopPropagation();">&#8250;</button>
+        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" data-carousel-dots>
+          {photos.map((_, i) => (
+            <span class={`block w-2 h-2 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`} />
+          ))}
+        </div>
+      </div>
+    ) : leadPhoto ? (
       <Image
         src={leadPhoto}
         alt={`${name}, a rescue dog available for adoption from Bosnia`}
@@ -99,3 +122,35 @@ const leadPhoto = dogPhotos[0]?.[1]?.default ?? null;
     </div>
   </div>
 </a>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('[data-card-carousel]').forEach((carousel) => {
+      const track = carousel.querySelector('[data-carousel-track]') as HTMLElement;
+      const dots = carousel.querySelectorAll('[data-carousel-dots] span');
+      const prev = carousel.querySelector('[data-carousel-prev]') as HTMLElement;
+      const next = carousel.querySelector('[data-carousel-next]') as HTMLElement;
+      const count = dots.length;
+      let current = 0;
+
+      function goTo(i: number) {
+        current = (i + count) % count;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, idx) => {
+          d.className = `block w-2 h-2 rounded-full ${idx === current ? 'bg-white' : 'bg-white/50'} transition-colors`;
+        });
+      }
+
+      prev?.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); goTo(current - 1); });
+      next?.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); goTo(current + 1); });
+
+      // Touch swipe
+      let startX = 0;
+      carousel.addEventListener('touchstart', (e: Event) => { startX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', (e: Event) => {
+        const diff = startX - (e as TouchEvent).changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { e.preventDefault(); goTo(current + (diff > 0 ? 1 : -1)); }
+      });
+    });
+  });
+</script>
