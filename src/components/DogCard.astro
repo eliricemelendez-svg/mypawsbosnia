@@ -124,7 +124,7 @@ const leadPhoto = photos[0] ?? null;
 </a>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-card-carousel]').forEach((carousel) => {
       const track = carousel.querySelector('[data-carousel-track]') as HTMLElement;
       const dots = carousel.querySelectorAll('[data-carousel-dots] span');

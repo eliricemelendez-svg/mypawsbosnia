@@ -73,7 +73,7 @@ const { photos, name } = Astro.props;
 )}
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.querySelector('[data-lightbox]') as HTMLElement;
     if (!lightbox) return;
 
@@ -92,12 +92,20 @@ const { photos, name } = Astro.props;
       if (counter) counter.textContent = `${current + 1} / ${count}`;
     }
 
-    (window as any).__lightboxOpen = (i: number) => {
+    function open(i: number) {
       show(i);
       lightbox.classList.remove('hidden');
       lightbox.classList.add('flex');
       document.body.style.overflow = 'hidden';
-    };
+    }
+
+    // Attach click listeners to all trigger buttons
+    document.querySelectorAll('[data-lightbox-trigger]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.getAttribute('data-lightbox-trigger') || '0');
+        open(i);
+      });
+    });
 
     function close() {
       lightbox.classList.add('hidden');

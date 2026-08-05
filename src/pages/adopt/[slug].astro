@@ -71,7 +71,7 @@ function getTimeAtShelter(arrivedAt?: string): string {
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
       {leadPhoto ? (
-        <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" onclick="window.__lightboxOpen?.(0)">
+        <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger="0">
           <Image
             src={leadPhoto}
             alt={`${dog.name}, a ${dog.size} rescue dog available for adoption from Bosnia`}
@@ -130,7 +130,7 @@ function getTimeAtShelter(arrivedAt?: string): string {
         <h2 class="text-xl font-semibold text-slate-dark mb-4">More photos</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           {extraPhotos.map((photo, i) => (
-            <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" onclick={`window.__lightboxOpen?.(${i + 1})`}>
+            <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger={i + 1}>
               <Image
                 src={photo}
                 alt={`${dog.name} photo ${i + 2}`}
