@@ -31,4 +31,23 @@ export const successStories: SuccessStory[] = [
       "Loves affection and human company",
     ],
   },
+  {
+    slug: "nero",
+    name: "Nero",
+    sex: "male",
+    age: "young",
+    ageYears: 1.5,
+    size: "medium",
+    shortLine: "A gentle soul who found his forever home in Belgium.",
+    story: "Nero is a beautiful, gentle boy with the softest heart. Possibly a Border Collie and Shepherd mix, he loved being outdoors, exploring, and being around people. After waiting patiently at the shelter, Nero was adopted in August 2026 and will be starting his new life in Belgium. We're so happy for this sweet boy — he truly deserves it.",
+    adoptedDate: "August 2026",
+    adoptedTo: "Belgium",
+    traits: [
+      "Friendly and affectionate",
+      "Active and playful",
+      "Loves people and nature",
+      "Great with kids",
+      "Mixed breed (Border Collie / Shepherd)",
+    ],
+  },
 ];

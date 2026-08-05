@@ -101,22 +101,4 @@ export const currentDogs: Dog[] = [
       "Healthy and ready to travel",
     ],
   },
-  {
-    slug: "nero",
-    name: "Nero",
-    sex: "male",
-    age: "young",
-    ageYears: 1.5,
-    size: "medium",
-    shortLine: "A gentle soul with a kind heart. Friendly, active, and great with kids.",
-    description: "Nero is a beautiful, gentle boy with the softest heart. Possibly a Border Collie and Shepherd mix, he loves being outdoors, exploring, and being around people. He's healthy, well-cared for, and full of life. Nero would make a wonderful companion for an active family or anyone looking for a loyal and loving friend.",
-    traits: [
-      "Friendly and affectionate",
-      "Active and playful",
-      "Loves people and nature",
-      "Great with kids",
-      "Healthy and ready to go",
-      "Mixed breed (Border Collie / Shepherd)",
-    ],
-  },
 ];
