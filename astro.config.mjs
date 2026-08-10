@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://mypawsbosnia.org',
+  trailingSlash: 'never',
   vite: {
     plugins: [tailwindcss()],
   },
