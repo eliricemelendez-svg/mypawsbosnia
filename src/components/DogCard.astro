@@ -62,17 +62,17 @@ const leadPhoto = photos[0] ?? null;
   data-age={age}
   data-size={size}
 >
-  <div class="bg-gray-50 relative overflow-hidden">
+  <div class="bg-gray-50 relative overflow-hidden aspect-[4/3]">
     {photos.length > 1 ? (
-      <div class="card-carousel relative" data-card-carousel>
-        <div class="flex transition-transform duration-300 ease-in-out" data-carousel-track>
+      <div class="card-carousel relative h-full" data-card-carousel>
+        <div class="flex h-full transition-transform duration-300 ease-in-out" data-carousel-track>
           {photos.map((photo, i) => (
-            <div class="w-full flex-shrink-0">
+            <div class="w-full h-full flex-shrink-0">
               <Image
                 src={photo}
                 alt={`${name} photo ${i + 1}`}
                 width={600}
-                class="w-full aspect-[4/3] object-cover"
+                class="w-full h-full object-cover"
               />
             </div>
           ))}
@@ -90,10 +90,10 @@ const leadPhoto = photos[0] ?? null;
         src={leadPhoto}
         alt={`${name}, a rescue dog available for adoption from Bosnia`}
         width={600}
-        class="w-full aspect-[4/3] object-cover"
+        class="w-full h-full object-cover"
       />
     ) : (
-      <div class="aspect-[4/3] bg-gray-100 flex items-center justify-center text-6xl">
+      <div class="h-full bg-gray-100 flex items-center justify-center text-6xl">
         🐕
       </div>
     )}

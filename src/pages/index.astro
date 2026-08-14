@@ -7,13 +7,18 @@ import { currentDogs } from "../data/current-dogs";
 const featured = currentDogs;
 
 // Hero: specific dogs for the slideshow
+// NOTE: When adding a new dog to current-dogs.ts, also add them here.
 import flintImg from "../assets/current-dogs/flint/flint-1.jpeg";
 import barneyImg from "../assets/current-dogs/barney/barney-1.jpeg";
 import leiaImg from "../assets/current-dogs/leia/leia-1.jpeg";
+import klaraImg from "../assets/current-dogs/klara/klara-1.jpg";
+import eliImg from "../assets/current-dogs/eli/eli-1.jpg";
 const heroSlides = [
-  { img: flintImg, name: "Flint", line: "He donated blood to save another dog's life. He's been waiting for a home since he was a puppy.", alt: "Flint, a rescued dog at My Paws Bosnia" },
-  { img: barneyImg, name: "Barney", line: "Two years old, full of energy, and ready to travel to his new family.", alt: "Barney, a rescued dog at My Paws Bosnia" },
-  { img: leiaImg, name: "Leia", line: "Abandoned but never broken. A gentle 40kg giant still full of love and trust.", alt: "Leia, a rescued dog at My Paws Bosnia" },
+  { img: flintImg, slug: "flint", name: "Flint", line: "He donated blood to save another dog's life. He's been waiting for a home since he was a puppy.", alt: "Flint, a rescued dog at My Paws Bosnia" },
+  { img: barneyImg, slug: "barney", name: "Barney", line: "Two years old, full of energy, and ready to travel to his new family.", alt: "Barney, a rescued dog at My Paws Bosnia" },
+  { img: leiaImg, slug: "leia", name: "Leia", line: "Abandoned but never broken. A gentle 40kg giant still full of love and trust.", alt: "Leia, a rescued dog at My Paws Bosnia" },
+  { img: klaraImg, slug: "klara", name: "Klara", line: "A brave little fighter who beat illness and is ready to find her forever home.", alt: "Klara, a rescued dog at My Paws Bosnia" },
+  { img: eliImg, slug: "eli", name: "Eli", line: "A happy, social puppy who loves belly rubs and has never met a stranger.", alt: "Eli, a rescued dog at My Paws Bosnia" },
 ];
 
 // Vesna + shelter photos for trust section
@@ -41,10 +46,11 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
           </h1>
           <div class="mt-8 flex flex-col sm:flex-row gap-4">
             <a
-              href="/adopt"
+              id="hero-dog-link"
+              href={`/adopt/${heroSlides[0].slug}`}
               class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-center"
             >
-              Meet our dogs
+              Meet {heroSlides[0].name}
             </a>
             <button
               class="donate-urgent inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors text-center"
@@ -65,6 +71,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
               ]}
               data-name={slide.name}
               data-line={slide.line}
+              data-slug={slide.slug}
             />
           ))}
         </div>
@@ -172,6 +179,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
   const slides = document.querySelectorAll('.hero-slide');
   const nameEl = document.getElementById('hero-dog-name');
   const lineEl = document.getElementById('hero-dog-line');
+  const linkEl = document.getElementById('hero-dog-link') as HTMLAnchorElement;
   if (slides.length > 1 && nameEl && lineEl) {
     let current = 0;
     setInterval(() => {
@@ -183,6 +191,10 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
       slides[current].classList.add('opacity-100');
       nameEl.textContent = slide.dataset.name ?? '';
       lineEl.textContent = slide.dataset.line ?? '';
+      if (linkEl) {
+        linkEl.href = `/adopt/${slide.dataset.slug}`;
+        linkEl.textContent = `Meet ${slide.dataset.name}`;
+      }
     }, 5000);
   }
 </script>
