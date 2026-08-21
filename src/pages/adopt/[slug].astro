@@ -146,6 +146,42 @@ function getTimeAtShelter(arrivedAt?: string): string {
 
     <PhotoLightbox photos={dogPhotos} name={dog.name} />
 
+    <!-- Adoption Fees -->
+    <div class="mt-12 bg-light-bg rounded-2xl p-8">
+      <h2 class="text-2xl font-bold text-slate-dark mb-2">Adoption and transport fees</h2>
+      <p class="text-body mb-6">
+        Our adoption fees cover everything needed to get your dog safely to you. Here's what's included:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div class="bg-white rounded-xl p-4">
+          <p class="text-sm text-body">Transport from quarantine to you</p>
+          <p class="text-lg font-semibold text-slate-dark">£330</p>
+        </div>
+        <div class="bg-white rounded-xl p-4">
+          <p class="text-sm text-body">Travel to and from quarantine</p>
+          <p class="text-lg font-semibold text-slate-dark">£50</p>
+        </div>
+        <div class="bg-white rounded-xl p-4">
+          <p class="text-sm text-body">Brucellosis test (required for entry)</p>
+          <p class="text-lg font-semibold text-slate-dark">£30–35</p>
+        </div>
+        <div class="bg-white rounded-xl p-4">
+          <p class="text-sm text-body">Quarantine (48 hours)</p>
+          <p class="text-lg font-semibold text-slate-dark">£30–50</p>
+        </div>
+      </div>
+
+      <div class="bg-teal/10 rounded-xl p-4 flex items-baseline gap-3">
+        <p class="text-sm text-body">Estimated total</p>
+        <p class="text-xl font-bold text-slate-dark">£440–465</p>
+      </div>
+
+      <p class="text-sm text-body mt-4">
+        Every dog travels with a passport, vaccinations, neutering/spaying, deworming, and flea treatment completed before departure. We recommend budgeting for a vet check-up once your dog arrives and settles in.
+      </p>
+    </div>
+
     <!-- Adopt CTA -->
     <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
       <h2 class="text-2xl font-bold text-slate-dark mb-3">Interested in adopting {dog.name}?</h2>
