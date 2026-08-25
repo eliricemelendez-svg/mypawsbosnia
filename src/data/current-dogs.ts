@@ -140,4 +140,23 @@ export const currentDogs: Dog[] = [
       "Ready to travel",
     ],
   },
+  {
+    slug: "luna",
+    name: "Luna",
+    sex: "female",
+    age: "puppy",
+    ageYears: 0.4,
+    size: "large",
+    shortLine: "Playful, active, and great with kids. A big girl with a naturally short tail.",
+    description: "Luna is a beautiful, playful and active girl looking for her forever home. At just 4.5 months old she's already 43 cm tall and will grow into a large dog. She has a naturally short tail, which makes her even more special. She's great with people and children, and full of energy and love.",
+    traits: [
+      "Very good with people",
+      "Great with children",
+      "Playful, energetic, and active",
+      "Can be cat-tested on request",
+      "Vaccinated",
+      "Health tests completed before adoption",
+      "Ready to travel",
+    ],
+  },
 ];
