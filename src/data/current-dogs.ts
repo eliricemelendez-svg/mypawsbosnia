@@ -44,6 +44,7 @@ export const currentDogs: Dog[] = [
       "Very energetic and playful",
       "Good with other dogs",
       "Good with older children",
+      "Estimated 22–25 kg",
       "Best suited to an active family",
       "Neutered, vet work complete, travel-ready",
     ],
