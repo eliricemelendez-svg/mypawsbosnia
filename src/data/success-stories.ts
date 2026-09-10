@@ -14,6 +14,25 @@ export interface SuccessStory {
 
 export const successStories: SuccessStory[] = [
   {
+    slug: "bridgette",
+    name: "Bridgette",
+    sex: "female",
+    age: "adult",
+    ageYears: 4,
+    size: "small",
+    shortLine: "From a scared puppy in Bosnia to a happy, mud-loving dog in the UK.",
+    story: "Bridgette was part of a litter born at our shelter in Brčko. Her family found us through Facebook, thought the puppies looked cute, and sent us a message. After a home check and some paperwork, Bridgette was on her way to the UK. When she first arrived in 2022, she was nervous. She didn't know what a toy was. She played with sticks and hid from her new family. Four years later, she's rambunctious, loving, and covered in mud most of the time. Bridgette is proof that these dogs just need a chance.",
+    adoptedDate: "2022",
+    adoptedTo: "United Kingdom",
+    traits: [
+      "Playful and energetic",
+      "Loving and affectionate",
+      "Loves the outdoors",
+      "Adopted from Bosnia to the UK",
+      "Transport cost around £500",
+    ],
+  },
+  {
     slug: "pjuske",
     name: "Pjuske",
     sex: "female",
