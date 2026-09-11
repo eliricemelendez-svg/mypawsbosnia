@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { useTranslations } from "../i18n/utils";
-import type { Lang } from "../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
 
-const lang: Lang = 'en';
+const lang: Lang = 'nl';
 const t = useTranslations(lang);
 ---
 
@@ -14,7 +14,6 @@ const t = useTranslations(lang);
       <p class="mt-4 text-lg text-body max-w-2xl mx-auto">{t('contact.subtitle')}</p>
     </div>
   </section>
-
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="bg-light-bg rounded-2xl p-8">

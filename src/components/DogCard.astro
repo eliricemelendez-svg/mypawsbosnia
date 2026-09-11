@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import type { Lang } from "../i18n/utils";
+import { useTranslations } from "../i18n/utils";
 
 interface Props {
   slug: string;
@@ -10,9 +12,11 @@ interface Props {
   size: "small" | "medium" | "large";
   linkPrefix: string;
   adoptedTo?: string;
+  lang?: Lang;
 }
 
-const { slug, name, shortLine, sex, age, size, linkPrefix, adoptedTo } = Astro.props;
+const { slug, name, shortLine, sex, age, size, linkPrefix, adoptedTo, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 
 const pillColors: Record<string, string> = {
   male: "bg-blue-100 text-blue-700",
@@ -25,6 +29,10 @@ const pillColors: Record<string, string> = {
   medium: "bg-teal/10 text-teal",
   large: "bg-teal/10 text-teal",
 };
+
+const sexLabel = t(`dog.${sex}` as any);
+const ageLabel = t(`dog.${age}` as any);
+const sizeLabel = t(`dog.${size}` as any);
 
 // Load lead photo (first alphabetically from the dog's folder)
 const allCurrentPhotos = import.meta.glob<{ default: ImageMetadata }>(
@@ -41,11 +49,14 @@ const allSuccessPhotos = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const allPhotos = { ...allCurrentPhotos, ...allPastPhotos, ...allSuccessPhotos };
+
+// Strip lang prefix from linkPrefix for asset matching
+const cleanLinkPrefix = linkPrefix.replace(/^\/(de|nl)/, '');
 const prefixMap: Record<string, string> = {
   "/adopt": `../assets/current-dogs/${slug}/`,
   "/success-stories": `../assets/success-stories/${slug}/`,
 };
-const prefix = prefixMap[linkPrefix] ?? `../assets/past-rescues/${slug}/`;
+const prefix = prefixMap[cleanLinkPrefix] ?? `../assets/past-rescues/${slug}/`;
 
 const dogPhotos = Object.entries(allPhotos)
   .filter(([path]) => path.startsWith(prefix))
@@ -106,18 +117,18 @@ const leadPhoto = photos[0] ?? null;
     <p class="text-sm text-body mt-1">{shortLine}</p>
 
     {adoptedTo && (
-      <p class="text-sm text-teal font-medium mt-2">Adopted to: {adoptedTo}</p>
+      <p class="text-sm text-teal font-medium mt-2">{t('dog.adoptedTo')} {adoptedTo}</p>
     )}
 
     <div class="flex flex-wrap gap-2 mt-3">
       <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${pillColors[sex]}`}>
-        {sex}
+        {sexLabel}
       </span>
       <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${pillColors[age]}`}>
-        {age}
+        {ageLabel}
       </span>
       <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${pillColors[size]}`}>
-        {size}
+        {sizeLabel}
       </span>
     </div>
   </div>

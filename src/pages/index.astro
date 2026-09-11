@@ -3,11 +3,15 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import DogCard from "../components/DogCard.astro";
 import { currentDogs } from "../data/current-dogs";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/utils";
+
+const lang: Lang = 'en';
+const t = useTranslations(lang);
 
 const featured = currentDogs;
 
 // Hero: specific dogs for the slideshow
-// NOTE: When adding a new dog to current-dogs.ts, also add them here.
 import flintImg from "../assets/current-dogs/flint/flint-1.jpeg";
 import barneyImg from "../assets/current-dogs/barney/barney-1.jpeg";
 import leiaImg from "../assets/current-dogs/leia/leia-1.jpeg";
@@ -42,13 +46,13 @@ const pastPhotos = import.meta.glob<{ default: ImageMetadata }>(
 const pastList = Object.values(pastPhotos).map((m) => m.default);
 ---
 
-<Layout title="Adopt a Rescue Dog from Bosnia | My Paws Bosnia" description="Rescue dogs available for adoption in Europe. My Paws Bosnia rescues stray dogs in Bosnia and rehomes them to families in Switzerland, Germany, the UK, and beyond.">
+<Layout title={t('index.title')} description={t('index.description')} lang={lang}>
   <!-- Hero: specific dog stories -->
   <section class="bg-light-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div>
-          <p class="text-xl md:text-2xl font-bold text-teal mb-3">Meet <span id="hero-dog-name">{heroSlides[0].name}</span></p>
+          <p class="text-xl md:text-2xl font-bold text-teal mb-3">{t('index.heroMeet')} <span id="hero-dog-name">{heroSlides[0].name}</span></p>
           <h1 id="hero-dog-line" class="text-2xl md:text-3xl font-semibold text-slate-dark leading-tight">
             {heroSlides[0].line}
           </h1>
@@ -63,7 +67,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
             <button
               class="donate-urgent inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors text-center"
             >
-              Give €25 to feed a dog
+              {t('index.heroDonate')}
             </button>
           </div>
         </div>
@@ -90,8 +94,8 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
   <!-- Featured Dogs -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
     <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold text-slate-dark">Dogs looking for homes</h2>
-      <p class="text-body mt-2">60 dogs in our care. These are the ones looking for families right now.</p>
+      <h2 class="text-3xl font-bold text-slate-dark">{t('index.featuredTitle')}</h2>
+      <p class="text-body mt-2">{t('index.featuredSubtitle')}</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {featured.map((dog) => (
@@ -103,6 +107,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
           age={dog.age}
           size={dog.size}
           linkPrefix="/adopt"
+          lang={lang}
         />
       ))}
     </div>
@@ -111,7 +116,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
         href="/adopt"
         class="inline-block px-8 py-3 text-teal font-semibold border-2 border-teal rounded-full hover:bg-teal hover:text-white transition-colors"
       >
-        See all dogs
+        {t('index.seeAllDogs')}
       </a>
     </div>
   </section>
@@ -119,24 +124,24 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
   <!-- Trust: real proof this is legit -->
   <section class="bg-light-bg py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">This is real. Here's the proof.</h2>
+      <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('index.trustTitle')}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
           <Image src={vesnaWithDog} alt="Vesna with a shelter dog" width={400} class="w-full aspect-square object-cover" />
           <div class="p-4">
-            <p class="text-sm text-body">Vesna runs the shelter with her two daughters in Brcko, Bosnia.</p>
+            <p class="text-sm text-body">{t('index.trustVesna')}</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
-          <Image src={vetReceipt} alt="Veterinary receipt from AgriPet clinic for Moje Šape" width={400} class="w-full aspect-square object-cover object-top" />
+          <Image src={vetReceipt} alt="Veterinary receipt from AgriPet clinic for Moje Sape" width={400} class="w-full aspect-square object-cover object-top" />
           <div class="p-4">
-            <p class="text-sm text-body">A real vet receipt from the clinic, billed to Moje Šape.</p>
+            <p class="text-sm text-body">{t('index.trustVet')}</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
           <Image src={passportDog} alt="A rescued dog with their pet passport" width={400} class="w-full aspect-square object-cover" />
           <div class="p-4">
-            <p class="text-sm text-body">Dogs receive passports and travel to families across Europe.</p>
+            <p class="text-sm text-body">{t('index.trustPassport')}</p>
           </div>
         </div>
       </div>
@@ -146,7 +151,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
   <!-- Past rescues collage -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-8">
-      <h2 class="text-2xl font-bold text-slate-dark">Dogs we've placed in homes since 2019</h2>
+      <h2 class="text-2xl font-bold text-slate-dark">{t('index.pastTitle')}</h2>
     </div>
     <div class="flex gap-2 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
       {pastList.map((photo, i) => (
@@ -168,8 +173,8 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
     <div class="bg-light-bg rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-6">
       <div class="text-5xl">📘</div>
       <div class="flex-1 text-center md:text-left">
-        <h2 class="text-2xl font-bold text-slate-dark">Follow us on Facebook</h2>
-        <p class="text-body mt-2">Daily updates on the dogs in our care.</p>
+        <h2 class="text-2xl font-bold text-slate-dark">{t('index.fbTitle')}</h2>
+        <p class="text-body mt-2">{t('index.fbSubtitle')}</p>
       </div>
       <a
         href="https://www.facebook.com/profile.php?id=61590021437450"
@@ -177,7 +182,7 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
         rel="noopener noreferrer"
         class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors"
       >
-        Follow
+        {t('index.fbFollow')}
       </a>
     </div>
   </section>

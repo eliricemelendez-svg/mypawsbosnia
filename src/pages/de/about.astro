@@ -1,30 +1,24 @@
 ---
 import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import { useTranslations } from "../i18n/utils";
-import type { Lang } from "../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations, localizedPath } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
 
-const lang: Lang = 'en';
+const lang: Lang = 'de';
 const t = useTranslations(lang);
 
-import aboutHero from "../assets/shelter/hires-three-pups.jpg";
+import aboutHero from "../../assets/shelter/hires-three-pups.jpg";
 
-const vesnaPhotos = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/vesna/*.{jpeg,jpg,png}",
-  { eager: true }
-);
+const vesnaPhotos = import.meta.glob<{ default: ImageMetadata }>("../../assets/vesna/*.{jpeg,jpg,png}", { eager: true });
 const vesnaList = Object.values(vesnaPhotos).map((m) => m.default);
 
-const shelterPhotos = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/shelter/*.{jpeg,jpg,png}",
-  { eager: true }
-);
+const shelterPhotos = import.meta.glob<{ default: ImageMetadata }>("../../assets/shelter/*.{jpeg,jpg,png}", { eager: true });
 const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 4);
 ---
 
 <Layout title={t('about.title')} description={t('about.description')} lang={lang}>
   <section class="relative overflow-hidden">
-    <Image src={aboutHero} alt="Three rescued dogs at the shelter in Bosnia" width={1400} height={600} class="w-full h-[400px] md:h-[500px] object-cover object-center" />
+    <Image src={aboutHero} alt="Drei gerettete Hunde im Tierheim in Bosnien" width={1400} height={600} class="w-full h-[400px] md:h-[500px] object-cover object-center" />
     <div class="absolute inset-0 bg-gradient-to-t from-slate-dark/70 to-transparent"></div>
     <div class="absolute inset-0 flex items-end">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 text-white">
@@ -46,14 +40,10 @@ const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 
         </div>
       </div>
       <div class="grid grid-cols-3 gap-2">
-        {vesnaList.map((photo, i) => (
-          <Image src={photo} alt={`Vesna caring for rescue dogs at the shelter in Brcko, Bosnia`} width={150} height={150} class="w-full aspect-square object-cover rounded-lg" />
-        ))}
+        {vesnaList.map((photo) => (<Image src={photo} alt="Vesna k\u00fcmmert sich um Rettungshunde im Tierheim" width={150} height={150} class="w-full aspect-square object-cover rounded-lg" />))}
       </div>
     </div>
   </section>
-
-  {false && (<section></section>)}
 
   <section class="bg-light-bg py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,9 +72,7 @@ const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 
       </div>
       {shelterList.length > 0 && (
         <div class="grid grid-cols-4 md:grid-cols-6 gap-2 mt-12">
-          {shelterList.map((photo, i) => (
-            <Image src={photo} alt={`Dog rescue shelter in Brcko, Bosnia`} width={150} height={150} class="w-full aspect-square object-cover rounded-lg" />
-          ))}
+          {shelterList.map((photo) => (<Image src={photo} alt="Hunderettungs-Tierheim in Br\u010dko, Bosnien" width={150} height={150} class="w-full aspect-square object-cover rounded-lg" />))}
         </div>
       )}
     </div>
@@ -94,8 +82,8 @@ const shelterList = Object.values(shelterPhotos).map((m) => m.default).slice(0, 
     <h2 class="text-2xl font-bold text-slate-dark mb-4">{t('about.ctaTitle')}</h2>
     <p class="text-body mb-8">{t('about.ctaText')}</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('about.meetDogs')}</a>
-      <a href="/donate" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">{t('nav.donate')}</a>
+      <a href="/de/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('about.meetDogs')}</a>
+      <a href="/de/donate" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">{t('nav.donate')}</a>
     </div>
   </section>
 </Layout>

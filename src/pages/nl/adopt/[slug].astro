@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../../layouts/Layout.astro";
+import PhotoLightbox from "../../../components/PhotoLightbox.astro";
+import { currentDogs } from "../../../data/current-dogs";
+import { useTranslations } from "../../../i18n/utils";
+import type { Lang } from "../../../i18n/utils";
+import type { GetStaticPaths } from "astro";
+
+const lang: Lang = 'nl';
+const t = useTranslations(lang);
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return currentDogs.map((dog) => ({ params: { slug: dog.slug }, props: { dog } }));
+};
+
+const { dog } = Astro.props;
+const description = dog.nl?.description ?? dog.description;
+const shortLine = dog.nl?.shortLine ?? dog.shortLine;
+const traits = dog.nl?.traits ?? dog.traits;
+
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>("../../../assets/current-dogs/**/*.{jpeg,jpg,png}", { eager: true });
+const prefix = `../../../assets/current-dogs/${dog.slug}/`;
+const dogPhotos = Object.entries(allPhotos).filter(([path]) => path.startsWith(prefix)).sort(([a], [b]) => a.localeCompare(b)).map(([, mod]) => mod.default);
+const leadPhoto = dogPhotos[0] ?? null;
+const extraPhotos = dogPhotos.slice(1);
+---
+
+<Layout
+  title={`Adopteer ${dog.name} | Reddingshond uit Bosni\u00eb | My Paws Bosnia`}
+  description={`${shortLine} ${dog.name} is een reddingshond in Bosni\u00eb, klaar voor adoptie en transport naar gezinnen in Europa.`}
+  ogImage={leadPhoto?.src} lang={lang}
+  jsonLd={{ "@context": "https://schema.org", "@type": "Product", name: `Adopteer ${dog.name} — Reddingshond`, description, image: leadPhoto ? new URL(leadPhoto.src, Astro.site ?? "https://mypawsbosnia.org").href : undefined, brand: { "@type": "Organization", name: "My Paws Bosnia" }, offers: { "@type": "Offer", availability: "https://schema.org/InStock", price: "0", priceCurrency: "EUR", description: "Adoptie — neem contact op via Facebook" } }}
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <a href="/nl/adopt" class="inline-flex items-center text-teal font-medium hover:underline mb-6">&larr; {t('adoptSlug.backToAll')}</a>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
+      {leadPhoto ? (<button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger="0"><Image src={leadPhoto} alt={`${dog.name}, reddingshond beschikbaar voor adoptie uit Bosni\u00eb`} width={500} class="w-full rounded-2xl hover:opacity-90 transition-opacity" /></button>) : (<div class="aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-8xl">🐕</div>)}
+      <div>
+        <h1 class="text-4xl font-bold text-slate-dark">{dog.name}</h1>
+        <div class="flex flex-wrap gap-3 mt-4">
+          <div class="bg-light-bg rounded-xl px-5 py-3 text-center"><p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.age')}</p><p class="text-base font-semibold text-slate-dark mt-1">{dog.ageYears ? `${dog.ageYears} ${t('adoptSlug.years')}` : dog.age}</p></div>
+          <div class="bg-light-bg rounded-xl px-5 py-3 text-center"><p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.size')}</p><p class="text-base font-semibold text-slate-dark mt-1 capitalize">{dog.size}</p></div>
+          <div class="bg-light-bg rounded-xl px-5 py-3 text-center"><p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.sex')}</p><p class="text-base font-semibold text-slate-dark mt-1 capitalize">{dog.sex}</p></div>
+        </div>
+        <div class="mt-6">
+          <p class="text-body leading-relaxed">{description}</p>
+          {traits && traits.length > 0 && (<ul class="mt-4 space-y-2">{traits.map((tr) => (<li class="flex items-start gap-2 text-body"><span class="text-teal mt-0.5">&#10003;</span><span>{tr}</span></li>))}</ul>)}
+        </div>
+      </div>
+    </div>
+    {extraPhotos.length > 0 && (<div class="mt-10"><h2 class="text-xl font-semibold text-slate-dark mb-4">{t('adoptSlug.morePhotos')}</h2><div class="grid grid-cols-2 md:grid-cols-3 gap-4">{extraPhotos.map((photo, i) => (<button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger={i + 1}><Image src={photo} alt={`${dog.name} foto ${i + 2}`} width={400} height={400} class="w-full aspect-square object-cover rounded-xl hover:opacity-90 transition-opacity" /></button>))}</div></div>)}
+    <PhotoLightbox photos={dogPhotos} name={dog.name} lang={lang} />
+    <div class="mt-12 bg-light-bg rounded-2xl p-8">
+      <h2 class="text-2xl font-bold text-slate-dark mb-2">{t('adoptSlug.feesTitle')}</h2>
+      <p class="text-body mb-6">{t('adoptSlug.feesIntro')}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white rounded-xl p-4 text-center"><p class="text-sm text-body">{t('adoptSlug.uk')}</p><p class="text-xl font-bold text-slate-dark">~£500</p></div>
+        <div class="bg-white rounded-xl p-4 text-center"><p class="text-sm text-body">{t('adoptSlug.europe')}</p><p class="text-xl font-bold text-slate-dark">€300–400</p></div>
+        <div class="bg-white rounded-xl p-4 text-center"><p class="text-sm text-body">{t('adoptSlug.switzerland')}</p><p class="text-xl font-bold text-slate-dark">CHF 500–550</p></div>
+      </div>
+      <p class="text-sm text-body mb-4">{t('adoptSlug.brucellosis')}</p>
+      <p class="text-sm text-body">{t('adoptSlug.feesNote')}</p>
+    </div>
+    <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('adoptSlug.interestedIn').replace('{name}', dog.name)}</h2>
+      <p class="text-body mb-6">{t('adoptSlug.interestedText')}</p>
+      <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('adoptSlug.messageFb')}</a>
+    </div>
+  </section>
+</Layout>

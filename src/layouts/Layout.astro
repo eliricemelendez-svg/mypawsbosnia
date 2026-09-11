@@ -2,24 +2,38 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import type { Lang } from "../i18n/utils";
+import { useTranslations, localizedPath } from "../i18n/utils";
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  lang?: Lang;
 }
 
-const { title, description = "Adopt a rescue dog from Bosnia. My Paws Bosnia rescues, rehabilitates, and rehomes stray dogs to families across Europe.", ogImage, jsonLd } = Astro.props;
+const { title, description = "Adopt a rescue dog from Bosnia. My Paws Bosnia rescues, rehabilitates, and rehomes stray dogs to families across Europe.", ogImage, jsonLd, lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://mypawsbosnia.org");
 const siteURL = Astro.site?.href ?? "https://mypawsbosnia.org";
 const ogImageURL = ogImage ? new URL(ogImage, siteURL).href : `${siteURL}favicon.svg`;
+
+const localeMap: Record<Lang, string> = { en: 'en_GB', de: 'de_DE', nl: 'nl_NL' };
+
+// Build hreflang alternate URLs
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(de|nl)/, '') || '/';
+const alternates = [
+  { lang: 'en', href: new URL(pathWithoutLang, siteURL).href },
+  { lang: 'de', href: new URL(`/de${pathWithoutLang === '/' ? '' : pathWithoutLang}`, siteURL).href },
+  { lang: 'nl', href: new URL(`/nl${pathWithoutLang === '/' ? '' : pathWithoutLang}`, siteURL).href },
+];
 
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "My Paws Bosnia",
-  alternateName: "Moje Šape",
+  alternateName: "Moje \u0160ape",
   url: siteURL,
   logo: `${siteURL}favicon.svg`,
   description: "Dog rescue shelter in Brcko, Bosnia rescuing and rehoming stray dogs to families across Europe since 2019.",
@@ -44,7 +58,7 @@ const allJsonLd = jsonLd
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,13 +73,19 @@ const allJsonLd = jsonLd
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="My Paws Bosnia" />
-    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale" content={localeMap[lang]} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Hreflang alternates -->
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
 
     <!-- Structured Data -->
     {allJsonLd.map((schema) => (
@@ -80,23 +100,25 @@ const allJsonLd = jsonLd
     <title>{title}</title>
   </head>
   <body class="font-sans text-body bg-white min-h-screen flex flex-col">
-    <Header />
+    <Header lang={lang} />
     <!-- Floating donate button -->
     <button
       class="donate-urgent fixed bottom-6 right-6 z-[60] bg-teal text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-teal/90 hover:shadow-xl transition-all text-sm"
+      data-clipboard-msg={t('donate.clipboardAlert')}
     >
-      Donate
+      {t('donate.float')}
     </button>
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
     <script>
       document.querySelectorAll(".donate-urgent").forEach(btn => {
         btn.addEventListener("click", () => {
           const email = "donate2mypaws@gmail.com";
+          const msg = (btn as HTMLElement).dataset.clipboardMsg || "Email copied! PayPal will open now. Paste the email to send your donation.\n\nEmail: ";
           navigator.clipboard.writeText(email).then(() => {
-            alert("Email copied! PayPal will open now. Paste the email to send your donation.\n\nEmail: " + email);
+            alert(msg + email);
             window.open("https://www.paypal.com/myaccount/transfer/homepage/pay", "_blank");
           }).catch(() => {
             window.open("https://www.paypal.com/myaccount/transfer/homepage/pay", "_blank");

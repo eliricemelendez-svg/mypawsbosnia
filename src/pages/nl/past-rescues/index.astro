@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../../layouts/Layout.astro";
+import { useTranslations } from "../../../i18n/utils";
+import type { Lang } from "../../../i18n/utils";
+
+const lang: Lang = 'nl';
+const t = useTranslations(lang);
+
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>("../../../assets/past-rescues/*.{jpeg,jpg,png}", { eager: true });
+const photos = Object.entries(allPhotos).sort(([a], [b]) => a.localeCompare(b)).map(([, mod]) => mod.default);
+---
+
+<Layout title={t('pastRescues.title')} description={t('pastRescues.description')} lang={lang}>
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('pastRescues.heading')}</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">{t('pastRescues.subtitle')}</p>
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    {photos.length > 0 ? (<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-2">{photos.map((photo) => (<Image src={photo} alt="Reddingshond succesvol herplaatst" width={200} height={200} class="w-full aspect-square object-cover rounded-lg" />))}</div>) : (<div class="text-center py-16"><p class="text-6xl mb-4">📸</p><p class="text-body">{t('pastRescues.photosComing')}</p></div>)}
+  </section>
+</Layout>

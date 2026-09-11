@@ -1,3 +1,9 @@
+export interface DogTranslation {
+  shortLine: string;
+  description: string;
+  traits: string[];
+}
+
 export interface Dog {
   slug: string;
   name: string;
@@ -8,6 +14,9 @@ export interface Dog {
   shortLine: string;
   description: string;
   traits: string[];
+  arrivedAt?: string;
+  de?: DogTranslation;
+  nl?: DogTranslation;
 }
 
 export const currentDogs: Dog[] = [
@@ -29,6 +38,32 @@ export const currentDogs: Dog[] = [
       "Neutered and fully vaccinated",
       "At the shelter since puppy age",
     ],
+    de: {
+      shortLine: "Ein echter Held. Verschmust, kinderlieb und geht wunderbar an der Leine.",
+      description: "Flint ist seit seiner Welpenzeit im Tierheim. Vor Kurzem hat er Blut gespendet, um einem anderen Hund das Leben zu retten. Nach all der Zeit ist er immer noch einer der liebsten Hunde hier und hat eine eigene Familie verdient.",
+      traits: [
+        "Verschmust und anh\u00e4nglich",
+        "Toll mit Kindern",
+        "Versteht sich mit allen Menschen",
+        "Geht ruhig an der Leine",
+        "Mittelgro\u00df",
+        "Kastriert und vollst\u00e4ndig geimpft",
+        "Seit dem Welpenalter im Tierheim",
+      ],
+    },
+    nl: {
+      shortLine: "Een echte held. Knuffelig, geweldig met kinderen en loopt perfect aan de lijn.",
+      description: "Flint zit al in het asiel sinds hij een pup was. Onlangs doneerde hij bloed om het leven van een andere hond te redden. Na al die tijd is hij nog steeds een van de liefste honden hier en verdient hij een eigen gezin.",
+      traits: [
+        "Knuffelig en aanhankelijk",
+        "Geweldig met kinderen",
+        "Goed met alle mensen",
+        "Loopt rustig aan de lijn",
+        "Middelgroot",
+        "Gecastreerd en volledig gevaccineerd",
+        "Sinds zijn puppytijd in het asiel",
+      ],
+    },
   },
   {
     slug: "barney",
@@ -44,10 +79,36 @@ export const currentDogs: Dog[] = [
       "Very energetic and playful",
       "Good with other dogs",
       "Good with older children",
-      "Estimated 22–25 kg",
+      "Estimated 22\u201325 kg",
       "Best suited to an active family",
       "Neutered, vet work complete, travel-ready",
     ],
+    de: {
+      shortLine: "Fr\u00f6hlich, verschmust und voller Energie. Am besten f\u00fcr aktive Familien.",
+      description: "Barney ist ein fr\u00f6hlicher, energiegeladener R\u00fcde, der Menschen liebt und immer bereit f\u00fcr das n\u00e4chste Abenteuer ist. Er ist kastriert, vollst\u00e4ndig geimpft und seine Papiere sind reisefertig.",
+      traits: [
+        "Fr\u00f6hlich und anh\u00e4nglich",
+        "Sehr energiegeladen und verspielt",
+        "Vertr\u00e4glich mit anderen Hunden",
+        "Gut mit \u00e4lteren Kindern",
+        "Gesch\u00e4tzt 22\u201325 kg",
+        "Ideal f\u00fcr eine aktive Familie",
+        "Kastriert, tier\u00e4rztlich versorgt, reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Vrolijk, aanhankelijk en vol energie. Het beste bij actieve gezinnen.",
+      description: "Barney is een vrolijke, energieke reu die van mensen houdt en altijd klaar is voor het volgende avontuur. Hij is gecastreerd, volledig gevaccineerd en zijn papieren zijn klaar om te reizen.",
+      traits: [
+        "Vrolijk en aanhankelijk",
+        "Heel energiek en speels",
+        "Goed met andere honden",
+        "Goed met oudere kinderen",
+        "Geschat 22\u201325 kg",
+        "Ideaal voor een actief gezin",
+        "Gecastreerd, medisch in orde, reisklaar",
+      ],
+    },
   },
   {
     slug: "leia",
@@ -57,16 +118,42 @@ export const currentDogs: Dog[] = [
     ageYears: 3,
     size: "large",
     shortLine: "A gentle 40kg giant who was abandoned but never lost her kind heart.",
-    description: "Leia was abandoned outside our shelter. Despite everything, she kept her kind heart and trusting nature. She's calm, confident, and incredibly social — the kind of dog who makes life better just by being around. She needs a home with space to move, and her beautiful thick coat needs regular care.",
+    description: "Leia was abandoned outside our shelter. Despite everything, she kept her kind heart and trusting nature. She's calm, confident, and incredibly social \u2014 the kind of dog who makes life better just by being around. She needs a home with space to move, and her beautiful thick coat needs regular care.",
     traits: [
       "Calm, confident, and affectionate",
       "Excellent with children",
       "Great with other dogs",
       "Best suited to a home with a large yard",
-      "Beautiful thick coat — needs regular grooming",
+      "Beautiful thick coat \u2014 needs regular grooming",
       "Spayed and fully vaccinated",
       "Ready to travel from Bosnia",
     ],
+    de: {
+      shortLine: "Eine sanfte 40-kg-Riesin, die ausgesetzt wurde, aber nie ihr gutes Herz verloren hat.",
+      description: "Leia wurde vor unserem Tierheim ausgesetzt. Trotz allem hat sie ihr freundliches Wesen und ihr Vertrauen in Menschen bewahrt. Sie ist ruhig, selbstsicher und unglaublich sozial. Sie braucht ein Zuhause mit viel Platz, und ihr sch\u00f6nes, dichtes Fell braucht regelm\u00e4\u00dfige Pflege.",
+      traits: [
+        "Ruhig, selbstsicher und verschmust",
+        "Hervorragend mit Kindern",
+        "Toll mit anderen Hunden",
+        "Am besten in einem Haus mit gro\u00dfem Garten",
+        "Sch\u00f6nes dichtes Fell \u2013 braucht regelm\u00e4\u00dfige Fellpflege",
+        "Kastriert und vollst\u00e4ndig geimpft",
+        "Reisefertig ab Bosnien",
+      ],
+    },
+    nl: {
+      shortLine: "Een lieve reus van 40 kg die werd achtergelaten, maar nooit haar gouden hart verloor.",
+      description: "Leia werd achtergelaten bij ons asiel. Ondanks alles behield ze haar lieve karakter en vertrouwen in mensen. Ze is rustig, zelfverzekerd en ongelooflijk sociaal. Ze heeft een thuis nodig met veel ruimte, en haar prachtige dikke vacht vraagt om regelmatige verzorging.",
+      traits: [
+        "Rustig, zelfverzekerd en aanhankelijk",
+        "Uitstekend met kinderen",
+        "Geweldig met andere honden",
+        "Het beste in een huis met een grote tuin",
+        "Prachtige dikke vacht \u2013 regelmatige verzorging nodig",
+        "Gecastreerd en volledig gevaccineerd",
+        "Klaar om te reizen vanuit Bosni\u00eb",
+      ],
+    },
   },
   {
     slug: "klara",
@@ -76,16 +163,42 @@ export const currentDogs: Dog[] = [
     ageYears: 0.4,
     size: "large",
     shortLine: "A brave little fighter who beat illness and is ready to find her forever home.",
-    description: "Klara is one of three sisters born in April 2026 at our shelter in Brčko. As a young puppy she fell seriously ill, but after veterinary treatment and lots of care she made a full recovery. Despite being a puppy, Klara is the calmest of her litter. She's gentle, easy-going, and happy just being near people. Her brother has already been adopted to the UK, and Klara deserves the same chance. She's a black sheepdog mix who will grow to around 25–30 kg.",
+    description: "Klara is one of three sisters born in April 2026 at our shelter in Br\u010dko. As a young puppy she fell seriously ill, but after veterinary treatment and lots of care she made a full recovery. Despite being a puppy, Klara is the calmest of her litter. She's gentle, easy-going, and happy just being near people. Her brother has already been adopted to the UK, and Klara deserves the same chance. She's a black sheepdog mix who will grow to around 25\u201330 kg.",
     traits: [
       "Calmest of her litter",
       "Fully recovered from illness",
       "Sweet and gentle",
       "Good with other dogs",
       "One of three sisters at the shelter",
-      "Black sheepdog mix — will grow to 25–30 kg",
+      "Black sheepdog mix \u2014 will grow to 25\u201330 kg",
       "Ready to travel",
     ],
+    de: {
+      shortLine: "Eine tapfere kleine K\u00e4mpferin, die eine Krankheit besiegt hat und bereit f\u00fcr ihr Zuhause ist.",
+      description: "Klara ist eine von drei Schwestern, die im April 2026 in unserem Tierheim in Br\u010dko geboren wurden. Als junger Welpe wurde sie schwer krank, hat sich aber nach tier\u00e4rztlicher Behandlung und viel Pflege vollst\u00e4ndig erholt. Obwohl sie noch ein Welpe ist, ist Klara die ruhigste ihres Wurfs. Sie ist sanft, unkompliziert und gl\u00fccklich, einfach in der N\u00e4he von Menschen zu sein. Ihr Bruder wurde bereits nach Gro\u00dfbritannien adoptiert, und Klara verdient die gleiche Chance. Sie ist ein schwarzer Sch\u00e4ferhundmischling und wird etwa 25\u201330 kg wiegen.",
+      traits: [
+        "Die Ruhigste ihres Wurfs",
+        "Vollst\u00e4ndig genesen",
+        "Lieb und sanft",
+        "Vertr\u00e4glich mit anderen Hunden",
+        "Eine von drei Schwestern im Tierheim",
+        "Schwarzer Sch\u00e4ferhundmischling \u2013 wird 25\u201330 kg",
+        "Reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Een dappere kleine vechter die ziekte overwon en klaar is voor haar eigen thuis.",
+      description: "Klara is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Als jonge pup werd ze ernstig ziek, maar na behandeling bij de dierenarts en veel zorg is ze volledig hersteld. Ondanks dat ze nog een pup is, is Klara de rustigste van het nest. Ze is lief, makkelijk in de omgang en gelukkig als ze gewoon bij mensen kan zijn. Haar broer is al geadopteerd naar het VK, en Klara verdient dezelfde kans. Ze is een zwarte herdersmix en zal uitgroeien tot ongeveer 25\u201330 kg.",
+      traits: [
+        "De rustigste van het nest",
+        "Volledig hersteld van ziekte",
+        "Lief en zachtaardig",
+        "Goed met andere honden",
+        "Een van drie zussen in het asiel",
+        "Zwarte herdersmix \u2013 groeit uit tot 25\u201330 kg",
+        "Klaar om te reizen",
+      ],
+    },
   },
   {
     slug: "eli",
@@ -95,15 +208,39 @@ export const currentDogs: Dog[] = [
     ageYears: 0.4,
     size: "large",
     shortLine: "A happy, social puppy who loves belly rubs and has never met a stranger.",
-    description: "Eli is one of three sisters born in April 2026 at our shelter in Brčko. She's the friendliest of the trio — always the first to run up for pets and belly rubs. Her brother has already been adopted to the UK, and Eli is hoping she's next. She's a black sheepdog mix who will grow to around 25–30 kg, and she's healthy, active, and full of puppy joy.",
+    description: "Eli is one of three sisters born in April 2026 at our shelter in Br\u010dko. She's the friendliest of the trio \u2014 always the first to run up for pets and belly rubs. Her brother has already been adopted to the UK, and Eli is hoping she's next. She's a black sheepdog mix who will grow to around 25\u201330 kg, and she's healthy, active, and full of puppy joy.",
     traits: [
       "Super friendly and social",
       "Loves belly rubs",
       "Good with other dogs",
       "One of three sisters at the shelter",
-      "Black sheepdog mix — will grow to 25–30 kg",
+      "Black sheepdog mix \u2014 will grow to 25\u201330 kg",
       "Healthy and ready to travel",
     ],
+    de: {
+      shortLine: "Ein fr\u00f6hlicher, kontaktfreudiger Welpe, der Bauchkraulen liebt und jeden sofort ins Herz schlie\u00dft.",
+      description: "Eli ist eine von drei Schwestern, die im April 2026 in unserem Tierheim in Br\u010dko geboren wurden. Sie ist die freundlichste der drei \u2013 immer die Erste, die angerannt kommt, um gestreichelt zu werden. Ihr Bruder wurde bereits nach Gro\u00dfbritannien adoptiert, und Eli hofft, dass sie die N\u00e4chste ist. Sie ist ein schwarzer Sch\u00e4ferhundmischling, wird etwa 25\u201330 kg wiegen und ist gesund, aktiv und voller Lebensfreude.",
+      traits: [
+        "Super freundlich und kontaktfreudig",
+        "Liebt Bauchkraulen",
+        "Vertr\u00e4glich mit anderen Hunden",
+        "Eine von drei Schwestern im Tierheim",
+        "Schwarzer Sch\u00e4ferhundmischling \u2013 wird 25\u201330 kg",
+        "Gesund und reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Een vrolijke, sociale pup die van buikkrabbels houdt en nog nooit een vreemde heeft ontmoet.",
+      description: "Eli is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Ze is de vriendelijkste van het trio \u2013 altijd de eerste die aanrent voor aaitjes en buikkrabbels. Haar broer is al geadopteerd naar het VK, en Eli hoopt dat zij de volgende is. Ze is een zwarte herdersmix die uitgroeit tot ongeveer 25\u201330 kg, en ze is gezond, actief en vol puppyvreugde.",
+      traits: [
+        "Supervriendelijk en sociaal",
+        "Houdt van buikkrabbels",
+        "Goed met andere honden",
+        "Een van drie zussen in het asiel",
+        "Zwarte herdersmix \u2013 groeit uit tot 25\u201330 kg",
+        "Gezond en klaar om te reizen",
+      ],
+    },
   },
   {
     slug: "max",
@@ -122,6 +259,30 @@ export const currentDogs: Dog[] = [
       "Vaccinated and revaccinated",
       "Ready to travel",
     ],
+    de: {
+      shortLine: "Mit der Flasche aufgezogen, seit er 48 Stunden alt war. Sanft, verspielt und toll mit Kindern und Katzen.",
+      description: "Max und seine Schwester Nadia wurden am 3. Mai 2026 gerettet, nur zwei Tage nach ihrer Geburt. Sie wurden hungrig und unterk\u00fchlt gefunden und h\u00e4tten ohne Hilfe kaum \u00fcberlebt. Vesnas Familie hat sie ab dem zweiten Lebenstag mit der Flasche aufgezogen. Max ist der hellere der beiden. Er hat mittlere Energie, schl\u00e4ft gerne und spielt gut mit anderen Hunden. Er wird gro\u00df, bleibt aber leicht \u2013 bis etwa 12 kg.",
+      traits: [
+        "Mit der Flasche aufgezogen seit Geburt",
+        "Sicher mit Kindern, Hunden und Katzen",
+        "Mittlere Energie, schl\u00e4ft gerne",
+        "Wird gro\u00df aber leicht, bis ca. 12 kg",
+        "Geimpft und nachgeimpft",
+        "Reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Met de fles grootgebracht sinds 48 uur oud. Lief, speels en geweldig met kinderen en katten.",
+      description: "Max en zijn zus Nadia werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Max is de lichtere van de twee. Hij heeft gemiddelde energie, slaapt graag en speelt goed met andere honden. Hij wordt groot maar blijft licht, tot ongeveer 12 kg.",
+      traits: [
+        "Met de fles grootgebracht sinds geboorte",
+        "Veilig met kinderen, honden en katten",
+        "Gemiddelde energie, slaapt graag",
+        "Wordt groot maar licht, tot ca. 12 kg",
+        "Gevaccineerd en hervaccineerd",
+        "Klaar om te reizen",
+      ],
+    },
   },
   {
     slug: "nadia",
@@ -140,6 +301,30 @@ export const currentDogs: Dog[] = [
       "Vaccinated and revaccinated",
       "Ready to travel",
     ],
+    de: {
+      shortLine: "Mit der Flasche aufgezogen, seit sie 48 Stunden alt war. Verspielt, freundlich und toll mit Kindern und Katzen.",
+      description: "Nadia und ihr Bruder Max wurden am 3. Mai 2026 gerettet, nur zwei Tage nach ihrer Geburt. Sie wurden hungrig und unterk\u00fchlt gefunden und h\u00e4tten ohne Hilfe kaum \u00fcberlebt. Vesnas Familie hat sie ab dem zweiten Lebenstag mit der Flasche aufgezogen. Nadia hat mittlere Energie, spielt gerne mit anderen Hunden und schl\u00e4ft viel. Sie wird gro\u00df, bleibt aber leicht \u2013 bis etwa 12 kg.",
+      traits: [
+        "Mit der Flasche aufgezogen seit Geburt",
+        "Sicher mit Kindern, Hunden und Katzen",
+        "Mittlere Energie, schl\u00e4ft gerne",
+        "Wird gro\u00df aber leicht, bis ca. 12 kg",
+        "Geimpft und nachgeimpft",
+        "Reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Met de fles grootgebracht sinds 48 uur oud. Speels, vriendelijk en geweldig met kinderen en katten.",
+      description: "Nadia en haar broer Max werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Nadia heeft gemiddelde energie, speelt graag met andere honden en slaapt veel. Ze wordt groot maar blijft licht, tot ongeveer 12 kg.",
+      traits: [
+        "Met de fles grootgebracht sinds geboorte",
+        "Veilig met kinderen, honden en katten",
+        "Gemiddelde energie, slaapt graag",
+        "Wordt groot maar licht, tot ca. 12 kg",
+        "Gevaccineerd en hervaccineerd",
+        "Klaar om te reizen",
+      ],
+    },
   },
   {
     slug: "vanja",
@@ -155,11 +340,39 @@ export const currentDogs: Dog[] = [
       "Great with children",
       "Friendly with all people",
       "Good with other dogs",
-      "Labrador mix, estimated 18–22 kg",
+      "Labrador mix, estimated 18\u201322 kg",
       "Spayed and fully vaccinated",
       "Blood tests available on request",
       "Ready to travel",
     ],
+    de: {
+      shortLine: "Eine sanfte, treue H\u00fcndin mit wundersch\u00f6nem goldenem Fell. Toll mit Kindern, Hunden und Menschen.",
+      description: "Vanja ist eine wundersch\u00f6ne, 1 Jahr und 8 Monate alte Labrador-Mischlingh\u00fcndin, die geduldig auf die Familie wartet, die sie verdient. Sie hat ein tolles, sanftes Wesen und versteht sich mit jedem. Sie ist gro\u00dfartig mit Kindern, freundlich zu Menschen und spielt gut mit anderen Hunden. Vanja ist kastriert, vollst\u00e4ndig geimpft und bereit, in ihr Zuhause in Europa zu reisen.",
+      traits: [
+        "Sanft und treu",
+        "Toll mit Kindern",
+        "Freundlich zu allen Menschen",
+        "Vertr\u00e4glich mit anderen Hunden",
+        "Labrador-Mischling, gesch\u00e4tzt 18\u201322 kg",
+        "Kastriert und vollst\u00e4ndig geimpft",
+        "Bluttests auf Anfrage verf\u00fcgbar",
+        "Reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Een lieve, trouwe meid met een prachtige gouden vacht. Geweldig met kinderen, honden en mensen.",
+      description: "Vanja is een prachtige Labradormix van 1 jaar en 8 maanden die geduldig wacht op het gezin dat ze verdient. Ze heeft een heerlijk zacht karakter en kan met iedereen overweg. Ze is geweldig met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gecastreerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
+      traits: [
+        "Lief en trouw",
+        "Geweldig met kinderen",
+        "Vriendelijk met alle mensen",
+        "Goed met andere honden",
+        "Labradormix, geschat 18\u201322 kg",
+        "Gecastreerd en volledig gevaccineerd",
+        "Bloedtesten beschikbaar op aanvraag",
+        "Klaar om te reizen",
+      ],
+    },
   },
   {
     slug: "luna",
@@ -179,5 +392,31 @@ export const currentDogs: Dog[] = [
       "Health tests completed before adoption",
       "Ready to travel",
     ],
+    de: {
+      shortLine: "Verspielt, aktiv und toll mit Kindern. Ein gro\u00dfes M\u00e4dchen mit nat\u00fcrlich kurzem Schwanz.",
+      description: "Luna ist ein wundersch\u00f6nes, verspieltes und aktives M\u00e4dchen auf der Suche nach ihrem Zuhause. Mit rund 5,5 Monaten ist sie bereits \u00fcber 43 cm gro\u00df und wird ein gro\u00dfer Hund. Sie hat einen nat\u00fcrlich kurzen Schwanz, was sie besonders macht. Sie ist toll mit Menschen und Kindern und voller Energie und Liebe.",
+      traits: [
+        "Sehr gut mit Menschen",
+        "Toll mit Kindern",
+        "Verspielt, energiegeladen und aktiv",
+        "Katzentest auf Anfrage m\u00f6glich",
+        "Geimpft",
+        "Gesundheitstests vor der Adoption abgeschlossen",
+        "Reisefertig",
+      ],
+    },
+    nl: {
+      shortLine: "Speels, actief en geweldig met kinderen. Een groot meisje met een van nature korte staart.",
+      description: "Luna is een prachtig, speels en actief meisje op zoek naar haar eigen thuis. Op ongeveer 5,5 maanden is ze al meer dan 43 cm hoog en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar extra bijzonder maakt. Ze is geweldig met mensen en kinderen, en zit vol energie en liefde.",
+      traits: [
+        "Heel goed met mensen",
+        "Geweldig met kinderen",
+        "Speels, energiek en actief",
+        "Kattentest mogelijk op aanvraag",
+        "Gevaccineerd",
+        "Gezondheidstesten afgerond voor adoptie",
+        "Klaar om te reizen",
+      ],
+    },
   },
 ];

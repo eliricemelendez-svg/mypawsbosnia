@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
+import type { Lang } from "../i18n/utils";
 
 interface Props {
   photos: ImageMetadata[];
   name: string;
+  lang?: Lang;
 }
 
-const { photos, name } = Astro.props;
+const { photos, name, lang = 'en' } = Astro.props;
 ---
 
 <!-- Lightbox overlay -->

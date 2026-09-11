@@ -1,12 +1,31 @@
 ---
+import type { Lang } from "../i18n/utils";
+import { useTranslations, localizedPath } from "../i18n/utils";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const paypalLink = "https://www.paypal.com/myaccount/transfer/homepage/pay";
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/adopt", label: "Adopt" },
-  { href: "/success-stories", label: "Success Stories" },
-  { href: "/donate", label: "Donations" },
-  { href: "/contact", label: "Contact" },
+  { href: localizedPath("/", lang), label: t('nav.home') },
+  { href: localizedPath("/about", lang), label: t('nav.about') },
+  { href: localizedPath("/adopt", lang), label: t('nav.adopt') },
+  { href: localizedPath("/success-stories", lang), label: t('nav.successStories') },
+  { href: localizedPath("/donate", lang), label: t('nav.donations') },
+  { href: localizedPath("/contact", lang), label: t('nav.contact') },
+];
+
+// Build language switcher links: same path but different locale prefix
+const currentPath = Astro.url.pathname;
+const pathWithoutLang = currentPath.replace(/^\/(de|nl)/, '') || '/';
+const langLinks = [
+  { code: 'en' as Lang, label: 'EN', href: pathWithoutLang },
+  { code: 'de' as Lang, label: 'DE', href: `/de${pathWithoutLang === '/' ? '' : pathWithoutLang}` },
+  { code: 'nl' as Lang, label: 'NL', href: `/nl${pathWithoutLang === '/' ? '' : pathWithoutLang}` },
 ];
 ---
 
@@ -14,7 +33,7 @@ const navLinks = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/" class="flex flex-col leading-tight">
+      <a href={localizedPath("/", lang)} class="flex flex-col leading-tight">
         <span class="text-lg font-bold text-slate-dark">My Paws Bosnia</span>
         <span class="text-sm font-script text-teal -mt-1">Moje Sape</span>
       </a>
@@ -31,8 +50,26 @@ const navLinks = [
           type="button"
           class="inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-teal rounded-full hover:bg-teal/90 transition-colors"
         >
-          Donate
+          {t('nav.donate')}
         </button>
+
+        <!-- Language toggle -->
+        <div class="flex items-center gap-1 ml-2 text-xs font-medium">
+          {langLinks.map((ll, i) => (
+            <>
+              {i > 0 && <span class="text-gray-300">|</span>}
+              <a
+                href={ll.href}
+                class:list={[
+                  "transition-colors",
+                  ll.code === lang ? "text-teal font-bold" : "text-slate-dark hover:text-teal",
+                ]}
+              >
+                {ll.label}
+              </a>
+            </>
+          ))}
+        </div>
       </nav>
 
       <!-- Mobile hamburger -->
@@ -61,8 +98,26 @@ const navLinks = [
       <button
         class="donate-btn-mobile text-sm font-semibold py-2 px-3 rounded-full text-white bg-teal text-center"
       >
-        Donate
+        {t('nav.donate')}
       </button>
+
+      <!-- Mobile language toggle -->
+      <div class="flex items-center gap-2 px-3 pt-2 text-sm font-medium">
+        {langLinks.map((ll, i) => (
+          <>
+            {i > 0 && <span class="text-gray-300">|</span>}
+            <a
+              href={ll.href}
+              class:list={[
+                "transition-colors",
+                ll.code === lang ? "text-teal font-bold" : "text-slate-dark hover:text-teal",
+              ]}
+            >
+              {ll.label}
+            </a>
+          </>
+        ))}
+      </div>
     </nav>
   </div>
 </header>

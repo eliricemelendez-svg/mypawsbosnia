@@ -1,4 +1,14 @@
 ---
+import type { Lang } from "../i18n/utils";
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
 const paypalEmail = "donate2mypaws@gmail.com";
 const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
 ---
@@ -6,9 +16,9 @@ const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
 <section class="bg-teal/5 rounded-2xl p-8 md:p-12 text-center">
   <div class="max-w-lg mx-auto">
     <div class="text-5xl mb-4">💛</div>
-    <h2 class="text-2xl font-bold text-slate-dark mb-3">Donate via PayPal</h2>
+    <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('donateBlock.title')}</h2>
     <p class="text-body mb-6">
-      Send any amount directly. Every euro goes to the dogs.
+      {t('donateBlock.subtitle')}
     </p>
 
     <!-- Step 1: Copy the email -->
@@ -20,9 +30,12 @@ const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
         id="copy-paypal"
         type="button"
         data-email={paypalEmail}
+        data-copy-text={t('donateBlock.copy')}
+        data-copied-text={t('donateBlock.copied')}
+        data-failed-text={t('donateBlock.failed')}
         class="shrink-0 px-5 py-2.5 text-sm font-bold text-white bg-teal rounded-full hover:bg-teal/90 transition-colors"
       >
-        Copy
+        {t('donateBlock.copy')}
       </button>
     </div>
 
@@ -33,14 +46,14 @@ const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
       rel="noopener noreferrer"
       class="inline-block w-full px-8 py-4 text-lg font-bold text-white bg-slate-dark rounded-full hover:bg-slate-dark/90 transition-colors"
     >
-      Open PayPal &rarr;
+      {t('donateBlock.openPaypal')} &rarr;
     </a>
 
     <p class="text-xs text-body/60 mt-4">
-      1. Copy the email above &nbsp; 2. Click "Open PayPal" &nbsp; 3. Paste and send
+      {t('donateBlock.steps')}
     </p>
     <p class="text-xs text-body/60 mt-1">
-      Use Friends &amp; Family to avoid fees.
+      {t('donateBlock.friendsFamily')}
     </p>
   </div>
 </section>
@@ -48,20 +61,23 @@ const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
 <script>
   const btn = document.getElementById("copy-paypal");
   if (btn) {
+    const copyText = btn.dataset.copyText || "Copy";
+    const copiedText = btn.dataset.copiedText || "Copied!";
+    const failedText = btn.dataset.failedText || "Failed";
     btn.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(btn.dataset.email ?? "");
-        btn.textContent = "Copied!";
+        btn.textContent = copiedText;
         btn.classList.add("bg-green-500");
         btn.classList.remove("bg-teal");
         setTimeout(() => {
-          btn.textContent = "Copy";
+          btn.textContent = copyText;
           btn.classList.remove("bg-green-500");
           btn.classList.add("bg-teal");
         }, 3000);
       } catch {
-        btn.textContent = "Failed";
-        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+        btn.textContent = failedText;
+        setTimeout(() => { btn.textContent = copyText; }, 2000);
       }
     });
   }

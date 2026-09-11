@@ -1,0 +1,142 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import DogCard from "../../components/DogCard.astro";
+import { currentDogs } from "../../data/current-dogs";
+import { useTranslations, localizedPath } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
+
+const lang: Lang = 'de';
+const t = useTranslations(lang);
+
+const featured = currentDogs;
+
+import flintImg from "../../assets/current-dogs/flint/flint-1.jpeg";
+import barneyImg from "../../assets/current-dogs/barney/barney-1.jpeg";
+import leiaImg from "../../assets/current-dogs/leia/leia-1.jpeg";
+import klaraImg from "../../assets/current-dogs/klara/klara-1.jpg";
+import eliImg from "../../assets/current-dogs/eli/eli-1.jpg";
+import maxImg from "../../assets/current-dogs/max/max-1.jpg";
+import nadiaImg from "../../assets/current-dogs/nadia/nadia-1.jpg";
+import vanjaImg from "../../assets/current-dogs/vanja/vanja-3.jpg";
+import lunaImg from "../../assets/current-dogs/luna/luna-1.jpg";
+const heroSlides = [
+  { img: flintImg, slug: "flint", name: "Flint", line: "Er hat Blut gespendet, um einem anderen Hund das Leben zu retten. Seit seiner Welpenzeit wartet er auf ein Zuhause.", alt: "Flint, ein geretteter Hund bei My Paws Bosnia" },
+  { img: barneyImg, slug: "barney", name: "Barney", line: "Zwei Jahre alt, voller Energie und bereit, zu seiner neuen Familie zu reisen.", alt: "Barney, ein geretteter Hund bei My Paws Bosnia" },
+  { img: leiaImg, slug: "leia", name: "Leia", line: "Ausgesetzt, aber nie gebrochen. Eine sanfte 40-kg-Riesin voller Liebe und Vertrauen.", alt: "Leia, ein geretteter Hund bei My Paws Bosnia" },
+  { img: klaraImg, slug: "klara", name: "Klara", line: "Eine tapfere kleine K\u00e4mpferin, die eine Krankheit besiegt hat und bereit f\u00fcr ihr Zuhause ist.", alt: "Klara, ein geretteter Hund bei My Paws Bosnia" },
+  { img: eliImg, slug: "eli", name: "Eli", line: "Ein fr\u00f6hlicher, kontaktfreudiger Welpe, der Bauchkraulen liebt.", alt: "Eli, ein geretteter Hund bei My Paws Bosnia" },
+  { img: maxImg, slug: "max", name: "Max", line: "Mit der Flasche aufgezogen, seit er zwei Tage alt war. Sanft, verspielt und bereit f\u00fcr eine Familie.", alt: "Max, ein geretteter Hund bei My Paws Bosnia" },
+  { img: nadiaImg, slug: "nadia", name: "Nadia", line: "Mit der Flasche aufgezogen, seit sie zwei Tage alt war. Verspielt, freundlich und auf der Suche nach ihrem Zuhause.", alt: "Nadia, ein geretteter Hund bei My Paws Bosnia" },
+  { img: vanjaImg, slug: "vanja", name: "Vanja", line: "Eine sanfte, treue H\u00fcndin mit goldenem Herzen. Kastriert, geimpft und bereit f\u00fcr ihre Familie.", alt: "Vanja, ein geretteter Hund bei My Paws Bosnia" },
+  { img: lunaImg, slug: "luna", name: "Luna", line: "Erst 4,5 Monate alt und schon 43 cm gro\u00df. Verspielt, aktiv und auf der Suche nach ihrer Familie.", alt: "Luna, ein geretteter Hund bei My Paws Bosnia" },
+];
+
+import vesnaWithDog from "../../assets/vesna/706517929_122100551391334047_1761713277840422103_n.jpg";
+import vetReceipt from "../../assets/vet/706690924_122100558429334047_4488345373460848609_n.jpg";
+import passportDog from "../../assets/past-rescues/hires-passport-1.jpg";
+
+const pastPhotos = import.meta.glob<{ default: ImageMetadata }>("../../assets/past-rescues/*.{jpeg,jpg,png}", { eager: true });
+const pastList = Object.values(pastPhotos).map((m) => m.default);
+---
+
+<Layout title={t('index.title')} description={t('index.description')} lang={lang}>
+  <section class="bg-light-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-xl md:text-2xl font-bold text-teal mb-3">{t('index.heroMeet')} <span id="hero-dog-name">{heroSlides[0].name}</span></p>
+          <h1 id="hero-dog-line" class="text-2xl md:text-3xl font-semibold text-slate-dark leading-tight">{heroSlides[0].line}</h1>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a id="hero-dog-link" href={`/de/adopt/${heroSlides[0].slug}`} class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-center">{heroSlides[0].name} kennenlernen</a>
+            <button class="donate-urgent inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors text-center">{t('index.heroDonate')}</button>
+          </div>
+        </div>
+        <div class="relative overflow-hidden rounded-2xl" id="hero-slideshow">
+          {heroSlides.map((slide, i) => (
+            <Image src={slide.img} alt={slide.alt} width={300} class:list={["hero-slide w-full max-w-[280px] mx-auto rounded-2xl transition-opacity duration-700", i === 0 ? "opacity-100" : "opacity-0 absolute inset-0"]} data-name={slide.name} data-line={slide.line} data-slug={slide.slug} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold text-slate-dark">{t('index.featuredTitle')}</h2>
+      <p class="text-body mt-2">{t('index.featuredSubtitle')}</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {featured.map((dog) => (
+        <DogCard slug={dog.slug} name={dog.name} shortLine={dog.de?.shortLine ?? dog.shortLine} sex={dog.sex} age={dog.age} size={dog.size} linkPrefix="/de/adopt" lang={lang} />
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href="/de/adopt" class="inline-block px-8 py-3 text-teal font-semibold border-2 border-teal rounded-full hover:bg-teal hover:text-white transition-colors">{t('index.seeAllDogs')}</a>
+    </div>
+  </section>
+
+  <section class="bg-light-bg py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('index.trustTitle')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <Image src={vesnaWithDog} alt="Vesna with a shelter dog" width={400} class="w-full aspect-square object-cover" />
+          <div class="p-4"><p class="text-sm text-body">{t('index.trustVesna')}</p></div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <Image src={vetReceipt} alt="Veterinary receipt" width={400} class="w-full aspect-square object-cover object-top" />
+          <div class="p-4"><p class="text-sm text-body">{t('index.trustVet')}</p></div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <Image src={passportDog} alt="A rescued dog with their pet passport" width={400} class="w-full aspect-square object-cover" />
+          <div class="p-4"><p class="text-sm text-body">{t('index.trustPassport')}</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-8"><h2 class="text-2xl font-bold text-slate-dark">{t('index.pastTitle')}</h2></div>
+    <div class="flex gap-2 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+      {pastList.map((photo) => (
+        <div class="flex-none w-28 md:w-32 snap-start"><Image src={photo} alt="Rettungshund vermittelt an eine Familie in Europa" width={150} height={150} class="w-full aspect-square object-cover rounded-lg" /></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="bg-light-bg rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-6">
+      <div class="text-5xl">📘</div>
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-2xl font-bold text-slate-dark">{t('index.fbTitle')}</h2>
+        <p class="text-body mt-2">{t('index.fbSubtitle')}</p>
+      </div>
+      <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('index.fbFollow')}</a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const slides = document.querySelectorAll('.hero-slide');
+  const nameEl = document.getElementById('hero-dog-name');
+  const lineEl = document.getElementById('hero-dog-line');
+  const linkEl = document.getElementById('hero-dog-link') as HTMLAnchorElement;
+  if (slides.length > 1 && nameEl && lineEl) {
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('opacity-100');
+      slides[current].classList.add('opacity-0', 'absolute', 'inset-0');
+      current = (current + 1) % slides.length;
+      const slide = slides[current] as HTMLElement;
+      slides[current].classList.remove('opacity-0', 'absolute', 'inset-0');
+      slides[current].classList.add('opacity-100');
+      nameEl.textContent = slide.dataset.name ?? '';
+      lineEl.textContent = slide.dataset.line ?? '';
+      if (linkEl) {
+        linkEl.href = `/de/adopt/${slide.dataset.slug}`;
+        linkEl.textContent = `${slide.dataset.name} kennenlernen`;
+      }
+    }, 5000);
+  }
+</script>

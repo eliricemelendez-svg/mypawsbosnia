@@ -1,11 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import DogCard from "../components/DogCard.astro";
-import { currentDogs } from "../data/current-dogs";
-import { useTranslations } from "../i18n/utils";
-import type { Lang } from "../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+import DogCard from "../../components/DogCard.astro";
+import { currentDogs } from "../../data/current-dogs";
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
 
-const lang: Lang = 'en';
+const lang: Lang = 'de';
 const t = useTranslations(lang);
 const total = currentDogs.length;
 ---
@@ -28,7 +28,7 @@ const total = currentDogs.length;
       <button data-filter="time" data-value="under3" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">{t('adopt.under3')}</button>
       <button data-filter="time" data-value="3to12" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">{t('adopt.3to12')}</button>
       <button data-filter="time" data-value="over1y" class="filter-pill text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-body hover:border-teal hover:text-teal transition-colors">{t('adopt.over1y')}</button>
-      <a href="/adopt" id="clear-filters" class="hidden text-xs font-medium text-teal hover:underline ml-2">{t('adopt.clearFilters')}</a>
+      <a href="/de/adopt" id="clear-filters" class="hidden text-xs font-medium text-teal hover:underline ml-2">{t('adopt.clearFilters')}</a>
     </div>
     <p id="dog-count" class="text-sm text-body mt-4" data-showing-tpl={t('adopt.showing')} data-total={total}>
       {t('adopt.showing').replace('{visible}', String(total)).replace('{total}', String(total))}
@@ -49,7 +49,7 @@ const total = currentDogs.length;
         }
         return (
           <div class="dog-card-wrapper" data-sex={dog.sex} data-age={dog.age} data-size={dog.size} data-time={timeCategory}>
-            <DogCard slug={dog.slug} name={dog.name} shortLine={dog.shortLine} sex={dog.sex} age={dog.age} size={dog.size} linkPrefix="/adopt" lang={lang} />
+            <DogCard slug={dog.slug} name={dog.name} shortLine={dog.de?.shortLine ?? dog.shortLine} sex={dog.sex} age={dog.age} size={dog.size} linkPrefix="/de/adopt" lang={lang} />
           </div>
         );
       })}

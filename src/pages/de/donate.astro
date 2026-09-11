@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import DonateBlock from "../../components/DonateBlock.astro";
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
+
+const lang: Lang = 'de';
+const t = useTranslations(lang);
+
+import vesnaWithDog from "../../assets/vesna/706517929_122100551391334047_1761713277840422103_n.jpg";
+import vetBillPhoto from "../../assets/vet/hires-vet-bill.jpg";
+import passportDog from "../../assets/past-rescues/hires-passport-1.jpg";
+
+const foodImports = import.meta.glob<{ default: ImageMetadata }>("../../assets/food/*.{jpeg,jpg,png}", { eager: true });
+const shelterImports = import.meta.glob<{ default: ImageMetadata }>("../../assets/shelter/*.{jpeg,jpg,png}", { eager: true });
+const vetImports = import.meta.glob<{ default: ImageMetadata }>("../../assets/vet/*.{jpeg,jpg,png}", { eager: true });
+const vesnaImports = import.meta.glob<{ default: ImageMetadata }>("../../assets/vesna/*.{jpeg,jpg,png}", { eager: true });
+
+const allPhotos = [...Object.values(vesnaImports).map((m) => m.default), ...Object.values(foodImports).map((m) => m.default), ...Object.values(shelterImports).map((m) => m.default), ...Object.values(vetImports).map((m) => m.default)];
+---
+
+<Layout title={t('donatePage.title')} description={t('donatePage.description')} lang={lang}>
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('donatePage.heading')}</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">{t('donatePage.subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><DonateBlock lang={lang} /></section>
+
+  <section class="bg-light-bg py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-slate-dark text-center mb-3">{t('donatePage.proofTitle')}</h2>
+      <p class="text-body text-center mb-10">{t('donatePage.proofSubtitle')}</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <Image src={vesnaWithDog} alt="Vesna mit einem Tierheimhund" width={400} class="w-full aspect-[4/3] object-cover" />
+          <div class="p-4"><p class="text-sm font-semibold text-slate-dark">{t('donatePage.vesnaCaption')}</p><p class="text-xs text-body mt-1">{t('donatePage.vesnaText')}</p></div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <Image src={vetBillPhoto} alt="Tierarztrechnung" width={400} class="w-full aspect-[4/3] object-cover object-top" />
+          <div class="p-4"><p class="text-sm font-semibold text-slate-dark">{t('donatePage.vetCaption')}</p><p class="text-xs text-body mt-1">{t('donatePage.vetText')}</p></div>
+        </div>
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <Image src={passportDog} alt="Hund mit Reisepass" width={400} class="w-full aspect-[4/3] object-cover" />
+          <div class="p-4"><p class="text-sm font-semibold text-slate-dark">{t('donatePage.passportCaption')}</p><p class="text-xs text-body mt-1">{t('donatePage.passportText')}</p></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-4 md:grid-cols-8 gap-1.5">
+        {allPhotos.map((photo) => (<Image src={photo} alt="Alltag im Tierheim in Bosnien" width={120} height={120} class="w-full aspect-square object-cover rounded-md" />))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.impactTitle')}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€60</p><p class="text-sm text-body mt-2">{t('donatePage.impact60')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€25</p><p class="text-sm text-body mt-2">{t('donatePage.impact25')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€10</p><p class="text-sm text-body mt-2">{t('donatePage.impact10')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€5</p><p class="text-sm text-body mt-2">{t('donatePage.impact5')}</p></div>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12"><DonateBlock lang={lang} /></section>
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="bg-slate-dark rounded-2xl p-8 md:p-12 text-center text-white">
+      <h2 class="text-2xl font-bold mb-3">{t('donatePage.sponsorTitle')}</h2>
+      <p class="text-white/80 mb-2">{t('donatePage.sponsorText1')}</p>
+      <p class="text-white/80">{t('donatePage.sponsorText2')}</p>
+      <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block mt-6 px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('donatePage.contactFb')}</a>
+    </div>
+  </section>
+</Layout>

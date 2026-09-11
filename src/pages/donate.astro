@@ -2,23 +2,20 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import DonateBlock from "../components/DonateBlock.astro";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/utils";
+
+const lang: Lang = 'en';
+const t = useTranslations(lang);
+
 import vesnaWithDog from "../assets/vesna/706517929_122100551391334047_1761713277840422103_n.jpg";
 import vetBillPhoto from "../assets/vet/hires-vet-bill.jpg";
 import passportDog from "../assets/past-rescues/hires-passport-1.jpg";
 
-// Load ALL photos for maximum impact
-const foodImports = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/food/*.{jpeg,jpg,png}", { eager: true }
-);
-const shelterImports = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/shelter/*.{jpeg,jpg,png}", { eager: true }
-);
-const vetImports = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/vet/*.{jpeg,jpg,png}", { eager: true }
-);
-const vesnaImports = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/vesna/*.{jpeg,jpg,png}", { eager: true }
-);
+const foodImports = import.meta.glob<{ default: ImageMetadata }>("../assets/food/*.{jpeg,jpg,png}", { eager: true });
+const shelterImports = import.meta.glob<{ default: ImageMetadata }>("../assets/shelter/*.{jpeg,jpg,png}", { eager: true });
+const vetImports = import.meta.glob<{ default: ImageMetadata }>("../assets/vet/*.{jpeg,jpg,png}", { eager: true });
+const vesnaImports = import.meta.glob<{ default: ImageMetadata }>("../assets/vesna/*.{jpeg,jpg,png}", { eager: true });
 
 const allPhotos = [
   ...Object.values(vesnaImports).map((m) => m.default),
@@ -28,149 +25,83 @@ const allPhotos = [
 ];
 ---
 
-<Layout
-  title="Donate to Help Rescue Dogs in Bosnia | My Paws Bosnia"
-  description="Your donation feeds, vaccinates, and shelters 60 rescue dogs in Bosnia. €25 feeds a dog for a week. Every euro goes directly to the dogs — no admin costs."
+<Layout title={t('donatePage.title')} description={t('donatePage.description')} lang={lang}
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: [
-      {
-        "@type": "Question",
-        name: "How does my donation help rescue dogs in Bosnia?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Every euro goes directly to the dogs. €25 feeds a dog for a week, €60 covers one vet visit with treatment, and €10 pays for basic medications. There are no admin costs — the shelter is run entirely by one family.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do I adopt a rescue dog from Bosnia?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Contact us through our Facebook page. All dogs are vaccinated, dewormed, microchipped, and spayed or neutered before adoption. We arrange transport to families in Switzerland, Germany, the United Kingdom, and other European countries.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Where are the dogs transported to?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Dogs are transported from our shelter in Brcko, Bosnia to adoptive families across Europe, including Switzerland, Germany, the United Kingdom, and other countries.",
-        },
-      },
+      { "@type": "Question", name: "How does my donation help rescue dogs in Bosnia?", acceptedAnswer: { "@type": "Answer", text: "Every euro goes directly to the dogs. €25 feeds a dog for a week, €60 covers one vet visit with treatment, and €10 pays for basic medications. There are no admin costs — the shelter is run entirely by one family." } },
+      { "@type": "Question", name: "How do I adopt a rescue dog from Bosnia?", acceptedAnswer: { "@type": "Answer", text: "Contact us through our Facebook page. All dogs are vaccinated, dewormed, microchipped, and spayed or neutered before adoption. We arrange transport to families in Switzerland, Germany, the United Kingdom, and other European countries." } },
+      { "@type": "Question", name: "Where are the dogs transported to?", acceptedAnswer: { "@type": "Answer", text: "Dogs are transported from our shelter in Brcko, Bosnia to adoptive families across Europe, including Switzerland, Germany, the United Kingdom, and other countries." } },
     ],
   }}
 >
-  <!-- Header — short, emotional -->
   <section class="bg-light-bg py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Every euro keeps them alive.</h1>
-      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">
-        No government funding. No corporate sponsors. Just one family and 60 dogs.
-      </p>
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('donatePage.heading')}</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">{t('donatePage.subtitle')}</p>
     </div>
   </section>
 
-  <!-- PayPal — first thing you see -->
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <DonateBlock />
+    <DonateBlock lang={lang} />
   </section>
 
-  <!-- What donations look like — real photos -->
   <section class="bg-light-bg py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold text-slate-dark text-center mb-3">This is what your donations pay for</h2>
-      <p class="text-body text-center mb-10">Real photos from the shelter. Food deliveries, vet visits, daily life with 60 dogs.</p>
-
-      <!-- Trust proof: three key photos -->
+      <h2 class="text-2xl font-bold text-slate-dark text-center mb-3">{t('donatePage.proofTitle')}</h2>
+      <p class="text-body text-center mb-10">{t('donatePage.proofSubtitle')}</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
           <Image src={vesnaWithDog} alt="Vesna with a shelter dog" width={400} class="w-full aspect-[4/3] object-cover" />
           <div class="p-4">
-            <p class="text-sm font-semibold text-slate-dark">Vesna and her daughters</p>
-            <p class="text-xs text-body mt-1">Running the shelter every day in Brcko, Bosnia.</p>
+            <p class="text-sm font-semibold text-slate-dark">{t('donatePage.vesnaCaption')}</p>
+            <p class="text-xs text-body mt-1">{t('donatePage.vesnaText')}</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
           <Image src={vetBillPhoto} alt="Veterinary bill" width={400} class="w-full aspect-[4/3] object-cover object-top" />
           <div class="p-4">
-            <p class="text-sm font-semibold text-slate-dark">Real vet bills</p>
-            <!-- TODO: confirm cost details with Vesna -->
-            <p class="text-xs text-body mt-1">118 KM (~€60) for one vet visit with treatment.</p>
+            <p class="text-sm font-semibold text-slate-dark">{t('donatePage.vetCaption')}</p>
+            <p class="text-xs text-body mt-1">{t('donatePage.vetText')}</p>
           </div>
         </div>
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
           <Image src={passportDog} alt="Dog with pet passport" width={400} class="w-full aspect-[4/3] object-cover" />
           <div class="p-4">
-            <p class="text-sm font-semibold text-slate-dark">Ready to travel</p>
-            <p class="text-xs text-body mt-1">Dogs get passports and travel to families in Europe.</p>
+            <p class="text-sm font-semibold text-slate-dark">{t('donatePage.passportCaption')}</p>
+            <p class="text-xs text-body mt-1">{t('donatePage.passportText')}</p>
           </div>
         </div>
       </div>
-
-      <!-- Photo collage — volume shows the scale -->
       <div class="grid grid-cols-4 md:grid-cols-8 gap-1.5">
         {allPhotos.map((photo, i) => (
-          <Image
-            src={photo}
-            alt={`Daily life at the dog rescue shelter in Bosnia`}
-            width={120}
-            height={120}
-            class="w-full aspect-square object-cover rounded-md"
-          />
+          <Image src={photo} alt={`Daily life at the dog rescue shelter in Bosnia`} width={120} height={120} class="w-full aspect-square object-cover rounded-md" />
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Impact tiers -->
-  <!-- TODO: confirm all amounts with Vesna -->
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">What your donation does</h2>
+    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.impactTitle')}</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">€60</p>
-        <p class="text-sm text-body mt-2">One vet visit with treatment</p>
-      </div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">€25</p>
-        <p class="text-sm text-body mt-2">Feeds a dog for a week</p>
-      </div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">€10</p>
-        <p class="text-sm text-body mt-2">Basic medications</p>
-      </div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">€5</p>
-        <p class="text-sm text-body mt-2">Every bit helps</p>
-      </div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€60</p><p class="text-sm text-body mt-2">{t('donatePage.impact60')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€25</p><p class="text-sm text-body mt-2">{t('donatePage.impact25')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€10</p><p class="text-sm text-body mt-2">{t('donatePage.impact10')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">€5</p><p class="text-sm text-body mt-2">{t('donatePage.impact5')}</p></div>
     </div>
   </section>
 
-  <!-- Second donate CTA -->
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-    <DonateBlock />
+    <DonateBlock lang={lang} />
   </section>
 
-  <!-- Sponsor -->
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
     <div class="bg-slate-dark rounded-2xl p-8 md:p-12 text-center text-white">
-      <h2 class="text-2xl font-bold mb-3">Sponsor a dog</h2>
-      <p class="text-white/80 mb-2">
-        30 of our 60 dogs still do not have a sponsor.
-      </p>
-      <p class="text-white/80">
-        A monthly contribution of any amount helps cover a dog's food and basic vet care.
-      </p>
-      <a
-        href="https://www.facebook.com/profile.php?id=61590021437450"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block mt-6 px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors"
-      >
-        Contact us on Facebook
-      </a>
+      <h2 class="text-2xl font-bold mb-3">{t('donatePage.sponsorTitle')}</h2>
+      <p class="text-white/80 mb-2">{t('donatePage.sponsorText1')}</p>
+      <p class="text-white/80">{t('donatePage.sponsorText2')}</p>
+      <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block mt-6 px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('donatePage.contactFb')}</a>
     </div>
   </section>
 </Layout>
