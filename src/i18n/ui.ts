@@ -213,7 +213,7 @@ export const ui = {
 
     // Footer
     'footer.quickLinks': 'Schnellzugriff',
-    'footer.connect': 'Verbinden',
+    'footer.connect': 'Folge uns',
     'footer.location': 'Standort',
     'footer.locationText': 'Br\u010dko, Bosnien und Herzegowina',
     'footer.paypalDonations': 'PayPal-Spenden:',
@@ -235,10 +235,10 @@ export const ui = {
     'dog.small': 'Klein',
     'dog.medium': 'Mittel',
     'dog.large': 'Gro\u00df',
-    'dog.adoptedTo': 'Adoptiert nach:',
+    'dog.adoptedTo': 'Vermittelt nach:',
 
     // DonateBlock
-    'donateBlock.title': 'Spenden via PayPal',
+    'donateBlock.title': 'Spenden über PayPal',
     'donateBlock.subtitle': 'Sende einen beliebigen Betrag direkt. Jeder Euro kommt den Hunden zugute.',
     'donateBlock.copy': 'Kopieren',
     'donateBlock.copied': 'Kopiert!',
@@ -250,7 +250,7 @@ export const ui = {
     // Index page
     'index.title': 'Rettungshund aus Bosnien adoptieren | My Paws Bosnia',
     'index.description': 'Rettungshunde zur Adoption in Europa. My Paws Bosnia rettet Stra\u00dfenhunde in Bosnien und vermittelt sie an Familien in der Schweiz, Deutschland, Gro\u00dfbritannien und darüber hinaus.',
-    'index.heroMeet': 'Lerne kennen:',
+    'index.heroMeet': 'Das ist',
     'index.heroDonate': 'Spende \u20ac25 f\u00fcr Hundefutter',
     'index.featuredTitle': 'Hunde suchen ein Zuhause',
     'index.featuredSubtitle': '60 Hunde in unserer Obhut. Diese hier suchen gerade eine Familie.',
@@ -317,16 +317,16 @@ export const ui = {
     'adoptSlug.switzerland': 'Schweiz',
     'adoptSlug.brucellosis': 'Hunde, die nach Gro\u00dfbritannien reisen, werden wie vorgeschrieben auf Brucellose getestet. Weitere Gesundheitstests sind auf Anfrage m\u00f6glich.',
     'adoptSlug.feesNote': 'Die Kosten k\u00f6nnen je nach Transportkosten zum Zeitpunkt der Adoption leicht variieren. Jeder Hund reist mit Pass, Impfungen, Kastration, Entwurmung und Flohbehandlung. Wir empfehlen, nach der Ankunft einen Tierarztbesuch einzuplanen.',
-    'adoptSlug.interestedIn': 'Interesse an der Adoption von {name}?',
+    'adoptSlug.interestedIn': 'Möchtest du {name} adoptieren?',
     'adoptSlug.interestedText': 'Schreibe uns eine Nachricht auf unserer Facebook-Seite, um mehr \u00fcber den Adoptionsprozess zu erfahren.',
-    'adoptSlug.messageFb': 'Nachricht auf Facebook',
+    'adoptSlug.messageFb': 'Schreib uns auf Facebook',
     'adoptSlug.years': 'Jahre',
 
     // Donate page
     'donatePage.title': 'Spenden f\u00fcr Rettungshunde in Bosnien | My Paws Bosnia',
     'donatePage.description': 'Deine Spende f\u00fcttert, impft und sch\u00fctzt 60 Rettungshunde in Bosnien. \u20ac25 f\u00fcttert einen Hund eine Woche lang. Jeder Euro geht direkt an die Hunde \u2013 keine Verwaltungskosten.',
     'donatePage.heading': 'Jeder Euro h\u00e4lt sie am Leben.',
-    'donatePage.subtitle': 'Keine staatliche F\u00f6rderung. Keine Firmensponoren. Nur eine Familie und 60 Hunde.',
+    'donatePage.subtitle': 'Keine staatliche F\u00f6rderung. Keine Firmensponsoren. Nur eine Familie und 60 Hunde.',
     'donatePage.proofTitle': 'Daf\u00fcr werden deine Spenden verwendet',
     'donatePage.proofSubtitle': 'Echte Fotos aus dem Tierheim. Futterlieferungen, Tierarztbesuche, Alltag mit 60 Hunden.',
     'donatePage.vesnaCaption': 'Vesna und ihre T\u00f6chter',
@@ -390,11 +390,11 @@ export const ui = {
     'successSlug.ctaTitle': 'M\u00f6chtest du einem weiteren Hund ein Happy End schenken?',
     'successSlug.ctaText': 'Im Tierheim warten noch 60 Hunde. Du k\u00f6nntest auch jemandes Happy End sein.',
     'successSlug.meetDogs': 'Unsere Hunde kennenlernen',
-    'successSlug.messageFb': 'Nachricht auf Facebook',
+    'successSlug.messageFb': 'Schreib uns auf Facebook',
 
     // Time at shelter
     'time.unknown': 'Unbekannt',
-    'time.lessThanMonth': 'Weniger als ein Monat',
+    'time.lessThanMonth': 'Weniger als einen Monat',
     'time.oneMonth': '1 Monat',
     'time.months': '{n} Monate',
     'time.oneYear': '1 Jahr',
@@ -414,8 +414,8 @@ export const ui = {
     'nav.donate': 'Doneer',
 
     // Footer
-    'footer.quickLinks': 'Snelkoppelingen',
-    'footer.connect': 'Verbinden',
+    'footer.quickLinks': 'Handige links',
+    'footer.connect': 'Volg ons',
     'footer.location': 'Locatie',
     'footer.locationText': 'Br\u010dko, Bosni\u00eb en Herzegovina',
     'footer.paypalDonations': 'PayPal-donaties:',
@@ -435,9 +435,9 @@ export const ui = {
     'dog.adult': 'volwassen',
     'dog.senior': 'senior',
     'dog.small': 'klein',
-    'dog.medium': 'middel',
+    'dog.medium': 'middelgroot',
     'dog.large': 'groot',
-    'dog.adoptedTo': 'Geadopteerd naar:',
+    'dog.adoptedTo': 'Nieuw thuis in:',
 
     // DonateBlock
     'donateBlock.title': 'Doneer via PayPal',
@@ -447,15 +447,15 @@ export const ui = {
     'donateBlock.failed': 'Mislukt',
     'donateBlock.openPaypal': 'PayPal openen',
     'donateBlock.steps': '1. Kopieer het e-mailadres \u00a0 2. Klik \u201ePayPal openen\u201c \u00a0 3. Plak en verstuur',
-    'donateBlock.friendsFamily': 'Kies \u201eVrienden en familie\u201c om kosten te vermijden.',
+    'donateBlock.friendsFamily': 'Kies \u201eVrienden en familie\u201c om extra kosten te voorkomen.',
 
     // Index page
-    'index.title': 'Adopteer een reddingshond uit Bosni\u00eb | My Paws Bosnia',
-    'index.description': 'Reddingshonden beschikbaar voor adoptie in Europa. My Paws Bosnia redt zwerfhonden in Bosni\u00eb en herplaatst ze bij gezinnen in Zwitserland, Duitsland, het VK en verder.',
+    'index.title': 'Adopteer een asielhond uit Bosni\u00eb | My Paws Bosnia',
+    'index.description': 'Asielhonden beschikbaar voor adoptie in Europa. My Paws Bosnia redt zwerfhonden in Bosni\u00eb en herplaatst ze bij gezinnen in Zwitserland, Duitsland, het VK en verder.',
     'index.heroMeet': 'Maak kennis met',
     'index.heroDonate': 'Doneer \u20ac25 voor hondenvoer',
     'index.featuredTitle': 'Honden op zoek naar een thuis',
-    'index.featuredSubtitle': '60 honden in onze zorg. Dit zijn degenen die nu een gezin zoeken.',
+    'index.featuredSubtitle': '60 honden in onze zorg. Dit zijn de honden die nu een gezin zoeken.',
     'index.seeAllDogs': 'Bekijk alle honden',
     'index.trustTitle': 'Dit is echt. Hier is het bewijs.',
     'index.trustVesna': 'Vesna runt het asiel met haar twee dochters in Br\u010dko, Bosni\u00eb.',
@@ -467,20 +467,20 @@ export const ui = {
     'index.fbFollow': 'Volgen',
 
     // About page
-    'about.title': 'Over ons | My Paws Bosnia \u2013 Hondenredding in Br\u010dko, Bosni\u00eb',
+    'about.title': 'Over ons | My Paws Bosnia \u2013 Hondenopvang in Br\u010dko, Bosni\u00eb',
     'about.description': 'Maak kennis met Vesna en haar gezin die een hondenasiel runnen in Br\u010dko, Bosni\u00eb. Sinds 2019 redden ze zwerfhonden en herplaatsen ze bij gezinnen in heel Europa.',
     'about.heroTitle': 'Over My Paws Bosnia',
     'about.heroSubtitle': 'Een klein asiel in Br\u010dko, Bosni\u00eb, gerund door \u00e9\u00e9n vrouw en haar gezin.',
     'about.vesnaTitle': 'Het verhaal van Vesna',
     'about.vesnaP1': 'Vesna groeide op in steden in de VS, Australi\u00eb en Europa. Toen ze naar Bosni\u00eb kwam, voelde ze meteen een band met de plek \u2013 en merkte ze al snel iets op dat velen over het hoofd zien: zwerfhonden en achtergelaten honden waar niemand voor zorgt.',
-    'about.vesnaP2': 'In 2019 zag ze online een bericht over een hond die geen diergeneeskundige zorg kon krijgen. Ze greep in. Die ene hond was het begin van wat nu een echt asiel is.',
+    'about.vesnaP2': 'In 2019 zag ze online een bericht over een hond die niet naar de dierenarts kon. Ze greep in. Die ene hond was het begin van wat nu een echt asiel is.',
     'about.vesnaP3': 'Vandaag zorgt Vesna voor ongeveer 60 honden op haar terrein in Br\u010dko. Haar twee dochters helpen dagelijks met voeren, schoonmaken en het socialiseren van de honden. Het asiel draait volledig op donaties van supporters in heel Europa.',
     'about.vesnaP4': 'Vesna regelt elk onderdeel zelf: honden van straat redden, dierenartsafspraken maken, vaccinaties en castraties co\u00f6rdineren, en transport organiseren naar adoptiegezinnen in Zwitserland, Duitsland, het Verenigd Koninkrijk en daarbuiten.',
     'about.howTitle': 'Zo werken wij',
     'about.rescueTitle': 'Redding',
     'about.rescueText': 'Honden worden op straat gevonden, gemeld door buurtbewoners, of achtergelaten bij het asiel.',
     'about.vetTitle': 'Dierenarts',
-    'about.vetText': 'Elke hond wordt gevaccineerd, ontwormd, gechipt en gecastreerd voordat hij wordt geadopteerd.',
+    'about.vetText': 'Elke hond wordt gevaccineerd, ontwormd, gechipt en gesteriliseerd of gecastreerd voor adoptie.',
     'about.shelterTitle': 'Asiel',
     'about.shelterText': 'De honden leven op Vesna\u2019s terrein met dagelijkse maaltijden, socialisatie en buitenruimte.',
     'about.homesTitle': 'Een thuis vinden',
@@ -490,13 +490,13 @@ export const ui = {
     'about.meetDogs': 'Ontmoet de honden',
 
     // Adopt page
-    'adopt.title': 'Adopteer een reddingshond | Honden nu beschikbaar | My Paws Bosnia',
-    'adopt.description': 'Bekijk reddingshonden uit Bosni\u00eb die beschikbaar zijn voor adoptie. Wij herplaatsen gevaccineerde, gecastreerde honden bij gezinnen in Zwitserland, Duitsland, het VK en meer.',
+    'adopt.title': 'Adopteer een asielhond | Honden nu beschikbaar | My Paws Bosnia',
+    'adopt.description': 'Bekijk asielhonden uit Bosni\u00eb die beschikbaar zijn voor adoptie. Wij herplaatsen gevaccineerde, gecastreerde honden bij gezinnen in Zwitserland, Duitsland, het VK en meer.',
     'adopt.heading': 'Adopteer een hond',
     'adopt.count': '{total} honden zoeken momenteel een thuis.',
     'adopt.filter': 'Filter:',
     'adopt.small': 'Klein',
-    'adopt.medium': 'Middel',
+    'adopt.medium': 'Middelgroot',
     'adopt.large': 'Groot',
     'adopt.under3': 'Minder dan 3 maanden',
     'adopt.3to12': '3\u201312 maanden',
@@ -521,12 +521,12 @@ export const ui = {
     'adoptSlug.feesNote': 'Kosten kunnen licht vari\u00ebren afhankelijk van transportkosten op het moment van adoptie. Elke hond reist met paspoort, vaccinaties, castratie, ontworming en vlooienbehandeling. We raden aan om na aankomst een dierenartscontrole in te plannen.',
     'adoptSlug.interestedIn': 'Interesse in het adopteren van {name}?',
     'adoptSlug.interestedText': 'Stuur ons een bericht via onze Facebook-pagina voor meer informatie over het adoptieproces.',
-    'adoptSlug.messageFb': 'Bericht op Facebook',
+    'adoptSlug.messageFb': 'Stuur ons een bericht',
     'adoptSlug.years': 'jaar',
 
     // Donate page
-    'donatePage.title': 'Doneer om reddingshonden in Bosni\u00eb te helpen | My Paws Bosnia',
-    'donatePage.description': 'Jouw donatie voert, vaccineert en beschermt 60 reddingshonden in Bosni\u00eb. \u20ac25 voert een hond een week lang. Elke euro gaat rechtstreeks naar de honden \u2013 geen overheadkosten.',
+    'donatePage.title': 'Doneer om asielhonden in Bosni\u00eb te helpen | My Paws Bosnia',
+    'donatePage.description': 'Jouw donatie voert, vaccineert en beschermt 60 asielhonden in Bosni\u00eb. \u20ac25 voert een hond een week lang. Elke euro gaat rechtstreeks naar de honden \u2013 geen overheadkosten.',
     'donatePage.heading': 'Elke euro houdt ze in leven.',
     'donatePage.subtitle': 'Geen overheidssubsidie. Geen bedrijfssponsors. Gewoon \u00e9\u00e9n gezin en 60 honden.',
     'donatePage.proofTitle': 'Hier gaan je donaties naartoe',
@@ -549,7 +549,7 @@ export const ui = {
 
     // Contact page
     'contact.title': 'Contact | My Paws Bosnia \u2013 Hond uit Bosni\u00eb adopteren',
-    'contact.description': 'Neem contact op met My Paws Bosnia voor adopties, sponsoring en vrijwilligerswerk. Stuur ons een bericht op Facebook of mail ons over reddingshonden in Europa.',
+    'contact.description': 'Neem contact op met My Paws Bosnia voor adopties, sponsoring en vrijwilligerswerk. Stuur ons een bericht op Facebook of mail ons over asielhonden in Europa.',
     'contact.heading': 'Contact',
     'contact.subtitle': 'Je kunt ons het beste bereiken via onze Facebook-pagina.',
     'contact.fbTitle': 'Facebook',
@@ -558,7 +558,7 @@ export const ui = {
     'contact.locationTitle': 'Locatie',
 
     // Your Impact page
-    'impact.title': 'Jouw impact | Hoe donaties reddingshonden helpen | My Paws Bosnia',
+    'impact.title': 'Jouw impact | Hoe donaties asielhonden helpen | My Paws Bosnia',
     'impact.description': 'Zie precies waar je donatie naartoe gaat: voer voor 60 honden, dierenartszorg, vaccinaties, castraties en verbeteringen aan ons asiel in Br\u010dko, Bosni\u00eb.',
     'impact.heading': 'Jouw impact',
     'impact.subtitle': 'Elke donatie maakt direct verschil. Hier zie je waar jouw steun naartoe gaat.',
@@ -567,19 +567,19 @@ export const ui = {
     'impact.vetTitle': 'Dierenartszorg',
     'impact.vetText': 'Elke hond krijgt vaccinaties, ontworming, een microchip en castratie. Spoedbehandelingen en operaties worden ook gedekt door donaties.',
     'impact.shelterTitle': 'Verbeteringen aan het asiel',
-    'impact.shelterText': 'Hekken, kennels, weerbestendiging en algemeen onderhoud van het terrein waar de honden wonen.',
+    'impact.shelterText': 'Hekken, hondenhokken, bescherming tegen weer en wind en algemeen onderhoud van het terrein waar de honden wonen.',
     'impact.photosComing': 'Foto\u2019s volgen binnenkort.',
 
     // Past Rescues page
     'pastRescues.title': 'Eerdere reddingen | Honden herplaatst in heel Europa | My Paws Bosnia',
-    'pastRescues.description': 'Bekijk de reddingshonden die we sinds 2019 hebben herplaatst bij gezinnen in Zwitserland, Duitsland, het VK en heel Europa.',
+    'pastRescues.description': 'Bekijk de asielhonden die we sinds 2019 hebben herplaatst bij gezinnen in Zwitserland, Duitsland, het VK en heel Europa.',
     'pastRescues.heading': 'Eerdere reddingen',
     'pastRescues.subtitle': 'Sinds 2019 helpen we honden een thuis te vinden. Deze honden zijn gered van de straten van Bosni\u00eb en geplaatst bij gezinnen in heel Europa, waaronder Zwitserland, Duitsland en het Verenigd Koninkrijk.',
     'pastRescues.photosComing': 'Foto\u2019s volgen binnenkort.',
 
     // Success Stories index
-    'successIndex.title': 'Succesverhalen | Reddingshonden vinden een thuis | My Paws Bosnia',
-    'successIndex.description': 'Lees echte adoptieverhalen van My Paws Bosnia. Reddingshonden uit Bosni\u00eb die hun definitieve thuis vinden bij gezinnen in heel Europa.',
+    'successIndex.title': 'Succesverhalen | Asielhonden vinden een thuis | My Paws Bosnia',
+    'successIndex.description': 'Lees echte adoptieverhalen van My Paws Bosnia. Asielhonden uit Bosni\u00eb die hun definitieve thuis vinden bij gezinnen in heel Europa.',
     'successIndex.heading': 'Succesverhalen',
     'successIndex.subtitle': 'Deze honden wachtten geduldig tot iemand hen koos. Nu hebben ze hun eigen gezin. Elke adoptie herinnert ons eraan waarom we dit doen.',
     'successIndex.coming': 'Verhalen volgen binnenkort.',
@@ -589,8 +589,8 @@ export const ui = {
     'successSlug.adopted': 'Geadopteerd',
     'successSlug.newHome': 'Nieuw thuis',
     'successSlug.morePhotos': 'Meer foto\u2019s',
-    'successSlug.ctaTitle': 'Wil je nog een hond een happy end geven?',
-    'successSlug.ctaText': 'Er wachten nog 60 honden in het asiel. Jij kunt ook iemands happy end zijn.',
+    'successSlug.ctaTitle': 'Wil je nog een hond een gelukkig einde geven?',
+    'successSlug.ctaText': 'Er wachten nog 60 honden in het asiel. Jij kunt ook iemands gelukkige einde zijn.',
     'successSlug.meetDogs': 'Ontmoet onze honden',
     'successSlug.messageFb': 'Bericht op Facebook',
 

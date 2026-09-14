@@ -41,7 +41,7 @@ export const successStories: SuccessStory[] = [
     ],
     de: {
       shortLine: "Von einem \u00e4ngstlichen Welpen in Bosnien zu einem gl\u00fccklichen, schlammverliebten Hund in Gro\u00dfbritannien.",
-      story: "Bridgette geh\u00f6rte zu einem Wurf, der in unserem Tierheim in Br\u010dko geboren wurde. Ihre Familie fand uns \u00fcber Facebook, fand die Welpen s\u00fc\u00df und schrieb uns eine Nachricht. Nach einem Hausbesuch und etwas Papierkram war Bridgette auf dem Weg nach Gro\u00dfbritannien. Als sie 2022 ankam, war sie \u00e4ngstlich. Sie wusste nicht, was ein Spielzeug ist. Sie spielte mit St\u00f6cken und versteckte sich vor ihrer neuen Familie. Vier Jahre sp\u00e4ter ist sie wild, liebevoll und meistens voller Schlamm. Bridgette ist der Beweis, dass diese Hunde nur eine Chance brauchen.",
+      story: "Bridgette geh\u00f6rte zu einem Wurf, der in unserem Tierheim in Br\u010dko geboren wurde. Ihre Familie fand uns \u00fcber Facebook, fand die Welpen s\u00fc\u00df und schrieb uns eine Nachricht. Nach einem Hausbesuch und etwas Papierkram war Bridgette auf dem Weg nach Gro\u00dfbritannien. Als sie 2022 ankam, war sie \u00e4ngstlich. Sie wusste nicht, was ein Spielzeug ist. Sie spielte mit St\u00f6cken und versteckte sich vor ihrer neuen Familie. Vier Jahre sp\u00e4ter ist sie lebhaft, liebevoll und meistens voller Schlamm. Bridgette ist der Beweis, dass diese Hunde nur eine Chance brauchen.",
       traits: [
         "Verspielt und energiegeladen",
         "Liebevoll und anh\u00e4nglich",
@@ -52,7 +52,7 @@ export const successStories: SuccessStory[] = [
     },
     nl: {
       shortLine: "Van een bange pup in Bosni\u00eb tot een blije, moddergekke hond in het VK.",
-      story: "Bridgette was onderdeel van een nest dat in ons asiel in Br\u010dko werd geboren. Haar gezin vond ons via Facebook, vond de puppy\u2019s schattig en stuurde ons een bericht. Na een thuiscontrole en wat papierwerk was Bridgette op weg naar het VK. Toen ze in 2022 aankwam, was ze zenuwachtig. Ze wist niet wat een speeltje was. Ze speelde met stokken en verstopte zich voor haar nieuwe gezin. Vier jaar later is ze wild, lief en meestal onder de modder. Bridgette is het bewijs dat deze honden gewoon een kans nodig hebben.",
+      story: "Bridgette was onderdeel van een nest dat in ons asiel in Br\u010dko werd geboren. Haar gezin vond ons via Facebook, vond de puppy\u2019s schattig en stuurde ons een bericht. Na een thuiscontrole en wat papierwerk was Bridgette op weg naar het VK. Toen ze in 2022 aankwam, was ze zenuwachtig. Ze wist niet wat een speeltje was. Ze speelde met stokken en verstopte zich voor haar nieuwe gezin. Vier jaar later is ze uitgelaten, lief en meestal onder de modder. Bridgette is het bewijs dat deze honden gewoon een kans nodig hebben.",
       traits: [
         "Speels en energiek",
         "Liefdevol en aanhankelijk",
@@ -92,7 +92,7 @@ export const successStories: SuccessStory[] = [
     },
     nl: {
       shortLine: "Na drie jaar in asielen heeft Pjuske eindelijk haar thuis gevonden.",
-      story: "Pjuske (uitgesproken als \u201ePJOE-sjkeh\u201c) bracht haar hele leven door in asielen \u2013 het onze was al haar derde. Ondanks alles bleef ze liefdevol, zachtaardig en vol vertrouwen. In juni 2026, na drie lange jaren wachten, werd Pjuske eindelijk geadopteerd en reist ze binnenkort naar haar nieuwe thuis. We zijn ontzettend blij voor haar.",
+      story: "Pjuske (uitgesproken als \u201ePJOE-sjkeh\u201c) bracht haar hele leven door in asielen \u2013 ons asiel was al haar derde. Ondanks alles bleef ze liefdevol, zachtaardig en vol vertrouwen. In juni 2026, na drie lange jaren wachten, werd Pjuske eindelijk geadopteerd en reist ze binnenkort naar haar nieuwe thuis. We zijn ontzettend blij voor haar.",
       traits: [
         "Liefdevol en zachtaardig",
         "Vriendelijk met andere honden",
@@ -121,7 +121,7 @@ export const successStories: SuccessStory[] = [
       "Mixed breed (Border Collie / Shepherd)",
     ],
     de: {
-      shortLine: "Eine sanfte Seele, die sein Zuhause in Belgien gefunden hat.",
+      shortLine: "Eine sanfte Seele, die ihr Zuhause in Belgien gefunden hat.",
       story: "Nero ist ein wundersch\u00f6ner, sanfter R\u00fcde mit dem weichsten Herzen. Wahrscheinlich ein Border Collie-Sch\u00e4ferhund-Mischling, der es liebte, drau\u00dfen zu sein, die Welt zu erkunden und in der N\u00e4he von Menschen zu sein. Nachdem er geduldig im Tierheim gewartet hatte, wurde Nero im August 2026 adoptiert und beginnt sein neues Leben in Belgien. Wir sind so gl\u00fccklich f\u00fcr diesen lieben Jungen \u2013 er hat es wirklich verdient.",
       traits: [
         "Freundlich und anh\u00e4nglich",

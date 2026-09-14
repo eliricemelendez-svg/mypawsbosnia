@@ -40,7 +40,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Ein echter Held. Verschmust, kinderlieb und geht wunderbar an der Leine.",
-      description: "Flint ist seit seiner Welpenzeit im Tierheim. Vor Kurzem hat er Blut gespendet, um einem anderen Hund das Leben zu retten. Nach all der Zeit ist er immer noch einer der liebsten Hunde hier und hat eine eigene Familie verdient.",
+      description: "Flint ist seit seiner Welpenzeit im Tierheim. Vor Kurzem hat er Blut gespendet, um einem anderen Hund das Leben zu retten. Nach all der Zeit ist er immer noch einer der liebenswertesten Hunde hier und hat eine eigene Familie verdient.",
       traits: [
         "Verschmust und anh\u00e4nglich",
         "Toll mit Kindern",
@@ -61,7 +61,7 @@ export const currentDogs: Dog[] = [
         "Loopt rustig aan de lijn",
         "Middelgroot",
         "Gecastreerd en volledig gevaccineerd",
-        "Sinds zijn puppytijd in het asiel",
+        "Al in het asiel sinds hij een pup was",
       ],
     },
   },
@@ -97,7 +97,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     nl: {
-      shortLine: "Vrolijk, aanhankelijk en vol energie. Het beste bij actieve gezinnen.",
+      shortLine: "Vrolijk, aanhankelijk en vol energie. Past het best bij actieve gezinnen.",
       description: "Barney is een vrolijke, energieke reu die van mensen houdt en altijd klaar is voor het volgende avontuur. Hij is gecastreerd, volledig gevaccineerd en zijn papieren zijn klaar om te reizen.",
       traits: [
         "Vrolijk en aanhankelijk",
@@ -148,9 +148,9 @@ export const currentDogs: Dog[] = [
         "Rustig, zelfverzekerd en aanhankelijk",
         "Uitstekend met kinderen",
         "Geweldig met andere honden",
-        "Het beste in een huis met een grote tuin",
+        "Past het best bij een huis met een grote tuin",
         "Prachtige dikke vacht \u2013 regelmatige verzorging nodig",
-        "Gecastreerd en volledig gevaccineerd",
+        "Gesteriliseerd en volledig gevaccineerd",
         "Klaar om te reizen vanuit Bosni\u00eb",
       ],
     },
@@ -231,7 +231,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Een vrolijke, sociale pup die van buikkrabbels houdt en nog nooit een vreemde heeft ontmoet.",
-      description: "Eli is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Ze is de vriendelijkste van het trio \u2013 altijd de eerste die aanrent voor aaitjes en buikkrabbels. Haar broer is al geadopteerd naar het VK, en Eli hoopt dat zij de volgende is. Ze is een zwarte herdersmix die uitgroeit tot ongeveer 25\u201330 kg, en ze is gezond, actief en vol puppyvreugde.",
+      description: "Eli is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Ze is de vriendelijkste van het trio \u2013 altijd de eerste die aanrent voor aaitjes en buikkrabbels. Haar broer is al geadopteerd naar het VK, en Eli hoopt dat zij de volgende is. Ze is een zwarte herdersmix die uitgroeit tot ongeveer 25\u201330 kg, en ze is gezond, actief en vol levensvreugde.",
       traits: [
         "Supervriendelijk en sociaal",
         "Houdt van buikkrabbels",
@@ -261,7 +261,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Mit der Flasche aufgezogen, seit er 48 Stunden alt war. Sanft, verspielt und toll mit Kindern und Katzen.",
-      description: "Max und seine Schwester Nadia wurden am 3. Mai 2026 gerettet, nur zwei Tage nach ihrer Geburt. Sie wurden hungrig und unterk\u00fchlt gefunden und h\u00e4tten ohne Hilfe kaum \u00fcberlebt. Vesnas Familie hat sie ab dem zweiten Lebenstag mit der Flasche aufgezogen. Max ist der hellere der beiden. Er hat mittlere Energie, schl\u00e4ft gerne und spielt gut mit anderen Hunden. Er wird gro\u00df, bleibt aber leicht \u2013 bis etwa 12 kg.",
+      description: "Max und seine Schwester Nadia wurden am 3. Mai 2026 gerettet, nur zwei Tage nach ihrer Geburt. Sie wurden hungrig und unterk\u00fchlt gefunden und h\u00e4tten ohne Hilfe kaum \u00fcberlebt. Vesnas Familie hat sie ab dem zweiten Lebenstag mit der Flasche aufgezogen. Max ist der hellere der beiden. Er ist mäßig aktiv, schl\u00e4ft gerne und spielt gut mit anderen Hunden. Er wird gro\u00df, bleibt aber leicht \u2013 bis etwa 12 kg.",
       traits: [
         "Mit der Flasche aufgezogen seit Geburt",
         "Sicher mit Kindern, Hunden und Katzen",
@@ -273,13 +273,13 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Met de fles grootgebracht sinds 48 uur oud. Lief, speels en geweldig met kinderen en katten.",
-      description: "Max en zijn zus Nadia werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Max is de lichtere van de twee. Hij heeft gemiddelde energie, slaapt graag en speelt goed met andere honden. Hij wordt groot maar blijft licht, tot ongeveer 12 kg.",
+      description: "Max en zijn zus Nadia werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Max is de lichtere van de twee. Hij heeft gemiddeld actief, slaapt graag en speelt goed met andere honden. Hij wordt groot maar blijft licht, tot ongeveer 12 kg.",
       traits: [
         "Met de fles grootgebracht sinds geboorte",
         "Veilig met kinderen, honden en katten",
-        "Gemiddelde energie, slaapt graag",
+        "Gemiddeld actief, slaapt graag",
         "Wordt groot maar licht, tot ca. 12 kg",
-        "Gevaccineerd en hervaccineerd",
+        "Volledig gevaccineerd",
         "Klaar om te reizen",
       ],
     },
@@ -303,7 +303,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Mit der Flasche aufgezogen, seit sie 48 Stunden alt war. Verspielt, freundlich und toll mit Kindern und Katzen.",
-      description: "Nadia und ihr Bruder Max wurden am 3. Mai 2026 gerettet, nur zwei Tage nach ihrer Geburt. Sie wurden hungrig und unterk\u00fchlt gefunden und h\u00e4tten ohne Hilfe kaum \u00fcberlebt. Vesnas Familie hat sie ab dem zweiten Lebenstag mit der Flasche aufgezogen. Nadia hat mittlere Energie, spielt gerne mit anderen Hunden und schl\u00e4ft viel. Sie wird gro\u00df, bleibt aber leicht \u2013 bis etwa 12 kg.",
+      description: "Nadia und ihr Bruder Max wurden am 3. Mai 2026 gerettet, nur zwei Tage nach ihrer Geburt. Sie wurden hungrig und unterk\u00fchlt gefunden und h\u00e4tten ohne Hilfe kaum \u00fcberlebt. Vesnas Familie hat sie ab dem zweiten Lebenstag mit der Flasche aufgezogen. Nadia ist mäßig aktiv, spielt gerne mit anderen Hunden und schl\u00e4ft viel. Sie wird gro\u00df, bleibt aber leicht \u2013 bis etwa 12 kg.",
       traits: [
         "Mit der Flasche aufgezogen seit Geburt",
         "Sicher mit Kindern, Hunden und Katzen",
@@ -315,13 +315,13 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Met de fles grootgebracht sinds 48 uur oud. Speels, vriendelijk en geweldig met kinderen en katten.",
-      description: "Nadia en haar broer Max werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Nadia heeft gemiddelde energie, speelt graag met andere honden en slaapt veel. Ze wordt groot maar blijft licht, tot ongeveer 12 kg.",
+      description: "Nadia en haar broer Max werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Nadia heeft gemiddeld actief, speelt graag met andere honden en slaapt veel. Ze wordt groot maar blijft licht, tot ongeveer 12 kg.",
       traits: [
         "Met de fles grootgebracht sinds geboorte",
         "Veilig met kinderen, honden en katten",
-        "Gemiddelde energie, slaapt graag",
+        "Gemiddeld actief, slaapt graag",
         "Wordt groot maar licht, tot ca. 12 kg",
-        "Gevaccineerd en hervaccineerd",
+        "Volledig gevaccineerd",
         "Klaar om te reizen",
       ],
     },
@@ -361,14 +361,14 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Een lieve, trouwe meid met een prachtige gouden vacht. Geweldig met kinderen, honden en mensen.",
-      description: "Vanja is een prachtige Labradormix van 1 jaar en 8 maanden die geduldig wacht op het gezin dat ze verdient. Ze heeft een heerlijk zacht karakter en kan met iedereen overweg. Ze is geweldig met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gecastreerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
+      description: "Vanja is een prachtige Labradormix van 1 jaar en 8 maanden die geduldig wacht op het gezin dat ze verdient. Ze heeft een heerlijk zacht karakter en kan met iedereen overweg. Ze is geweldig met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gesteriliseerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
       traits: [
         "Lief en trouw",
         "Geweldig met kinderen",
         "Vriendelijk met alle mensen",
         "Goed met andere honden",
         "Labradormix, geschat 18\u201322 kg",
-        "Gecastreerd en volledig gevaccineerd",
+        "Gesteriliseerd en volledig gevaccineerd",
         "Bloedtesten beschikbaar op aanvraag",
         "Klaar om te reizen",
       ],
@@ -394,7 +394,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Verspielt, aktiv und toll mit Kindern. Ein gro\u00dfes M\u00e4dchen mit nat\u00fcrlich kurzem Schwanz.",
-      description: "Luna ist ein wundersch\u00f6nes, verspieltes und aktives M\u00e4dchen auf der Suche nach ihrem Zuhause. Mit rund 5,5 Monaten ist sie bereits \u00fcber 43 cm gro\u00df und wird ein gro\u00dfer Hund. Sie hat einen nat\u00fcrlich kurzen Schwanz, was sie besonders macht. Sie ist toll mit Menschen und Kindern und voller Energie und Liebe.",
+      description: "Luna ist ein wundersch\u00f6nes, verspieltes und aktives M\u00e4dchen auf der Suche nach ihrem Zuhause. Mit rund 5,5 Monaten ist sie bereits \u00fcber 43 cm gro\u00df und wird ein gro\u00dfer Hund. Sie hat einen nat\u00fcrlich kurzen Schwanz, was sie noch besonderer macht. Sie ist toll mit Menschen und Kindern und voller Energie und Liebe.",
       traits: [
         "Sehr gut mit Menschen",
         "Toll mit Kindern",
@@ -407,7 +407,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Speels, actief en geweldig met kinderen. Een groot meisje met een van nature korte staart.",
-      description: "Luna is een prachtig, speels en actief meisje op zoek naar haar eigen thuis. Op ongeveer 5,5 maanden is ze al meer dan 43 cm hoog en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar extra bijzonder maakt. Ze is geweldig met mensen en kinderen, en zit vol energie en liefde.",
+      description: "Luna is een prachtig, speels en actief meisje op zoek naar haar eigen thuis. Op ongeveer 5,5 maanden is ze al meer dan 43 cm groot en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar extra bijzonder maakt. Ze is geweldig met mensen en kinderen, en zit vol energie en liefde.",
       traits: [
         "Heel goed met mensen",
         "Geweldig met kinderen",
