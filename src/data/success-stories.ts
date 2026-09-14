@@ -81,13 +81,13 @@ export const successStories: SuccessStory[] = [
     ],
     de: {
       shortLine: "Nach drei Jahren im Tierheim hat Pjuske endlich ihr Zuhause gefunden.",
-      story: "Pjuske (ausgesprochen \u201ePJUU-schkeh\u201c) verbrachte ihr ganzes Leben in Tierheimen \u2013 unseres war bereits ihr drittes. Trotz allem blieb sie liebevoll, sanft und voller Vertrauen. Im Juni 2026, nach drei langen Jahren des Wartens, wurde Pjuske endlich adoptiert und wird bald in ihr neues Zuhause reisen. Wir k\u00f6nnten gl\u00fccklicher f\u00fcr sie nicht sein.",
+      story: "Pjuske (ausgesprochen \u201ePJUU-schkeh\u201c) verbrachte ihr ganzes Leben in Tierheimen \u2013 unseres war bereits ihr drittes. Sie blieb aber liebevoll und voller Vertrauen. Nach drei langen Jahren wurde Pjuske im Juni 2026 endlich adoptiert und wird bald in ihr neues Zuhause reisen. Wir freuen uns so sehr f\u00fcr sie.",
       traits: [
         "Liebevoll und sanft",
         "Vertr\u00e4glich mit anderen Hunden",
         "Gut mit Katzen",
-        "Wunderbar mit Kindern",
-        "Liebt Zuneigung und menschliche Gesellschaft",
+        "Toll mit Kindern",
+        "Liebt Streicheleinheiten und ist gern bei Menschen",
       ],
     },
     nl: {
@@ -97,7 +97,7 @@ export const successStories: SuccessStory[] = [
         "Liefdevol en zachtaardig",
         "Vriendelijk met andere honden",
         "Goed met katten",
-        "Geweldig met kinderen",
+        "Dol op kinderen",
         "Houdt van aandacht en menselijk gezelschap",
       ],
     },
@@ -122,7 +122,7 @@ export const successStories: SuccessStory[] = [
     ],
     de: {
       shortLine: "Eine sanfte Seele, die ihr Zuhause in Belgien gefunden hat.",
-      story: "Nero ist ein wundersch\u00f6ner, sanfter R\u00fcde mit dem weichsten Herzen. Wahrscheinlich ein Border Collie-Sch\u00e4ferhund-Mischling, der es liebte, drau\u00dfen zu sein, die Welt zu erkunden und in der N\u00e4he von Menschen zu sein. Nachdem er geduldig im Tierheim gewartet hatte, wurde Nero im August 2026 adoptiert und beginnt sein neues Leben in Belgien. Wir sind so gl\u00fccklich f\u00fcr diesen lieben Jungen \u2013 er hat es wirklich verdient.",
+      story: "Nero ist ein h\u00fcbscher, sanfter R\u00fcde mit einem ganz weichen Wesen. Wahrscheinlich ein Border Collie-Sch\u00e4ferhund-Mischling, der gerne drau\u00dfen war, alles erkundete und am liebsten in der N\u00e4he von Menschen blieb. Nero hat geduldig im Tierheim gewartet. Im August 2026 wurde er endlich adoptiert und beginnt sein neues Leben in Belgien. Wir sind so gl\u00fccklich f\u00fcr diesen lieben Jungen \u2013 das hat er sich so verdient.",
       traits: [
         "Freundlich und anh\u00e4nglich",
         "Aktiv und verspielt",
@@ -133,12 +133,12 @@ export const successStories: SuccessStory[] = [
     },
     nl: {
       shortLine: "Een lieve ziel die zijn thuis vond in Belgi\u00eb.",
-      story: "Nero is een prachtige, lieve reu met het zachtste hart. Waarschijnlijk een Border Collie-herdersmix die graag buiten was, de wereld verkende en bij mensen was. Na geduldig wachten in het asiel werd Nero in augustus 2026 geadopteerd en begint hij zijn nieuwe leven in Belgi\u00eb. We zijn zo blij voor deze lieve jongen \u2013 hij verdient het echt.",
+      story: "Nero is een prachtige, lieve reu met een heel zacht karakter. Waarschijnlijk een Border Collie-herdersmix die graag buiten was, alles wilde ontdekken en bij mensen was. Na geduldig wachten in het asiel werd Nero in augustus 2026 geadopteerd en begint hij zijn nieuwe leven in Belgi\u00eb. We zijn zo blij voor deze lieve jongen \u2013 hij verdient het echt.",
       traits: [
         "Vriendelijk en aanhankelijk",
         "Actief en speels",
         "Houdt van mensen en natuur",
-        "Geweldig met kinderen",
+        "Heel goed met kinderen",
         "Kruising (Border Collie / Herder)",
       ],
     },

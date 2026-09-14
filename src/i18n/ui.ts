@@ -255,7 +255,7 @@ export const ui = {
     'index.featuredTitle': 'Hunde suchen ein Zuhause',
     'index.featuredSubtitle': '60 Hunde in unserer Obhut. Diese hier suchen gerade eine Familie.',
     'index.seeAllDogs': 'Alle Hunde ansehen',
-    'index.trustTitle': 'Das ist echt. Hier sind die Beweise.',
+    'index.trustTitle': 'Das ist echt. Seht selbst.',
     'index.trustVesna': 'Vesna betreibt das Tierheim mit ihren zwei T\u00f6chtern in Br\u010dko, Bosnien.',
     'index.trustVet': 'Eine echte Tierarztrechnung der Klinik, ausgestellt an Moje \u0160ape.',
     'index.trustPassport': 'Die Hunde bekommen P\u00e4sse und reisen zu Familien in ganz Europa.',
@@ -273,7 +273,7 @@ export const ui = {
     'about.vesnaP1': 'Vesna wuchs in St\u00e4dten in den USA, Australien und Europa auf. Als sie nach Bosnien kam, sp\u00fcrte sie sofort eine Verbindung zu diesem Ort \u2013 und bemerkte schnell etwas, das viele \u00fcbersehen: streunende und ausgesetzte Hunde, um die sich niemand k\u00fcmmert.',
     'about.vesnaP2': '2019 sah sie online einen Beitrag \u00fcber einen Hund, der keine tier\u00e4rztliche Versorgung bekommen konnte. Sie griff ein. Aus diesem einen Hund entstand, was heute ein echtes Tierheim ist.',
     'about.vesnaP3': 'Heute k\u00fcmmert sich Vesna um rund 60 Hunde auf ihrem Grundst\u00fcck in Br\u010dko. Ihre zwei T\u00f6chter helfen t\u00e4glich beim F\u00fcttern, Saubermachen und Sozialisieren der Hunde. Das Tierheim finanziert sich ausschlie\u00dflich durch Spenden von Unterst\u00fctzern aus ganz Europa.',
-    'about.vesnaP4': 'Vesna k\u00fcmmert sich um jeden Schritt selbst: Hunde von der Stra\u00dfe retten, Tierarzttermine organisieren, Impfungen und Kastrationen koordinieren und den Transport zu Adoptivfamilien in der Schweiz, Deutschland, Gro\u00dfbritannien und dar\u00fcber hinaus arrangieren.',
+    'about.vesnaP4': 'Vesna k\u00fcmmert sich um jeden Schritt selbst: Hunde von der Stra\u00dfe retten, Tierarzttermine organisieren, Impfungen und Kastrationen koordinieren und den Transport zu Adoptivfamilien in der Schweiz, Deutschland, Gro\u00dfbritannien und in andere L\u00e4nder arrangieren.',
     'about.howTitle': 'So arbeiten wir',
     'about.rescueTitle': 'Rettung',
     'about.rescueText': 'Hunde werden auf der Stra\u00dfe gefunden, von Anwohnern gemeldet oder am Tierheimtor ausgesetzt.',
@@ -284,7 +284,7 @@ export const ui = {
     'about.homesTitle': 'Vermittlung',
     'about.homesText': 'Hunde werden mit Familien zusammengef\u00fchrt und in ihr neues Zuhause in Europa transportiert.',
     'about.ctaTitle': 'M\u00f6chtest du helfen?',
-    'about.ctaText': 'Ob du adoptierst, spendest oder unsere Seite teilst \u2013 jede Unterst\u00fctzung macht einen echten Unterschied.',
+    'about.ctaText': 'Ob du adoptierst, spendest oder unsere Seite teilst \u2013 alles hilft den Hunden.',
     'about.meetDogs': 'Lerne die Hunde kennen',
 
     // Adopt page
@@ -359,7 +359,7 @@ export const ui = {
     'impact.title': 'Deine Wirkung | So helfen Spenden Rettungshunden | My Paws Bosnia',
     'impact.description': 'Sieh genau, wohin deine Spende geht: Futter f\u00fcr 60 Hunde, Tierarztversorgung, Impfungen, Kastrationen und Verbesserungen am Tierheim in Br\u010dko, Bosnien.',
     'impact.heading': 'Deine Wirkung',
-    'impact.subtitle': 'Jede Spende macht einen direkten Unterschied. Hier siehst du, wohin deine Unterst\u00fctzung flie\u00dft.',
+    'impact.subtitle': 'Jede Spende hilft direkt. Hier siehst du, wof\u00fcr wir sie einsetzen.',
     'impact.foodTitle': 'Futter',
     'impact.foodText': '60 Hunde zu f\u00fcttern erfordert regelm\u00e4\u00dfige Gro\u00dflieferungen von Trocken- und Nassfutter. Spenden decken die monatlichen Futterank\u00e4ufe und die Lieferung zum Tierheim.',
     'impact.vetTitle': 'Tierarztversorgung',
@@ -379,7 +379,7 @@ export const ui = {
     'successIndex.title': 'Erfolgsgeschichten | Rettungshunde finden ein Zuhause | My Paws Bosnia',
     'successIndex.description': 'Lies echte Adoptionsgeschichten von My Paws Bosnia. Rettungshunde aus Bosnien finden ihr Zuhause bei Familien in ganz Europa.',
     'successIndex.heading': 'Erfolgsgeschichten',
-    'successIndex.subtitle': 'Diese Hunde haben geduldig darauf gewartet, dass jemand sie ausw\u00e4hlt. Jetzt haben sie eigene Familien. Jede Adoption erinnert uns daran, warum wir das hier tun.',
+    'successIndex.subtitle': 'Diese Hunde haben lange auf ein Zuhause gewartet. Jetzt haben sie eigene Familien. Genau daf\u00fcr machen wir das.',
     'successIndex.coming': 'Geschichten folgen bald.',
 
     // Success Stories [slug]
@@ -388,7 +388,7 @@ export const ui = {
     'successSlug.newHome': 'Neues Zuhause',
     'successSlug.morePhotos': 'Weitere Fotos',
     'successSlug.ctaTitle': 'M\u00f6chtest du einem weiteren Hund ein Happy End schenken?',
-    'successSlug.ctaText': 'Im Tierheim warten noch 60 Hunde. Du k\u00f6nntest auch jemandes Happy End sein.',
+    'successSlug.ctaText': 'Im Tierheim warten noch 60 Hunde. Vielleicht wartet einer davon auf genau dich.',
     'successSlug.meetDogs': 'Unsere Hunde kennenlernen',
     'successSlug.messageFb': 'Schreib uns auf Facebook',
 
@@ -452,7 +452,7 @@ export const ui = {
     // Index page
     'index.title': 'Adopteer een asielhond uit Bosni\u00eb | My Paws Bosnia',
     'index.description': 'Asielhonden beschikbaar voor adoptie in Europa. My Paws Bosnia redt zwerfhonden in Bosni\u00eb en herplaatst ze bij gezinnen in Zwitserland, Duitsland, het VK en verder.',
-    'index.heroMeet': 'Maak kennis met',
+    'index.heroMeet': 'Dit is',
     'index.heroDonate': 'Doneer \u20ac25 voor hondenvoer',
     'index.featuredTitle': 'Honden op zoek naar een thuis',
     'index.featuredSubtitle': '60 honden in onze zorg. Dit zijn de honden die nu een gezin zoeken.',
@@ -486,7 +486,7 @@ export const ui = {
     'about.homesTitle': 'Een thuis vinden',
     'about.homesText': 'Honden worden gekoppeld aan gezinnen en vervoerd naar hun nieuwe thuis in Europa.',
     'about.ctaTitle': 'Wil je helpen?',
-    'about.ctaText': 'Of je nu adopteert, doneert of onze pagina deelt \u2013 elke vorm van steun maakt een echt verschil.',
+    'about.ctaText': 'Of je nu adopteert, doneert of onze pagina deelt \u2013 alles helpt.',
     'about.meetDogs': 'Ontmoet de honden',
 
     // Adopt page
@@ -513,7 +513,7 @@ export const ui = {
     'adoptSlug.sex': 'Geslacht',
     'adoptSlug.morePhotos': 'Meer foto\u2019s',
     'adoptSlug.feesTitle': 'Adoptie- en transportkosten',
-    'adoptSlug.feesIntro': 'Onze adoptiekosten dekken alles wat nodig is om je hond veilig bij je te krijgen: transport, EU-huisdierenpaspoort, vaccinaties, castratie, ontworming en parasieten\u00adbehandeling. De kosten zijn voor elke hond gelijk.',
+    'adoptSlug.feesIntro': 'Onze adoptiekosten dekken alles wat nodig is om je hond veilig bij je te krijgen: transport, EU-huisdierenpaspoort, vaccinaties, castratie, ontworming en parasietenbehandeling. De kosten zijn voor elke hond gelijk.',
     'adoptSlug.uk': 'Verenigd Koninkrijk',
     'adoptSlug.europe': 'Europa',
     'adoptSlug.switzerland': 'Zwitserland',
@@ -579,9 +579,9 @@ export const ui = {
 
     // Success Stories index
     'successIndex.title': 'Succesverhalen | Asielhonden vinden een thuis | My Paws Bosnia',
-    'successIndex.description': 'Lees echte adoptieverhalen van My Paws Bosnia. Asielhonden uit Bosni\u00eb die hun definitieve thuis vinden bij gezinnen in heel Europa.',
+    'successIndex.description': 'Lees echte adoptieverhalen van My Paws Bosnia. Asielhonden uit Bosni\u00eb die hun eigen thuis vinden bij gezinnen in heel Europa.',
     'successIndex.heading': 'Succesverhalen',
-    'successIndex.subtitle': 'Deze honden wachtten geduldig tot iemand hen koos. Nu hebben ze hun eigen gezin. Elke adoptie herinnert ons eraan waarom we dit doen.',
+    'successIndex.subtitle': 'Deze honden wachtten geduldig tot er iemand voor ze koos. Nu hebben ze hun eigen gezin. Elke adoptie herinnert ons eraan waarom we dit doen.',
     'successIndex.coming': 'Verhalen volgen binnenkort.',
 
     // Success Stories [slug]
@@ -592,7 +592,7 @@ export const ui = {
     'successSlug.ctaTitle': 'Wil je nog een hond een gelukkig einde geven?',
     'successSlug.ctaText': 'Er wachten nog 60 honden in het asiel. Jij kunt ook iemands gelukkige einde zijn.',
     'successSlug.meetDogs': 'Ontmoet onze honden',
-    'successSlug.messageFb': 'Bericht op Facebook',
+    'successSlug.messageFb': 'Stuur ons een bericht',
 
     // Time at shelter
     'time.unknown': 'Onbekend',
