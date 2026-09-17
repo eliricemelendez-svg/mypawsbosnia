@@ -89,7 +89,38 @@ const extraPhotos = dogPhotos.slice(1);
     <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
       <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('adoptSlug.interestedIn').replace('{name}', dog.name)}</h2>
       <p class="text-body mb-6">{t('adoptSlug.interestedText')}</p>
-      <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('adoptSlug.messageFb')}</a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('adoptSlug.messageFb')}</a>
+        <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">{t('adoptSlug.whatsapp')}</a>
+        <a href={`mailto:donate2mypaws@gmail.com?subject=Demande d'adoption pour ${dog.name}`} class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">{t('adoptSlug.emailUs')}</a>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center">
+      <button type="button" id="share-btn" class="inline-flex items-center gap-2 px-6 py-3 text-teal font-semibold border-2 border-teal rounded-full hover:bg-teal hover:text-white transition-colors text-sm" data-dog-name={dog.name} data-share-label={t('adoptSlug.share').replace('{name}', dog.name)}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+        {t('adoptSlug.share').replace('{name}', dog.name)}
+      </button>
     </div>
   </section>
 </Layout>
+
+<script>
+  const shareBtn = document.getElementById('share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const url = window.location.href;
+      const name = (shareBtn as HTMLElement).dataset.dogName || '';
+      const label = (shareBtn as HTMLElement).dataset.shareLabel || '';
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: `Adopter ${name} | My Paws Bosnia`, url });
+        } catch {}
+      } else {
+        await navigator.clipboard.writeText(url);
+        shareBtn.textContent = 'Lien copi\u00e9 !';
+        setTimeout(() => { shareBtn.textContent = label; }, 2000);
+      }
+    });
+  }
+</script>

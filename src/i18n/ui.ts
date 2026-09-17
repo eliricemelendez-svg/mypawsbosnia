@@ -190,6 +190,28 @@ export const ui = {
     'successSlug.meetDogs': 'Meet our dogs',
     'successSlug.messageFb': 'Message us on Facebook',
 
+    // Homepage: urgency banner
+    'index.urgency': '60 dogs rescued. Still waiting for homes.',
+
+    // Homepage: happy endings section
+    'index.happyTitle': 'Happy Endings',
+    'index.happySubtitle': 'These dogs found their forever homes. Yours could be next.',
+    'index.seeAllStories': 'See all success stories',
+
+    // Adopt [slug] contact options
+    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.emailUs': 'Email us',
+    'adoptSlug.share': "Share {name}'s profile",
+
+    // Donate toast
+    'donate.toastMsg': 'Email copied! PayPal is opening. Paste the email to send your donation.',
+
+    // 404 page
+    '404.title': 'Page not found',
+    '404.heading': 'This dog must have wandered off...',
+    '404.text': 'The page you are looking for does not exist. Maybe the dog found a home already.',
+    '404.backToAdopt': 'See our dogs',
+
     // Time at shelter
     'time.unknown': 'Unknown',
     'time.lessThanMonth': 'Less than a month',
@@ -391,6 +413,28 @@ export const ui = {
     'successSlug.ctaText': 'Im Tierheim warten noch 60 Hunde. Vielleicht wartet einer davon auf genau dich.',
     'successSlug.meetDogs': 'Unsere Hunde kennenlernen',
     'successSlug.messageFb': 'Schreib uns auf Facebook',
+
+    // Homepage: urgency banner
+    'index.urgency': '60 Hunde gerettet. Warten noch auf ein Zuhause.',
+
+    // Homepage: happy endings section
+    'index.happyTitle': 'Gl\u00fcckliche Enden',
+    'index.happySubtitle': 'Diese Hunde haben ihr Zuhause gefunden. Deiner k\u00f6nnte der N\u00e4chste sein.',
+    'index.seeAllStories': 'Alle Erfolgsgeschichten ansehen',
+
+    // Adopt [slug] contact options
+    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.emailUs': 'E-Mail schreiben',
+    'adoptSlug.share': '{name}s Profil teilen',
+
+    // Donate toast
+    'donate.toastMsg': 'E-Mail kopiert! PayPal wird ge\u00f6ffnet. F\u00fcge die E-Mail ein, um deine Spende zu senden.',
+
+    // 404 page
+    '404.title': 'Seite nicht gefunden',
+    '404.heading': 'Dieser Hund muss weggelaufen sein...',
+    '404.text': 'Die Seite, die du suchst, gibt es nicht. Vielleicht hat der Hund schon ein Zuhause gefunden.',
+    '404.backToAdopt': 'Unsere Hunde ansehen',
 
     // Time at shelter
     'time.unknown': 'Unbekannt',
@@ -594,6 +638,28 @@ export const ui = {
     'successSlug.meetDogs': 'Ontmoet onze honden',
     'successSlug.messageFb': 'Stuur ons een bericht',
 
+    // Homepage: urgency banner
+    'index.urgency': '60 honden gered. Wachten nog op een thuis.',
+
+    // Homepage: happy endings section
+    'index.happyTitle': 'Gelukkige eindes',
+    'index.happySubtitle': 'Deze honden vonden hun thuis. De jouwe kan de volgende zijn.',
+    'index.seeAllStories': 'Bekijk alle succesverhalen',
+
+    // Adopt [slug] contact options
+    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.emailUs': 'E-mail ons',
+    'adoptSlug.share': 'Deel het profiel van {name}',
+
+    // Donate toast
+    'donate.toastMsg': 'E-mail gekopieerd! PayPal wordt geopend. Plak het e-mailadres om je donatie te versturen.',
+
+    // 404 page
+    '404.title': 'Pagina niet gevonden',
+    '404.heading': 'Deze hond is vast weggelopen...',
+    '404.text': 'De pagina die je zoekt bestaat niet. Misschien heeft de hond al een thuis gevonden.',
+    '404.backToAdopt': 'Bekijk onze honden',
+
     // Time at shelter
     'time.unknown': 'Onbekend',
     'time.lessThanMonth': 'Minder dan een maand',
@@ -795,6 +861,28 @@ export const ui = {
     'successSlug.ctaText': '60 chiens attendent encore au refuge. Vous pourriez \u00eatre la belle histoire de l\u2019un d\u2019entre eux.',
     'successSlug.meetDogs': 'D\u00e9couvrir nos chiens',
     'successSlug.messageFb': '\u00c9crivez-nous sur Facebook',
+
+    // Homepage: urgency banner
+    'index.urgency': '60 chiens sauv\u00e9s. Ils attendent encore un foyer.',
+
+    // Homepage: happy endings section
+    'index.happyTitle': 'Fins heureuses',
+    'index.happySubtitle': 'Ces chiens ont trouv\u00e9 leur foyer. Le v\u00f4tre pourrait \u00eatre le prochain.',
+    'index.seeAllStories': 'Voir toutes les adoptions r\u00e9ussies',
+
+    // Adopt [slug] contact options
+    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.emailUs': 'Envoyez un e-mail',
+    'adoptSlug.share': 'Partager le profil de {name}',
+
+    // Donate toast
+    'donate.toastMsg': 'Adresse copi\u00e9e\u00a0! PayPal s\u2019ouvre. Collez l\u2019adresse pour envoyer votre don.',
+
+    // 404 page
+    '404.title': 'Page introuvable',
+    '404.heading': 'Ce chien a d\u00fb s\u2019\u00e9chapper...',
+    '404.text': 'La page que vous cherchez n\u2019existe pas. Peut-\u00eatre que ce chien a d\u00e9j\u00e0 trouv\u00e9 une famille.',
+    '404.backToAdopt': 'Voir nos chiens',
 
     // Time at shelter
     'time.unknown': 'Inconnu',
