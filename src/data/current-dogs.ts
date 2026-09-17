@@ -67,7 +67,7 @@ export const currentDogs: Dog[] = [
     },
     fr: {
       shortLine: "Un vrai h\u00e9ros. C\u00e2lin, super avec les enfants et parfait en laisse.",
-      description: "Flint est au refuge depuis qu\u2019il \u00e9tait chiot. Il a r\u00e9cemment donn\u00e9 son sang pour sauver la vie d\u2019un autre chien. Apr\u00e8s tout ce temps, il reste l\u2019un des chiens les plus doux ici et Il attend toujours sa propre famille.",
+      description: "Flint est au refuge depuis qu\u2019il \u00e9tait chiot. Il a r\u00e9cemment donn\u00e9 son sang pour sauver la vie d\u2019un autre chien. Apr\u00e8s tout ce temps, il reste l\u2019un des chiens les plus doux ici et il attend toujours sa propre famille.",
       traits: [
         "C\u00e2lin et affectueux",
         "Super avec les enfants",
@@ -248,7 +248,7 @@ export const currentDogs: Dog[] = [
         "Douce et gentille",
         "S\u2019entend bien avec les autres chiens",
         "L\u2019une des trois s\u0153urs au refuge",
-        "Crois\u00e9 berger noir, atteindra 25\u201330 kg",
+        "Crois\u00e9e berger noir, atteindra 25\u201330 kg",
         "Pr\u00eate \u00e0 voyager",
       ],
     },
@@ -591,7 +591,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Un gar\u00e7on \u00e9lanc\u00e9 et sportif aux regard frappant. Gu\u00e9ri de la d\u00e9mod\u00e9cie \u00e9tant chiot, aujourd\u2019hui plein de vie.",
+      shortLine: "Un gar\u00e7on \u00e9lanc\u00e9 et sportif au regard frappant. Gu\u00e9ri de la d\u00e9mod\u00e9cie \u00e9tant chiot, aujourd\u2019hui plein de vie.",
       description: "Maus est arriv\u00e9 au refuge comme un tout petit chiot fragile, avec son fr\u00e8re. Il \u00e9tait en mauvais \u00e9tat et souffrait de d\u00e9mod\u00e9cie. Aujourd\u2019hui, c\u2019est un chien compl\u00e8tement diff\u00e9rent. \u00c9lanc\u00e9, sportif et plein d\u2019\u00e9nergie. Il adore jouer \u00e0 la balle et peut rester debout sur ses pattes arri\u00e8re \u00e9tonnamment longtemps. Il est affectueux et proche des gens, bien avec les enfants, mais convient mieux aux enfants plus grands en raison de son enthousiasme et de sa tendance \u00e0 sauter. Il s\u2019entend bien avec la plupart des chiens mais pr\u00e9f\u00e8re la compagnie des femelles.",
       traits: [
         "\u00c9lanc\u00e9 et sportif : 14 kg, 40 cm",
