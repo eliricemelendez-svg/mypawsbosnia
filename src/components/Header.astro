@@ -21,11 +21,12 @@ const navLinks = [
 
 // Build language switcher links: same path but different locale prefix
 const currentPath = Astro.url.pathname;
-const pathWithoutLang = currentPath.replace(/^\/(de|nl)/, '') || '/';
+const pathWithoutLang = currentPath.replace(/^\/(de|nl|fr)/, '') || '/';
 const langLinks = [
   { code: 'en' as Lang, label: 'EN', href: pathWithoutLang },
   { code: 'de' as Lang, label: 'DE', href: `/de${pathWithoutLang === '/' ? '' : pathWithoutLang}` },
   { code: 'nl' as Lang, label: 'NL', href: `/nl${pathWithoutLang === '/' ? '' : pathWithoutLang}` },
+  { code: 'fr' as Lang, label: 'FR', href: `/fr${pathWithoutLang === '/' ? '' : pathWithoutLang}` },
 ];
 ---
 

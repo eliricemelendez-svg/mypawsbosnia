@@ -1,0 +1,27 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import DogCard from "../../../components/DogCard.astro";
+import { successStories } from "../../../data/success-stories";
+import { useTranslations } from "../../../i18n/utils";
+import type { Lang } from "../../../i18n/utils";
+
+const lang: Lang = 'fr';
+const t = useTranslations(lang);
+---
+
+<Layout title={t('successIndex.title')} description={t('successIndex.description')} lang={lang}>
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('successIndex.heading')}</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">{t('successIndex.subtitle')}</p>
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {successStories.map((dog) => (
+        <DogCard slug={dog.slug} name={dog.name} shortLine={dog.fr?.shortLine ?? dog.shortLine} sex={dog.sex} age={dog.age} size={dog.size} linkPrefix="/fr/success-stories" adoptedTo={dog.adoptedDate} lang={lang} />
+      ))}
+    </div>
+    {successStories.length === 0 && (<div class="text-center py-16"><p class="text-6xl mb-4">🐾</p><p class="text-body">{t('successIndex.coming')}</p></div>)}
+  </section>
+</Layout>

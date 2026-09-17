@@ -19,14 +19,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://mypawsbo
 const siteURL = Astro.site?.href ?? "https://mypawsbosnia.org";
 const ogImageURL = ogImage ? new URL(ogImage, siteURL).href : `${siteURL}favicon.svg`;
 
-const localeMap: Record<Lang, string> = { en: 'en_GB', de: 'de_DE', nl: 'nl_NL' };
+const localeMap: Record<Lang, string> = { en: 'en_GB', de: 'de_DE', nl: 'nl_NL', fr: 'fr_FR' };
 
 // Build hreflang alternate URLs
-const pathWithoutLang = Astro.url.pathname.replace(/^\/(de|nl)/, '') || '/';
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(de|nl|fr)/, '') || '/';
 const alternates = [
   { lang: 'en', href: new URL(pathWithoutLang, siteURL).href },
   { lang: 'de', href: new URL(`/de${pathWithoutLang === '/' ? '' : pathWithoutLang}`, siteURL).href },
   { lang: 'nl', href: new URL(`/nl${pathWithoutLang === '/' ? '' : pathWithoutLang}`, siteURL).href },
+  { lang: 'fr', href: new URL(`/fr${pathWithoutLang === '/' ? '' : pathWithoutLang}`, siteURL).href },
 ];
 
 const orgSchema = {

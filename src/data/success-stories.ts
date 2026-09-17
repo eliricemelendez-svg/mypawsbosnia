@@ -18,6 +18,7 @@ export interface SuccessStory {
   traits: string[];
   de?: SuccessStoryTranslation;
   nl?: SuccessStoryTranslation;
+  fr?: SuccessStoryTranslation;
 }
 
 export const successStories: SuccessStory[] = [
@@ -61,6 +62,17 @@ export const successStories: SuccessStory[] = [
         "Transportkosten ca. \u00a3500",
       ],
     },
+    fr: {
+      shortLine: "D\u2019un chiot apeur\u00e9 en Bosnie \u00e0 une chienne heureuse et couverte de boue au Royaume-Uni.",
+      story: "Bridgette faisait partie d\u2019une port\u00e9e n\u00e9e dans notre refuge \u00e0 Br\u010dko. Sa famille nous a trouv\u00e9s sur Facebook, a craq\u00e9 pour les chiots et nous a envoy\u00e9 un message. Apr\u00e8s une visite \u00e0 domicile et quelques formalit\u00e9s, Bridgette \u00e9tait en route pour le Royaume-Uni. Quand elle est arriv\u00e9e en 2022, elle \u00e9tait nerveuse. Elle ne savait pas ce qu\u2019\u00e9tait un jouet. Elle jouait avec des b\u00e2tons et se cachait de sa nouvelle famille. Quatre ans plus tard, elle est turbulente, affectueuse et couverte de boue la plupart du temps. Bridgette est la preuve que ces chiens ont juste besoin d\u2019une chance.",
+      traits: [
+        "Joueuse et \u00e9nergique",
+        "Affectueuse et c\u00e2line",
+        "Adore le plein air",
+        "Adopt\u00e9e de Bosnie vers le Royaume-Uni",
+        "Transport environ 500\u00a0\u00a3",
+      ],
+    },
   },
   {
     slug: "pjuske",
@@ -99,6 +111,17 @@ export const successStories: SuccessStory[] = [
         "Goed met katten",
         "Dol op kinderen",
         "Houdt van aandacht en menselijk gezelschap",
+      ],
+    },
+    fr: {
+      shortLine: "Apr\u00e8s trois ans en refuge, Pjuske a enfin trouv\u00e9 sa famille pour la vie.",
+      story: "Pjuske (prononc\u00e9 \u00ab\u00a0PYOU-chk\u00e8\u00a0\u00bb) a pass\u00e9 toute sa vie en refuge. Le n\u00f4tre \u00e9tait d\u00e9j\u00e0 le troisi\u00e8me. Malgr\u00e9 tout, elle est rest\u00e9e affectueuse, douce et pleine de confiance. En juin 2026, apr\u00e8s trois longues ann\u00e9es d\u2019attente, Pjuske a enfin \u00e9t\u00e9 adopt\u00e9e et rejoindra bient\u00f4t son nouveau foyer. Nous sommes tellement heureux pour elle.",
+      traits: [
+        "Affectueuse et douce",
+        "S\u2019entend bien avec les autres chiens",
+        "Bien avec les chats",
+        "Formidable avec les enfants",
+        "Adore les c\u00e2lins et la compagnie des gens",
       ],
     },
   },
@@ -140,6 +163,17 @@ export const successStories: SuccessStory[] = [
         "Houdt van mensen en natuur",
         "Heel goed met kinderen",
         "Kruising (Border Collie / Herder)",
+      ],
+    },
+    fr: {
+      shortLine: "Une \u00e2me douce qui a trouv\u00e9 son foyer en Belgique.",
+      story: "Nero est un beau gar\u00e7on au caract\u00e8re tendre. Probablement un crois\u00e9 Border Collie et berger, il adorait \u00eatre dehors, explorer et rester pr\u00e8s des gens. Apr\u00e8s une attente patiente au refuge, Nero a \u00e9t\u00e9 adopt\u00e9 en ao\u00fbt 2026 et commence sa nouvelle vie en Belgique. Nous sommes tellement heureux pour ce gentil gar\u00e7on. Il le m\u00e9rite vraiment.",
+      traits: [
+        "Amical et affectueux",
+        "Actif et joueur",
+        "Adore les gens et la nature",
+        "Formidable avec les enfants",
+        "Crois\u00e9 Border Collie / berger",
       ],
     },
   },

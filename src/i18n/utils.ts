@@ -1,12 +1,12 @@
 import { ui } from './ui';
 
-export type Lang = 'en' | 'de' | 'nl';
+export type Lang = 'en' | 'de' | 'nl' | 'fr';
 
 export const defaultLang: Lang = 'en';
 
 export function getLangFromUrl(url: URL): Lang {
   const [, lang] = url.pathname.split('/');
-  if (lang === 'de' || lang === 'nl') return lang;
+  if (lang === 'de' || lang === 'nl' || lang === 'fr') return lang;
   return defaultLang;
 }
 

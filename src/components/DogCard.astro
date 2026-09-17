@@ -51,7 +51,7 @@ const allSuccessPhotos = import.meta.glob<{ default: ImageMetadata }>(
 const allPhotos = { ...allCurrentPhotos, ...allPastPhotos, ...allSuccessPhotos };
 
 // Strip lang prefix from linkPrefix for asset matching
-const cleanLinkPrefix = linkPrefix.replace(/^\/(de|nl)/, '');
+const cleanLinkPrefix = linkPrefix.replace(/^\/(de|nl|fr)/, '');
 const prefixMap: Record<string, string> = {
   "/adopt": `../assets/current-dogs/${slug}/`,
   "/success-stories": `../assets/success-stories/${slug}/`,
