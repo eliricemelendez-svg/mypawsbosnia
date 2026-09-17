@@ -178,7 +178,7 @@ const happyCards = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {happyCards.map((story) => (
         <a href={`/success-stories/${story.slug}`} class="group block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-          <Image src={story.img} alt={`${story.name}, adopted from My Paws Bosnia`} width={400} class="w-full aspect-[4/3] object-cover" />
+          <Image src={story.img} alt={`${story.name}, adopted from My Paws Bosnia`} width={400} class="w-full aspect-[4/3] object-cover object-top" />
           <div class="p-5">
             <h3 class="text-lg font-semibold text-slate-dark group-hover:text-teal transition-colors">{story.name}</h3>
             {story.adoptedTo && <p class="text-sm text-teal font-medium mt-1">Adopted to: {story.adoptedTo}</p>}
