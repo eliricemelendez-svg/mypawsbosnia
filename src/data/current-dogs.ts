@@ -41,7 +41,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Ein echter Held. Verschmust, kinderlieb und geht toll an der Leine.",
-      description: "Flint ist seit seiner Welpenzeit im Tierheim. Vor Kurzem hat er Blut gespendet, um einem anderen Hund das Leben zu retten. Er ist immer noch einer der liebsten Hunde hier und hat eine eigene Familie verdient.",
+      description: "Flint ist seit seiner Welpenzeit im Tierheim. Vor Kurzem hat er Blut gespendet, um einem anderen Hund das Leben zu retten. Er ist immer noch einer der liebsten Hunde hier und wartet auf eine eigene Familie.",
       traits: [
         "Verschmust und anh\u00e4nglich",
         "Toll mit Kindern",
@@ -53,8 +53,8 @@ export const currentDogs: Dog[] = [
       ],
     },
     nl: {
-      shortLine: "Een echte held. Knuffelig, geweldig met kinderen en loopt perfect aan de lijn.",
-      description: "Flint zit al in het asiel sinds hij een pup was. Onlangs doneerde hij bloed om het leven van een andere hond te redden. Na al die tijd is hij nog steeds een van de liefste honden hier en verdient hij een eigen gezin.",
+      shortLine: "Een echte held. Knuffelig, heel goed met kinderen en loopt perfect aan de lijn.",
+      description: "Flint zit al in het asiel sinds hij een pup was. Onlangs doneerde hij bloed om het leven van een andere hond te redden. Na al die tijd is hij nog steeds een van de liefste honden hier en hij wacht nog steeds op een eigen gezin.",
       traits: [
         "Knuffelig en aanhankelijk",
         "Heel goed met kinderen",
@@ -66,11 +66,11 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Un vrai h\u00e9ros. C\u00e2lin, formidable avec les enfants et parfait en laisse.",
-      description: "Flint est au refuge depuis qu\u2019il \u00e9tait chiot. Il a r\u00e9cemment donn\u00e9 son sang pour sauver la vie d\u2019un autre chien. Apr\u00e8s tout ce temps, il reste l\u2019un des chiens les plus doux ici et il m\u00e9rite enfin sa propre famille.",
+      shortLine: "Un vrai h\u00e9ros. C\u00e2lin, super avec les enfants et parfait en laisse.",
+      description: "Flint est au refuge depuis qu\u2019il \u00e9tait chiot. Il a r\u00e9cemment donn\u00e9 son sang pour sauver la vie d\u2019un autre chien. Apr\u00e8s tout ce temps, il reste l\u2019un des chiens les plus doux ici et Il attend toujours sa propre famille.",
       traits: [
         "C\u00e2lin et affectueux",
-        "Formidable avec les enfants",
+        "Super avec les enfants",
         "S\u2019entend avec tout le monde",
         "Marche calmement en laisse",
         "Taille moyenne",
@@ -170,7 +170,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Een lieve reus van 40 kg die werd achtergelaten, maar altijd lief en vol vertrouwen bleef.",
-      description: "Leia werd achtergelaten bij ons asiel. Ondanks alles behield ze haar lieve karakter en vertrouwen in mensen. Ze is rustig, zelfverzekerd en heel sociaal. Ze heeft een thuis nodig met veel ruimte, en haar prachtige dikke vacht vraagt om regelmatige verzorging.",
+      description: "Leia werd achtergelaten bij ons asiel. Toch behield ze haar lieve karakter en vertrouwen in mensen. Ze is rustig, zelfverzekerd en heel sociaal. Ze heeft een thuis nodig met veel ruimte, en haar dikke vacht vraagt om regelmatige verzorging.",
       traits: [
         "Rustig, zelfverzekerd en aanhankelijk",
         "Uitstekend met kinderen",
@@ -183,7 +183,7 @@ export const currentDogs: Dog[] = [
     },
     fr: {
       shortLine: "Une g\u00e9ante douce de 40 kg, abandonn\u00e9e mais qui n\u2019a jamais perdu son grand c\u0153ur.",
-      description: "Leia a \u00e9t\u00e9 abandonn\u00e9e devant notre refuge. Malgr\u00e9 tout, elle a gard\u00e9 son caract\u00e8re doux et sa confiance envers les humains. Elle est calme, s\u00fbre d\u2019elle et incroyablement sociable. Elle a besoin d\u2019un foyer avec de l\u2019espace, et son beau pelage \u00e9pais demande un entretien r\u00e9gulier.",
+      description: "Leia a \u00e9t\u00e9 abandonn\u00e9e devant notre refuge. Elle a quand m\u00eame gard\u00e9 son caract\u00e8re doux et sa confiance envers les humains. Elle est calme, s\u00fbre d\u2019elle et tr\u00e8s sociable. Elle a besoin d\u2019un foyer avec de l\u2019espace, et son pelage \u00e9pais demande un entretien r\u00e9gulier.",
       traits: [
         "Calme, s\u00fbre d\u2019elle et affectueuse",
         "Excellente avec les enfants",
@@ -215,7 +215,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Eine tapfere kleine K\u00e4mpferin, die eine Krankheit besiegt hat und bereit f\u00fcr ihr Zuhause ist.",
-      description: "Klara ist eine von drei Schwestern, die im April 2026 in unserem Tierheim in Br\u010dko geboren wurden. Als junger Welpe wurde sie schwer krank, hat sich aber nach tier\u00e4rztlicher Behandlung und viel Pflege vollst\u00e4ndig erholt. Obwohl sie noch ein Welpe ist, ist Klara die ruhigste ihres Wurfs. Sie ist sanft, unkompliziert und am gl\u00fccklichsten, wenn sie einfach bei Menschen sein kann. Ihr Bruder wurde bereits nach Gro\u00dfbritannien adoptiert, und Klara verdient die gleiche Chance. Sie ist ein schwarzer Sch\u00e4ferhundmischling und wird etwa 25\u201330 kg wiegen.",
+      description: "Klara ist eine von drei Schwestern, die im April 2026 in unserem Tierheim in Br\u010dko geboren wurden. Als junger Welpe wurde sie schwer krank, hat sich aber nach tier\u00e4rztlicher Behandlung und viel Pflege vollst\u00e4ndig erholt. Obwohl sie noch ein Welpe ist, ist Klara die ruhigste ihres Wurfs. Sie ist sanft, unkompliziert und am gl\u00fccklichsten, wenn sie einfach bei Menschen sein kann. Ihr Bruder wurde bereits nach Gro\u00dfbritannien adoptiert, und Klara wartet auf die gleiche Chance. Sie ist ein schwarzer Sch\u00e4ferhundmischling und wird etwa 25\u201330 kg wiegen.",
       traits: [
         "Die Ruhigste ihres Wurfs",
         "Vollst\u00e4ndig genesen",
@@ -228,7 +228,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Een dappere kleine vechter die ziekte overwon en klaar is voor haar eigen thuis.",
-      description: "Klara is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Als jonge pup werd ze ernstig ziek, maar na behandeling bij de dierenarts en veel zorg is ze volledig hersteld. Ondanks dat ze nog een pup is, is Klara de rustigste van het nest. Ze is lief, makkelijk in de omgang en gelukkig als ze gewoon bij mensen kan zijn. Haar broer is al geadopteerd naar het VK, en Klara verdient dezelfde kans. Ze is een zwarte herdersmix en zal uitgroeien tot ongeveer 25\u201330 kg.",
+      description: "Klara is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Als jonge pup werd ze ernstig ziek, maar na behandeling bij de dierenarts en veel zorg is ze volledig hersteld. Ondanks dat ze nog een pup is, is Klara de rustigste van het nest. Ze is lief, makkelijk in de omgang en gelukkig als ze gewoon bij mensen kan zijn. Haar broer is al geadopteerd naar het VK, en Klara wacht op dezelfde kans. Ze is een zwarte herdersmix en zal uitgroeien tot ongeveer 25\u201330 kg.",
       traits: [
         "De rustigste van het nest",
         "Volledig hersteld van ziekte",
@@ -241,7 +241,7 @@ export const currentDogs: Dog[] = [
     },
     fr: {
       shortLine: "Une petite battante qui a vaincu la maladie et qui est pr\u00eate \u00e0 trouver sa famille pour la vie.",
-      description: "Klara est l\u2019une des trois s\u0153urs n\u00e9es en avril 2026 dans notre refuge \u00e0 Br\u010dko. Toute petite, elle est tomb\u00e9e gravement malade, mais apr\u00e8s des soins v\u00e9t\u00e9rinaires et beaucoup d\u2019attention, elle s\u2019est compl\u00e8tement r\u00e9tablie. Malgr\u00e9 son jeune \u00e2ge, Klara est la plus calme de sa port\u00e9e. Elle est douce, facile \u00e0 vivre et heureuse simplement en compagnie des gens. Son fr\u00e8re a d\u00e9j\u00e0 \u00e9t\u00e9 adopt\u00e9 au Royaume-Uni, et Klara m\u00e9rite la m\u00eame chance. C\u2019est un crois\u00e9 berger noir qui atteindra environ 25\u201330 kg.",
+      description: "Klara est l\u2019une des trois s\u0153urs n\u00e9es en avril 2026 dans notre refuge \u00e0 Br\u010dko. Toute petite, elle est tomb\u00e9e gravement malade, mais apr\u00e8s des soins v\u00e9t\u00e9rinaires et beaucoup d\u2019attention, elle s\u2019est compl\u00e8tement r\u00e9tablie. Malgr\u00e9 son jeune \u00e2ge, Klara est la plus calme de sa port\u00e9e. Elle est douce, facile \u00e0 vivre et heureuse simplement en compagnie des gens. Son fr\u00e8re a d\u00e9j\u00e0 \u00e9t\u00e9 adopt\u00e9 au Royaume-Uni, et Klara attend la m\u00eame chance. C\u2019est une crois\u00e9e berger noir qui atteindra environ 25\u201330 kg.",
       traits: [
         "La plus calme de sa port\u00e9e",
         "Compl\u00e8tement r\u00e9tablie",
@@ -283,7 +283,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     nl: {
-      shortLine: "Met de fles grootgebracht sinds 48 uur oud. Lief, speels en geweldig met kinderen en katten.",
+      shortLine: "Met de fles grootgebracht sinds 48 uur oud. Lief, speels en heel goed met kinderen en katten.",
       description: "Max en zijn zus Nadia werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Max is de lichtere van de twee. Hij is gemiddeld actief, slaapt graag en speelt goed met andere honden. Hij wordt groot maar blijft licht, tot ongeveer 12 kg.",
       traits: [
         "Met de fles grootgebracht sinds geboorte",
@@ -295,7 +295,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Nourri au biberon depuis ses 48 heures. Doux, joueur et formidable avec les enfants et les chats.",
+      shortLine: "Nourri au biberon depuis ses 48 heures. Doux, joueur et il s'entend bien avec les enfants et les chats.",
       description: "Max et sa s\u0153ur Nadia ont \u00e9t\u00e9 sauv\u00e9s le 3 mai 2026, seulement deux jours apr\u00e8s leur naissance. Ils ont \u00e9t\u00e9 trouv\u00e9s affam\u00e9s et gel\u00e9s, avec peu de chances de survivre. La famille de Vesna les a nourris au biberon d\u00e8s leurs 48 heures. Max est le plus clair des deux. Il est moyennement actif, adore dormir et joue bien avec les autres chiens. Il grandira mais restera l\u00e9ger, jusqu\u2019\u00e0 environ 12 kg.",
       traits: [
         "Nourri au biberon et \u00e9lev\u00e9 \u00e0 la main depuis la naissance",
@@ -337,7 +337,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     nl: {
-      shortLine: "Met de fles grootgebracht sinds 48 uur oud. Speels, vriendelijk en geweldig met kinderen en katten.",
+      shortLine: "Met de fles grootgebracht sinds 48 uur oud. Speels, vriendelijk en heel goed met kinderen en katten.",
       description: "Nadia en haar broer Max werden gered op 3 mei 2026, slechts twee dagen na hun geboorte. Ze werden hongerig en koud gevonden en hadden zonder hulp waarschijnlijk niet overleefd. Vesna\u2019s gezin heeft ze met de fles grootgebracht vanaf 48 uur oud. Nadia is gemiddeld actief, speelt graag met andere honden en slaapt veel. Ze wordt groot maar blijft licht, tot ongeveer 12 kg.",
       traits: [
         "Met de fles grootgebracht sinds geboorte",
@@ -349,7 +349,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Nourrie au biberon depuis ses 48 heures. Joueuse, amicale et formidable avec les enfants et les chats.",
+      shortLine: "Nourrie au biberon depuis ses 48 heures. Joueuse, amicale et elle adore les enfants et les chats.",
       description: "Nadia et son fr\u00e8re Max ont \u00e9t\u00e9 sauv\u00e9s le 3 mai 2026, seulement deux jours apr\u00e8s leur naissance. Ils ont \u00e9t\u00e9 trouv\u00e9s affam\u00e9s et gel\u00e9s, avec peu de chances de survivre. La famille de Vesna les a nourris au biberon d\u00e8s leurs 48 heures. Nadia est moyennement active, adore jouer avec les autres chiens et dort beaucoup. Elle grandira mais restera l\u00e9g\u00e8re, jusqu\u2019\u00e0 environ 12 kg.",
       traits: [
         "Nourrie au biberon et \u00e9lev\u00e9e \u00e0 la main depuis la naissance",
@@ -395,8 +395,8 @@ export const currentDogs: Dog[] = [
       ],
     },
     nl: {
-      shortLine: "Een lieve, trouwe meid met een prachtige gouden vacht. Geweldig met kinderen, honden en mensen.",
-      description: "Vanja is een prachtige Labradormix van 1 jaar en 8 maanden die geduldig wacht op het gezin dat ze verdient. Ze heeft een heel lief karakter en kan met iedereen overweg. Ze is geweldig met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gesteriliseerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
+      shortLine: "Een lieve, trouwe meid met een mooie gouden vacht. Goed met kinderen, honden en mensen.",
+      description: "Vanja is een mooie Labradormix van 1 jaar en 8 maanden die al lang geduldig wacht op een gezin. Ze heeft een heel lief karakter en kan met iedereen overweg. Ze is heel goed met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gesteriliseerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
       traits: [
         "Lief en trouw",
         "Dol op kinderen",
@@ -409,11 +409,11 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Une fille douce et fid\u00e8le au magnifique pelage dor\u00e9. Formidable avec les enfants, les chiens et les gens.",
-      description: "Vanja est une magnifique crois\u00e9e Labrador de 1 an et 8 mois qui attend patiemment la famille qu\u2019elle m\u00e9rite. Elle a un caract\u00e8re adorable et s\u2019entend avec tout le monde. Elle est formidable avec les enfants, amicale avec les gens et joue bien avec les autres chiens. Vanja est st\u00e9rilis\u00e9e, enti\u00e8rement vaccin\u00e9e et pr\u00eate \u00e0 rejoindre son foyer en Europe.",
+      shortLine: "Une fille douce et fid\u00e8le au beau pelage dor\u00e9. Elle s'entend avec tout le monde : enfants, chiens, adultes.",
+      description: "Vanja est une crois\u00e9e Labrador de 1 an et 8 mois qui attend patiemment une famille. Elle a un caract\u00e8re adorable et s\u2019entend avec tout le monde. Elle est super avec les enfants, amicale avec les gens et joue bien avec les autres chiens. Vanja est st\u00e9rilis\u00e9e, enti\u00e8rement vaccin\u00e9e et pr\u00eate \u00e0 rejoindre son foyer en Europe.",
       traits: [
         "Douce et fid\u00e8le",
-        "Formidable avec les enfants",
+        "Super avec les enfants",
         "Amicale avec tout le monde",
         "S\u2019entend bien avec les autres chiens",
         "Crois\u00e9e Labrador, environ 18\u201322 kg",
@@ -455,8 +455,8 @@ export const currentDogs: Dog[] = [
       ],
     },
     nl: {
-      shortLine: "Speels, actief en geweldig met kinderen. Een groot meisje met een van nature korte staart.",
-      description: "Luna is een prachtig, speels en actief meisje op zoek naar haar eigen thuis. Op ongeveer 5,5 maanden is ze al meer dan 43 cm groot en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar nog specialer maakt. Ze is geweldig met mensen en kinderen, en zit boordevol energie.",
+      shortLine: "Speels, actief en goed met kinderen. Een groot meisje met een van nature korte staart.",
+      description: "Luna is een mooi, speels en actief meisje op zoek naar haar eigen thuis. Op ongeveer 5,5 maanden is ze al meer dan 43 cm groot en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar nog specialer maakt. Ze is goed met mensen en kinderen, en zit boordevol energie.",
       traits: [
         "Heel goed met mensen",
         "Heel goed met kinderen",
@@ -468,11 +468,11 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Joueuse, active et formidable avec les enfants. Une grande fille avec une queue naturellement courte.",
-      description: "Luna est une belle fille, joueuse et active, qui cherche sa famille pour la vie. \u00c0 environ 5 mois et demi, elle mesure d\u00e9j\u00e0 plus de 43 cm et deviendra une grande chienne. Sa queue naturellement courte la rend encore plus attachante. Elle est formidable avec les gens et les enfants, et d\u00e9borde d\u2019\u00e9nergie et d\u2019amour.",
+      shortLine: "Joueuse, active et tr\u00e8s bien avec les enfants. Une grande fille avec une queue naturellement courte.",
+      description: "Luna est une belle fille, joueuse et active, qui cherche sa famille pour la vie. \u00c0 environ 5 mois et demi, elle mesure d\u00e9j\u00e0 plus de 43 cm et deviendra une grande chienne. Sa queue naturellement courte la rend encore plus attachante. Elle est tr\u00e8s bien avec les gens et les enfants, et d\u00e9borde d\u2019\u00e9nergie.",
       traits: [
         "Tr\u00e8s bien avec les gens",
-        "Formidable avec les enfants",
+        "Tr\u00e8s bien avec les enfants",
         "Joueuse, \u00e9nergique et active",
         "Test avec les chats possible sur demande",
         "Vaccin\u00e9e",
@@ -502,7 +502,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Eine kleine Kämpferin mit großer Persönlichkeit. Aus einem armen Tierheim gerettet, jetzt bereit für ein richtiges Zuhause.",
-      description: "Daphne wurde aus einem sehr armen Tierheim gerettet, wo sie völlig verängstigt ankam und Menschen nicht traute. Mit Geduld und Fürsorge ist sie zu einer liebevollen, verspielten Hündin geworden, die Aufmerksamkeit und Nähe liebt. Sie wiegt nur 12 kg und ist 35 cm groß, aber ihre Persönlichkeit ist riesig. Sie versteht sich gut mit den meisten Hunden im Tierheim, fühlt sich aber bei Rüden wohler. Nach allem, was sie durchgemacht hat, hat Daphne ein Zuhause verdient, in dem sie sich endlich sicher fühlen kann.",
+      description: "Daphne wurde aus einem sehr armen Tierheim gerettet, wo sie völlig verängstigt ankam und Menschen nicht traute. Mit Geduld und Fürsorge ist sie zu einer liebevollen, verspielten Hündin geworden, die Aufmerksamkeit und Nähe liebt. Sie wiegt nur 12 kg und ist 35 cm groß, aber ihre Persönlichkeit ist riesig. Sie versteht sich gut mit den meisten Hunden im Tierheim, fühlt sich aber bei Rüden wohler. Nach allem, was sie durchgemacht hat, braucht Daphne ein Zuhause, in dem sie sich endlich sicher fühlen kann.",
       traits: [
         "Sehr anhänglich und menschenbezogen",
         "Kinderlieb",
@@ -516,7 +516,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Een kleine overlever met een groot karakter. Gered uit een arm asiel, nu klaar voor een echt thuis.",
-      description: "Daphne werd gered uit een heel arm asiel waar ze doodsbang aankwam en mensen niet vertrouwde. Met geduld en zorg is ze uitgegroeid tot een lieve, speelse hond die dol is op aandacht en menselijk gezelschap. Ze weegt maar 12 kg en is 35 cm groot, maar haar karakter is enorm. Ze kan goed overweg met de meeste honden in het asiel, maar voelt zich het prettigst bij reuen. Na alles wat ze heeft meegemaakt, verdient Daphne een thuis waar ze zich eindelijk veilig kan voelen.",
+      description: "Daphne werd gered uit een heel arm asiel waar ze doodsbang aankwam en mensen niet vertrouwde. Met geduld en zorg is ze uitgegroeid tot een lieve, speelse hond die dol is op aandacht en menselijk gezelschap. Ze weegt maar 12 kg en is 35 cm groot, maar haar karakter is enorm. Ze kan goed overweg met de meeste honden in het asiel, maar voelt zich het prettigst bij reuen. Na alles wat ze heeft meegemaakt, heeft Daphne een thuis nodig waar ze zich eindelijk veilig kan voelen.",
       traits: [
         "Heel aanhankelijk en mensengericht",
         "Dol op kinderen",
@@ -530,7 +530,7 @@ export const currentDogs: Dog[] = [
     },
     fr: {
       shortLine: "Une petite survivante au grand caract\u00e8re. Sauv\u00e9e d\u2019un refuge d\u00e9muni, pr\u00eate pour un vrai foyer.",
-      description: "Daphne a \u00e9t\u00e9 sauv\u00e9e d\u2019un refuge tr\u00e8s pauvre o\u00f9 elle est arriv\u00e9e terroris\u00e9e et m\u00e9fiante envers les humains. Avec de la patience et de l\u2019amour, elle est devenue une chienne affectueuse et joueuse qui adore la compagnie des gens. Elle ne p\u00e8se que 12 kg et mesure 35 cm, mais sa personnalit\u00e9 est immense. Elle s\u2019entend bien avec la plupart des chiens du refuge, mais se sent plus \u00e0 l\u2019aise avec les m\u00e2les. Apr\u00e8s tout ce qu\u2019elle a travers\u00e9, Daphne m\u00e9rite un foyer o\u00f9 elle pourra enfin se sentir en s\u00e9curit\u00e9.",
+      description: "Daphne a \u00e9t\u00e9 sauv\u00e9e d\u2019un refuge tr\u00e8s pauvre o\u00f9 elle est arriv\u00e9e terroris\u00e9e et m\u00e9fiante envers les humains. Avec de la patience et de l\u2019amour, elle est devenue une chienne affectueuse et joueuse qui adore la compagnie des gens. Elle ne p\u00e8se que 12 kg et mesure 35 cm, mais sa personnalit\u00e9 est immense. Elle s\u2019entend bien avec la plupart des chiens du refuge, mais se sent plus \u00e0 l\u2019aise avec les m\u00e2les. Apr\u00e8s tout ce qu\u2019elle a travers\u00e9, Daphne a besoin d'un foyer o\u00f9 elle pourra enfin se sentir en s\u00e9curit\u00e9.",
       traits: [
         "Tr\u00e8s affectueuse et proche des gens",
         "Adore les enfants",
@@ -591,7 +591,7 @@ export const currentDogs: Dog[] = [
       ],
     },
     fr: {
-      shortLine: "Un gar\u00e7on \u00e9lanc\u00e9 et sportif aux yeux magnifiques. Gu\u00e9ri de la d\u00e9mod\u00e9cie \u00e9tant chiot, aujourd\u2019hui plein de vie.",
+      shortLine: "Un gar\u00e7on \u00e9lanc\u00e9 et sportif aux regard frappant. Gu\u00e9ri de la d\u00e9mod\u00e9cie \u00e9tant chiot, aujourd\u2019hui plein de vie.",
       description: "Maus est arriv\u00e9 au refuge comme un tout petit chiot fragile, avec son fr\u00e8re. Il \u00e9tait en mauvais \u00e9tat et souffrait de d\u00e9mod\u00e9cie. Aujourd\u2019hui, c\u2019est un chien compl\u00e8tement diff\u00e9rent. \u00c9lanc\u00e9, sportif et plein d\u2019\u00e9nergie. Il adore jouer \u00e0 la balle et peut rester debout sur ses pattes arri\u00e8re \u00e9tonnamment longtemps. Il est affectueux et proche des gens, bien avec les enfants, mais convient mieux aux enfants plus grands en raison de son enthousiasme et de sa tendance \u00e0 sauter. Il s\u2019entend bien avec la plupart des chiens mais pr\u00e9f\u00e8re la compagnie des femelles.",
       traits: [
         "\u00c9lanc\u00e9 et sportif : 14 kg, 40 cm",

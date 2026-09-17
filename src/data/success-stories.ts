@@ -104,7 +104,7 @@ export const successStories: SuccessStory[] = [
     },
     nl: {
       shortLine: "Na drie jaar in asielen heeft Pjuske eindelijk haar thuis gevonden.",
-      story: "Pjuske (uitgesproken als \u201ePJOE-sjkeh\u201c) bracht haar hele leven door in asielen \u2013 ons asiel was al haar derde. Ondanks alles bleef ze liefdevol, zachtaardig en vol vertrouwen. In juni 2026, na drie lange jaren wachten, werd Pjuske eindelijk geadopteerd en reist ze binnenkort naar haar nieuwe thuis. We zijn ontzettend blij voor haar.",
+      story: "Pjuske (uitgesproken als \u201ePJOE-sjkeh\u201c) bracht haar hele leven door in asielen \u2013 ons asiel was al haar derde. Toch bleef ze lief en vol vertrouwen. In juni 2026, na drie lange jaren wachten, werd Pjuske eindelijk geadopteerd en reist ze binnenkort naar haar nieuwe thuis. We zijn ontzettend blij voor haar.",
       traits: [
         "Liefdevol en zachtaardig",
         "Vriendelijk met andere honden",
@@ -115,12 +115,12 @@ export const successStories: SuccessStory[] = [
     },
     fr: {
       shortLine: "Apr\u00e8s trois ans en refuge, Pjuske a enfin trouv\u00e9 sa famille pour la vie.",
-      story: "Pjuske (prononc\u00e9 \u00ab\u00a0PYOU-chk\u00e8\u00a0\u00bb) a pass\u00e9 toute sa vie en refuge. Le n\u00f4tre \u00e9tait d\u00e9j\u00e0 le troisi\u00e8me. Malgr\u00e9 tout, elle est rest\u00e9e affectueuse, douce et pleine de confiance. En juin 2026, apr\u00e8s trois longues ann\u00e9es d\u2019attente, Pjuske a enfin \u00e9t\u00e9 adopt\u00e9e et rejoindra bient\u00f4t son nouveau foyer. Nous sommes tellement heureux pour elle.",
+      story: "Pjuske (prononc\u00e9 \u00ab\u00a0PYOU-chk\u00e8\u00a0\u00bb) a pass\u00e9 toute sa vie en refuge. Le n\u00f4tre \u00e9tait d\u00e9j\u00e0 le troisi\u00e8me. Elle est pourtant rest\u00e9e affectueuse et pleine de confiance. En juin 2026, apr\u00e8s trois longues ann\u00e9es d\u2019attente, Pjuske a enfin \u00e9t\u00e9 adopt\u00e9e et rejoindra bient\u00f4t son nouveau foyer. Nous sommes tellement heureux pour elle.",
       traits: [
         "Affectueuse et douce",
         "S\u2019entend bien avec les autres chiens",
         "Bien avec les chats",
-        "Formidable avec les enfants",
+        "Adore les enfants",
         "Adore les c\u00e2lins et la compagnie des gens",
       ],
     },
@@ -145,7 +145,7 @@ export const successStories: SuccessStory[] = [
     ],
     de: {
       shortLine: "Eine sanfte Seele, die ihr Zuhause in Belgien gefunden hat.",
-      story: "Nero ist ein h\u00fcbscher, sanfter R\u00fcde mit einem ganz weichen Wesen. Wahrscheinlich ein Border Collie-Sch\u00e4ferhund-Mischling, der gerne drau\u00dfen war, alles erkundete und am liebsten in der N\u00e4he von Menschen blieb. Nero hat geduldig im Tierheim gewartet. Im August 2026 wurde er endlich adoptiert und beginnt sein neues Leben in Belgien. Wir sind so gl\u00fccklich f\u00fcr diesen lieben Jungen \u2013 das hat er sich so verdient.",
+      story: "Nero ist ein h\u00fcbscher, sanfter R\u00fcde mit einem ganz weichen Wesen. Wahrscheinlich ein Border Collie-Sch\u00e4ferhund-Mischling, der gerne drau\u00dfen war, alles erkundete und am liebsten in der N\u00e4he von Menschen blieb. Nero hat geduldig im Tierheim gewartet. Im August 2026 wurde er endlich adoptiert und beginnt sein neues Leben in Belgien. Wir sind so gl\u00fccklich f\u00fcr diesen lieben Jungen \u2013 das g\u00f6nnen wir ihm von Herzen.",
       traits: [
         "Freundlich und anh\u00e4nglich",
         "Aktiv und verspielt",
@@ -156,7 +156,7 @@ export const successStories: SuccessStory[] = [
     },
     nl: {
       shortLine: "Een lieve ziel die zijn thuis vond in Belgi\u00eb.",
-      story: "Nero is een prachtige, lieve reu met een heel zacht karakter. Waarschijnlijk een Border Collie-herdersmix die graag buiten was, alles wilde ontdekken en bij mensen was. Na geduldig wachten in het asiel werd Nero in augustus 2026 geadopteerd en begint hij zijn nieuwe leven in Belgi\u00eb. We zijn zo blij voor deze lieve jongen \u2013 hij verdient het echt.",
+      story: "Nero is een lieve reu met een heel zacht karakter. Waarschijnlijk een Border Collie-herdersmix die graag buiten was, alles wilde ontdekken en bij mensen was. Na geduldig wachten in het asiel werd Nero in augustus 2026 geadopteerd en begint hij zijn nieuwe leven in Belgi\u00eb. We zijn zo blij voor deze lieve jongen \u2013 we gunnen het hem zo.",
       traits: [
         "Vriendelijk en aanhankelijk",
         "Actief en speels",
@@ -167,12 +167,12 @@ export const successStories: SuccessStory[] = [
     },
     fr: {
       shortLine: "Une \u00e2me douce qui a trouv\u00e9 son foyer en Belgique.",
-      story: "Nero est un beau gar\u00e7on au caract\u00e8re tendre. Probablement un crois\u00e9 Border Collie et berger, il adorait \u00eatre dehors, explorer et rester pr\u00e8s des gens. Apr\u00e8s une attente patiente au refuge, Nero a \u00e9t\u00e9 adopt\u00e9 en ao\u00fbt 2026 et commence sa nouvelle vie en Belgique. Nous sommes tellement heureux pour ce gentil gar\u00e7on. Il le m\u00e9rite vraiment.",
+      story: "Nero est un beau gar\u00e7on au caract\u00e8re tendre. Probablement un crois\u00e9 Border Collie et berger, il adorait \u00eatre dehors, explorer et rester pr\u00e8s des gens. Apr\u00e8s une attente patiente au refuge, Nero a \u00e9t\u00e9 adopt\u00e9 en ao\u00fbt 2026 et commence sa nouvelle vie en Belgique. On est vraiment contents pour lui.",
       traits: [
         "Amical et affectueux",
         "Actif et joueur",
         "Adore les gens et la nature",
-        "Formidable avec les enfants",
+        "Super avec les enfants",
         "Crois\u00e9 Border Collie / berger",
       ],
     },
@@ -218,13 +218,13 @@ export const successStories: SuccessStory[] = [
       ],
     },
     fr: {
-      shortLine: "Le chiot le plus amical du refuge a trouvé sa famille en Angleterre.",
-      story: "Eli était l'une des trois sœurs nées en avril 2026 dans notre refuge à Brčko. C'était la plus sociable du trio, toujours la première à accourir pour des câlins et des gratouilles. Son frère avait déjà été adopté au Royaume-Uni, et en septembre 2026, c'était au tour d'Eli. Elle part en Angleterre pour commencer sa nouvelle vie. C'est un croisé berger noir qui atteindra environ 25–30 kg. Nous sommes tellement contents pour elle.",
+      shortLine: "La petite la plus amicale du refuge a trouvé sa famille en Angleterre.",
+      story: "Eli était l'une des trois sœurs nées en avril 2026 dans notre refuge à Brčko. C'était la plus sociable du trio, toujours la première à accourir pour des câlins et des gratouilles. Son frère avait déjà été adopté au Royaume-Uni, et en septembre 2026, c'était au tour d'Eli. Elle part en Angleterre pour commencer sa nouvelle vie. C'est une croisée berger noir qui atteindra environ 25–30 kg. Nous sommes tellement contents pour elle.",
       traits: [
         "Très sociable et amicale",
         "Adore les gratouilles sur le ventre",
         "S'entend bien avec les autres chiens",
-        "Croisé berger noir, atteindra 25–30 kg",
+        "Croisée berger noir, atteindra 25–30 kg",
         "L'une des trois sœurs, frère aussi adopté au Royaume-Uni",
       ],
     },
