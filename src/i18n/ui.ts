@@ -199,7 +199,7 @@ export const ui = {
     'index.seeAllStories': 'See all success stories',
 
     // Adopt [slug] contact options
-    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.whatsapp': 'WhatsApp our shelter',
     'adoptSlug.emailUs': 'Email us',
     'adoptSlug.share': "Share {name}'s profile",
 
@@ -423,7 +423,7 @@ export const ui = {
     'index.seeAllStories': 'Alle Erfolgsgeschichten ansehen',
 
     // Adopt [slug] contact options
-    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.whatsapp': 'WhatsApp ans Tierheim',
     'adoptSlug.emailUs': 'E-Mail schreiben',
     'adoptSlug.share': '{name}s Profil teilen',
 
@@ -647,7 +647,7 @@ export const ui = {
     'index.seeAllStories': 'Bekijk alle succesverhalen',
 
     // Adopt [slug] contact options
-    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.whatsapp': 'WhatsApp ons asiel',
     'adoptSlug.emailUs': 'E-mail ons',
     'adoptSlug.share': 'Deel het profiel van {name}',
 
@@ -871,7 +871,7 @@ export const ui = {
     'index.seeAllStories': 'Voir toutes les adoptions r\u00e9ussies',
 
     // Adopt [slug] contact options
-    'adoptSlug.whatsapp': 'WhatsApp Vesna',
+    'adoptSlug.whatsapp': 'WhatsApp notre refuge',
     'adoptSlug.emailUs': 'Envoyez un e-mail',
     'adoptSlug.share': 'Partager le profil de {name}',
 
