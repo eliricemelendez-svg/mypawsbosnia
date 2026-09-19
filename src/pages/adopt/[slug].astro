@@ -42,7 +42,7 @@ const extraPhotos = dogPhotos.slice(1);
   jsonLd={{
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `Adopt ${dog.name} — Rescue Dog`,
+    name: `Adopt ${dog.name} - Rescue Dog`,
     description: dog.description,
     image: leadPhoto ? new URL(leadPhoto.src, Astro.site ?? "https://mypawsbosnia.org").href : undefined,
     brand: { "@type": "Organization", name: "My Paws Bosnia" },
@@ -51,7 +51,7 @@ const extraPhotos = dogPhotos.slice(1);
       availability: "https://schema.org/InStock",
       price: "0",
       priceCurrency: "EUR",
-      description: "Adoption — contact us on Facebook",
+      description: "Adoption - contact us on Facebook",
     },
   }}
 >
