@@ -29,7 +29,7 @@ const extraPhotos = dogPhotos.slice(1);
 <Layout
   title={`Adopteer ${dog.name} | Reddingshond uit Bosni\u00eb | My Paws Bosnia`}
   description={`${shortLine} ${dog.name} is een reddingshond in Bosni\u00eb, klaar voor adoptie en transport naar gezinnen in Europa.`}
-  ogImage={leadPhoto?.src} lang={lang}
+  ogImage={`/og/${dog.slug}.jpg`} lang={lang}
   jsonLd={{ "@context": "https://schema.org", "@type": "Product", name: `Adopteer ${dog.name} — Reddingshond`, description, image: leadPhoto ? new URL(leadPhoto.src, Astro.site ?? "https://mypawsbosnia.org").href : undefined, brand: { "@type": "Organization", name: "My Paws Bosnia" }, offers: { "@type": "Offer", availability: "https://schema.org/InStock", price: "0", priceCurrency: "EUR", description: "Adoptie — neem contact op via Facebook" } }}
 >
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

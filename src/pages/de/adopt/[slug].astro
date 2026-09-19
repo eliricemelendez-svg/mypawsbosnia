@@ -29,7 +29,7 @@ const extraPhotos = dogPhotos.slice(1);
 <Layout
   title={`${dog.name} adoptieren | Rettungshund aus Bosnien | My Paws Bosnia`}
   description={`${shortLine} ${dog.name} ist ein ${dog.age} ${dog.size} Rettungshund in Bosnien, bereit zur Adoption und zum Transport an Familien in Europa.`}
-  ogImage={leadPhoto?.src}
+  ogImage={`/og/${dog.slug}.jpg`}
   lang={lang}
   jsonLd={{
     "@context": "https://schema.org", "@type": "Product",

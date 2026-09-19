@@ -37,7 +37,7 @@ const extraPhotos = dogPhotos.slice(1);
 <Layout
   title={`Adopt ${dog.name} | Rescue Dog Available in Europe | My Paws Bosnia`}
   description={`${dog.shortLine} ${dog.name} is a ${dog.age} ${dog.size} ${dog.sex} rescue dog in Bosnia, ready for adoption and transport to families across Europe.`}
-  ogImage={leadPhoto?.src}
+  ogImage={`/og/${dog.slug}.jpg`}
   lang={lang}
   jsonLd={{
     "@context": "https://schema.org",

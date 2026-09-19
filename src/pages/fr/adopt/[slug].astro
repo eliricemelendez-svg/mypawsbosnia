@@ -29,7 +29,7 @@ const extraPhotos = dogPhotos.slice(1);
 <Layout
   title={`Adopter ${dog.name} | Chien sauv\u00e9 de Bosnie | My Paws Bosnia`}
   description={`${shortLine} ${dog.name} est un chien sauv\u00e9 en Bosnie, pr\u00eat \u00e0 l\u2019adoption et au transport vers des familles en Europe.`}
-  ogImage={leadPhoto?.src}
+  ogImage={`/og/${dog.slug}.jpg`}
   lang={lang}
   jsonLd={{
     "@context": "https://schema.org", "@type": "Product",
