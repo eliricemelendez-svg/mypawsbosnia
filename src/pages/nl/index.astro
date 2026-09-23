@@ -10,13 +10,13 @@ import bridgetteImg from "../../assets/success-stories/bridgette/bridgette-1.jpg
 import pjuskeImg from "../../assets/success-stories/pjuske/pjuske-1.jpeg";
 import neroImg from "../../assets/success-stories/nero/nero-1.png";
 import eliImg from "../../assets/success-stories/eli/eli-1.jpg";
+import flintSuccessImg from "../../assets/success-stories/flint/flint-1.jpeg";
 
 const lang: Lang = 'nl';
 const t = useTranslations(lang);
 
 const featured = currentDogs;
 
-import flintImg from "../../assets/current-dogs/flint/flint-1.jpeg";
 import barneyImg from "../../assets/current-dogs/barney/barney-1.jpeg";
 import leiaImg from "../../assets/current-dogs/leia/leia-1.jpeg";
 import klaraImg from "../../assets/current-dogs/klara/klara-1.jpg";
@@ -28,7 +28,6 @@ import daphneImg from "../../assets/current-dogs/daphne/daphne-1.jpg";
 import mausImg from "../../assets/current-dogs/maus/maus-1.jpg";
 import freyaImg from "../../assets/current-dogs/freya/freya-1.jpg";
 const heroSlides = [
-  { img: flintImg, slug: "flint", name: "Flint", line: "Hij doneerde bloed om het leven van een andere hond te redden. Hij wacht al sinds hij een pup was op een thuis.", alt: "Flint, een reddingshond bij My Paws Bosnia" },
   { img: barneyImg, slug: "barney", name: "Barney", line: "Twee jaar oud, vol energie en klaar om naar zijn nieuwe gezin te reizen.", alt: "Barney, een reddingshond bij My Paws Bosnia" },
   { img: leiaImg, slug: "leia", name: "Leia", line: "Achtergelaten maar nooit gebroken. Een lieve reus van 40 kg vol liefde en vertrouwen.", alt: "Leia, een reddingshond bij My Paws Bosnia" },
   { img: klaraImg, slug: "klara", name: "Klara", line: "Een dappere kleine vechter die ziekte overwon en klaar is voor haar eigen thuis.", alt: "Klara, een reddingshond bij My Paws Bosnia" },
@@ -53,6 +52,7 @@ const happyCards = [
   { img: pjuskeImg, slug: 'pjuske', name: 'Pjuske', adoptedTo: successStories.find(s => s.slug === 'pjuske')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'pjuske')?.nl?.shortLine ?? successStories.find(s => s.slug === 'pjuske')?.shortLine ?? '' },
   { img: neroImg, slug: 'nero', name: 'Nero', adoptedTo: successStories.find(s => s.slug === 'nero')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'nero')?.nl?.shortLine ?? successStories.find(s => s.slug === 'nero')?.shortLine ?? '' },
   { img: eliImg, slug: 'eli', name: 'Eli', adoptedTo: successStories.find(s => s.slug === 'eli')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'eli')?.nl?.shortLine ?? successStories.find(s => s.slug === 'eli')?.shortLine ?? '' },
+  { img: flintSuccessImg, slug: 'flint', name: 'Flint', adoptedTo: successStories.find(s => s.slug === 'flint')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'flint')?.nl?.shortLine ?? successStories.find(s => s.slug === 'flint')?.shortLine ?? '' },
 ];
 ---
 
