@@ -39,12 +39,10 @@ const total = currentDogs.length;
     <div id="dog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {currentDogs.map((dog) => {
         let timeCategory = "";
-        if (dog.arrivedAt) {
-          const arrived = new Date(dog.arrivedAt);
-          const now = new Date();
-          const months = (now.getFullYear() - arrived.getFullYear()) * 12 + (now.getMonth() - arrived.getMonth());
-          if (months < 3) timeCategory = "under3";
-          else if (months < 12) timeCategory = "3to12";
+        if (dog.ageYears !== undefined) {
+          const ageMonths = dog.ageYears * 12;
+          if (ageMonths < 3) timeCategory = "under3";
+          else if (ageMonths < 12) timeCategory = "3to12";
           else timeCategory = "over1y";
         }
         return (

@@ -200,8 +200,8 @@ export const currentDogs: Dog[] = [
     name: "Max",
     sex: "male",
     age: "puppy",
-    ageYears: 0.35,
-    size: "medium",
+    ageYears: 0.4,
+    size: "small",
     shortLine: "Bottle-fed since 48 hours old. Gentle, playful, and great with kids and cats.",
     description: "Max and his sister Nadia were rescued on May 3, 2026, just two days after they were born. They were found hungry and cold, unlikely to survive. Vesna's family bottle-fed them from 48 hours old and raised them by hand. Max is the lighter colored of the two. He's medium active, loves to sleep, and plays well with other dogs. He'll grow tall but stay light, up to around 12kg.",
     traits: [
@@ -254,8 +254,8 @@ export const currentDogs: Dog[] = [
     name: "Nadia",
     sex: "female",
     age: "puppy",
-    ageYears: 0.35,
-    size: "medium",
+    ageYears: 0.4,
+    size: "small",
     shortLine: "Bottle-fed since 48 hours old. Playful, friendly, and great with kids and cats.",
     description: "Nadia and her brother Max were rescued on May 3, 2026, just two days after they were born. They were found hungry and cold, unlikely to survive. Vesna's family bottle-fed them from 48 hours old and raised them by hand. Nadia is medium active, loves to play with other dogs, and sleeps a lot. She'll grow tall but stay light, up to around 12kg.",
     traits: [
