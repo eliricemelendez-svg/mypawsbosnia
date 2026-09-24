@@ -308,10 +308,10 @@ export const currentDogs: Dog[] = [
     name: "Vanja",
     sex: "female",
     age: "young",
-    ageYears: 1.7,
+    ageYears: 1.75,
     size: "medium",
     shortLine: "A gentle, loyal girl with a beautiful golden coat. Great with kids, dogs, and people.",
-    description: "Vanja is a beautiful 1 year and 8 month old Labrador mix who has been patiently waiting for the family she deserves. She has a wonderful, gentle personality and gets along with everyone she meets. She's great with children, friendly with people, and plays well with other dogs. Vanja is spayed, fully vaccinated, and ready to travel to her forever home anywhere in Europe.",
+    description: "Vanja is a beautiful young Labrador mix who has been patiently waiting for the family she deserves. She has a wonderful, gentle personality and gets along with everyone she meets. She's great with children, friendly with people, and plays well with other dogs. Vanja is spayed, fully vaccinated, and ready to travel to her forever home anywhere in Europe.",
     traits: [
       "Gentle and loyal",
       "Great with children",
@@ -324,7 +324,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Eine sanfte, treue H\u00fcndin mit sch\u00f6nem goldenem Fell. Toll mit Kindern, Hunden und Menschen.",
-      description: "Vanja ist eine h\u00fcbsche, 1 Jahr und 8 Monate alte Labrador-Mischlingh\u00fcndin, die schon lange auf die richtige Familie wartet. Sie hat ein tolles, sanftes Wesen und versteht sich mit jedem. Sie ist gro\u00dfartig mit Kindern, freundlich zu Menschen und spielt gut mit anderen Hunden. Vanja ist kastriert, vollst\u00e4ndig geimpft und bereit, in ihr Zuhause in Europa zu reisen.",
+      description: "Vanja ist eine h\u00fcbsche, junge Labrador-Mischlingh\u00fcndin, die schon lange auf die richtige Familie wartet. Sie hat ein tolles, sanftes Wesen und versteht sich mit jedem. Sie ist gro\u00dfartig mit Kindern, freundlich zu Menschen und spielt gut mit anderen Hunden. Vanja ist kastriert, vollst\u00e4ndig geimpft und bereit, in ihr Zuhause in Europa zu reisen.",
       traits: [
         "Sanft und treu",
         "Toll mit Kindern",
@@ -338,7 +338,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Een lieve, trouwe meid met een mooie gouden vacht. Goed met kinderen, honden en mensen.",
-      description: "Vanja is een mooie Labradormix van 1 jaar en 8 maanden die al lang geduldig wacht op een gezin. Ze heeft een heel lief karakter en kan met iedereen overweg. Ze is heel goed met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gesteriliseerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
+      description: "Vanja is een mooie, jonge Labradormix die al lang geduldig wacht op een gezin. Ze heeft een heel lief karakter en kan met iedereen overweg. Ze is heel goed met kinderen, vriendelijk met mensen en speelt goed met andere honden. Vanja is gesteriliseerd, volledig gevaccineerd en klaar om naar haar nieuwe thuis in Europa te reizen.",
       traits: [
         "Lief en trouw",
         "Dol op kinderen",
@@ -352,7 +352,7 @@ export const currentDogs: Dog[] = [
     },
     fr: {
       shortLine: "Une fille douce et fid\u00e8le au beau pelage dor\u00e9. Elle s'entend avec tout le monde : enfants, chiens, adultes.",
-      description: "Vanja est une crois\u00e9e Labrador de 1 an et 8 mois qui attend patiemment une famille. Elle a un caract\u00e8re adorable et s\u2019entend avec tout le monde. Elle est super avec les enfants, amicale avec les gens et joue bien avec les autres chiens. Vanja est st\u00e9rilis\u00e9e, enti\u00e8rement vaccin\u00e9e et pr\u00eate \u00e0 rejoindre son foyer en Europe.",
+      description: "Vanja est une jeune crois\u00e9e Labrador qui attend patiemment une famille. Elle a un caract\u00e8re adorable et s\u2019entend avec tout le monde. Elle est super avec les enfants, amicale avec les gens et joue bien avec les autres chiens. Vanja est st\u00e9rilis\u00e9e, enti\u00e8rement vaccin\u00e9e et pr\u00eate \u00e0 rejoindre son foyer en Europe.",
       traits: [
         "Douce et fid\u00e8le",
         "Super avec les enfants",
@@ -373,7 +373,7 @@ export const currentDogs: Dog[] = [
     ageYears: 0.45,
     size: "large",
     shortLine: "Playful, active, and great with kids. A big girl with a naturally short tail.",
-    description: "Luna is a beautiful, playful and active girl looking for her forever home. At around 5.5 months old she's already over 43 cm tall and will grow into a large dog. She has a naturally short tail, which makes her even more special. She's great with people and children, and full of energy and love.",
+    description: "Luna is a beautiful, playful and active girl looking for her forever home. She's already over 43 cm tall and will grow into a large dog. She has a naturally short tail, which makes her even more special. She's great with people and children, and full of energy and love.",
     traits: [
       "Very good with people",
       "Great with children",
@@ -385,7 +385,7 @@ export const currentDogs: Dog[] = [
     ],
     de: {
       shortLine: "Verspielt, aktiv und toll mit Kindern. Ein gro\u00dfes M\u00e4dchen mit nat\u00fcrlich kurzem Schwanz.",
-      description: "Luna ist eine h\u00fcbsche, verspielte und aktive H\u00fcndin auf der Suche nach ihrem Zuhause. Mit rund 5,5 Monaten ist sie bereits \u00fcber 43 cm gro\u00df und wird ein gro\u00dfer Hund. Sie hat einen nat\u00fcrlich kurzen Schwanz, was ihr einen ganz eigenen Charme gibt. Sie ist toll mit Menschen und Kindern, voller Energie und hat viel Liebe zu geben.",
+      description: "Luna ist eine h\u00fcbsche, verspielte und aktive H\u00fcndin auf der Suche nach ihrem Zuhause. Sie ist bereits \u00fcber 43 cm gro\u00df und wird ein gro\u00dfer Hund. Sie hat einen nat\u00fcrlich kurzen Schwanz, was ihr einen ganz eigenen Charme gibt. Sie ist toll mit Menschen und Kindern, voller Energie und hat viel Liebe zu geben.",
       traits: [
         "Sehr gut mit Menschen",
         "Toll mit Kindern",
@@ -398,7 +398,7 @@ export const currentDogs: Dog[] = [
     },
     nl: {
       shortLine: "Speels, actief en goed met kinderen. Een groot meisje met een van nature korte staart.",
-      description: "Luna is een mooi, speels en actief meisje op zoek naar haar eigen thuis. Op ongeveer 5,5 maanden is ze al meer dan 43 cm groot en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar nog specialer maakt. Ze is goed met mensen en kinderen, en zit boordevol energie.",
+      description: "Luna is een mooi, speels en actief meisje op zoek naar haar eigen thuis. Ze is al meer dan 43 cm groot en zal ze uitgroeien tot een grote hond. Ze heeft een van nature korte staart, wat haar nog specialer maakt. Ze is goed met mensen en kinderen, en zit boordevol energie.",
       traits: [
         "Heel goed met mensen",
         "Heel goed met kinderen",
@@ -411,7 +411,7 @@ export const currentDogs: Dog[] = [
     },
     fr: {
       shortLine: "Joueuse, active et tr\u00e8s bien avec les enfants. Une grande fille avec une queue naturellement courte.",
-      description: "Luna est une belle fille, joueuse et active, qui cherche sa famille pour la vie. \u00c0 environ 5 mois et demi, elle mesure d\u00e9j\u00e0 plus de 43 cm et deviendra une grande chienne. Sa queue naturellement courte la rend encore plus attachante. Elle est tr\u00e8s bien avec les gens et les enfants, et d\u00e9borde d\u2019\u00e9nergie.",
+      description: "Luna est une belle fille, joueuse et active, qui cherche sa famille pour la vie. Elle mesure d\u00e9j\u00e0 plus de 43 cm et deviendra une grande chienne. Sa queue naturellement courte la rend encore plus attachante. Elle est tr\u00e8s bien avec les gens et les enfants, et d\u00e9borde d\u2019\u00e9nergie.",
       traits: [
         "Tr\u00e8s bien avec les gens",
         "Tr\u00e8s bien avec les enfants",

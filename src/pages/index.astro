@@ -35,7 +35,7 @@ const heroSlides = [
   { img: maxImg, slug: "max", name: "Max", line: "Bottle-fed since he was two days old. Gentle, playful, and ready for a family.", alt: "Max, a rescued dog at My Paws Bosnia" },
   { img: nadiaImg, slug: "nadia", name: "Nadia", line: "Bottle-fed since she was two days old. Playful, friendly, and looking for her forever home.", alt: "Nadia, a rescued dog at My Paws Bosnia" },
   { img: vanjaImg, slug: "vanja", name: "Vanja", line: "A gentle, loyal girl with a golden heart. Spayed, vaccinated, and ready for her forever family.", alt: "Vanja, a rescued dog at My Paws Bosnia" },
-  { img: lunaImg, slug: "luna", name: "Luna", line: "Only 4.5 months old and already 43 cm tall. Playful, active, and looking for her family.", alt: "Luna, a rescued dog at My Paws Bosnia" },
+  { img: lunaImg, slug: "luna", name: "Luna", line: "Already over 43 cm tall and still growing. Playful, active, and looking for her family.", alt: "Luna, a rescued dog at My Paws Bosnia" },
   { img: daphneImg, slug: "daphne", name: "Daphne", line: "Rescued from a poor shelter, now full of life. Small, playful, and looking for her forever home.", alt: "Daphne, a rescued dog at My Paws Bosnia" },
   { img: mausImg, slug: "maus", name: "Maus", line: "Those eyes. Recovered from demodex as a puppy, now a slim, athletic boy ready for adventure.", alt: "Maus, a rescued dog at My Paws Bosnia" },
   { img: freyaImg, slug: "freya", name: "Freya", line: "Her whole family got adopted. She's the only one still waiting.", alt: "Freya, a rescued dog at My Paws Bosnia" },
@@ -181,7 +181,7 @@ const happyCards = [
           <Image src={story.img} alt={`${story.name}, adopted from My Paws Bosnia`} width={400} class="w-full aspect-[4/3] object-cover object-top" />
           <div class="p-5">
             <h3 class="text-lg font-semibold text-slate-dark group-hover:text-teal transition-colors">{story.name}</h3>
-            {story.adoptedTo && <p class="text-sm text-teal font-medium mt-1">Adopted to: {story.adoptedTo}</p>}
+            {story.adoptedTo && <p class="text-sm text-teal font-medium mt-1">{t('dog.adoptedTo')} {story.adoptedTo}</p>}
             <p class="text-sm text-body mt-1">{story.shortLine}</p>
           </div>
         </a>

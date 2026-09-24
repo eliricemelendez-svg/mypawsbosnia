@@ -50,6 +50,7 @@ const langLinks = [
           id="donate-btn"
           type="button"
           class="inline-flex items-center px-5 py-2 text-sm font-semibold text-white bg-teal rounded-full hover:bg-teal/90 transition-colors"
+          data-toast-msg={t('donate.toastMsg')}
         >
           {t('nav.donate')}
         </button>
@@ -75,12 +76,11 @@ const langLinks = [
 
       <!-- Mobile hamburger -->
       <div class="md:hidden">
-        <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
-        <label for="mobile-menu-toggle" class="cursor-pointer flex flex-col gap-1.5 p-2">
-          <span class="block w-6 h-0.5 bg-slate-dark transition-transform peer-checked:rotate-45 peer-checked:translate-y-2"></span>
-          <span class="block w-6 h-0.5 bg-slate-dark transition-opacity peer-checked:opacity-0"></span>
-          <span class="block w-6 h-0.5 bg-slate-dark transition-transform peer-checked:-rotate-45 peer-checked:-translate-y-2"></span>
-        </label>
+        <button type="button" id="hamburger-btn" class="cursor-pointer flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+          <span id="ham-top" class="block w-6 h-0.5 bg-slate-dark transition-all duration-300 origin-center"></span>
+          <span id="ham-mid" class="block w-6 h-0.5 bg-slate-dark transition-all duration-300"></span>
+          <span id="ham-bot" class="block w-6 h-0.5 bg-slate-dark transition-all duration-300 origin-center"></span>
+        </button>
       </div>
     </div>
   </div>
@@ -98,6 +98,7 @@ const langLinks = [
       ))}
       <button
         class="donate-btn-mobile text-sm font-semibold py-2 px-3 rounded-full text-white bg-teal text-center"
+        data-toast-msg={t('donate.toastMsg')}
       >
         {t('nav.donate')}
       </button>
@@ -124,11 +125,26 @@ const langLinks = [
 </header>
 
 <script>
-  const toggle = document.getElementById("mobile-menu-toggle") as HTMLInputElement;
+  const hamburger = document.getElementById("hamburger-btn");
   const menu = document.getElementById("mobile-menu");
-  if (toggle && menu) {
-    toggle.addEventListener("change", () => {
-      menu.classList.toggle("hidden", !toggle.checked);
+  const hamTop = document.getElementById("ham-top");
+  const hamMid = document.getElementById("ham-mid");
+  const hamBot = document.getElementById("ham-bot");
+  let menuOpen = false;
+
+  if (hamburger && menu) {
+    hamburger.addEventListener("click", () => {
+      menuOpen = !menuOpen;
+      menu.classList.toggle("hidden", !menuOpen);
+      if (menuOpen) {
+        hamTop?.classList.add("rotate-45", "translate-y-2");
+        hamMid?.classList.add("opacity-0");
+        hamBot?.classList.add("-rotate-45", "-translate-y-2");
+      } else {
+        hamTop?.classList.remove("rotate-45", "translate-y-2");
+        hamMid?.classList.remove("opacity-0");
+        hamBot?.classList.remove("-rotate-45", "-translate-y-2");
+      }
     });
   }
 
@@ -148,9 +164,11 @@ const langLinks = [
     }, 3000);
   }
 
-  function handleDonate() {
+  function handleDonate(e: Event) {
+    const btn = e.currentTarget as HTMLElement;
+    const msg = btn.dataset.toastMsg || "Email copied! PayPal is opening. Paste the email to send your donation.";
     navigator.clipboard.writeText(email).then(() => {
-      showToast("Email copied! PayPal is opening. Paste the email to send your donation.");
+      showToast(msg);
       window.open(paypalUrl, "_blank");
     }).catch(() => {
       window.open(paypalUrl, "_blank");
