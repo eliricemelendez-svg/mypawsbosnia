@@ -1,0 +1,320 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { currentDogs } from "../../data/current-dogs";
+import { successStories } from "../../data/success-stories";
+
+const title = "How to Adopt a Dog from Bosnia | My Paws Bosnia";
+const description = "Step-by-step guide to adopting a rescue dog from Bosnia. Fully vetted, EU passport ready, transported to the UK, Europe, and Switzerland. 60+ dogs waiting for homes.";
+
+const dogCount = currentDogs.length;
+const adoptedCount = successStories.length;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "How to Adopt a Dog from Bosnia",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/blog/how-to-adopt-a-dog-from-bosnia",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How much does it cost to adopt a dog from Bosnia?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "There is no adoption fee. You only pay the transport cost: approximately £500 to the UK, €300–400 to mainland Europe, or CHF 500–550 to Switzerland. This covers the licensed transporter, fuel, ferry or road tolls, and any required border paperwork."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What is included with every adoption?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Every dog is neutered or spayed, fully vaccinated (including rabies), dewormed, treated for parasites, microchipped, and issued an EU pet passport. Blood tests (including brucellosis) are available on request."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "How long does the adoption process take?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "From first message to dog arriving at your door, the process typically takes 4–8 weeks. The timeline depends on completing the home check, arranging transport, and ensuring all veterinary paperwork is in order."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Can I adopt a dog from Bosnia to the UK after Brexit?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Dogs from Bosnia can still travel to the UK. They need a rabies vaccination, an EU pet passport, and a tapeworm treatment before travel. We handle all of this. Several of our dogs have already been adopted to UK families."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Do I need to travel to Bosnia to adopt?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. We arrange licensed transport directly to your door. You never need to travel to Bosnia. We send regular photos and videos so you can get to know your dog before they arrive."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="en" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Adoption Guide</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">How to Adopt a Dog from Bosnia</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        There are currently {dogCount} dogs at our shelter in Brcko, Bosnia waiting for families. Every dog is neutered, vaccinated, dewormed, and issued an EU pet passport before travel. Here is exactly how the process works.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Why adopt from Bosnia -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Why adopt from Bosnia?</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Bosnia has no nationwide spay/neuter programme. Stray dogs are routinely killed or left in underfunded public shelters. Our founder, Vesna, has been rescuing dogs from the streets and from these shelters since 2019. She runs a private shelter in Brcko where every dog receives veterinary care, socialisation, and a safe place to wait for a home.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        These are not feral dogs. They are friendly, socialised animals that have been living with people and other dogs at the shelter. Many are puppies born at the shelter. Others are adults rescued from abandonment or from public kill shelters. All of them are healthy, vetted, and ready to travel.
+      </p>
+      <p class="text-body leading-relaxed">
+        We have already placed {adoptedCount} dogs into homes across the UK, Belgium, Austria, and other European countries. Every single adoption has been successful.
+      </p>
+    </section>
+
+    <!-- Step by step -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Step-by-step adoption process</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Browse and message us</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Look through our <a href="/adopt" class="text-teal font-medium hover:underline">available dogs</a>. When you find one you connect with, send us a message on <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">Facebook</a> or <a href="https://wa.me/38761123456" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">WhatsApp</a>. Tell us about your home, your experience with dogs, and which dog caught your eye.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Home check</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              We do a simple home check to make sure the dog will be safe and well cared for. This is usually done via video call or photos. We are looking for secure fencing, adequate space, and a genuine commitment to the dog's wellbeing.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Approval and preparation</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Once approved, we finalise the dog's veterinary work. This includes neutering/spaying (if not already done), rabies vaccination, deworming, parasite treatment, microchipping, and issuing the EU pet passport. Blood tests for brucellosis and other conditions are available on request.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">4</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Transport to your door</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              We arrange licensed pet transport from Bosnia directly to your home. The transporter is experienced, fully licensed, and takes rest stops along the way. You do not need to travel to Bosnia. From first message to arrival, the process typically takes 4 to 8 weeks.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transport costs -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Transport costs</h2>
+      <p class="text-body leading-relaxed mb-6">
+        There is no adoption fee. The only cost is transport, which covers the licensed transporter, fuel, ferry or road tolls, and border paperwork.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-teal/20">
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Destination</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Approximate cost</th>
+            </tr>
+          </thead>
+          <tbody class="text-body">
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">United Kingdom</td>
+              <td class="py-3 pr-4 tabular-nums">~&pound;500</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Mainland Europe (Germany, Netherlands, Belgium, France, Austria)</td>
+              <td class="py-3 pr-4 tabular-nums">&euro;300&ndash;400</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Switzerland</td>
+              <td class="py-3 pr-4 tabular-nums">CHF&nbsp;500&ndash;550</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-body mt-3">Costs vary slightly depending on exact location and route. We will confirm the exact price before you commit.</p>
+    </section>
+
+    <!-- What's included -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">What is included with every adoption</h2>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Neutering or spaying</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Full vaccination course (including rabies)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Deworming</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Parasite treatment (fleas, ticks)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Microchip</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">EU pet passport</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Blood tests (brucellosis, etc.) available on request</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Dogs waiting -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Dogs currently waiting for homes</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Here are some of the dogs at our shelter right now. Each one is fully vetted and ready to travel.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {currentDogs.map((dog) => (
+          <a href={`/adopt/${dog.slug}`} class="block bg-light-bg rounded-xl p-4 hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-slate-dark">{dog.name}</h3>
+            <p class="text-sm text-body mt-1">{dog.shortLine}</p>
+            <p class="text-xs text-teal font-medium mt-2">
+              {dog.sex === 'male' ? 'Male' : 'Female'} · {dog.age} · {dog.size}
+            </p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-6">
+        <a href="/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          See all available dogs
+        </a>
+      </div>
+    </section>
+
+    <!-- Success stories -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Dogs we have already placed</h2>
+      <p class="text-body leading-relaxed mb-4">
+        These dogs went through the same process and are now living with their families.
+      </p>
+      <ul class="space-y-3">
+        {successStories.map((story) => (
+          <li class="flex items-start gap-3">
+            <span class="text-teal mt-0.5">&#10003;</span>
+            <span class="text-body">
+              <a href={`/success-stories/${story.slug}`} class="text-teal font-medium hover:underline">{story.name}</a>
+              {story.adoptedTo ? ` adopted to ${story.adoptedTo}` : ` adopted ${story.adoptedDate}`}.
+              {' '}{story.shortLine}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            How much does it cost to adopt a dog from Bosnia?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            There is no adoption fee. You only pay the transport cost: approximately &pound;500 to the UK, &euro;300&ndash;400 to mainland Europe, or CHF 500&ndash;550 to Switzerland. This covers the licensed transporter, fuel, ferry or road tolls, and any required border paperwork.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            What is included with every adoption?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Every dog is neutered or spayed, fully vaccinated (including rabies), dewormed, treated for parasites, microchipped, and issued an EU pet passport. Blood tests (including brucellosis) are available on request.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            How long does the adoption process take?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            From first message to dog arriving at your door, the process typically takes 4 to 8 weeks. The timeline depends on completing the home check, arranging transport, and ensuring all veterinary paperwork is in order.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Can I adopt a dog from Bosnia to the UK after Brexit?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Yes. Dogs from Bosnia can still travel to the UK. They need a rabies vaccination, an EU pet passport, and a tapeworm treatment before travel. We handle all of this. Several of our dogs have already been adopted to UK families.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Do I need to travel to Bosnia to adopt?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            No. We arrange licensed transport directly to your door. You never need to travel to Bosnia. We send regular photos and videos so you can get to know your dog before they arrive.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Ready to adopt?</h2>
+      <p class="text-body mb-6">Browse our available dogs and send us a message to start the process.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Browse available dogs
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Message us on Facebook
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>

@@ -1,0 +1,303 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { currentDogs } from "../../data/current-dogs";
+import { successStories } from "../../data/success-stories";
+
+const title = "Rescue Dogs Available for Adoption in Europe | My Paws Bosnia";
+const description = "Rescue dogs available for adoption across Europe, the UK, and Switzerland. Fully vetted, vaccinated, and EU passport ready. Browse dogs and adopt today.";
+
+const dogCount = currentDogs.length;
+const adoptedCount = successStories.length;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Rescue Dogs Available for Adoption in Europe",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/blog/rescue-dogs-available-for-adoption-in-europe",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Where can these rescue dogs be adopted to?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our dogs can travel to any EU country, the UK, and Switzerland. We have placed dogs in England, Belgium, Austria, Germany, the Netherlands, and France."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Are these dogs safe around children?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Most of our dogs are good with children. Each dog's profile includes specific information about their temperament around kids. We always match dogs to families based on the home environment."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What breeds are available?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our dogs are mixed breeds. Common mixes include Labrador, Shepherd, Spaniel-Setter, Retriever-Spitz, and Terrier crosses. Mixed breed dogs tend to have fewer inherited health problems and longer lifespans than purebreds."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "How do I know these dogs are healthy?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Every dog is examined by a veterinarian, vaccinated (including rabies), neutered or spayed, dewormed, treated for parasites, and microchipped before travel. Blood tests for brucellosis and other conditions are available on request."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="en" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Adopt a Rescue Dog</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Rescue Dogs Available for Adoption in Europe</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        {dogCount} rescue dogs at our shelter in Bosnia are ready to travel to families across Europe, the UK, and Switzerland. Every dog is fully vetted, vaccinated, and issued an EU pet passport.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- The situation -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">The rescue dog situation in Bosnia</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Bosnia has tens of thousands of stray dogs. There is no national spay/neuter programme, and public shelters are severely underfunded. Dogs in municipal shelters face overcrowding, disease, and in many cases euthanasia.
+      </p>
+      <p class="text-body leading-relaxed">
+        My Paws Bosnia (Moje Sape) is a private rescue shelter in Brcko, run by Vesna and her family since 2019. We rescue dogs from the streets and from public shelters, provide full veterinary care, and find them permanent homes across Europe. We have placed {adoptedCount} dogs into families so far, and {dogCount} more are currently waiting.
+      </p>
+    </section>
+
+    <!-- Why these dogs make great pets -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Why these dogs make great pets</h2>
+      <div class="space-y-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Socialised and people-friendly</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Our dogs live together at the shelter with daily human contact. They are used to people, other dogs, and in many cases children and cats. They are not feral animals.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Fully vetted before travel</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Every dog is neutered/spayed, vaccinated (including rabies), dewormed, treated for parasites, microchipped, and issued an EU pet passport. Blood tests for brucellosis are available on request.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Temperament-assessed</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Vesna knows every dog individually. She can tell you exactly how they behave with children, cats, other dogs, and strangers. We match dogs to families based on real daily observation, not guesswork.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Mixed breeds with fewer health problems</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Our dogs are mixed breeds. Common mixes include Labrador, Shepherd, Spaniel-Setter, Retriever-Spitz, and Terrier crosses. Mixed breeds tend to have fewer inherited health issues and longer lifespans than purebreds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where they can travel -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Where our dogs can travel</h2>
+      <p class="text-body leading-relaxed mb-4">
+        We arrange licensed pet transport from Bosnia to your door. Our dogs have been adopted to:
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">United Kingdom</p>
+          <p class="text-xs text-body mt-1">~&pound;500 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Germany</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Netherlands</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Belgium</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Austria</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Switzerland</p>
+          <p class="text-xs text-body mt-1">CHF&nbsp;500&ndash;550 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">France</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center col-span-2 sm:col-span-2">
+          <p class="font-semibold text-slate-dark text-sm">Any other EU country</p>
+          <p class="text-xs text-body mt-1">Contact us for a quote</p>
+        </div>
+      </div>
+      <p class="text-sm text-body mt-4">There is no adoption fee. You only pay the transport cost.</p>
+    </section>
+
+    <!-- Dogs available now -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Dogs available right now</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Every dog below is at our shelter in Brcko, Bosnia. They are vetted, healthy, and ready to travel.
+      </p>
+      <div class="space-y-4">
+        {currentDogs.map((dog) => (
+          <a href={`/adopt/${dog.slug}`} class="block bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-semibold text-slate-dark text-lg">{dog.name}</h3>
+                <p class="text-body mt-1 leading-relaxed">{dog.shortLine}</p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <span class="inline-block bg-teal/10 text-teal text-xs font-medium px-3 py-1 rounded-full">
+                    {dog.sex === 'male' ? 'Male' : 'Female'}
+                  </span>
+                  <span class="inline-block bg-teal/10 text-teal text-xs font-medium px-3 py-1 rounded-full">
+                    {dog.age === 'puppy' ? 'Puppy' : dog.age === 'young' ? 'Young' : dog.age === 'adult' ? 'Adult' : 'Senior'}
+                  </span>
+                  <span class="inline-block bg-teal/10 text-teal text-xs font-medium px-3 py-1 rounded-full">
+                    {dog.size === 'small' ? 'Small' : dog.size === 'medium' ? 'Medium' : 'Large'}
+                  </span>
+                </div>
+              </div>
+              <span class="text-teal text-sm font-medium whitespace-nowrap">View profile &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          See all {dogCount} dogs
+        </a>
+      </div>
+    </section>
+
+    <!-- Recent adoptions -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Recent successful adoptions</h2>
+      <p class="text-body leading-relaxed mb-6">
+        These dogs were in the same shelter. They went through the same process and are now settled with their families.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {successStories.map((story) => (
+          <a href={`/success-stories/${story.slug}`} class="block bg-light-bg rounded-xl p-5 hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-slate-dark">{story.name}</h3>
+            {story.adoptedTo && <p class="text-xs text-teal font-medium mt-1">Adopted to {story.adoptedTo}</p>}
+            <p class="text-sm text-body mt-2">{story.shortLine}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- How the process works (brief) -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">How adoption works</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">1</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Message us</h3>
+          <p class="text-sm text-body mt-1">Send us a message on Facebook or WhatsApp. Tell us which dog you are interested in and about your home.</p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">2</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Home check</h3>
+          <p class="text-sm text-body mt-1">We do a quick check via video call or photos to make sure the dog will be safe and well cared for.</p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">3</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Vet work and passport</h3>
+          <p class="text-sm text-body mt-1">We complete all vaccinations, neutering, deworming, and issue the EU pet passport.</p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">4</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Transport to you</h3>
+          <p class="text-sm text-body mt-1">A licensed transporter brings your dog directly to your home. The whole process takes 4 to 8 weeks.</p>
+        </div>
+      </div>
+      <p class="text-sm text-body mt-4">
+        For the full step-by-step guide, read our <a href="/blog/how-to-adopt-a-dog-from-bosnia" class="text-teal font-medium hover:underline">adoption guide</a>.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Where can these rescue dogs be adopted to?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Our dogs can travel to any EU country, the UK, and Switzerland. We have placed dogs in England, Belgium, Austria, Germany, the Netherlands, and France.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Are these dogs safe around children?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Most of our dogs are good with children. Each dog's profile includes specific information about their temperament around kids. We always match dogs to families based on the home environment.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            What breeds are available?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Our dogs are mixed breeds. Common mixes include Labrador, Shepherd, Spaniel-Setter, Retriever-Spitz, and Terrier crosses. Mixed breed dogs tend to have fewer inherited health problems and longer lifespans than purebreds.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            How do I know these dogs are healthy?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Every dog is examined by a veterinarian, vaccinated (including rabies), neutered or spayed, dewormed, treated for parasites, microchipped, and issued an EU pet passport before travel. Blood tests for brucellosis and other conditions are available on request.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Start the adoption process</h2>
+      <p class="text-body mb-6">Send us a message and tell us which dog you are interested in. We will guide you through every step.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Message us on Facebook
+        </a>
+        <a href="/adopt" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Browse all dogs
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>
