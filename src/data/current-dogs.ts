@@ -378,7 +378,7 @@ export const currentDogs: Dog[] = [
     name: "Luna",
     sex: "female",
     age: "puppy",
-    ageYears: 0.45,
+    ageYears: 0.5,
     size: "large",
     shortLine: "Playful, active, and great with kids. A big girl with a naturally short tail.",
     description: "Luna is a beautiful, playful and active girl looking for her forever home. She's already over 43 cm tall and will grow into a large dog. She has a naturally short tail, which makes her even more special. She's great with people and children, and full of energy and love.",
