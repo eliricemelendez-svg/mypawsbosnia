@@ -188,7 +188,18 @@ const dogPhotoData = currentDogs.map((dog) => {
               </div>
               <div>
                 <label for="city" class="block text-sm font-medium text-body mb-2">City *</label>
-                <input type="text" id="city" name="city" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+                <input type="text" id="city" name="city" required list="city-list" autocomplete="address-level2" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+                <datalist id="city-list">
+                  <option value="London" /><option value="Manchester" /><option value="Birmingham" /><option value="Leeds" /><option value="Liverpool" /><option value="Bristol" /><option value="Edinburgh" /><option value="Glasgow" /><option value="Cardiff" /><option value="Belfast" />
+                  <option value="Berlin" /><option value="Munich" /><option value="Hamburg" /><option value="Frankfurt" /><option value="Cologne" /><option value="Stuttgart" /><option value="Düsseldorf" /><option value="Leipzig" /><option value="Dortmund" /><option value="Dresden" />
+                  <option value="Zurich" /><option value="Geneva" /><option value="Basel" /><option value="Bern" /><option value="Lausanne" />
+                  <option value="Amsterdam" /><option value="Rotterdam" /><option value="The Hague" /><option value="Utrecht" /><option value="Eindhoven" />
+                  <option value="Brussels" /><option value="Antwerp" /><option value="Ghent" /><option value="Bruges" /><option value="Liège" />
+                  <option value="Paris" /><option value="Lyon" /><option value="Marseille" /><option value="Toulouse" /><option value="Nice" /><option value="Strasbourg" /><option value="Bordeaux" />
+                  <option value="Vienna" /><option value="Graz" /><option value="Salzburg" /><option value="Innsbruck" />
+                  <option value="Dublin" /><option value="Cork" /><option value="Galway" />
+                  <option value="Copenhagen" /><option value="Stockholm" /><option value="Oslo" /><option value="Milan" /><option value="Rome" /><option value="Madrid" /><option value="Barcelona" />
+                </datalist>
               </div>
             </div>
           </div>
