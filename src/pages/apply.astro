@@ -462,15 +462,26 @@ const dogPhotoData = currentDogs.map((dog) => {
     });
   }
 
-  document.getElementById('showcase-prev')?.addEventListener('click', () => showcaseGoTo(showcaseCurrent - 1));
-  document.getElementById('showcase-next')?.addEventListener('click', () => showcaseGoTo(showcaseCurrent + 1));
+  let showcaseAutoplay: ReturnType<typeof setInterval> | null = null;
+
+  function startShowcaseAutoplay() {
+    if (showcaseAutoplay) clearInterval(showcaseAutoplay);
+    showcaseAutoplay = setInterval(() => showcaseGoTo(showcaseCurrent + 1), 4000);
+  }
+
+  function resetShowcaseAutoplay() {
+    startShowcaseAutoplay(); // restart timer after manual interaction
+  }
+
+  document.getElementById('showcase-prev')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent - 1); resetShowcaseAutoplay(); });
+  document.getElementById('showcase-next')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent + 1); resetShowcaseAutoplay(); });
 
   // Touch swipe on showcase
   let sStartX = 0;
   document.getElementById('showcase-carousel')?.addEventListener('touchstart', (e) => { sStartX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
   document.getElementById('showcase-carousel')?.addEventListener('touchend', (e) => {
     const diff = sStartX - (e as TouchEvent).changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1));
+    if (Math.abs(diff) > 50) { showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1)); resetShowcaseAutoplay(); }
   });
 
   function selectDog(name: string, slug: string) {
@@ -539,6 +550,8 @@ const dogPhotoData = currentDogs.map((dog) => {
     if (showcaseLine && info) showcaseLine.textContent = info.shortLine;
     if (showcaseLink && info) showcaseLink.href = `/adopt/${info.slug}`;
 
+    startShowcaseAutoplay();
+
     dogShowcase?.classList.remove('hidden');
     formFields?.classList.remove('hidden');
 
@@ -552,6 +565,7 @@ const dogPhotoData = currentDogs.map((dog) => {
   });
 
   function resetDogSelection() {
+    if (showcaseAutoplay) { clearInterval(showcaseAutoplay); showcaseAutoplay = null; }
     dogShowcase?.classList.add('hidden');
     formFields?.classList.add('hidden');
     dogSelectedBar?.classList.add('hidden');
@@ -582,7 +596,9 @@ const dogPhotoData = currentDogs.map((dog) => {
   const fenceRow = document.getElementById('fence-row');
   if (gardenSelect && fenceRow) {
     gardenSelect.addEventListener('change', () => {
-      fenceRow.classList.toggle('hidden', gardenSelect.value !== 'Yes');
+      const isYes = gardenSelect.value === 'Yes';
+      fenceRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
     });
   }
 
@@ -591,7 +607,14 @@ const dogPhotoData = currentDogs.map((dog) => {
   const petsDetail = document.getElementById('pets-detail');
   if (hasPetsSelect && petsDetail) {
     hasPetsSelect.addEventListener('change', () => {
-      petsDetail.classList.toggle('hidden', hasPetsSelect.value !== 'Yes');
+      const isYes = hasPetsSelect.value === 'Yes';
+      petsDetail.classList.toggle('hidden', !isYes);
+      if (!isYes) {
+        selectedPets.clear();
+        petBubbles.forEach((b) => { b.classList.remove('bg-teal', 'text-white', 'border-teal'); b.classList.add('text-body', 'border-gray-200'); });
+        if (petCountsDiv) petCountsDiv.innerHTML = '';
+        if (petTypesInput) petTypesInput.value = '';
+      }
     });
   }
 

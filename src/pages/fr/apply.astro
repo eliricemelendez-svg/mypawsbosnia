@@ -1,271 +1,402 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import { currentDogs } from "../../data/current-dogs";
 
 const dogNames = currentDogs.map((d) => d.name);
-const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
+
+// Build photo data for each dog
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/current-dogs/**/*.{jpeg,jpg,png}",
+  { eager: true }
+);
+
+const dogPhotoData = currentDogs.map((dog) => {
+  const prefix = `../../assets/current-dogs/${dog.slug}/`;
+  const photos = Object.entries(allPhotos)
+    .filter(([path]) => path.startsWith(prefix))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, mod]) => mod.default);
+  return { name: dog.name, slug: dog.slug, shortLine: dog.shortLine, photos };
+});
 ---
 
-<Layout title="Demande d'adoption | My Paws Bosnia" description="Remplissez notre formulaire de demande d'adoption. Nous examinons chaque demande et répondons généralement sous quelques jours." lang="fr">
-  <section class="bg-light-bg py-16 md:py-20">
+<Layout title="Demande d'adoption | My Paws Bosnia" description="Remplissez notre formulaire d'adoption. Nous examinons chaque demande et répondons généralement sous quelques jours." lang="fr">
+  <section class="bg-light-bg py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Demande d'adoption</h1>
-      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">Parlez-nous un peu de vous et du chien qui vous intéresse. Nous examinons chaque demande et répondons généralement sous quelques jours.</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Faire une demande d'adoption</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">Choisissez votre chien et parlez-nous un peu de vous. Nous examinons chaque demande et répondons généralement sous quelques jours.</p>
     </div>
   </section>
 
-  <section class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <form id="adopt-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-8">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <form id="adopt-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="82e1cf41-2872-4b2a-92e3-8d373b609503" />
       <input type="hidden" name="subject" value="New Adoption Application - My Paws Bosnia" />
       <input type="hidden" name="from_name" value="My Paws Bosnia Adoption Form" />
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
       <input type="hidden" id="whatsapp_link" name="WhatsApp Link (click to chat)" value="" />
 
-      <!-- About You -->
-      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-          </div>
-          <h2 class="text-xl font-semibold text-slate-dark">À propos de vous</h2>
-        </div>
-        <div class="space-y-4">
-          <div>
-            <label for="name" class="block text-base font-medium text-slate-dark mb-1">Nom complet *</label>
-            <input type="text" id="name" name="name" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-          </div>
-          <div>
-            <label for="email" class="block text-base font-medium text-slate-dark mb-1">Adresse e-mail *</label>
-            <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-          </div>
-          <div>
-            <label for="phone" class="block text-base font-medium text-slate-dark mb-1">Numéro de téléphone (avec indicatif pays) *</label>
-            <input type="tel" id="phone" name="phone" required placeholder="+33 6 12 34 56 78" pattern="[\+\d\s\-\(\)]{7,20}" inputmode="tel" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="country" class="block text-base font-medium text-slate-dark mb-1">Pays *</label>
-              <select id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-                <option value="">Sélectionner...</option>
-                <option value="United Kingdom">Royaume-Uni</option>
-                <option value="Germany">Allemagne</option>
-                <option value="Switzerland">Suisse</option>
-                <option value="Netherlands">Pays-Bas</option>
-                <option value="Belgium">Belgique</option>
-                <option value="France">France</option>
-                <option value="Austria">Autriche</option>
-                <option value="Ireland">Irlande</option>
-                <option value="Denmark">Danemark</option>
-                <option value="Sweden">Suède</option>
-                <option value="Norway">Norvège</option>
-                <option value="Italy">Italie</option>
-                <option value="Spain">Espagne</option>
-                <option value="Other">Autre</option>
-              </select>
-            </div>
-            <div>
-              <label for="city" class="block text-base font-medium text-slate-dark mb-1">Ville *</label>
-              <input type="text" id="city" name="city" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Your Home -->
-      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-          </div>
-          <h2 class="text-xl font-semibold text-slate-dark">Votre logement</h2>
-        </div>
-        <div class="space-y-4">
-          <div>
-            <label for="home_type" class="block text-base font-medium text-slate-dark mb-1">Vivez-vous dans une maison ou un appartement ? *</label>
-            <select id="home_type" name="home_type" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="House">Maison</option>
-              <option value="Apartment">Appartement</option>
-              <option value="Farm / Rural property">Ferme / Propriété rurale</option>
-              <option value="Other">Autre</option>
-            </select>
-          </div>
-          <div>
-            <label for="garden" class="block text-base font-medium text-slate-dark mb-1">Avez-vous un jardin ou une cour ? *</label>
-            <select id="garden" name="garden" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="Yes">Oui</option>
-              <option value="No">Non</option>
-            </select>
-          </div>
-          <div id="fence-row" class="hidden">
-            <label for="fence_height" class="block text-base font-medium text-slate-dark mb-1">Quelle est approximativement la hauteur de la clôture ?</label>
-            <select id="fence_height" name="fence_height" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="Under 1 metre">Moins d'1 mètre</option>
-              <option value="1 - 1.5 metres">1 - 1,5 mètres</option>
-              <option value="1.5 - 2 metres">1,5 - 2 mètres</option>
-              <option value="Over 2 metres">Plus de 2 mètres</option>
-              <option value="Not sure">Pas sûr(e)</option>
-            </select>
-            <p class="text-xs text-body mt-1">Une estimation approximative suffit. Nous pourrons vérifier lors de la visite à domicile.</p>
-          </div>
-          <div>
-            <label for="own_rent" class="block text-base font-medium text-slate-dark mb-1">Êtes-vous propriétaire ou locataire ? *</label>
-            <select id="own_rent" name="own_rent" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="Own">Propriétaire</option>
-              <option value="Rent - landlord allows dogs">Locataire - le propriétaire autorise les chiens</option>
-              <option value="Rent - need to check with landlord">Locataire - à vérifier avec le propriétaire</option>
-            </select>
-            <p class="text-xs text-body mt-1">Beaucoup de propriétaires acceptent les chiens. Si vous n'êtes pas sûr(e), nous pouvons vous aider.</p>
-          </div>
-          <div>
-            <p class="text-sm font-medium text-slate-dark mb-2">Qui vit dans votre foyer ? *</p>
-            <div class="flex flex-wrap gap-2 mb-3" id="household-bubbles">
-              <button type="button" data-person="Partner / Spouse" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Conjoint(e)</button>
-              <button type="button" data-person="Children" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Enfants</button>
-              <button type="button" data-person="Flatmates" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Colocataires</button>
-              <button type="button" data-person="Grandparents" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Grands-parents</button>
-              <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Autre</button>
-            </div>
-            <div id="household-counts" class="space-y-3"></div>
-            <input type="hidden" id="household_types" name="household" value="Just me" />
-            <div id="household-children-ages" class="hidden mt-3">
-              <label for="children_ages" class="block text-base font-medium text-slate-dark mb-1">Âges des enfants</label>
-              <input type="text" id="children_ages" name="children_ages" placeholder="ex. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-            </div>
-            <div class="mt-3">
-              <label for="household_extra" class="block text-base font-medium text-slate-dark mb-1">Détails supplémentaires ?</label>
-              <input type="text" id="household_extra" name="household_extra" placeholder="ex. mon conjoint travaille depuis la maison" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-            </div>
-            <p class="text-xs text-body mt-1">Sélectionnez tout ce qui s'applique. Si vous vivez seul(e), laissez tout désélectionné.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pets & Experience -->
-      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+      <!-- STEP 1: Choose your dog -->
+      <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100 mb-8">
         <div class="flex items-center gap-3 mb-6">
           <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
           </div>
-          <h2 class="text-xl font-semibold text-slate-dark">Animaux & expérience</h2>
+          <h2 class="text-xl font-semibold text-slate-dark">Quel chien vous interesse ?</h2>
         </div>
-        <div class="space-y-4">
-          <div>
-            <label for="dog_experience" class="block text-base font-medium text-slate-dark mb-1">Avez-vous déjà eu un chien ? *</label>
-            <select id="dog_experience" name="dog_experience" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="Yes">Oui</option>
-              <option value="No, first time">Non, ce serait mon premier chien</option>
-            </select>
-            <p class="text-xs text-body mt-1">Les primo-adoptants sont les bienvenus. Nous sommes là pour vous accompagner.</p>
-          </div>
-          <div>
-            <label for="has_pets" class="block text-base font-medium text-slate-dark mb-1">Avez-vous actuellement des animaux de compagnie ? *</label>
-            <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="Yes">Oui</option>
-              <option value="No">Non</option>
-            </select>
-          </div>
-          <div id="pets-detail" class="hidden space-y-4">
-            <div>
-              <p class="text-sm font-medium text-slate-dark mb-2">Quels animaux avez-vous ?</p>
-              <div class="flex flex-wrap gap-2" id="pet-bubbles">
-                <button type="button" data-pet="Dogs" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Chiens</button>
-                <button type="button" data-pet="Cats" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Chats</button>
-                <button type="button" data-pet="Rabbits" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Lapins</button>
-                <button type="button" data-pet="Birds" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Oiseaux</button>
-                <button type="button" data-pet="Fish" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Poissons</button>
-                <button type="button" data-pet="Other" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Autre</button>
+
+        <!-- Dog selection grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="dog-selector">
+          {dogPhotoData.map((dog) => (
+            <button
+              type="button"
+              class="dog-select-btn group relative rounded-xl overflow-hidden border-2 border-gray-100 hover:border-teal transition-all text-left"
+              data-dog={dog.name}
+              data-slug={dog.slug}
+            >
+              {dog.photos[0] && (
+                <Image
+                  src={dog.photos[0]}
+                  alt={dog.name}
+                  width={300}
+                  class="w-full aspect-square object-cover object-top"
+                />
+              )}
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                <span class="text-white font-semibold text-sm">{dog.name}</span>
               </div>
-              <input type="hidden" id="pet_types" name="pet_types" />
+            </button>
+          ))}
+          <button
+            type="button"
+            class="dog-select-btn flex items-center justify-center rounded-xl border-2 border-gray-100 hover:border-teal transition-all aspect-square bg-light-bg"
+            data-dog="Not sure yet"
+            data-slug=""
+          >
+            <div class="text-center p-3">
+              <div class="text-3xl mb-2">🐾</div>
+              <span class="text-sm text-body font-medium">Pas encore certain</span>
             </div>
-            <div id="pet-counts" class="space-y-3"></div>
+          </button>
+        </div>
+
+        <!-- Collapsed state (shown after selection) -->
+        <div id="dog-selected-bar" class="hidden flex items-center justify-between bg-light-bg rounded-xl p-4">
+          <div class="flex items-center gap-3">
+            <img id="selected-dog-thumb" src="" alt="" class="w-12 h-12 rounded-full object-cover" />
             <div>
-              <label for="pets_extra" class="block text-base font-medium text-slate-dark mb-1">Détails supplémentaires ? (âges, races, etc.)</label>
-              <input type="text" id="pets_extra" name="pets_extra" placeholder="ex. Labrador, 5 ans, très amical" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              <p class="font-semibold text-slate-dark" id="selected-dog-name-text"></p>
+              <p class="text-xs text-body">Choisi pour l'adoption</p>
+            </div>
+          </div>
+          <button type="button" id="change-dog-bar-btn" class="text-sm text-teal font-medium hover:underline">Modifier</button>
+        </div>
+
+        <input type="hidden" id="dog_interest" name="dog_interest" value="" required />
+        <p id="dog-select-error" class="text-red-500 text-sm mt-2 hidden">Veuillez choisir un chien pour continuer.</p>
+      </div>
+
+      <!-- Photo data for JS -->
+      {dogPhotoData.map((dog) => (
+        <template data-dog-photos={dog.name}>
+          {dog.photos.map((photo, i) => (
+            <img src={photo.src} data-width={photo.width} data-height={photo.height} alt={`${dog.name} photo ${i + 1}`} />
+          ))}
+        </template>
+      ))}
+      <script id="dog-info" type="application/json" set:html={JSON.stringify(
+        dogPhotoData.map(d => ({ name: d.name, slug: d.slug, shortLine: d.shortLine, photoCount: d.photos.length }))
+      )} />
+
+      <!-- TWO-COLUMN LAYOUT: Dog on left, form on right (hidden until dog selected) -->
+      <div id="form-fields" class="hidden">
+        <div class="flex flex-col lg:flex-row gap-8">
+
+          <!-- LEFT: Dog showcase (sticky on desktop) -->
+          <div id="dog-showcase" class="lg:w-5/12">
+            <div class="lg:sticky lg:top-24">
+              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <!-- Photo carousel -->
+                <div class="relative">
+                  <div class="aspect-square relative overflow-hidden" id="showcase-carousel">
+                    <div class="flex h-full transition-transform duration-300 ease-in-out" id="showcase-track">
+                      <!-- Photos injected by JS -->
+                    </div>
+                    <button type="button" id="showcase-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
+                    <button type="button" id="showcase-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="showcase-dots"></div>
+                  </div>
+                </div>
+                <!-- Dog info -->
+                <div class="p-5">
+                  <h3 id="showcase-name" class="text-2xl font-bold text-slate-dark"></h3>
+                  <p id="showcase-line" class="text-body mt-2 text-sm"></p>
+                  <div class="mt-3 flex items-center gap-4">
+                    <a id="showcase-profile-link" href="#" class="text-teal font-medium hover:underline text-sm">Voir le profil complet &rarr;</a>
+                    <button type="button" id="change-dog-btn" class="text-sm text-body hover:text-teal transition-colors underline">Changer de chien</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Form fields -->
+          <div class="lg:w-7/12 space-y-8">
+
+        <!-- About You -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">A propos de vous</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-body mb-2">Nom complet *</label>
+              <input type="text" id="name" name="name" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-body mb-2">Adresse e-mail *</label>
+              <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-body mb-2">Numero de telephone (avec indicatif pays) *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+33 6 12 34 56 78" pattern="[\+\d\s\-\(\)]{7,20}" inputmode="tel" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="country" class="block text-sm font-medium text-body mb-2">Pays *</label>
+                <select id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                  <option value="">Choisir...</option>
+                  <option value="United Kingdom">Royaume-Uni</option>
+                  <option value="Germany">Allemagne</option>
+                  <option value="Switzerland">Suisse</option>
+                  <option value="Netherlands">Pays-Bas</option>
+                  <option value="Belgium">Belgique</option>
+                  <option value="France">France</option>
+                  <option value="Austria">Autriche</option>
+                  <option value="Ireland">Irlande</option>
+                  <option value="Denmark">Danemark</option>
+                  <option value="Sweden">Suede</option>
+                  <option value="Norway">Norvege</option>
+                  <option value="Italy">Italie</option>
+                  <option value="Spain">Espagne</option>
+                  <option value="Other">Autre</option>
+                </select>
+              </div>
+              <div>
+                <label for="city" class="block text-sm font-medium text-body mb-2">Ville *</label>
+                <input type="text" id="city" name="city" required list="city-list" autocomplete="address-level2" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+                <datalist id="city-list">
+                  <option value="London" /><option value="Manchester" /><option value="Birmingham" /><option value="Leeds" /><option value="Liverpool" /><option value="Bristol" /><option value="Edinburgh" /><option value="Glasgow" /><option value="Cardiff" /><option value="Belfast" />
+                  <option value="Berlin" /><option value="Munich" /><option value="Hamburg" /><option value="Frankfurt" /><option value="Cologne" /><option value="Stuttgart" /><option value="Düsseldorf" /><option value="Leipzig" /><option value="Dortmund" /><option value="Dresden" />
+                  <option value="Zurich" /><option value="Geneva" /><option value="Basel" /><option value="Bern" /><option value="Lausanne" />
+                  <option value="Amsterdam" /><option value="Rotterdam" /><option value="The Hague" /><option value="Utrecht" /><option value="Eindhoven" />
+                  <option value="Brussels" /><option value="Antwerp" /><option value="Ghent" /><option value="Bruges" /><option value="Liège" />
+                  <option value="Paris" /><option value="Lyon" /><option value="Marseille" /><option value="Toulouse" /><option value="Nice" /><option value="Strasbourg" /><option value="Bordeaux" />
+                  <option value="Vienna" /><option value="Graz" /><option value="Salzburg" /><option value="Innsbruck" />
+                  <option value="Dublin" /><option value="Cork" /><option value="Galway" />
+                  <option value="Copenhagen" /><option value="Stockholm" /><option value="Oslo" /><option value="Milan" /><option value="Rome" /><option value="Madrid" /><option value="Barcelona" />
+                </datalist>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- About the Adoption -->
-      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <!-- Your Home -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">Votre logement</h2>
           </div>
-          <h2 class="text-xl font-semibold text-slate-dark">À propos de l'adoption</h2>
+          <div class="space-y-6">
+            <div>
+              <label for="home_type" class="block text-sm font-medium text-body mb-2">Vivez-vous dans une maison ou un appartement ? *</label>
+              <select id="home_type" name="home_type" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="House">Maison</option>
+                <option value="Apartment">Appartement</option>
+                <option value="Farm / Rural property">Ferme / Propriete rurale</option>
+                <option value="Other">Autre</option>
+              </select>
+            </div>
+            <div>
+              <label for="garden" class="block text-sm font-medium text-body mb-2">Avez-vous un jardin ou une cour ? *</label>
+              <select id="garden" name="garden" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Yes">Oui</option>
+                <option value="No">Non</option>
+              </select>
+            </div>
+            <div id="fence-row" class="hidden">
+              <label for="fence_height" class="block text-sm font-medium text-body mb-2">Quelle est la hauteur approximative de la cloture ?</label>
+              <select id="fence_height" name="fence_height" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Under 1 metre">Moins d'1 metre</option>
+                <option value="1 - 1.5 metres">1 - 1,5 metres</option>
+                <option value="1.5 - 2 metres">1,5 - 2 metres</option>
+                <option value="Over 2 metres">Plus de 2 metres</option>
+                <option value="Not sure">Pas certain</option>
+              </select>
+              <p class="text-xs text-body mt-1">Une estimation approximative suffit. Nous pourrons verifier lors de la visite a domicile.</p>
+            </div>
+            <div>
+              <label for="own_rent" class="block text-sm font-medium text-body mb-2">Etes-vous proprietaire ou locataire ? *</label>
+              <select id="own_rent" name="own_rent" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Own">Proprietaire</option>
+                <option value="Rent - landlord allows dogs">Locataire - le proprietaire autorise les chiens</option>
+                <option value="Rent - need to check with landlord">Locataire - a verifier avec le proprietaire</option>
+              </select>
+            </div>
+            <div>
+              <p class="text-base font-medium text-slate-dark mb-2">Qui vit dans votre foyer ? *</p>
+              <div class="flex flex-wrap gap-2 mb-3" id="household-bubbles">
+                <button type="button" data-person="Partner / Spouse" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Conjoint</button>
+                <button type="button" data-person="Children" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Enfants</button>
+                <button type="button" data-person="Flatmates" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Colocataires</button>
+                <button type="button" data-person="Grandparents" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Grands-parents</button>
+                <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Autre</button>
+              </div>
+              <div id="household-counts" class="space-y-3"></div>
+              <input type="hidden" id="household_types" name="household" value="Just me" />
+              <div id="household-children-ages" class="hidden mt-3">
+                <label for="children_ages" class="block text-sm font-medium text-body mb-2">Ages des enfants</label>
+                <input type="text" id="children_ages" name="children_ages" placeholder="ex. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              </div>
+              <div class="mt-3">
+                <label for="household_extra" class="block text-sm font-medium text-body mb-2">Details supplementaires ?</label>
+                <input type="text" id="household_extra" name="household_extra" placeholder="ex. mon conjoint travaille a domicile" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              </div>
+              <p class="text-xs text-body mt-1">Selectionnez toutes les options qui s'appliquent. Si vous vivez seul, ne selectionnez rien.</p>
+            </div>
+          </div>
         </div>
-        <div class="space-y-4">
-          <div>
-            <label for="dog_interest" class="block text-base font-medium text-slate-dark mb-1">Quel chien vous intéresse ? *</label>
-            <select id="dog_interest" name="dog_interest" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner un chien...</option>
-              {dogNames.map((name) => (
-                <option value={name}>{name}</option>
-              ))}
-              <option value="Not sure yet">Pas encore sûr(e)</option>
-            </select>
-          </div>
-          <div>
-            <label for="hours_alone" class="block text-base font-medium text-slate-dark mb-1">Combien d'heures par jour le chien sera-t-il seul ? *</label>
-            <select id="hours_alone" name="hours_alone" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="0-2 hours">0-2 heures</option>
-              <option value="2-4 hours">2-4 heures</option>
-              <option value="4-6 hours">4-6 heures</option>
-              <option value="6-8 hours">6-8 heures</option>
-              <option value="8+ hours">8+ heures</option>
-            </select>
-          </div>
-          <div>
-            <label for="sleep" class="block text-base font-medium text-slate-dark mb-1">Où dormira le chien ?</label>
-            <input type="text" id="sleep" name="sleep" placeholder="ex. dans le salon, dans notre chambre" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-          </div>
-          <div>
-            <label for="home_check" class="block text-base font-medium text-slate-dark mb-1">Acceptez-vous une visite à domicile (virtuelle ou en personne) ? *</label>
-            <select id="home_check" name="home_check" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
-              <option value="">Sélectionner...</option>
-              <option value="Yes">Oui</option>
-              <option value="No">Non</option>
-            </select>
-            <p class="text-xs text-body mt-1">Cela peut se faire par appel vidéo. C'est un échange court et amical pour s'assurer que le chien vous convient.</p>
-          </div>
-          <div>
-            <label for="questions" class="block text-base font-medium text-slate-dark mb-1">Avez-vous des questions sur le chien ?</label>
-            <textarea id="questions" name="questions" rows="3" placeholder="ex. Comment le chien se comporte-t-il avec les chats ? A-t-il des problèmes de santé ? Que mange-t-il ?" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
-            <p class="text-xs text-body mt-1">Nous sommes ravis de répondre à toutes vos questions, même les plus petites.</p>
-          </div>
-          <div>
-            <label for="message" class="block text-base font-medium text-slate-dark mb-1">Autre chose que vous aimeriez nous dire ?</label>
-            <textarea id="message" name="message" rows="3" placeholder="Parlez-nous de vous, de votre mode de vie ou de ce qui vous attire chez ce chien..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
-          </div>
-        </div>
-      </div>
 
-      <!-- Submit -->
-      <div class="text-center pt-2">
-        <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Envoyer la demande</button>
-        <p class="text-sm text-body mt-4">Nous avons aidé plus de 20 chiens à trouver un foyer aimant à travers l'Europe et le Royaume-Uni.</p>
-        <p class="text-xs text-body mt-1">Nous examinons chaque demande et vous répondrons sous quelques jours.</p>
-      </div>
+        <!-- Pets & Experience -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">Animaux & experience</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="dog_experience" class="block text-sm font-medium text-body mb-2">Avez-vous deja eu un chien ? *</label>
+              <select id="dog_experience" name="dog_experience" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Yes">Oui</option>
+                <option value="No, first time">Non, ce serait mon premier chien</option>
+              </select>
+              <p class="text-xs text-body mt-1">Les nouveaux proprietaires sont les bienvenus. Nous sommes la pour vous aider.</p>
+            </div>
+            <div>
+              <label for="has_pets" class="block text-sm font-medium text-body mb-2">Avez-vous des animaux actuellement ? *</label>
+              <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Yes">Oui</option>
+                <option value="No">Non</option>
+              </select>
+            </div>
+            <div id="pets-detail" class="hidden space-y-4">
+              <div>
+                <p class="text-base font-medium text-slate-dark mb-2">Quels animaux avez-vous ?</p>
+                <div class="flex flex-wrap gap-2" id="pet-bubbles">
+                  <button type="button" data-pet="Dogs" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Chiens</button>
+                  <button type="button" data-pet="Cats" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Chats</button>
+                  <button type="button" data-pet="Rabbits" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Lapins</button>
+                  <button type="button" data-pet="Birds" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Oiseaux</button>
+                  <button type="button" data-pet="Fish" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Poissons</button>
+                  <button type="button" data-pet="Other" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Autre</button>
+                </div>
+                <input type="hidden" id="pet_types" name="pet_types" />
+              </div>
+              <div id="pet-counts" class="space-y-3"></div>
+              <div>
+                <label for="pets_extra" class="block text-sm font-medium text-body mb-2">Details supplementaires ? (ages, races, etc.)</label>
+                <input type="text" id="pets_extra" name="pets_extra" placeholder="ex. Labrador, 5 ans, tres sociable" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final details -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">Quelques details supplementaires</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="hours_alone" class="block text-sm font-medium text-body mb-2">Combien d'heures par jour le chien sera-t-il seul ? *</label>
+              <select id="hours_alone" name="hours_alone" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="0-2 hours">0-2 heures</option>
+                <option value="2-4 hours">2-4 heures</option>
+                <option value="4-6 hours">4-6 heures</option>
+                <option value="6-8 hours">6-8 heures</option>
+                <option value="8+ hours">8+ heures</option>
+              </select>
+            </div>
+            <div>
+              <label for="sleep" class="block text-sm font-medium text-body mb-2">Ou dormira le chien ?</label>
+              <input type="text" id="sleep" name="sleep" placeholder="ex. dans le salon, dans notre chambre" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="home_check" class="block text-sm font-medium text-body mb-2">Acceptez-vous une visite a domicile (virtuelle ou en personne) ? *</label>
+              <select id="home_check" name="home_check" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Yes">Oui</option>
+                <option value="No">Non</option>
+              </select>
+              <p class="text-xs text-body mt-1">Cela peut se faire par appel video. C'est un echange rapide et convivial pour s'assurer que le chien vous correspond bien.</p>
+            </div>
+            <div>
+              <label for="questions" class="block text-sm font-medium text-body mb-2">Avez-vous des questions sur le chien ?</label>
+              <textarea id="questions" name="questions" rows="3" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-body mb-2">Souhaitez-vous nous dire autre chose ?</label>
+              <textarea id="message" name="message" rows="3" placeholder="Parlez-nous de vous, de votre mode de vie ou de ce qui vous attire chez ce chien..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center pt-2">
+          <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Envoyer la demande</button>
+          <p class="text-xs text-body mt-3">Nous examinons chaque demande et vous recontacterons sous quelques jours.</p>
+        </div>
+
+          </div><!-- end right column -->
+        </div><!-- end flex row -->
+      </div><!-- end form-fields -->
     </form>
 
-    <!-- Success message (hidden by default) -->
+    <!-- Success message -->
     <div id="success-msg" class="hidden py-16">
       <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 text-center">
         <div class="text-5xl mb-4">🐾</div>
         <h2 class="text-2xl font-bold text-slate-dark mb-2">Merci pour votre demande !</h2>
-        <p class="text-lg text-body mb-6" id="success-dog-text">Nous sommes ravis que vous souhaitiez offrir un foyer aimant à un chien sauvé.</p>
+        <p class="text-lg text-body mb-6" id="success-dog-text">Nous sommes ravis que vous souhaitiez offrir un foyer aimant a un chien de sauvetage.</p>
 
-        <!-- Dog photo (shown if a specific dog was selected) -->
-        <div id="success-dog-photo" class="hidden mb-6">
-          <img id="success-dog-img" src="" alt="" class="w-48 h-48 object-cover rounded-2xl mx-auto shadow-md" />
+        <!-- Dog photos on success screen -->
+        <div id="success-photos" class="hidden mb-8">
+          <div class="relative rounded-2xl overflow-hidden max-w-md mx-auto">
+            <div class="aspect-square relative overflow-hidden" id="success-carousel">
+              <div class="flex h-full transition-transform duration-300 ease-in-out" id="success-track"></div>
+              <button type="button" id="success-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
+              <button type="button" id="success-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="success-dots"></div>
+            </div>
+          </div>
         </div>
 
         <div class="bg-light-bg rounded-xl p-6 mb-8 text-left max-w-md mx-auto">
@@ -273,44 +404,187 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
           <ol class="space-y-3 text-sm text-body">
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
-              <span>Nous examinerons votre demande et vous <strong>contacterons par WhatsApp sous 24 heures</strong>.</span>
+              <span>Nous examinons votre demande et <strong>vous contactons par WhatsApp dans les 24 heures</strong>.</span>
             </li>
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
-              <span>Nous organiserons une <strong>visite à domicile</strong> : un court appel vidéo amical ou une visite en personne pour s'assurer que tout convient.</span>
+              <span>Nous organisons une <strong>visite a domicile</strong> : un appel video rapide et convivial ou une visite en personne pour s'assurer que tout correspond.</span>
             </li>
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
-              <span>Une fois approuvé, nous organiserons le <strong>transport agréé</strong> directement jusqu'à votre porte.</span>
+              <span>Une fois approuve, nous organisons un <strong>transport agree</strong> directement jusqu'a chez vous.</span>
             </li>
           </ol>
         </div>
 
-        <p class="text-body mb-6">Vous ne pouvez pas attendre ? Vous pouvez aussi nous contacter directement :</p>
+        <p class="text-body mb-6">Vous ne pouvez pas attendre ? Contactez-nous directement :</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Nous écrire sur WhatsApp</a>
-          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Nous écrire sur Facebook</a>
+          <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Ecrivez-nous sur WhatsApp</a>
+          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Ecrivez-nous sur Facebook</a>
         </div>
         <div class="mt-8">
-          <a href="/adopt" class="text-teal font-medium hover:underline">&larr; Retour à tous les chiens</a>
+          <a href="/fr/adopt" class="text-teal font-medium hover:underline">&larr; Retour a tous les chiens</a>
         </div>
       </div>
     </div>
-
-    <!-- Dog slug/photo data for success screen -->
-    <script id="dog-data" type="application/json" set:html={JSON.stringify(
-      currentDogs.map(d => ({ name: d.name, slug: d.slug }))
-    )} />
   </section>
 </Layout>
 
 <script>
+  // Dog selection
+  const dogBtns = document.querySelectorAll<HTMLButtonElement>('.dog-select-btn');
+  const dogInput = document.getElementById('dog_interest') as HTMLInputElement;
+  const dogShowcase = document.getElementById('dog-showcase');
+  const dogSelector = document.getElementById('dog-selector');
+  const dogSelectedBar = document.getElementById('dog-selected-bar');
+  const selectedDogThumb = document.getElementById('selected-dog-thumb') as HTMLImageElement;
+  const selectedDogNameText = document.getElementById('selected-dog-name-text');
+  const changeDogBarBtn = document.getElementById('change-dog-bar-btn');
+  const formFields = document.getElementById('form-fields');
+  const showcaseTrack = document.getElementById('showcase-track');
+  const showcaseDots = document.getElementById('showcase-dots');
+  const showcaseName = document.getElementById('showcase-name');
+  const showcaseLine = document.getElementById('showcase-line');
+  const showcaseLink = document.getElementById('showcase-profile-link') as HTMLAnchorElement;
+  const changeDogBtn = document.getElementById('change-dog-btn');
+  const dogError = document.getElementById('dog-select-error');
+  const dogInfoEl = document.getElementById('dog-info');
+  const dogInfo = dogInfoEl ? JSON.parse(dogInfoEl.textContent || '[]') : [];
+
+  let showcaseCurrent = 0;
+  let showcaseCount = 0;
+
+  function showcaseGoTo(i: number) {
+    showcaseCurrent = (i + showcaseCount) % showcaseCount;
+    if (showcaseTrack) showcaseTrack.style.transform = `translateX(-${showcaseCurrent * 100}%)`;
+    showcaseDots?.querySelectorAll('span').forEach((d, idx) => {
+      d.className = `block w-2.5 h-2.5 rounded-full ${idx === showcaseCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
+    });
+  }
+
+  document.getElementById('showcase-prev')?.addEventListener('click', () => showcaseGoTo(showcaseCurrent - 1));
+  document.getElementById('showcase-next')?.addEventListener('click', () => showcaseGoTo(showcaseCurrent + 1));
+
+  // Touch swipe on showcase
+  let sStartX = 0;
+  document.getElementById('showcase-carousel')?.addEventListener('touchstart', (e) => { sStartX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
+  document.getElementById('showcase-carousel')?.addEventListener('touchend', (e) => {
+    const diff = sStartX - (e as TouchEvent).changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1));
+  });
+
+  function selectDog(name: string, slug: string) {
+    dogInput.value = name;
+    dogError?.classList.add('hidden');
+
+    // Collapse the grid, show the selected bar
+    dogSelector?.classList.add('hidden');
+
+    // Get the first photo for the thumb
+    const thumbTemplate = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const firstImg = thumbTemplate?.content.querySelector('img');
+
+    if (selectedDogThumb && firstImg && name !== 'Not sure yet') {
+      selectedDogThumb.src = firstImg.src;
+      selectedDogThumb.alt = name;
+      selectedDogThumb.classList.remove('hidden');
+    } else if (selectedDogThumb) {
+      selectedDogThumb.classList.add('hidden');
+    }
+    if (selectedDogNameText) selectedDogNameText.textContent = name;
+    dogSelectedBar?.classList.remove('hidden');
+
+    if (name === 'Not sure yet') {
+      dogShowcase?.classList.add('hidden');
+      formFields?.classList.remove('hidden');
+      formFields?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Load photos into carousel
+    const template = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const info = dogInfo.find((d: any) => d.name === name);
+
+    if (showcaseTrack && template) {
+      showcaseTrack.innerHTML = '';
+      const imgs = template.content.querySelectorAll('img');
+      showcaseCount = imgs.length;
+      showcaseCurrent = 0;
+
+      imgs.forEach((img) => {
+        const slide = document.createElement('div');
+        slide.className = 'w-full h-full flex-shrink-0';
+        const newImg = document.createElement('img');
+        newImg.src = img.src;
+        newImg.alt = img.alt;
+        newImg.className = 'w-full h-full object-cover object-top';
+        slide.appendChild(newImg);
+        showcaseTrack.appendChild(slide);
+      });
+
+      showcaseTrack.style.transform = 'translateX(0)';
+
+      // Build dots
+      if (showcaseDots) {
+        showcaseDots.innerHTML = '';
+        for (let i = 0; i < showcaseCount; i++) {
+          const dot = document.createElement('span');
+          dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
+          showcaseDots.appendChild(dot);
+        }
+      }
+    }
+
+    if (showcaseName) showcaseName.textContent = name;
+    if (showcaseLine && info) showcaseLine.textContent = info.shortLine;
+    if (showcaseLink && info) showcaseLink.href = `/adopt/${info.slug}`;
+
+    dogShowcase?.classList.remove('hidden');
+    formFields?.classList.remove('hidden');
+
+    dogShowcase?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  dogBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectDog(btn.dataset.dog!, btn.dataset.slug!);
+    });
+  });
+
+  function resetDogSelection() {
+    dogShowcase?.classList.add('hidden');
+    formFields?.classList.add('hidden');
+    dogSelectedBar?.classList.add('hidden');
+    dogSelector?.classList.remove('hidden');
+    dogInput.value = '';
+    dogBtns.forEach((btn) => {
+      btn.classList.remove('border-teal', 'ring-2', 'ring-teal');
+      btn.classList.add('border-gray-100');
+    });
+    dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  changeDogBtn?.addEventListener('click', resetDogSelection);
+  changeDogBarBtn?.addEventListener('click', resetDogSelection);
+
+  // Pre-select from URL param
+  const params = new URLSearchParams(window.location.search);
+  const dogParam = params.get('dog');
+  if (dogParam) {
+    const match = dogInfo.find((d: any) => d.name.toLowerCase() === dogParam.toLowerCase());
+    if (match) {
+      selectDog(match.name, match.slug);
+    }
+  }
+
   // Show/hide fence height based on garden answer
   const gardenSelect = document.getElementById('garden') as HTMLSelectElement;
   const fenceRow = document.getElementById('fence-row');
   if (gardenSelect && fenceRow) {
     gardenSelect.addEventListener('change', () => {
-      fenceRow.classList.toggle('hidden', gardenSelect.value !== 'Yes');
+      const isYes = gardenSelect.value === 'Yes';
+      fenceRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
     });
   }
 
@@ -319,7 +593,14 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
   const petsDetail = document.getElementById('pets-detail');
   if (hasPetsSelect && petsDetail) {
     hasPetsSelect.addEventListener('change', () => {
-      petsDetail.classList.toggle('hidden', hasPetsSelect.value !== 'Yes');
+      const isYes = hasPetsSelect.value === 'Yes';
+      petsDetail.classList.toggle('hidden', !isYes);
+      if (!isYes) {
+        selectedPets.clear();
+        petBubbles.forEach((b) => { b.classList.remove('bg-teal', 'text-white', 'border-teal'); b.classList.add('text-body', 'border-gray-200'); });
+        if (petCountsDiv) petCountsDiv.innerHTML = '';
+        if (petTypesInput) petTypesInput.value = '';
+      }
     });
   }
 
@@ -346,8 +627,6 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
       `;
       petCountsDiv.appendChild(row);
     });
-
-    // Attach +/- listeners
     petCountsDiv.querySelectorAll('.pet-plus').forEach((btn) => {
       btn.addEventListener('click', () => {
         const pet = (btn as HTMLElement).dataset.pet!;
@@ -368,7 +647,6 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
         inputEl.value = String(val);
       });
     });
-
     if (petTypesInput) petTypesInput.value = Array.from(selectedPets).join(', ');
   }
 
@@ -396,7 +674,6 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
       `;
       householdCountsDiv.appendChild(row);
     });
-
     householdCountsDiv.querySelectorAll('.hh-plus').forEach((btn) => {
       btn.addEventListener('click', () => {
         const person = (btn as HTMLElement).dataset.person!;
@@ -417,7 +694,6 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
         inputEl.value = String(val);
       });
     });
-
     if (householdTypesInput) {
       householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Just me';
     }
@@ -466,14 +742,22 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
   if (form && successMsg) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
 
-      // Build WhatsApp click-to-chat link from phone number
+      // Validate dog selection
+      if (!dogInput.value) {
+        dogError?.classList.remove('hidden');
+        dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours...';
+
+      // Build WhatsApp click-to-chat link
       const phoneInput = (document.getElementById('phone') as HTMLInputElement)?.value || '';
       const cleanPhone = phoneInput.replace(/[\s\-\(\)]/g, '').replace(/^\+/, '');
       const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
-      const selectedDogName = (document.getElementById('dog_interest') as HTMLSelectElement)?.value || '';
+      const selectedDogName = dogInput.value;
       const waMessage = encodeURIComponent(`Hi ${applicantName}! This is My Paws Bosnia. We received your adoption application${selectedDogName && selectedDogName !== 'Not sure yet' ? ` for ${selectedDogName}` : ''}. We'd love to chat with you about the next steps!`);
       const waLink = document.getElementById('whatsapp_link') as HTMLInputElement;
       if (waLink && cleanPhone) {
@@ -487,31 +771,47 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
         });
 
         if (res.ok) {
-          // Show dog-specific success message
-          const selectedDog = (document.getElementById('dog_interest') as HTMLSelectElement)?.value;
-          if (selectedDog && selectedDog !== 'Not sure yet') {
+          if (selectedDogName && selectedDogName !== 'Not sure yet') {
             const successText = document.getElementById('success-dog-text');
             if (successText) {
-              successText.textContent = `We're so excited that you're interested in ${selectedDog}! Here's what happens next.`;
+              successText.textContent = `Nous sommes ravis que vous vous interessiez a ${selectedDogName} ! Voici la suite.`;
             }
-            // Try to show dog photo
-            const dogDataEl = document.getElementById('dog-data');
-            if (dogDataEl) {
-              const dogs = JSON.parse(dogDataEl.textContent || '[]');
-              const match = dogs.find((d: any) => d.name === selectedDog);
-              if (match) {
-                const photoContainer = document.getElementById('success-dog-photo');
-                const photoImg = document.getElementById('success-dog-img') as HTMLImageElement;
-                if (photoContainer && photoImg) {
-                  // Use the first photo from the dog's asset folder via the adopt page
-                  photoContainer.classList.remove('hidden');
-                  photoImg.alt = `${selectedDog}, a rescue dog at My Paws Bosnia`;
-                  // Link to dog's profile
-                  const link = document.createElement('a');
-                  link.href = `/adopt/${match.slug}`;
-                  photoContainer.appendChild(link);
-                }
+            // Show dog photos on success screen
+            const successPhotos = document.getElementById('success-photos');
+            const successTrack = document.getElementById('success-track');
+            const successDotsEl = document.getElementById('success-dots');
+            const tmpl = document.querySelector(`template[data-dog-photos="${selectedDogName}"]`);
+            if (successPhotos && successTrack && successDotsEl && tmpl) {
+              successTrack.innerHTML = '';
+              successDotsEl.innerHTML = '';
+              const imgs = tmpl.content.querySelectorAll('img');
+              let sCurrent = 0;
+              const sCount = imgs.length;
+              imgs.forEach((img) => {
+                const slide = document.createElement('div');
+                slide.className = 'w-full h-full flex-shrink-0';
+                const newImg = document.createElement('img');
+                newImg.src = img.src;
+                newImg.alt = img.alt;
+                newImg.className = 'w-full h-full object-cover object-top';
+                slide.appendChild(newImg);
+                successTrack.appendChild(slide);
+              });
+              for (let i = 0; i < sCount; i++) {
+                const dot = document.createElement('span');
+                dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
+                successDotsEl.appendChild(dot);
               }
+              function sGoTo(i: number) {
+                sCurrent = (i + sCount) % sCount;
+                successTrack!.style.transform = `translateX(-${sCurrent * 100}%)`;
+                successDotsEl!.querySelectorAll('span').forEach((d, idx) => {
+                  d.className = `block w-2.5 h-2.5 rounded-full ${idx === sCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
+                });
+              }
+              document.getElementById('success-prev')?.addEventListener('click', () => sGoTo(sCurrent - 1));
+              document.getElementById('success-next')?.addEventListener('click', () => sGoTo(sCurrent + 1));
+              successPhotos.classList.remove('hidden');
             }
           }
           form.classList.add('hidden');
@@ -522,24 +822,9 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
         }
       } catch {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Application';
-        alert('Something went wrong. Please try again or contact us directly on Facebook or WhatsApp.');
+        submitBtn.textContent = 'Envoyer la demande';
+        alert('Une erreur s\'est produite. Veuillez reessayer ou nous contacter directement sur Facebook ou WhatsApp.');
       }
     });
-  }
-
-  // Pre-select dog from URL param (e.g. /apply?dog=Luna)
-  const params = new URLSearchParams(window.location.search);
-  const dogParam = params.get('dog');
-  if (dogParam) {
-    const dogSelect = document.getElementById('dog_interest') as HTMLSelectElement;
-    if (dogSelect) {
-      for (const opt of dogSelect.options) {
-        if (opt.value.toLowerCase() === dogParam.toLowerCase()) {
-          opt.selected = true;
-          break;
-        }
-      }
-    }
   }
 </script>
