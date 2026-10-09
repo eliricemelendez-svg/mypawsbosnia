@@ -122,9 +122,25 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
             <p class="text-xs text-body mt-1">Many landlords are happy to allow dogs. If you're unsure, we can help.</p>
           </div>
           <div>
-            <label for="household" class="block text-sm font-medium text-slate-dark mb-1">Who lives in your home? *</label>
-            <input type="text" id="household" name="household" required placeholder="e.g. 2 adults, 1 child (age 6)" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-            <p class="text-xs text-body mt-1">Number of adults, children, and ages of children.</p>
+            <p class="text-sm font-medium text-slate-dark mb-2">Who lives in your home? *</p>
+            <div class="flex flex-wrap gap-2 mb-3" id="household-bubbles">
+              <button type="button" data-person="Partner / Spouse" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Partner / Spouse</button>
+              <button type="button" data-person="Children" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Children</button>
+              <button type="button" data-person="Flatmates" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Flatmates</button>
+              <button type="button" data-person="Grandparents" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Grandparents</button>
+              <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Other</button>
+            </div>
+            <div id="household-counts" class="space-y-3"></div>
+            <input type="hidden" id="household_types" name="household" value="Just me" />
+            <div id="household-children-ages" class="hidden mt-3">
+              <label for="children_ages" class="block text-sm font-medium text-slate-dark mb-1">Ages of children</label>
+              <input type="text" id="children_ages" name="children_ages" placeholder="e.g. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div class="mt-3">
+              <label for="household_extra" class="block text-sm font-medium text-slate-dark mb-1">Extra details?</label>
+              <input type="text" id="household_extra" name="household_extra" placeholder="e.g. my partner works from home" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <p class="text-xs text-body mt-1">Select all that apply. If you live alone, leave them unselected.</p>
           </div>
         </div>
       </div>
@@ -355,6 +371,76 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
 
     if (petTypesInput) petTypesInput.value = Array.from(selectedPets).join(', ');
   }
+
+  // Household bubbles
+  const selectedHousehold = new Set<string>();
+  const householdBubbles = document.querySelectorAll<HTMLButtonElement>('.household-bubble');
+  const householdTypesInput = document.getElementById('household_types') as HTMLInputElement;
+  const householdCountsDiv = document.getElementById('household-counts');
+  const childrenAgesDiv = document.getElementById('household-children-ages');
+
+  function updateHouseholdCounts() {
+    if (!householdCountsDiv) return;
+    householdCountsDiv.innerHTML = '';
+    selectedHousehold.forEach((person) => {
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-3';
+      row.innerHTML = `
+        <label class="text-sm text-slate-dark w-32">${person}</label>
+        <div class="flex items-center gap-2">
+          <button type="button" class="hh-minus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-person="${person}">-</button>
+          <span class="hh-count text-sm font-semibold text-slate-dark w-6 text-center" data-person="${person}">1</span>
+          <button type="button" class="hh-plus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-person="${person}">+</button>
+        </div>
+        <input type="hidden" name="household_count_${person.toLowerCase().replace(/[\s\/]/g, '_')}" value="1" class="hh-count-input" data-person="${person}" />
+      `;
+      householdCountsDiv.appendChild(row);
+    });
+
+    householdCountsDiv.querySelectorAll('.hh-plus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const person = (btn as HTMLElement).dataset.person!;
+        const countEl = householdCountsDiv!.querySelector(`.hh-count[data-person="${person}"]`) as HTMLElement;
+        const inputEl = householdCountsDiv!.querySelector(`.hh-count-input[data-person="${person}"]`) as HTMLInputElement;
+        const val = Math.min(parseInt(countEl.textContent || '1') + 1, 20);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+    householdCountsDiv.querySelectorAll('.hh-minus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const person = (btn as HTMLElement).dataset.person!;
+        const countEl = householdCountsDiv!.querySelector(`.hh-count[data-person="${person}"]`) as HTMLElement;
+        const inputEl = householdCountsDiv!.querySelector(`.hh-count-input[data-person="${person}"]`) as HTMLInputElement;
+        const val = Math.max(parseInt(countEl.textContent || '1') - 1, 1);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+
+    if (householdTypesInput) {
+      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Just me';
+    }
+    if (childrenAgesDiv) {
+      childrenAgesDiv.classList.toggle('hidden', !selectedHousehold.has('Children'));
+    }
+  }
+
+  householdBubbles.forEach((bubble) => {
+    bubble.addEventListener('click', () => {
+      const person = bubble.dataset.person!;
+      if (selectedHousehold.has(person)) {
+        selectedHousehold.delete(person);
+        bubble.classList.remove('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.add('text-body', 'border-gray-200');
+      } else {
+        selectedHousehold.add(person);
+        bubble.classList.add('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.remove('text-body', 'border-gray-200');
+      }
+      updateHouseholdCounts();
+    });
+  });
 
   petBubbles.forEach((bubble) => {
     bubble.addEventListener('click', () => {
