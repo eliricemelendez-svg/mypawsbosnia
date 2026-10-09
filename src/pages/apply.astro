@@ -295,6 +295,27 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
               <p class="text-xs text-body mt-1">First-time owners are welcome. We're here to help.</p>
             </div>
+            <div id="rescue-row" class="hidden">
+              <label for="was_rescue" class="block text-sm font-medium text-body mb-2">Was your dog a rescue?</label>
+              <select id="was_rescue" name="was_rescue" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div>
+              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">What does a typical day look like for you? *</label>
+              <select id="daily_routine" name="daily_routine" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Work from home">I work from home</option>
+                <option value="Work outside (full-time)">I work outside the home (full-time)</option>
+                <option value="Work outside (part-time)">I work outside the home (part-time)</option>
+                <option value="Retired">I'm retired</option>
+                <option value="Student">I'm a student</option>
+                <option value="Stay-at-home parent">I'm a stay-at-home parent</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
             <div>
               <label for="has_pets" class="block text-sm font-medium text-body mb-2">Do you currently have any pets? *</label>
               <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
@@ -634,6 +655,17 @@ const dogPhotoData = currentDogs.map((dog) => {
       const isYes = gardenSelect.value === 'Yes';
       fenceRow.classList.toggle('hidden', !isYes);
       if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
+    });
+  }
+
+  // Show/hide rescue question based on dog experience
+  const dogExpSelect = document.getElementById('dog_experience') as HTMLSelectElement;
+  const rescueRow = document.getElementById('rescue-row');
+  if (dogExpSelect && rescueRow) {
+    dogExpSelect.addEventListener('change', () => {
+      const isYes = dogExpSelect.value === 'Yes';
+      rescueRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
     });
   }
 
