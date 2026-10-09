@@ -1,0 +1,236 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { currentDogs } from "../data/current-dogs";
+
+const dogNames = currentDogs.map((d) => d.name);
+---
+
+<Layout title="Apply to Adopt | My Paws Bosnia" description="Fill out our adoption application form. We review every application and usually respond within a few days." lang="en">
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Apply to Adopt</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">Tell us a little about yourself and the dog you're interested in. We review every application and usually respond within a few days.</p>
+    </div>
+  </section>
+
+  <section class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <form id="adopt-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-10">
+      <input type="hidden" name="access_key" value="82e1cf41-2872-4b2a-92e3-8d373b609503" />
+      <input type="hidden" name="subject" value="New Adoption Application - My Paws Bosnia" />
+      <input type="hidden" name="from_name" value="My Paws Bosnia Adoption Form" />
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+      <!-- About You -->
+      <div>
+        <h2 class="text-xl font-semibold text-slate-dark mb-6">About you</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-dark mb-1">Full name *</label>
+            <input type="text" id="name" name="name" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-dark mb-1">Email address *</label>
+            <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium text-slate-dark mb-1">Phone number (with country code) *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+44 7700 900000" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="country" class="block text-sm font-medium text-slate-dark mb-1">Country *</label>
+              <input type="text" id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="city" class="block text-sm font-medium text-slate-dark mb-1">City *</label>
+              <input type="text" id="city" name="city" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Your Home -->
+      <div>
+        <h2 class="text-xl font-semibold text-slate-dark mb-6">Your home</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="home_type" class="block text-sm font-medium text-slate-dark mb-1">Do you live in a house or apartment? *</label>
+            <select id="home_type" name="home_type" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="House">House</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Farm / Rural property">Farm / Rural property</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="garden" class="block text-sm font-medium text-slate-dark mb-1">Do you have a garden or yard? *</label>
+            <select id="garden" name="garden" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div id="fence-row" class="hidden">
+            <label for="fence_height" class="block text-sm font-medium text-slate-dark mb-1">How high is the fencing?</label>
+            <input type="text" id="fence_height" name="fence_height" placeholder="e.g. 1.5 metres" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+          <div>
+            <label for="own_rent" class="block text-sm font-medium text-slate-dark mb-1">Do you own or rent? *</label>
+            <select id="own_rent" name="own_rent" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="Own">Own</option>
+              <option value="Rent - landlord allows dogs">Rent - landlord allows dogs</option>
+              <option value="Rent - need to check with landlord">Rent - need to check with landlord</option>
+            </select>
+          </div>
+          <div>
+            <label for="household" class="block text-sm font-medium text-slate-dark mb-1">Who lives in your home? (number of adults, children + ages) *</label>
+            <input type="text" id="household" name="household" required placeholder="e.g. 2 adults, 1 child (age 6)" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Pets & Experience -->
+      <div>
+        <h2 class="text-xl font-semibold text-slate-dark mb-6">Pets & experience</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="dog_experience" class="block text-sm font-medium text-slate-dark mb-1">Have you owned a dog before? *</label>
+            <select id="dog_experience" name="dog_experience" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="Yes">Yes</option>
+              <option value="No, first time">No, this would be my first dog</option>
+            </select>
+          </div>
+          <div>
+            <label for="current_pets" class="block text-sm font-medium text-slate-dark mb-1">Do you currently have any pets? If yes, please describe.</label>
+            <input type="text" id="current_pets" name="current_pets" placeholder="e.g. 1 cat, 2 years old" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+        </div>
+      </div>
+
+      <!-- About the Adoption -->
+      <div>
+        <h2 class="text-xl font-semibold text-slate-dark mb-6">About the adoption</h2>
+        <div class="space-y-4">
+          <div>
+            <label for="dog_interest" class="block text-sm font-medium text-slate-dark mb-1">Which dog are you interested in? *</label>
+            <select id="dog_interest" name="dog_interest" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select a dog...</option>
+              {dogNames.map((name) => (
+                <option value={name}>{name}</option>
+              ))}
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label for="hours_alone" class="block text-sm font-medium text-slate-dark mb-1">How many hours per day will the dog be left alone? *</label>
+            <select id="hours_alone" name="hours_alone" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="0-2 hours">0-2 hours</option>
+              <option value="2-4 hours">2-4 hours</option>
+              <option value="4-6 hours">4-6 hours</option>
+              <option value="6-8 hours">6-8 hours</option>
+              <option value="8+ hours">8+ hours</option>
+            </select>
+          </div>
+          <div>
+            <label for="sleep" class="block text-sm font-medium text-slate-dark mb-1">Where will the dog sleep?</label>
+            <input type="text" id="sleep" name="sleep" placeholder="e.g. in the living room, in our bedroom" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+          </div>
+          <div>
+            <label for="home_check" class="block text-sm font-medium text-slate-dark mb-1">Are you willing to do a home check (virtual or in person)? *</label>
+            <select id="home_check" name="home_check" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-dark mb-1">Anything else you'd like us to know?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us anything else about yourself, your experience, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center pt-4">
+        <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base">Submit Application</button>
+        <p class="text-xs text-body mt-3">We review every application and will be in touch within a few days.</p>
+      </div>
+    </form>
+
+    <!-- Success message (hidden by default) -->
+    <div id="success-msg" class="hidden text-center py-16">
+      <div class="text-5xl mb-4">🐾</div>
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Application received!</h2>
+      <p class="text-body mb-6">Thank you for your interest in adopting. We review every application carefully and will be in touch within a few days.</p>
+      <p class="text-body mb-8">Want to follow up or ask questions? You can reach us directly:</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Message us on WhatsApp</a>
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Message us on Facebook</a>
+      </div>
+      <div class="mt-8">
+        <a href="/adopt" class="text-teal font-medium hover:underline">&larr; Back to all dogs</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Show/hide fence height based on garden answer
+  const gardenSelect = document.getElementById('garden') as HTMLSelectElement;
+  const fenceRow = document.getElementById('fence-row');
+  if (gardenSelect && fenceRow) {
+    gardenSelect.addEventListener('change', () => {
+      fenceRow.classList.toggle('hidden', gardenSelect.value !== 'Yes');
+    });
+  }
+
+  // Handle form submission
+  const form = document.getElementById('adopt-form') as HTMLFormElement;
+  const successMsg = document.getElementById('success-msg');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  if (form && successMsg) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+
+        if (res.ok) {
+          form.classList.add('hidden');
+          successMsg.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          throw new Error('Failed');
+        }
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Application';
+        alert('Something went wrong. Please try again or contact us directly on Facebook or WhatsApp.');
+      }
+    });
+  }
+
+  // Pre-select dog from URL param (e.g. /apply?dog=Luna)
+  const params = new URLSearchParams(window.location.search);
+  const dogParam = params.get('dog');
+  if (dogParam) {
+    const dogSelect = document.getElementById('dog_interest') as HTMLSelectElement;
+    if (dogSelect) {
+      for (const opt of dogSelect.options) {
+        if (opt.value.toLowerCase() === dogParam.toLowerCase()) {
+          opt.selected = true;
+          break;
+        }
+      }
+    }
+  }
+</script>
