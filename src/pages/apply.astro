@@ -21,6 +21,7 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
       <input type="hidden" name="subject" value="New Adoption Application - My Paws Bosnia" />
       <input type="hidden" name="from_name" value="My Paws Bosnia Adoption Form" />
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+      <input type="hidden" id="whatsapp_link" name="WhatsApp Link (click to chat)" value="" />
 
       <!-- About You -->
       <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
@@ -140,8 +141,31 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
             <p class="text-xs text-body mt-1">First-time owners are welcome. We're here to help.</p>
           </div>
           <div>
-            <label for="current_pets" class="block text-sm font-medium text-slate-dark mb-1">Do you currently have any pets? If yes, please describe.</label>
-            <input type="text" id="current_pets" name="current_pets" placeholder="e.g. 1 cat (3 years old), 1 dog (Labrador, 5 years old)" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            <label for="has_pets" class="block text-sm font-medium text-slate-dark mb-1">Do you currently have any pets? *</label>
+            <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+              <option value="">Select...</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div id="pets-detail" class="hidden space-y-4">
+            <div>
+              <p class="text-sm font-medium text-slate-dark mb-2">What pets do you have?</p>
+              <div class="flex flex-wrap gap-2" id="pet-bubbles">
+                <button type="button" data-pet="Dogs" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Dogs</button>
+                <button type="button" data-pet="Cats" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Cats</button>
+                <button type="button" data-pet="Rabbits" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Rabbits</button>
+                <button type="button" data-pet="Birds" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Birds</button>
+                <button type="button" data-pet="Fish" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Fish</button>
+                <button type="button" data-pet="Other" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-sm text-body hover:border-teal hover:text-teal transition-colors">Other</button>
+              </div>
+              <input type="hidden" id="pet_types" name="pet_types" />
+            </div>
+            <div id="pet-counts" class="space-y-3"></div>
+            <div>
+              <label for="pets_extra" class="block text-sm font-medium text-slate-dark mb-1">Any extra details? (ages, breeds, etc.)</label>
+              <input type="text" id="pets_extra" name="pets_extra" placeholder="e.g. Labrador, 5 years old, very friendly" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
           </div>
         </div>
       </div>
@@ -190,8 +214,13 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
             <p class="text-xs text-body mt-1">This can be done over video call. It's a quick, friendly chat to make sure the dog is a good fit.</p>
           </div>
           <div>
+            <label for="questions" class="block text-sm font-medium text-slate-dark mb-1">Any questions about the dog?</label>
+            <textarea id="questions" name="questions" rows="3" placeholder="e.g. How is the dog with cats? Does the dog have any health issues? What food do they eat?" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            <p class="text-xs text-body mt-1">We're happy to answer anything. No question is too small.</p>
+          </div>
+          <div>
             <label for="message" class="block text-sm font-medium text-slate-dark mb-1">Anything else you'd like us to know?</label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell us about yourself, your lifestyle, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            <textarea id="message" name="message" rows="3" placeholder="Tell us about yourself, your lifestyle, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
           </div>
         </div>
       </div>
@@ -262,6 +291,80 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
     });
   }
 
+  // Show/hide pet details based on has_pets answer
+  const hasPetsSelect = document.getElementById('has_pets') as HTMLSelectElement;
+  const petsDetail = document.getElementById('pets-detail');
+  if (hasPetsSelect && petsDetail) {
+    hasPetsSelect.addEventListener('change', () => {
+      petsDetail.classList.toggle('hidden', hasPetsSelect.value !== 'Yes');
+    });
+  }
+
+  // Pet type bubbles
+  const selectedPets = new Set<string>();
+  const petBubbles = document.querySelectorAll<HTMLButtonElement>('.pet-bubble');
+  const petTypesInput = document.getElementById('pet_types') as HTMLInputElement;
+  const petCountsDiv = document.getElementById('pet-counts');
+
+  function updatePetCounts() {
+    if (!petCountsDiv) return;
+    petCountsDiv.innerHTML = '';
+    selectedPets.forEach((pet) => {
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-3';
+      row.innerHTML = `
+        <label class="text-sm text-slate-dark w-20">${pet}</label>
+        <div class="flex items-center gap-2">
+          <button type="button" class="pet-minus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-pet="${pet}">-</button>
+          <span class="pet-count text-sm font-semibold text-slate-dark w-6 text-center" data-pet="${pet}">1</span>
+          <button type="button" class="pet-plus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-pet="${pet}">+</button>
+        </div>
+        <input type="hidden" name="pet_count_${pet.toLowerCase()}" value="1" class="pet-count-input" data-pet="${pet}" />
+      `;
+      petCountsDiv.appendChild(row);
+    });
+
+    // Attach +/- listeners
+    petCountsDiv.querySelectorAll('.pet-plus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pet = (btn as HTMLElement).dataset.pet!;
+        const countEl = petCountsDiv!.querySelector(`.pet-count[data-pet="${pet}"]`) as HTMLElement;
+        const inputEl = petCountsDiv!.querySelector(`.pet-count-input[data-pet="${pet}"]`) as HTMLInputElement;
+        const val = Math.min(parseInt(countEl.textContent || '1') + 1, 20);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+    petCountsDiv.querySelectorAll('.pet-minus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pet = (btn as HTMLElement).dataset.pet!;
+        const countEl = petCountsDiv!.querySelector(`.pet-count[data-pet="${pet}"]`) as HTMLElement;
+        const inputEl = petCountsDiv!.querySelector(`.pet-count-input[data-pet="${pet}"]`) as HTMLInputElement;
+        const val = Math.max(parseInt(countEl.textContent || '1') - 1, 1);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+
+    if (petTypesInput) petTypesInput.value = Array.from(selectedPets).join(', ');
+  }
+
+  petBubbles.forEach((bubble) => {
+    bubble.addEventListener('click', () => {
+      const pet = bubble.dataset.pet!;
+      if (selectedPets.has(pet)) {
+        selectedPets.delete(pet);
+        bubble.classList.remove('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.add('text-body', 'border-gray-200');
+      } else {
+        selectedPets.add(pet);
+        bubble.classList.add('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.remove('text-body', 'border-gray-200');
+      }
+      updatePetCounts();
+    });
+  });
+
   // Handle form submission
   const form = document.getElementById('adopt-form') as HTMLFormElement;
   const successMsg = document.getElementById('success-msg');
@@ -272,6 +375,17 @@ const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
       e.preventDefault();
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
+
+      // Build WhatsApp click-to-chat link from phone number
+      const phoneInput = (document.getElementById('phone') as HTMLInputElement)?.value || '';
+      const cleanPhone = phoneInput.replace(/[\s\-\(\)]/g, '').replace(/^\+/, '');
+      const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
+      const selectedDogName = (document.getElementById('dog_interest') as HTMLSelectElement)?.value || '';
+      const waMessage = encodeURIComponent(`Hi ${applicantName}! This is My Paws Bosnia. We received your adoption application${selectedDogName && selectedDogName !== 'Not sure yet' ? ` for ${selectedDogName}` : ''}. We'd love to chat with you about the next steps!`);
+      const waLink = document.getElementById('whatsapp_link') as HTMLInputElement;
+      if (waLink && cleanPhone) {
+        waLink.value = `https://wa.me/${cleanPhone}?text=${waMessage}`;
+      }
 
       try {
         const res = await fetch(form.action, {
