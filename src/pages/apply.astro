@@ -97,34 +97,6 @@ const dogPhotoData = currentDogs.map((dog) => {
         <p id="dog-select-error" class="text-red-500 text-sm mt-2 hidden">Please select a dog to continue.</p>
       </div>
 
-      <!-- Dog photo carousel (appears after selection) -->
-      <div id="dog-showcase" class="hidden mb-8">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div class="md:flex">
-            <!-- Photo carousel -->
-            <div class="md:w-1/2 relative">
-              <div class="aspect-square md:aspect-auto md:h-full relative overflow-hidden" id="showcase-carousel">
-                <div class="flex h-full transition-transform duration-300 ease-in-out" id="showcase-track">
-                  <!-- Photos injected by JS -->
-                </div>
-                <button type="button" id="showcase-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
-                <button type="button" id="showcase-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
-                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="showcase-dots"></div>
-              </div>
-            </div>
-            <!-- Dog info -->
-            <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
-              <h3 id="showcase-name" class="text-2xl font-bold text-slate-dark"></h3>
-              <p id="showcase-line" class="text-body mt-2"></p>
-              <div class="mt-4">
-                <a id="showcase-profile-link" href="#" class="text-teal font-medium hover:underline text-sm">View full profile &rarr;</a>
-              </div>
-              <button type="button" id="change-dog-btn" class="mt-4 text-sm text-body hover:text-teal transition-colors underline text-left">Choose a different dog</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Photo data for JS -->
       {dogPhotoData.map((dog) => (
         <template data-dog-photos={dog.name}>
@@ -137,8 +109,40 @@ const dogPhotoData = currentDogs.map((dog) => {
         dogPhotoData.map(d => ({ name: d.name, slug: d.slug, shortLine: d.shortLine, photoCount: d.photos.length }))
       )} />
 
-      <!-- REST OF FORM (hidden until dog is selected) -->
-      <div id="form-fields" class="hidden space-y-8">
+      <!-- TWO-COLUMN LAYOUT: Dog on left, form on right (hidden until dog selected) -->
+      <div id="form-fields" class="hidden">
+        <div class="flex flex-col lg:flex-row gap-8">
+
+          <!-- LEFT: Dog showcase (sticky on desktop) -->
+          <div id="dog-showcase" class="lg:w-5/12">
+            <div class="lg:sticky lg:top-24">
+              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <!-- Photo carousel -->
+                <div class="relative">
+                  <div class="aspect-square relative overflow-hidden" id="showcase-carousel">
+                    <div class="flex h-full transition-transform duration-300 ease-in-out" id="showcase-track">
+                      <!-- Photos injected by JS -->
+                    </div>
+                    <button type="button" id="showcase-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
+                    <button type="button" id="showcase-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="showcase-dots"></div>
+                  </div>
+                </div>
+                <!-- Dog info -->
+                <div class="p-5">
+                  <h3 id="showcase-name" class="text-2xl font-bold text-slate-dark"></h3>
+                  <p id="showcase-line" class="text-body mt-2 text-sm"></p>
+                  <div class="mt-3 flex items-center gap-4">
+                    <a id="showcase-profile-link" href="#" class="text-teal font-medium hover:underline text-sm">View full profile &rarr;</a>
+                    <button type="button" id="change-dog-btn" class="text-sm text-body hover:text-teal transition-colors underline">Change dog</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Form fields -->
+          <div class="lg:w-7/12 space-y-8">
 
         <!-- About You -->
         <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
@@ -362,7 +366,10 @@ const dogPhotoData = currentDogs.map((dog) => {
           <p class="text-sm text-body mt-4">We've helped over 20 dogs find loving homes across Europe and the UK.</p>
           <p class="text-xs text-body mt-1">We review every application and will be in touch within a few days.</p>
         </div>
-      </div>
+
+          </div><!-- end right column -->
+        </div><!-- end flex row -->
+      </div><!-- end form-fields -->
     </form>
 
     <!-- Success message -->
@@ -371,6 +378,18 @@ const dogPhotoData = currentDogs.map((dog) => {
         <div class="text-5xl mb-4">🐾</div>
         <h2 class="text-2xl font-bold text-slate-dark mb-2">Thank you for applying!</h2>
         <p class="text-lg text-body mb-6" id="success-dog-text">We're so excited that you're interested in giving a rescue dog a loving home.</p>
+
+        <!-- Dog photos on success screen -->
+        <div id="success-photos" class="hidden mb-8">
+          <div class="relative rounded-2xl overflow-hidden max-w-md mx-auto">
+            <div class="aspect-square relative overflow-hidden" id="success-carousel">
+              <div class="flex h-full transition-transform duration-300 ease-in-out" id="success-track"></div>
+              <button type="button" id="success-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
+              <button type="button" id="success-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="success-dots"></div>
+            </div>
+          </div>
+        </div>
 
         <div class="bg-light-bg rounded-xl p-6 mb-8 text-left max-w-md mx-auto">
           <h3 class="font-semibold text-slate-dark mb-3 text-center">What happens next?</h3>
@@ -454,8 +473,8 @@ const dogPhotoData = currentDogs.map((dog) => {
     dogSelector?.classList.add('hidden');
 
     // Get the first photo for the thumb
-    const template = document.querySelector(`template[data-dog-photos="${name}"]`);
-    const firstImg = template?.content.querySelector('img');
+    const thumbTemplate = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const firstImg = thumbTemplate?.content.querySelector('img');
 
     if (selectedDogThumb && firstImg && name !== 'Not sure yet') {
       selectedDogThumb.src = firstImg.src;
@@ -739,6 +758,43 @@ const dogPhotoData = currentDogs.map((dog) => {
             const successText = document.getElementById('success-dog-text');
             if (successText) {
               successText.textContent = `We're so excited that you're interested in ${selectedDogName}! Here's what happens next.`;
+            }
+            // Show dog photos on success screen
+            const successPhotos = document.getElementById('success-photos');
+            const successTrack = document.getElementById('success-track');
+            const successDotsEl = document.getElementById('success-dots');
+            const tmpl = document.querySelector(`template[data-dog-photos="${selectedDogName}"]`);
+            if (successPhotos && successTrack && successDotsEl && tmpl) {
+              successTrack.innerHTML = '';
+              successDotsEl.innerHTML = '';
+              const imgs = tmpl.content.querySelectorAll('img');
+              let sCurrent = 0;
+              const sCount = imgs.length;
+              imgs.forEach((img) => {
+                const slide = document.createElement('div');
+                slide.className = 'w-full h-full flex-shrink-0';
+                const newImg = document.createElement('img');
+                newImg.src = img.src;
+                newImg.alt = img.alt;
+                newImg.className = 'w-full h-full object-cover object-top';
+                slide.appendChild(newImg);
+                successTrack.appendChild(slide);
+              });
+              for (let i = 0; i < sCount; i++) {
+                const dot = document.createElement('span');
+                dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
+                successDotsEl.appendChild(dot);
+              }
+              function sGoTo(i: number) {
+                sCurrent = (i + sCount) % sCount;
+                successTrack!.style.transform = `translateX(-${sCurrent * 100}%)`;
+                successDotsEl!.querySelectorAll('span').forEach((d, idx) => {
+                  d.className = `block w-2.5 h-2.5 rounded-full ${idx === sCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
+                });
+              }
+              document.getElementById('success-prev')?.addEventListener('click', () => sGoTo(sCurrent - 1));
+              document.getElementById('success-next')?.addEventListener('click', () => sGoTo(sCurrent + 1));
+              successPhotos.classList.remove('hidden');
             }
           }
           form.classList.add('hidden');
