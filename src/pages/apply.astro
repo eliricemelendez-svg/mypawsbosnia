@@ -80,6 +80,19 @@ const dogPhotoData = currentDogs.map((dog) => {
             </div>
           </button>
         </div>
+
+        <!-- Collapsed state (shown after selection) -->
+        <div id="dog-selected-bar" class="hidden flex items-center justify-between bg-light-bg rounded-xl p-4">
+          <div class="flex items-center gap-3">
+            <img id="selected-dog-thumb" src="" alt="" class="w-12 h-12 rounded-full object-cover" />
+            <div>
+              <p class="font-semibold text-slate-dark" id="selected-dog-name-text"></p>
+              <p class="text-xs text-body">Selected for adoption</p>
+            </div>
+          </div>
+          <button type="button" id="change-dog-bar-btn" class="text-sm text-teal font-medium hover:underline">Change</button>
+        </div>
+
         <input type="hidden" id="dog_interest" name="dog_interest" value="" required />
         <p id="dog-select-error" class="text-red-500 text-sm mt-2 hidden">Please select a dog to continue.</p>
       </div>
@@ -396,6 +409,10 @@ const dogPhotoData = currentDogs.map((dog) => {
   const dogInput = document.getElementById('dog_interest') as HTMLInputElement;
   const dogShowcase = document.getElementById('dog-showcase');
   const dogSelector = document.getElementById('dog-selector');
+  const dogSelectedBar = document.getElementById('dog-selected-bar');
+  const selectedDogThumb = document.getElementById('selected-dog-thumb') as HTMLImageElement;
+  const selectedDogNameText = document.getElementById('selected-dog-name-text');
+  const changeDogBarBtn = document.getElementById('change-dog-bar-btn');
   const formFields = document.getElementById('form-fields');
   const showcaseTrack = document.getElementById('showcase-track');
   const showcaseDots = document.getElementById('showcase-dots');
@@ -433,16 +450,22 @@ const dogPhotoData = currentDogs.map((dog) => {
     dogInput.value = name;
     dogError?.classList.add('hidden');
 
-    // Highlight selected button
-    dogBtns.forEach((btn) => {
-      if (btn.dataset.dog === name) {
-        btn.classList.add('border-teal', 'ring-2', 'ring-teal');
-        btn.classList.remove('border-gray-100');
-      } else {
-        btn.classList.remove('border-teal', 'ring-2', 'ring-teal');
-        btn.classList.add('border-gray-100');
-      }
-    });
+    // Collapse the grid, show the selected bar
+    dogSelector?.classList.add('hidden');
+
+    // Get the first photo for the thumb
+    const template = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const firstImg = template?.content.querySelector('img');
+
+    if (selectedDogThumb && firstImg && name !== 'Not sure yet') {
+      selectedDogThumb.src = firstImg.src;
+      selectedDogThumb.alt = name;
+      selectedDogThumb.classList.remove('hidden');
+    } else if (selectedDogThumb) {
+      selectedDogThumb.classList.add('hidden');
+    }
+    if (selectedDogNameText) selectedDogNameText.textContent = name;
+    dogSelectedBar?.classList.remove('hidden');
 
     if (name === 'Not sure yet') {
       dogShowcase?.classList.add('hidden');
@@ -501,16 +524,21 @@ const dogPhotoData = currentDogs.map((dog) => {
     });
   });
 
-  changeDogBtn?.addEventListener('click', () => {
+  function resetDogSelection() {
     dogShowcase?.classList.add('hidden');
     formFields?.classList.add('hidden');
+    dogSelectedBar?.classList.add('hidden');
+    dogSelector?.classList.remove('hidden');
     dogInput.value = '';
     dogBtns.forEach((btn) => {
       btn.classList.remove('border-teal', 'ring-2', 'ring-teal');
       btn.classList.add('border-gray-100');
     });
     dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  }
+
+  changeDogBtn?.addEventListener('click', resetDogSelection);
+  changeDogBarBtn?.addEventListener('click', resetDogSelection);
 
   // Pre-select from URL param
   const params = new URLSearchParams(window.location.search);
