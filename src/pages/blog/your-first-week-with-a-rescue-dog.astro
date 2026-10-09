@@ -1,0 +1,324 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Your First Week with a Rescue Dog | My Paws Bosnia";
+const description = "What to expect in the first days and weeks after bringing a rescue dog home. The 3-3-3 rule, common stress behaviours, when to call the vet, and how to help your dog settle.";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Your First Week with a Rescue Dog",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/blog/your-first-week-with-a-rescue-dog",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is it normal for a rescue dog not to eat the first day?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Many rescue dogs skip meals for the first day or two due to stress and a new environment. This is completely normal. If your dog refuses food for more than 48 hours or will not drink water, contact your vet."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What is the 3-3-3 rule for rescue dogs?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The 3-3-3 rule is a general timeline for rescue dog adjustment: 3 days to decompress and feel overwhelmed, 3 weeks to learn your routine and start settling, and 3 months to fully feel at home and show their true personality."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Why does my rescue dog have diarrhea?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Stress diarrhea is extremely common in newly adopted dogs. A change in environment, food, water, and routine can upset their stomach. It usually resolves within a day or two. If diarrhea lasts more than 48 hours, contains blood, or your dog stops drinking water, call your vet."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "How long does it take a rescue dog to adjust?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Most rescue dogs take around 3 months to fully settle into a new home. You will see steady improvements week by week. The dog you see on day one is not the dog you will have in three months. They get more confident, playful, and affectionate with time."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="en" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">After Adoption</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Your First Week with a Rescue Dog</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        Your dog is home. You have been waiting for this moment, and now everything feels a bit chaotic. That is completely normal. Your dog has been through shelter life, vet visits, and a long transport journey. They need time. Here is what to expect and how to help them settle.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- The 3-3-3 Rule -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">The 3-3-3 rule</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Rescue dog professionals use the 3-3-3 rule as a rough timeline for what adjustment looks like. It is not exact, but it helps set realistic expectations.
+      </p>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3d</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 days: decompression</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Your dog may be shut down, overwhelmed, or anxious. They might not eat, might hide behind furniture, or might just sleep. Some dogs pace or pant. Others freeze in a corner and barely move. This is stress, not a personality trait. Give them space. Keep the house quiet.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3w</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 weeks: learning the routine</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Your dog starts to understand when meals happen, when walks happen, and where they sleep. They begin to relax. You might see the first tail wag, the first playful moment, or the first time they choose to sit near you. They are testing the waters. Keep the routine consistent.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3m</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 months: feeling at home</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              This is when you meet the real dog. They feel safe. They know the routine. They trust you. Their true personality comes out. The dog you see at three months is often completely different from the dog that arrived on day one. More confident, more playful, more affectionate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to expect in the first few days -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">What to expect in the first few days</h2>
+      <p class="text-body leading-relaxed mb-4">
+        None of these things mean something is wrong with your dog. They are normal stress responses from a dog adjusting to an entirely new world.
+      </p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Not eating.</strong> Many dogs skip meals for the first day or two. Their stomach is in knots from the stress and the journey. Do not panic. Offer food and water, then walk away. They will eat when they are ready.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Diarrhea.</strong> Stress diarrhea is extremely common. New food, new water, new environment. It usually clears up in a day or two. More on when to worry below.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Hiding.</strong> Under the bed, behind the sofa, in the corner. They are looking for a safe, enclosed space. Let them have it. Do not drag them out. Sit nearby and just exist. They will come to you.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Scared of everyday things.</strong> The TV, the washing machine, stairs, hardwood floors, cars, the doorbell. Many rescue dogs have never been inside a house before. Everything is new. Introduce things slowly and let them investigate on their own terms.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Accidents in the house.</strong> Even housetrained dogs may have accidents the first week. They do not know where the door is. They do not know how to tell you they need to go out. Take them outside frequently, especially after meals and naps.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Not wanting to walk.</strong> Some dogs freeze on the lead. They do not know what a pavement is, or they are overwhelmed by traffic noise. Keep walks very short and close to home at first. Build up gradually.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Practical tips -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Practical tips for the first week</h2>
+      <div class="space-y-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Keep the house calm</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            No parties. No visitors. No excited introductions to all the neighbours. Your dog needs a quiet, predictable environment. Ask friends and family to wait at least a week or two before visiting.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Set up a safe space</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Put their bed in a quiet corner, away from foot traffic. A crate with the door left open can work well too. Add a blanket and a water bowl nearby. This is their retreat when things feel overwhelming.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Establish a routine early</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Same feeding times, same walk times, same bedtime. Dogs thrive on predictability, and rescue dogs especially so. A routine tells them the world makes sense and they can rely on it.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Let the dog come to you</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Resist the urge to constantly pet, cuddle, and pick them up. Sit on the floor nearby. Talk softly. Let them approach you when they are ready. Forcing affection on a stressed dog can make things worse.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Use the garden</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            If you have a garden, let them explore it. It is a controlled, safe outdoor space where they can sniff, relax, and start learning that outside is not scary. Always supervise until you are confident in your fencing.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Go slow with other pets</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            If you have other animals, introduce them gradually. Use gates or separate rooms at first. Let them sniff under the door before meeting face to face. Do not force a friendship. It will happen on its own timeline.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- When to call the vet -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">When to call the vet vs. when it is just stress</h2>
+      <p class="text-body leading-relaxed mb-6">
+        It can be hard to tell the difference between normal stress behaviours and something that needs medical attention. Here is a simple guide.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="border border-gray-100 rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark mb-3">Probably just stress</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Not eating for the first 24 to 48 hours</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Soft stool or diarrhea for a day or two</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Panting, pacing, or whining</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Hiding or wanting to be alone</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Sleeping more than usual</span>
+            </li>
+          </ul>
+        </div>
+        <div class="border-2 border-red-200 rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark mb-3">Call the vet</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Not eating for more than 48 hours</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Refusing to drink water</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Diarrhea lasting more than 48 hours</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Blood in stool or vomit</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Lethargy combined with loss of appetite</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Discharge from eyes or nose</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-body leading-relaxed mt-4">
+        When in doubt, call your vet. It is always better to check and have it be nothing than to wait too long. Register with a local vet before your dog arrives so you have somewhere to go if needed.
+      </p>
+    </section>
+
+    <!-- Remember what they have been through -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Remember what they have been through</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Your dog may have lived on the streets. They may have been in a public shelter where dogs were crammed into concrete pens. They may have never been inside a house, never walked on a lead, never heard a television. Then they were put in a van and driven across Europe for two days.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        Everything in your home is new. The smells, the sounds, the surfaces, the people. Even kindness can be confusing if they have not experienced much of it.
+      </p>
+      <p class="text-body leading-relaxed">
+        Give them grace. The first week can be messy, frustrating, and emotional. You might wonder if you made the right decision. You did. It gets better every single day. The dog curled up on your sofa in three months will be worth every difficult moment this week.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Is it normal for a rescue dog not to eat the first day?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Yes. Many rescue dogs skip meals for the first day or two due to stress and a new environment. This is completely normal. Offer food and fresh water, then give them space. If your dog refuses food for more than 48 hours or will not drink water, contact your vet.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            What is the 3-3-3 rule for rescue dogs?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            The 3-3-3 rule is a general timeline for rescue dog adjustment. Three days to decompress and feel overwhelmed. Three weeks to learn your routine and start settling. Three months to fully feel at home and show their true personality. Every dog is different, but this framework helps set realistic expectations.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Why does my rescue dog have diarrhea?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Stress diarrhea is extremely common in newly adopted dogs. A change in environment, food, water, and routine can upset their stomach. It usually resolves within a day or two. If diarrhea lasts more than 48 hours, contains blood, or your dog stops drinking water, call your vet.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            How long does it take a rescue dog to adjust?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Most rescue dogs take around three months to fully settle into a new home. You will see steady improvements week by week. The dog you see on day one is not the dog you will have in three months. They get more confident, playful, and affectionate with time.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Thinking about adopting?</h2>
+      <p class="text-body mb-6">Every one of our dogs is fully vetted, vaccinated, and ready for a family. Start your application today.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/apply" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Apply to adopt
+        </a>
+        <a href="/adopt" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Browse available dogs
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>
