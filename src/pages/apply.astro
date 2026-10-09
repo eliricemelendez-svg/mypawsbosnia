@@ -38,7 +38,7 @@ const dogPhotoData = currentDogs.map((dog) => {
       <input type="hidden" id="whatsapp_link" name="WhatsApp Link (click to chat)" value="" />
 
       <!-- STEP 1: Choose your dog -->
-      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 mb-8">
+      <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100 mb-8">
         <div class="flex items-center gap-3 mb-6">
           <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
@@ -145,29 +145,29 @@ const dogPhotoData = currentDogs.map((dog) => {
           <div class="lg:w-7/12 space-y-8">
 
         <!-- About You -->
-        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
             </div>
             <h2 class="text-xl font-semibold text-slate-dark">About you</h2>
           </div>
-          <div class="space-y-4">
+          <div class="space-y-6">
             <div>
-              <label for="name" class="block text-base font-medium text-slate-dark mb-1">Full name *</label>
+              <label for="name" class="block text-sm font-medium text-body mb-2">Full name *</label>
               <input type="text" id="name" name="name" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div>
-              <label for="email" class="block text-base font-medium text-slate-dark mb-1">Email address *</label>
+              <label for="email" class="block text-sm font-medium text-body mb-2">Email address *</label>
               <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div>
-              <label for="phone" class="block text-base font-medium text-slate-dark mb-1">Phone number (with country code) *</label>
+              <label for="phone" class="block text-sm font-medium text-body mb-2">Phone number (with country code) *</label>
               <input type="tel" id="phone" name="phone" required placeholder="+44 7700 900000" pattern="[\+\d\s\-\(\)]{7,20}" inputmode="tel" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label for="country" class="block text-base font-medium text-slate-dark mb-1">Country *</label>
+                <label for="country" class="block text-sm font-medium text-body mb-2">Country *</label>
                 <select id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                   <option value="">Select...</option>
                   <option value="United Kingdom">United Kingdom</option>
@@ -187,7 +187,7 @@ const dogPhotoData = currentDogs.map((dog) => {
                 </select>
               </div>
               <div>
-                <label for="city" class="block text-base font-medium text-slate-dark mb-1">City *</label>
+                <label for="city" class="block text-sm font-medium text-body mb-2">City *</label>
                 <input type="text" id="city" name="city" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
             </div>
@@ -195,16 +195,16 @@ const dogPhotoData = currentDogs.map((dog) => {
         </div>
 
         <!-- Your Home -->
-        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
             </div>
             <h2 class="text-xl font-semibold text-slate-dark">Your home</h2>
           </div>
-          <div class="space-y-4">
+          <div class="space-y-6">
             <div>
-              <label for="home_type" class="block text-base font-medium text-slate-dark mb-1">Do you live in a house or apartment? *</label>
+              <label for="home_type" class="block text-sm font-medium text-body mb-2">Do you live in a house or apartment? *</label>
               <select id="home_type" name="home_type" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="House">House</option>
@@ -214,7 +214,7 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
             </div>
             <div>
-              <label for="garden" class="block text-base font-medium text-slate-dark mb-1">Do you have a garden or yard? *</label>
+              <label for="garden" class="block text-sm font-medium text-body mb-2">Do you have a garden or yard? *</label>
               <select id="garden" name="garden" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="Yes">Yes</option>
@@ -222,7 +222,7 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
             </div>
             <div id="fence-row" class="hidden">
-              <label for="fence_height" class="block text-base font-medium text-slate-dark mb-1">Roughly how high is the fencing?</label>
+              <label for="fence_height" class="block text-sm font-medium text-body mb-2">Roughly how high is the fencing?</label>
               <select id="fence_height" name="fence_height" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="Under 1 metre">Under 1 metre</option>
@@ -234,7 +234,7 @@ const dogPhotoData = currentDogs.map((dog) => {
               <p class="text-xs text-body mt-1">A rough estimate is fine. We can check during the home visit.</p>
             </div>
             <div>
-              <label for="own_rent" class="block text-base font-medium text-slate-dark mb-1">Do you own or rent? *</label>
+              <label for="own_rent" class="block text-sm font-medium text-body mb-2">Do you own or rent? *</label>
               <select id="own_rent" name="own_rent" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="Own">Own</option>
@@ -255,11 +255,11 @@ const dogPhotoData = currentDogs.map((dog) => {
               <div id="household-counts" class="space-y-3"></div>
               <input type="hidden" id="household_types" name="household" value="Just me" />
               <div id="household-children-ages" class="hidden mt-3">
-                <label for="children_ages" class="block text-base font-medium text-slate-dark mb-1">Ages of children</label>
+                <label for="children_ages" class="block text-sm font-medium text-body mb-2">Ages of children</label>
                 <input type="text" id="children_ages" name="children_ages" placeholder="e.g. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
               <div class="mt-3">
-                <label for="household_extra" class="block text-base font-medium text-slate-dark mb-1">Extra details?</label>
+                <label for="household_extra" class="block text-sm font-medium text-body mb-2">Extra details?</label>
                 <input type="text" id="household_extra" name="household_extra" placeholder="e.g. my partner works from home" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
               <p class="text-xs text-body mt-1">Select all that apply. If you live alone, leave them unselected.</p>
@@ -268,16 +268,16 @@ const dogPhotoData = currentDogs.map((dog) => {
         </div>
 
         <!-- Pets & Experience -->
-        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
             </div>
             <h2 class="text-xl font-semibold text-slate-dark">Pets & experience</h2>
           </div>
-          <div class="space-y-4">
+          <div class="space-y-6">
             <div>
-              <label for="dog_experience" class="block text-base font-medium text-slate-dark mb-1">Have you owned a dog before? *</label>
+              <label for="dog_experience" class="block text-sm font-medium text-body mb-2">Have you owned a dog before? *</label>
               <select id="dog_experience" name="dog_experience" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="Yes">Yes</option>
@@ -286,7 +286,7 @@ const dogPhotoData = currentDogs.map((dog) => {
               <p class="text-xs text-body mt-1">First-time owners are welcome. We're here to help.</p>
             </div>
             <div>
-              <label for="has_pets" class="block text-base font-medium text-slate-dark mb-1">Do you currently have any pets? *</label>
+              <label for="has_pets" class="block text-sm font-medium text-body mb-2">Do you currently have any pets? *</label>
               <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="Yes">Yes</option>
@@ -308,7 +308,7 @@ const dogPhotoData = currentDogs.map((dog) => {
               </div>
               <div id="pet-counts" class="space-y-3"></div>
               <div>
-                <label for="pets_extra" class="block text-base font-medium text-slate-dark mb-1">Any extra details? (ages, breeds, etc.)</label>
+                <label for="pets_extra" class="block text-sm font-medium text-body mb-2">Any extra details? (ages, breeds, etc.)</label>
                 <input type="text" id="pets_extra" name="pets_extra" placeholder="e.g. Labrador, 5 years old, very friendly" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
             </div>
@@ -316,16 +316,16 @@ const dogPhotoData = currentDogs.map((dog) => {
         </div>
 
         <!-- Final details -->
-        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             </div>
             <h2 class="text-xl font-semibold text-slate-dark">A few more details</h2>
           </div>
-          <div class="space-y-4">
+          <div class="space-y-6">
             <div>
-              <label for="hours_alone" class="block text-base font-medium text-slate-dark mb-1">How many hours per day will the dog be left alone? *</label>
+              <label for="hours_alone" class="block text-sm font-medium text-body mb-2">How many hours per day will the dog be left alone? *</label>
               <select id="hours_alone" name="hours_alone" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="0-2 hours">0-2 hours</option>
@@ -336,11 +336,11 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
             </div>
             <div>
-              <label for="sleep" class="block text-base font-medium text-slate-dark mb-1">Where will the dog sleep?</label>
+              <label for="sleep" class="block text-sm font-medium text-body mb-2">Where will the dog sleep?</label>
               <input type="text" id="sleep" name="sleep" placeholder="e.g. in the living room, in our bedroom" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div>
-              <label for="home_check" class="block text-base font-medium text-slate-dark mb-1">Are you willing to do a home check (virtual or in person)? *</label>
+              <label for="home_check" class="block text-sm font-medium text-body mb-2">Are you willing to do a home check (virtual or in person)? *</label>
               <select id="home_check" name="home_check" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Select...</option>
                 <option value="Yes">Yes</option>
@@ -349,12 +349,11 @@ const dogPhotoData = currentDogs.map((dog) => {
               <p class="text-xs text-body mt-1">This can be done over video call. It's a quick, friendly chat to make sure the dog is a good fit.</p>
             </div>
             <div>
-              <label for="questions" class="block text-base font-medium text-slate-dark mb-1">Any questions about the dog?</label>
-              <textarea id="questions" name="questions" rows="3" placeholder="e.g. How is the dog with cats? Does the dog have any health issues? What food do they eat?" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
-              <p class="text-xs text-body mt-1">We're happy to answer anything. No question is too small.</p>
+              <label for="questions" class="block text-sm font-medium text-body mb-2">Any questions about the dog?</label>
+              <textarea id="questions" name="questions" rows="3" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
             </div>
             <div>
-              <label for="message" class="block text-base font-medium text-slate-dark mb-1">Anything else you'd like us to know?</label>
+              <label for="message" class="block text-sm font-medium text-body mb-2">Anything else you'd like us to know?</label>
               <textarea id="message" name="message" rows="3" placeholder="Tell us about yourself, your lifestyle, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
             </div>
           </div>
