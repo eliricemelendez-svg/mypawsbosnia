@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { currentDogs } from "../data/current-dogs";
 
 const dogNames = currentDogs.map((d) => d.name);
+const dogSlugs = currentDogs.map((d) => ({ name: d.name, slug: d.slug }));
 ---
 
 <Layout title="Apply to Adopt | My Paws Bosnia" description="Fill out our adoption application form. We review every application and usually respond within a few days." lang="en">
@@ -10,19 +11,25 @@ const dogNames = currentDogs.map((d) => d.name);
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Apply to Adopt</h1>
       <p class="mt-4 text-lg text-body max-w-2xl mx-auto">Tell us a little about yourself and the dog you're interested in. We review every application and usually respond within a few days.</p>
+      <p class="mt-2 text-sm text-body">It only takes about 3 minutes to complete.</p>
     </div>
   </section>
 
   <section class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <form id="adopt-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-10">
+    <form id="adopt-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-8">
       <input type="hidden" name="access_key" value="82e1cf41-2872-4b2a-92e3-8d373b609503" />
       <input type="hidden" name="subject" value="New Adoption Application - My Paws Bosnia" />
       <input type="hidden" name="from_name" value="My Paws Bosnia Adoption Form" />
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
       <!-- About You -->
-      <div>
-        <h2 class="text-xl font-semibold text-slate-dark mb-6">About you</h2>
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+          </div>
+          <h2 class="text-xl font-semibold text-slate-dark">About you</h2>
+        </div>
         <div class="space-y-4">
           <div>
             <label for="name" class="block text-sm font-medium text-slate-dark mb-1">Full name *</label>
@@ -39,7 +46,23 @@ const dogNames = currentDogs.map((d) => d.name);
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="country" class="block text-sm font-medium text-slate-dark mb-1">Country *</label>
-              <input type="text" id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              <select id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Belgium">Belgium</option>
+                <option value="France">France</option>
+                <option value="Austria">Austria</option>
+                <option value="Ireland">Ireland</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Norway">Norway</option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             <div>
               <label for="city" class="block text-sm font-medium text-slate-dark mb-1">City *</label>
@@ -50,8 +73,13 @@ const dogNames = currentDogs.map((d) => d.name);
       </div>
 
       <!-- Your Home -->
-      <div>
-        <h2 class="text-xl font-semibold text-slate-dark mb-6">Your home</h2>
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+          </div>
+          <h2 class="text-xl font-semibold text-slate-dark">Your home</h2>
+        </div>
         <div class="space-y-4">
           <div>
             <label for="home_type" class="block text-sm font-medium text-slate-dark mb-1">Do you live in a house or apartment? *</label>
@@ -83,17 +111,24 @@ const dogNames = currentDogs.map((d) => d.name);
               <option value="Rent - landlord allows dogs">Rent - landlord allows dogs</option>
               <option value="Rent - need to check with landlord">Rent - need to check with landlord</option>
             </select>
+            <p class="text-xs text-body mt-1">Many landlords are happy to allow dogs. If you're unsure, we can help.</p>
           </div>
           <div>
-            <label for="household" class="block text-sm font-medium text-slate-dark mb-1">Who lives in your home? (number of adults, children + ages) *</label>
+            <label for="household" class="block text-sm font-medium text-slate-dark mb-1">Who lives in your home? *</label>
             <input type="text" id="household" name="household" required placeholder="e.g. 2 adults, 1 child (age 6)" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            <p class="text-xs text-body mt-1">Number of adults, children, and ages of children.</p>
           </div>
         </div>
       </div>
 
       <!-- Pets & Experience -->
-      <div>
-        <h2 class="text-xl font-semibold text-slate-dark mb-6">Pets & experience</h2>
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+          </div>
+          <h2 class="text-xl font-semibold text-slate-dark">Pets & experience</h2>
+        </div>
         <div class="space-y-4">
           <div>
             <label for="dog_experience" class="block text-sm font-medium text-slate-dark mb-1">Have you owned a dog before? *</label>
@@ -102,17 +137,23 @@ const dogNames = currentDogs.map((d) => d.name);
               <option value="Yes">Yes</option>
               <option value="No, first time">No, this would be my first dog</option>
             </select>
+            <p class="text-xs text-body mt-1">First-time owners are welcome. We're here to help.</p>
           </div>
           <div>
             <label for="current_pets" class="block text-sm font-medium text-slate-dark mb-1">Do you currently have any pets? If yes, please describe.</label>
-            <input type="text" id="current_pets" name="current_pets" placeholder="e.g. 1 cat, 2 years old" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            <input type="text" id="current_pets" name="current_pets" placeholder="e.g. 1 cat (3 years old), 1 dog (Labrador, 5 years old)" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
           </div>
         </div>
       </div>
 
       <!-- About the Adoption -->
-      <div>
-        <h2 class="text-xl font-semibold text-slate-dark mb-6">About the adoption</h2>
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h2 class="text-xl font-semibold text-slate-dark">About the adoption</h2>
+        </div>
         <div class="space-y-4">
           <div>
             <label for="dog_interest" class="block text-sm font-medium text-slate-dark mb-1">Which dog are you interested in? *</label>
@@ -146,34 +187,68 @@ const dogNames = currentDogs.map((d) => d.name);
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
+            <p class="text-xs text-body mt-1">This can be done over video call. It's a quick, friendly chat to make sure the dog is a good fit.</p>
           </div>
           <div>
             <label for="message" class="block text-sm font-medium text-slate-dark mb-1">Anything else you'd like us to know?</label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell us anything else about yourself, your experience, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about yourself, your lifestyle, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
           </div>
         </div>
       </div>
 
-      <div class="text-center pt-4">
-        <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base">Submit Application</button>
-        <p class="text-xs text-body mt-3">We review every application and will be in touch within a few days.</p>
+      <!-- Submit -->
+      <div class="text-center pt-2">
+        <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Submit Application</button>
+        <p class="text-sm text-body mt-4">We've helped over 20 dogs find loving homes across Europe and the UK.</p>
+        <p class="text-xs text-body mt-1">We review every application and will be in touch within a few days.</p>
       </div>
     </form>
 
     <!-- Success message (hidden by default) -->
-    <div id="success-msg" class="hidden text-center py-16">
-      <div class="text-5xl mb-4">🐾</div>
-      <h2 class="text-2xl font-bold text-slate-dark mb-3">Application received!</h2>
-      <p class="text-body mb-6">Thank you for your interest in adopting. We review every application carefully and will be in touch within a few days.</p>
-      <p class="text-body mb-8">Want to follow up or ask questions? You can reach us directly:</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Message us on WhatsApp</a>
-        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Message us on Facebook</a>
-      </div>
-      <div class="mt-8">
-        <a href="/adopt" class="text-teal font-medium hover:underline">&larr; Back to all dogs</a>
+    <div id="success-msg" class="hidden py-16">
+      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 text-center">
+        <div class="text-5xl mb-4">🐾</div>
+        <h2 class="text-2xl font-bold text-slate-dark mb-2">Thank you for applying!</h2>
+        <p class="text-lg text-body mb-6" id="success-dog-text">We're so excited that you're interested in giving a rescue dog a loving home.</p>
+
+        <!-- Dog photo (shown if a specific dog was selected) -->
+        <div id="success-dog-photo" class="hidden mb-6">
+          <img id="success-dog-img" src="" alt="" class="w-48 h-48 object-cover rounded-2xl mx-auto shadow-md" />
+        </div>
+
+        <div class="bg-light-bg rounded-xl p-6 mb-8 text-left max-w-md mx-auto">
+          <h3 class="font-semibold text-slate-dark mb-3 text-center">What happens next?</h3>
+          <ol class="space-y-3 text-sm text-body">
+            <li class="flex gap-3">
+              <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
+              <span>We'll review your application and <strong>contact you via WhatsApp within 24 hours</strong>.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
+              <span>We'll arrange a <strong>home check</strong> — a quick, friendly video call or in-person visit to make sure it's a good fit.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
+              <span>Once approved, we'll organise <strong>licensed transport</strong> directly to your door.</span>
+            </li>
+          </ol>
+        </div>
+
+        <p class="text-body mb-6">Can't wait? You can also reach us directly:</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Message us on WhatsApp</a>
+          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Message us on Facebook</a>
+        </div>
+        <div class="mt-8">
+          <a href="/adopt" class="text-teal font-medium hover:underline">&larr; Back to all dogs</a>
+        </div>
       </div>
     </div>
+
+    <!-- Dog slug/photo data for success screen -->
+    <script id="dog-data" type="application/json" set:html={JSON.stringify(
+      currentDogs.map(d => ({ name: d.name, slug: d.slug }))
+    )} />
   </section>
 </Layout>
 
@@ -205,6 +280,33 @@ const dogNames = currentDogs.map((d) => d.name);
         });
 
         if (res.ok) {
+          // Show dog-specific success message
+          const selectedDog = (document.getElementById('dog_interest') as HTMLSelectElement)?.value;
+          if (selectedDog && selectedDog !== 'Not sure yet') {
+            const successText = document.getElementById('success-dog-text');
+            if (successText) {
+              successText.textContent = `We're so excited that you're interested in ${selectedDog}! Here's what happens next.`;
+            }
+            // Try to show dog photo
+            const dogDataEl = document.getElementById('dog-data');
+            if (dogDataEl) {
+              const dogs = JSON.parse(dogDataEl.textContent || '[]');
+              const match = dogs.find((d: any) => d.name === selectedDog);
+              if (match) {
+                const photoContainer = document.getElementById('success-dog-photo');
+                const photoImg = document.getElementById('success-dog-img') as HTMLImageElement;
+                if (photoContainer && photoImg) {
+                  // Use the first photo from the dog's asset folder via the adopt page
+                  photoContainer.classList.remove('hidden');
+                  photoImg.alt = `${selectedDog}, a rescue dog at My Paws Bosnia`;
+                  // Link to dog's profile
+                  const link = document.createElement('a');
+                  link.href = `/adopt/${match.slug}`;
+                  photoContainer.appendChild(link);
+                }
+              }
+            }
+          }
           form.classList.add('hidden');
           successMsg.classList.remove('hidden');
           window.scrollTo({ top: 0, behavior: 'smooth' });
