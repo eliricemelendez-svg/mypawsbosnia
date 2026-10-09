@@ -295,6 +295,27 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
               <p class="text-xs text-body mt-1">Eerste hondenbezitters zijn welkom. We helpen je graag.</p>
             </div>
+            <div id="rescue-row" class="hidden">
+              <label for="was_rescue" class="block text-sm font-medium text-body mb-2">Was je hond een asielhond?</label>
+              <select id="was_rescue" name="was_rescue" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Selecteer...</option>
+                <option value="Yes">Ja</option>
+                <option value="No">Nee</option>
+              </select>
+            </div>
+            <div>
+              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">Hoe ziet een gewone dag er voor je uit? *</label>
+              <select id="daily_routine" name="daily_routine" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Selecteer...</option>
+                <option value="Work from home">Ik werk thuis</option>
+                <option value="Work outside (full-time)">Ik werk buitenshuis (voltijd)</option>
+                <option value="Work outside (part-time)">Ik werk buitenshuis (deeltijd)</option>
+                <option value="Retired">Ik ben gepensioneerd</option>
+                <option value="Student">Ik ben student</option>
+                <option value="Stay-at-home parent">Ik ben thuisblijfouder</option>
+                <option value="Other">Anders</option>
+              </select>
+            </div>
             <div>
               <label for="has_pets" class="block text-sm font-medium text-body mb-2">Heb je op dit moment huisdieren? *</label>
               <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
@@ -369,10 +390,45 @@ const dogPhotoData = currentDogs.map((dog) => {
           </div>
         </div>
 
+        <!-- Success stories -->
+        <div class="bg-light-bg rounded-2xl p-6 text-center">
+          <p class="text-body mb-2">Door de jaren heen hebben we honden zoals Bridgette, Nero, Flint en vele anderen geholpen om een liefdevol thuis te vinden in heel Europa.</p>
+          <a href="/success-stories" class="text-teal font-medium hover:underline">Bekijk hun verhalen &rarr;</a>
+        </div>
+
         <!-- Submit -->
         <div class="text-center pt-2">
           <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Aanvraag versturen</button>
           <p class="text-xs text-body mt-3">We bekijken elke aanvraag en nemen binnen enkele dagen contact met je op.</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <h2 class="text-xl font-semibold text-slate-dark mb-4">Veelgestelde vragen</h2>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Wat gebeurt er nadat ik een aanvraag heb ingediend?</summary>
+            <p class="pb-4 text-body text-sm">We bekijken je aanvraag en nemen binnen 24 uur contact met je op via WhatsApp. Daarna plannen we een huiscontrole en bespreken we de volgende stappen.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Wat is de huiscontrole?</summary>
+            <p class="pb-4 text-body text-sm">Het is een kort, vriendelijk videogesprek of bezoek om te kijken of je huis geschikt is voor de hond. Geen zorgen, we willen er alleen voor zorgen dat het voor iedereen past.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Hoe lang duurt het transport?</summary>
+            <p class="pb-4 text-body text-sm">Het duurt meestal ongeveer een maand om het transport te regelen en de hond reisklaar te maken. Dit kan variëren afhankelijk van het seizoen en hoe druk we het hebben.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Wat is inbegrepen bij de hond?</summary>
+            <p class="pb-4 text-body text-sm">Elke hond komt gevaccineerd, gechipt, ontwormd en met een dierenpaspoort. Oudere honden worden meestal voor het transport gecastreerd of gesteriliseerd. Puppy's zijn mogelijk nog niet gecastreerd vanwege hun leeftijd.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Is er een adoptiekosten?</summary>
+            <p class="pb-4 text-body text-sm">Er zijn geen adoptiekosten. De hond is gratis. Je betaalt alleen de transportkosten: ongeveer &pound;500 naar het VK, &euro;300-400 binnen Europa, of CHF 500-550 naar Zwitserland.</p>
+          </details>
+          <details>
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Kan ik adopteren als ik nog nooit een hond heb gehad?</summary>
+            <p class="pb-4 text-body text-sm">Absoluut! Eerste hondenbezitters zijn welkom. We begeleiden je door het hele proces en helpen je voorbereiden op je nieuwe gezinslid.</p>
+          </details>
         </div>
 
           </div><!-- end right column -->
@@ -585,6 +641,17 @@ const dogPhotoData = currentDogs.map((dog) => {
       const isYes = gardenSelect.value === 'Yes';
       fenceRow.classList.toggle('hidden', !isYes);
       if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
+    });
+  }
+
+  // Show/hide rescue question based on dog experience
+  const dogExpSelect = document.getElementById('dog_experience') as HTMLSelectElement;
+  const rescueRow = document.getElementById('rescue-row');
+  if (dogExpSelect && rescueRow) {
+    dogExpSelect.addEventListener('change', () => {
+      const isYes = dogExpSelect.value === 'Yes';
+      rescueRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
     });
   }
 

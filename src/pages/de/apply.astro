@@ -295,6 +295,27 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
               <p class="text-xs text-body mt-1">Erstmalige Hundebesitzer sind willkommen. Wir helfen dir gerne.</p>
             </div>
+            <div id="rescue-row" class="hidden">
+              <label for="was_rescue" class="block text-sm font-medium text-body mb-2">War dein Hund aus dem Tierschutz?</label>
+              <select id="was_rescue" name="was_rescue" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Auswählen...</option>
+                <option value="Yes">Ja</option>
+                <option value="No">Nein</option>
+              </select>
+            </div>
+            <div>
+              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">Wie sieht ein typischer Tag bei dir aus? *</label>
+              <select id="daily_routine" name="daily_routine" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Auswählen...</option>
+                <option value="Work from home">Ich arbeite von zu Hause</option>
+                <option value="Work outside (full-time)">Ich arbeite außer Haus (Vollzeit)</option>
+                <option value="Work outside (part-time)">Ich arbeite außer Haus (Teilzeit)</option>
+                <option value="Retired">Ich bin im Ruhestand</option>
+                <option value="Student">Ich bin Student/Studentin</option>
+                <option value="Stay-at-home parent">Ich bin zu Hause bei den Kindern</option>
+                <option value="Other">Sonstiges</option>
+              </select>
+            </div>
             <div>
               <label for="has_pets" class="block text-sm font-medium text-body mb-2">Hast du derzeit Haustiere? *</label>
               <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
@@ -369,10 +390,45 @@ const dogPhotoData = currentDogs.map((dog) => {
           </div>
         </div>
 
+        <!-- Success stories -->
+        <div class="bg-light-bg rounded-2xl p-6 text-center">
+          <p class="text-body mb-2">Im Laufe der Jahre haben wir Hunden wie Bridgette, Nero, Flint und vielen anderen geholfen, liebevolle Familien in ganz Europa zu finden.</p>
+          <a href="/success-stories" class="text-teal font-medium hover:underline">Ihre Geschichten ansehen &rarr;</a>
+        </div>
+
         <!-- Submit -->
         <div class="text-center pt-2">
           <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Antrag absenden</button>
           <p class="text-xs text-body mt-3">Wir prüfen jeden Antrag und melden uns innerhalb weniger Tage.</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <h2 class="text-xl font-semibold text-slate-dark mb-4">Häufig gestellte Fragen</h2>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Was passiert, nachdem ich mich beworben habe?</summary>
+            <p class="pb-4 text-body text-sm">Wir prüfen deinen Antrag und kontaktieren dich innerhalb von 24 Stunden per WhatsApp. Danach vereinbaren wir einen Hausbesuch und besprechen die nächsten Schritte.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Was ist der Hausbesuch?</summary>
+            <p class="pb-4 text-body text-sm">Es ist ein kurzes, freundliches Videogespräch oder ein Besuch vor Ort, um sicherzustellen, dass dein Zuhause gut zum Hund passt. Keine Sorge, wir möchten nur sicherstellen, dass es für alle passt.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Wie lange dauert der Transport?</summary>
+            <p class="pb-4 text-body text-sm">Es dauert in der Regel etwa einen Monat, um den Transport zu organisieren und den Hund reisefertig zu machen. Dies kann je nach Jahreszeit und Auslastung variieren.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Was ist beim Hund inbegriffen?</summary>
+            <p class="pb-4 text-body text-sm">Jeder Hund kommt geimpft, gechipt, entwurmt und mit einem Heimtierausweis. Ältere Hunde werden in der Regel vor der Reise kastriert. Welpen sind aufgrund ihres Alters möglicherweise noch nicht kastriert.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Gibt es eine Adoptionsgebühr?</summary>
+            <p class="pb-4 text-body text-sm">Es gibt keine Adoptionsgebühr. Du übernimmst nur die Transportkosten: ca. &pound;500 nach Großbritannien, &euro;300-400 innerhalb Europas oder CHF 500-550 in die Schweiz.</p>
+          </details>
+          <details>
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Kann ich adoptieren, wenn ich noch nie einen Hund hatte?</summary>
+            <p class="pb-4 text-body text-sm">Auf jeden Fall! Erstmalige Hundebesitzer sind willkommen. Wir unterstützen dich während des gesamten Prozesses und helfen dir, dich auf dein neues Familienmitglied vorzubereiten.</p>
+          </details>
         </div>
 
           </div><!-- end right column -->
@@ -585,6 +641,17 @@ const dogPhotoData = currentDogs.map((dog) => {
       const isYes = gardenSelect.value === 'Yes';
       fenceRow.classList.toggle('hidden', !isYes);
       if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
+    });
+  }
+
+  // Show/hide rescue question based on dog experience
+  const dogExpSelect = document.getElementById('dog_experience') as HTMLSelectElement;
+  const rescueRow = document.getElementById('rescue-row');
+  if (dogExpSelect && rescueRow) {
+    dogExpSelect.addEventListener('change', () => {
+      const isYes = dogExpSelect.value === 'Yes';
+      rescueRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
     });
   }
 

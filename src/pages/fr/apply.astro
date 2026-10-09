@@ -295,6 +295,27 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
               <p class="text-xs text-body mt-1">Les nouveaux proprietaires sont les bienvenus. Nous sommes la pour vous aider.</p>
             </div>
+            <div id="rescue-row" class="hidden">
+              <label for="was_rescue" class="block text-sm font-medium text-body mb-2">Votre chien venait-il d'un refuge ?</label>
+              <select id="was_rescue" name="was_rescue" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Yes">Oui</option>
+                <option value="No">Non</option>
+              </select>
+            </div>
+            <div>
+              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">A quoi ressemble une journee type pour vous ? *</label>
+              <select id="daily_routine" name="daily_routine" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Choisir...</option>
+                <option value="Work from home">Je travaille a domicile</option>
+                <option value="Work outside (full-time)">Je travaille a l'exterieur (temps plein)</option>
+                <option value="Work outside (part-time)">Je travaille a l'exterieur (temps partiel)</option>
+                <option value="Retired">Je suis a la retraite</option>
+                <option value="Student">Je suis etudiant(e)</option>
+                <option value="Stay-at-home parent">Je suis parent au foyer</option>
+                <option value="Other">Autre</option>
+              </select>
+            </div>
             <div>
               <label for="has_pets" class="block text-sm font-medium text-body mb-2">Avez-vous des animaux actuellement ? *</label>
               <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
@@ -369,10 +390,45 @@ const dogPhotoData = currentDogs.map((dog) => {
           </div>
         </div>
 
+        <!-- Success stories -->
+        <div class="bg-light-bg rounded-2xl p-6 text-center">
+          <p class="text-body mb-2">Au fil des ans, nous avons aide des chiens comme Bridgette, Nero, Flint et bien d'autres a trouver des familles aimantes a travers l'Europe.</p>
+          <a href="/success-stories" class="text-teal font-medium hover:underline">Voir leurs histoires &rarr;</a>
+        </div>
+
         <!-- Submit -->
         <div class="text-center pt-2">
           <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Envoyer la demande</button>
           <p class="text-xs text-body mt-3">Nous examinons chaque demande et vous recontacterons sous quelques jours.</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <h2 class="text-xl font-semibold text-slate-dark mb-4">Questions frequemment posees</h2>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Que se passe-t-il apres ma demande ?</summary>
+            <p class="pb-4 text-body text-sm">Nous examinons votre demande et vous contactons par WhatsApp dans les 24 heures. Ensuite, nous organisons une visite a domicile et discutons des prochaines etapes.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Qu'est-ce que la visite a domicile ?</summary>
+            <p class="pb-4 text-body text-sm">C'est un appel video rapide et convivial ou une visite en personne pour s'assurer que votre logement convient au chien. Pas d'inquietude, nous voulons simplement nous assurer que tout fonctionne pour tout le monde.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Combien de temps dure le transport ?</summary>
+            <p class="pb-4 text-body text-sm">Il faut generalement environ un mois pour organiser le transport et preparer le chien au voyage. Cela peut varier selon la saison et notre charge de travail.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Qu'est-ce qui est inclus avec le chien ?</summary>
+            <p class="pb-4 text-body text-sm">Chaque chien arrive vaccine, puce, vermifuge et avec un passeport pour animaux. Les chiens adultes sont generalement sterilises avant le voyage. Les chiots peuvent ne pas encore etre sterilises en raison de leur age.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Y a-t-il des frais d'adoption ?</summary>
+            <p class="pb-4 text-body text-sm">Il n'y a pas de frais d'adoption. Le chien est gratuit. Vous ne payez que les frais de transport : environ &pound;500 vers le Royaume-Uni, &euro;300-400 en Europe, ou CHF 500-550 vers la Suisse.</p>
+          </details>
+          <details>
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Puis-je adopter si je n'ai jamais eu de chien ?</summary>
+            <p class="pb-4 text-body text-sm">Absolument ! Les nouveaux proprietaires sont les bienvenus. Nous vous accompagnons tout au long du processus et vous aidons a vous preparer pour votre nouveau membre de la famille.</p>
+          </details>
         </div>
 
           </div><!-- end right column -->
@@ -585,6 +641,17 @@ const dogPhotoData = currentDogs.map((dog) => {
       const isYes = gardenSelect.value === 'Yes';
       fenceRow.classList.toggle('hidden', !isYes);
       if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
+    });
+  }
+
+  // Show/hide rescue question based on dog experience
+  const dogExpSelect = document.getElementById('dog_experience') as HTMLSelectElement;
+  const rescueRow = document.getElementById('rescue-row');
+  if (dogExpSelect && rescueRow) {
+    dogExpSelect.addEventListener('change', () => {
+      const isYes = dogExpSelect.value === 'Yes';
+      rescueRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
     });
   }
 

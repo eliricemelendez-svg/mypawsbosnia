@@ -1,0 +1,324 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const title = "Votre première semaine avec un chien adopté | My Paws Bosnia";
+const description = "Ce à quoi vous pouvez vous attendre dans les premiers jours et semaines après avoir accueilli un chien adopté. La règle des 3-3-3, les comportements de stress courants, quand appeler le vétérinaire et comment aider votre chien à s'adapter.";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Votre première semaine avec un chien adopté",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/fr/blog/your-first-week-with-a-rescue-dog",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Est-ce normal qu'un chien adopté ne mange pas le premier jour ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui. Beaucoup de chiens adoptés sautent des repas pendant le premier ou les deux premiers jours à cause du stress et du nouvel environnement. C'est tout à fait normal. Si votre chien refuse de manger pendant plus de 48 heures ou ne veut pas boire d'eau, contactez votre vétérinaire."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Qu'est-ce que la règle des 3-3-3 pour les chiens adoptés ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La règle des 3-3-3 est un calendrier général pour l'adaptation d'un chien adopté : 3 jours pour décompresser et se sentir dépassé, 3 semaines pour apprendre votre routine et commencer à s'installer, et 3 mois pour se sentir vraiment chez lui et montrer sa vraie personnalité."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Pourquoi mon chien adopté a-t-il la diarrhée ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La diarrhée de stress est extrêmement fréquente chez les chiens nouvellement adoptés. Un changement d'environnement, de nourriture, d'eau et de routine peut perturber leur estomac. Cela se résout généralement en un jour ou deux. Si la diarrhée dure plus de 48 heures, contient du sang ou si votre chien arrête de boire, appelez votre vétérinaire."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Combien de temps faut-il à un chien adopté pour s'adapter ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La plupart des chiens adoptés ont besoin d'environ 3 mois pour s'installer complètement dans un nouveau foyer. Vous verrez des améliorations régulières semaine après semaine. Le chien que vous voyez le premier jour n'est pas celui que vous aurez dans trois mois. Ils deviennent plus confiants, plus joueurs et plus affectueux avec le temps."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="fr" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Après l'adoption</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Votre première semaine avec un chien adopté</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        Votre chien est à la maison. Vous attendiez ce moment, et maintenant tout semble un peu chaotique. C'est tout à fait normal. Votre chien a vécu le refuge, les visites vétérinaires et un long trajet de transport. Il a besoin de temps. Voici ce à quoi vous pouvez vous attendre et comment l'aider à s'installer.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- The 3-3-3 Rule -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">La règle des 3-3-3</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Les professionnels du sauvetage canin utilisent la règle des 3-3-3 comme calendrier approximatif de l'adaptation. Ce n'est pas une science exacte, mais cela aide à fixer des attentes réalistes.
+      </p>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3j</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 jours : décompression</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Votre chien peut sembler renfermé, dépassé ou anxieux. Il ne mange peut-être pas, se cache derrière les meubles ou dort tout simplement. Certains chiens font les cent pas ou halètent. D'autres se figent dans un coin et bougent à peine. C'est du stress, pas un trait de caractère. Donnez-lui de l'espace. Gardez la maison calme.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3s</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 semaines : apprendre la routine</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Votre chien commence à comprendre quand les repas arrivent, quand les promenades ont lieu et où il dort. Il commence à se détendre. Vous verrez peut-être le premier battement de queue, le premier moment de jeu, ou la première fois qu'il choisit de s'asseoir près de vous. Il teste le terrain. Gardez la routine constante.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3m</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 mois : se sentir chez soi</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              C'est à ce moment que vous découvrez le vrai chien. Il se sent en sécurité. Il connaît la routine. Il vous fait confiance. Sa vraie personnalité apparaît. Le chien à trois mois est souvent complètement différent de celui qui est arrivé le premier jour. Plus confiant, plus joueur, plus affectueux.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to expect in the first few days -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Ce à quoi vous pouvez vous attendre les premiers jours</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Rien de tout cela ne signifie que quelque chose ne va pas avec votre chien. Ce sont des réactions de stress normales chez un chien qui s'adapte à un monde entièrement nouveau.
+      </p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Refus de manger.</strong> Beaucoup de chiens sautent des repas pendant le premier ou les deux premiers jours. Leur estomac est noué par le stress et le voyage. Pas de panique. Proposez de la nourriture et de l'eau, puis éloignez-vous. Il mangera quand il sera prêt.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Diarrhée.</strong> La diarrhée de stress est extrêmement courante. Nouvelle nourriture, nouvelle eau, nouvel environnement. Cela se résout généralement en un jour ou deux. Plus bas, nous vous expliquons quand vous devez vous inquiéter.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Se cacher.</strong> Sous le lit, derrière le canapé, dans un coin. Il cherche un endroit sûr et protégé. Laissez-le faire. Ne le tirez pas de là. Asseyez-vous à proximité et soyez simplement présent. Il viendra vers vous de lui-même.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Peur des choses du quotidien.</strong> La télévision, la machine à laver, les escaliers, les parquets, les voitures, la sonnette. Beaucoup de chiens sauvés n'ont jamais été dans une maison auparavant. Tout est nouveau. Introduisez les choses lentement et laissez-le explorer à son propre rythme.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Accidents dans la maison.</strong> Même les chiens propres peuvent avoir des accidents la première semaine. Ils ne savent pas où est la porte. Ils ne savent pas comment vous signaler qu'ils ont besoin de sortir. Emmenez-les dehors fréquemment, surtout après les repas et les siestes.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Refus de se promener.</strong> Certains chiens se figent en laisse. Ils ne connaissent pas les trottoirs, ou ils sont dépassés par le bruit de la circulation. Gardez les promenades très courtes et proches de la maison au début. Augmentez progressivement.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Practical tips -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Conseils pratiques pour la première semaine</h2>
+      <div class="space-y-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Gardez la maison calme</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Pas de fêtes. Pas de visiteurs. Pas de présentations enthousiastes à tous les voisins. Votre chien a besoin d'un environnement calme et prévisible. Demandez à vos amis et à votre famille d'attendre au moins une à deux semaines avant de venir.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Aménagez un espace sûr</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Placez son panier dans un coin calme, à l'écart des passages. Une caisse avec la porte ouverte peut aussi bien fonctionner. Ajoutez une couverture et une gamelle d'eau à proximité. C'est son refuge quand tout devient trop intense.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Établissez une routine rapidement</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Mêmes heures de repas, mêmes heures de promenade, même heure de coucher. Les chiens s'épanouissent dans la prévisibilité, et les chiens sauvés encore plus. Une routine leur montre que le monde a du sens et qu'ils peuvent compter dessus.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Laissez le chien venir à vous</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Résistez à l'envie de constamment le caresser, le câliner et le prendre dans vos bras. Asseyez-vous par terre à proximité. Parlez doucement. Laissez-le venir vers vous quand il est prêt. Forcer l'affection sur un chien stressé peut aggraver les choses.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Utilisez le jardin</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Si vous avez un jardin, laissez-le l'explorer. C'est un espace extérieur contrôlé et sûr où il peut renifler, se détendre et apprendre que dehors n'est pas effrayant. Surveillez-le toujours jusqu'à ce que vous soyez certain de la solidité de votre clôture.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Allez-y doucement avec les autres animaux</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Si vous avez d'autres animaux, présentez-les progressivement. Utilisez des barrières ou des pièces séparées au début. Laissez-les se renifler sous la porte avant de se rencontrer face à face. Ne forcez pas l'amitié. Elle viendra à son propre rythme.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- When to call the vet -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Quand appeler le vétérinaire et quand c'est juste du stress</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Il peut être difficile de faire la différence entre des comportements de stress normaux et quelque chose qui nécessite une attention médicale. Voici un guide simple.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="border border-gray-100 rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark mb-3">Probablement juste du stress</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Ne mange pas pendant les 24 à 48 premières heures</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Selles molles ou diarrhée pendant un jour ou deux</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Halètement, va-et-vient ou gémissements</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Se cache ou veut être seul</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Dort plus que d'habitude</span>
+            </li>
+          </ul>
+        </div>
+        <div class="border-2 border-red-200 rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark mb-3">Appelez le vétérinaire</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Ne mange pas depuis plus de 48 heures</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Refuse de boire de l'eau</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Diarrhée durant plus de 48 heures</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Sang dans les selles ou les vomissements</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Léthargie combinée à une perte d'appétit</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Écoulement des yeux ou du nez</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-body leading-relaxed mt-4">
+        En cas de doute, appelez votre vétérinaire. Il vaut toujours mieux vérifier et découvrir que ce n'est rien plutôt que d'attendre trop longtemps. Inscrivez-vous chez un vétérinaire local avant l'arrivée de votre chien pour avoir un recours en cas de besoin.
+      </p>
+    </section>
+
+    <!-- Remember what they have been through -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">N'oubliez pas ce qu'il a traversé</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Votre chien a peut-être vécu dans la rue. Il était peut-être dans un refuge public où les chiens étaient entassés dans des enclos en béton. Il n'a peut-être jamais été dans une maison, jamais marché en laisse, jamais entendu une télévision. Puis il a été mis dans un fourgon et a traversé l'Europe pendant deux jours.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        Tout dans votre maison est nouveau. Les odeurs, les sons, les surfaces, les gens. Même la gentillesse peut être déroutante s'il n'en a pas beaucoup connu.
+      </p>
+      <p class="text-body leading-relaxed">
+        Soyez patient. La première semaine peut être désordonnée, frustrante et émotionnelle. Vous vous demanderez peut-être si vous avez pris la bonne décision. C'est le cas. Cela s'améliore chaque jour. Le chien qui sera lové sur votre canapé dans trois mois vaudra chaque moment difficile de cette semaine.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Questions fréquentes</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Est-ce normal qu'un chien adopté ne mange pas le premier jour ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Oui. Beaucoup de chiens adoptés sautent des repas pendant le premier ou les deux premiers jours à cause du stress et d'un nouvel environnement. C'est tout à fait normal. Proposez de la nourriture et de l'eau fraîche, puis laissez-lui de l'espace. Si votre chien refuse de manger pendant plus de 48 heures ou ne veut pas boire d'eau, contactez votre vétérinaire.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Qu'est-ce que la règle des 3-3-3 pour les chiens adoptés ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            La règle des 3-3-3 est un calendrier général pour l'adaptation d'un chien adopté. Trois jours pour décompresser et se sentir dépassé. Trois semaines pour apprendre votre routine et commencer à s'installer. Trois mois pour se sentir vraiment chez lui et montrer sa vraie personnalité. Chaque chien est différent, mais ce cadre aide à fixer des attentes réalistes.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Pourquoi mon chien adopté a-t-il la diarrhée ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            La diarrhée de stress est extrêmement fréquente chez les chiens nouvellement adoptés. Un changement d'environnement, de nourriture, d'eau et de routine peut perturber leur estomac. Cela se résout généralement en un jour ou deux. Si la diarrhée dure plus de 48 heures, contient du sang ou si votre chien arrête de boire, appelez votre vétérinaire.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Combien de temps faut-il à un chien adopté pour s'adapter ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            La plupart des chiens adoptés ont besoin d'environ trois mois pour s'installer complètement dans un nouveau foyer. Vous verrez des améliorations régulières semaine après semaine. Le chien que vous voyez le premier jour n'est pas celui que vous aurez dans trois mois. Ils deviennent plus confiants, plus joueurs et plus affectueux avec le temps.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Vous pensez à adopter ?</h2>
+      <p class="text-body mb-6">Chacun de nos chiens est entièrement suivi médicalement, vacciné et prêt pour une famille. Faites votre demande dès aujourd'hui.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/fr/apply" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Faire une demande d'adoption
+        </a>
+        <a href="/fr/adopt" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Voir les chiens disponibles
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>

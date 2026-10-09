@@ -1,0 +1,324 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+
+const title = "Je eerste week met een reddingshond | My Paws Bosnia";
+const description = "Wat je kunt verwachten in de eerste dagen en weken nadat je een reddingshond in huis hebt genomen. De 3-3-3-regel, veelvoorkomend stressgedrag, wanneer je de dierenarts moet bellen en hoe je je hond helpt wennen.";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Je eerste week met een reddingshond",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/nl/blog/your-first-week-with-a-rescue-dog",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is het normaal dat een reddingshond de eerste dag niet eet?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja. Veel reddingshonden slaan de eerste dag of twee maaltijden over door stress en een nieuwe omgeving. Dit is volkomen normaal. Als je hond langer dan 48 uur weigert te eten of geen water wil drinken, neem dan contact op met je dierenarts."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Wat is de 3-3-3-regel voor reddingshonden?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "De 3-3-3-regel is een globale tijdlijn voor de aanpassing van een reddingshond: 3 dagen om te ontspannen en de overweldiging te verwerken, 3 weken om je routine te leren kennen en te wennen, en 3 maanden om zich echt thuis te voelen en zijn ware karakter te laten zien."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Waarom heeft mijn reddingshond diarree?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Stressdiarree komt heel vaak voor bij pas geadopteerde honden. Een verandering van omgeving, voeding, water en routine kan de maag van streek maken. Het trekt meestal binnen een dag of twee bij. Als de diarree langer dan 48 uur aanhoudt, bloed bevat of je hond stopt met drinken, bel dan je dierenarts."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Hoe lang duurt het voordat een reddingshond gewend is?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "De meeste reddingshonden hebben ongeveer 3 maanden nodig om volledig te wennen aan een nieuw thuis. Je zult week na week verbeteringen zien. De hond die je op dag een ziet, is niet de hond die je over drie maanden hebt. Ze worden met de tijd zelfverzekerder, speelser en aanhankelijker."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="nl" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Na de adoptie</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Je eerste week met een reddingshond</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        Je hond is thuis. Je hebt op dit moment gewacht, en nu voelt alles een beetje chaotisch. Dat is volkomen normaal. Je hond heeft het asiel, dierenarsbezoeken en een lange transportrit achter de rug. Hij heeft tijd nodig. Hier lees je wat je kunt verwachten en hoe je hem kunt helpen wennen.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- The 3-3-3 Rule -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">De 3-3-3-regel</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Professionals op het gebied van reddingshonden gebruiken de 3-3-3-regel als een globale tijdlijn voor hoe aanpassing eruitziet. Het is niet exact, maar het helpt om realistische verwachtingen te stellen.
+      </p>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3d</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 dagen: ontspannen</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Je hond is misschien gesloten, overweldigd of angstig. Hij eet misschien niet, verstopt zich achter meubels of slaapt alleen maar. Sommige honden ijsberen of hijgen. Anderen bevriezen in een hoek en bewegen nauwelijks. Dit is stress, geen karaktereigenschap. Geef hem ruimte. Houd het huis rustig.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3w</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 weken: de routine leren kennen</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Je hond begint te begrijpen wanneer er gegeten wordt, wanneer er gewandeld wordt en waar hij slaapt. Hij begint te ontspannen. Misschien zie je het eerste kwispelen, het eerste speelse moment, of de eerste keer dat hij ervoor kiest om naast je te komen zitten. Hij tast de situatie af. Houd de routine consequent.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold text-sm">3m</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">3 maanden: thuis voelen</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Nu leer je de echte hond kennen. Hij voelt zich veilig. Hij kent de routine. Hij vertrouwt je. Zijn ware karakter komt naar boven. De hond na drie maanden is vaak een compleet andere dan de hond die op dag een aankwam. Zelfverzekerder, speelser, aanhankelijker.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to expect in the first few days -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Wat je kunt verwachten in de eerste dagen</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Niets hiervan betekent dat er iets mis is met je hond. Het zijn normale stressreacties van een hond die zich aanpast aan een volledig nieuwe wereld.
+      </p>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Niet eten.</strong> Veel honden slaan de eerste dag of twee maaltijden over. Hun maag is van streek door de stress en de reis. Geen paniek. Bied eten en water aan en loop dan weg. Ze eten als ze er klaar voor zijn.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Diarree.</strong> Stressdiarree komt heel vaak voor. Nieuw voer, nieuw water, nieuwe omgeving. Het trekt meestal binnen een dag of twee bij. Hieronder lees je wanneer je je zorgen moet maken.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Verstoppen.</strong> Onder het bed, achter de bank, in de hoek. Hij zoekt een veilige, beschutte plek. Laat hem. Trek hem er niet uit. Ga in de buurt zitten en wees er gewoon. Hij komt vanzelf naar je toe.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Bang voor alledaagse dingen.</strong> De tv, de wasmachine, trappen, houten vloeren, auto's, de deurbel. Veel reddingshonden zijn nog nooit in een huis geweest. Alles is nieuw. Introduceer dingen langzaam en laat hem op zijn eigen tempo ontdekken.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Ongelukjes in huis.</strong> Zelfs zindelijke honden kunnen de eerste week ongelukjes hebben. Ze weten niet waar de deur is. Ze weten niet hoe ze je moeten laten weten dat ze naar buiten moeten. Breng ze regelmatig naar buiten, vooral na het eten en na het slapen.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body"><strong>Niet willen wandelen.</strong> Sommige honden bevriezen aan de riem. Ze weten niet wat een stoep is, of ze zijn overweldigd door verkeerslawaai. Houd wandelingen in het begin heel kort en dicht bij huis. Bouw het geleidelijk op.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Practical tips -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Praktische tips voor de eerste week</h2>
+      <div class="space-y-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Houd het huis rustig</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Geen feestjes. Geen bezoek. Geen enthousiaste kennismakingen met alle buren. Je hond heeft een rustige, voorspelbare omgeving nodig. Vraag vrienden en familie om minstens een week of twee te wachten met langskomen.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Richt een veilige plek in</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Zet zijn mand in een rustige hoek, uit de loop. Een bench met de deur open kan ook goed werken. Leg er een deken in en zet er een waterbak naast. Dit is zijn toevluchtsoord als alles te veel wordt.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Stel vroeg een routine in</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Dezelfde voedertijden, dezelfde wandeltijden, dezelfde bedtijd. Honden gedijen bij voorspelbaarheid, en reddingshonden helemaal. Een routine laat ze zien dat de wereld logisch is en dat ze erop kunnen rekenen.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Laat de hond naar jou toe komen</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Weersta de drang om constant te aaien, te knuffelen en hem op te tillen. Ga in de buurt op de grond zitten. Praat zachtjes. Laat hem naar je toe komen als hij er klaar voor is. Een gestresste hond dwingen tot genegenheid kan de situatie verergeren.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Gebruik de tuin</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Als je een tuin hebt, laat hem die verkennen. Het is een gecontroleerde, veilige buitenruimte waar hij kan snuffelen, ontspannen en kan leren dat buiten niet eng is. Houd altijd toezicht totdat je zeker bent van je omheining.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Doe het rustig aan met andere huisdieren</h3>
+          <p class="text-body mt-1 leading-relaxed">
+            Als je andere dieren hebt, stel ze dan geleidelijk aan elkaar voor. Gebruik in het begin hekjes of aparte kamers. Laat ze onder de deur aan elkaar snuffelen voor ze elkaar ontmoeten. Forceer geen vriendschap. Die komt vanzelf op zijn eigen tempo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- When to call the vet -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Wanneer naar de dierenarts, wanneer is het gewoon stress</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Het kan lastig zijn om het verschil te zien tussen normaal stressgedrag en iets dat medische aandacht nodig heeft. Hier is een eenvoudige leidraad.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="border border-gray-100 rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark mb-3">Waarschijnlijk gewoon stress</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Niet eten in de eerste 24 tot 48 uur</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Zachte ontlasting of diarree voor een dag of twee</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Hijgen, ijsberen of janken</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Verstoppen of alleen willen zijn</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-0.5">&#10003;</span>
+              <span class="text-body text-sm">Meer slapen dan normaal</span>
+            </li>
+          </ul>
+        </div>
+        <div class="border-2 border-red-200 rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark mb-3">Bel de dierenarts</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Niet eten sinds meer dan 48 uur</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Weigert water te drinken</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Diarree die langer dan 48 uur aanhoudt</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Bloed in ontlasting of braaksel</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Lusteloosheid in combinatie met geen eetlust</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-0.5 font-bold">!</span>
+              <span class="text-body text-sm">Afscheiding uit ogen of neus</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-body leading-relaxed mt-4">
+        Bij twijfel: bel je dierenarts. Het is altijd beter om te checken en het blijkt niets te zijn, dan om te lang te wachten. Schrijf je voor aankomst van je hond in bij een lokale dierenarts, zodat je ergens terecht kunt als het nodig is.
+      </p>
+    </section>
+
+    <!-- Remember what they have been through -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Bedenk wat hij heeft meegemaakt</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Je hond heeft misschien op straat geleefd. Hij zat misschien in een openbaar asiel waar honden op elkaar gepropt zaten in betonnen hokken. Hij is misschien nog nooit in een huis geweest, heeft nog nooit aan een riem gelopen, heeft nog nooit een televisie gehoord. Daarna werd hij in een busje gezet en twee dagen door Europa gereden.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        Alles in je huis is nieuw. De geuren, de geluiden, de oppervlakken, de mensen. Zelfs vriendelijkheid kan verwarrend zijn als hij daar niet veel van heeft meegemaakt.
+      </p>
+      <p class="text-body leading-relaxed">
+        Heb geduld. De eerste week kan rommelig, frustrerend en emotioneel zijn. Je vraagt je misschien af of je de juiste beslissing hebt genomen. Dat heb je. Het wordt elke dag beter. De hond die over drie maanden opgerold op je bank ligt, is elk moeilijk moment van deze week waard.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Veelgestelde vragen</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Is het normaal dat een reddingshond de eerste dag niet eet?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Ja. Veel reddingshonden slaan de eerste dag of twee maaltijden over door stress en een nieuwe omgeving. Dit is volkomen normaal. Bied eten en vers water aan en geef hem de ruimte. Als je hond langer dan 48 uur weigert te eten of geen water wil drinken, neem dan contact op met je dierenarts.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Wat is de 3-3-3-regel voor reddingshonden?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            De 3-3-3-regel is een globale tijdlijn voor de aanpassing van een reddingshond. Drie dagen om te ontspannen en de overweldiging te verwerken. Drie weken om je routine te leren kennen en te wennen. Drie maanden om zich echt thuis te voelen en zijn ware karakter te laten zien. Elke hond is anders, maar dit kader helpt om realistische verwachtingen te stellen.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Waarom heeft mijn reddingshond diarree?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Stressdiarree komt heel vaak voor bij pas geadopteerde honden. Een verandering van omgeving, voeding, water en routine kan de maag van streek maken. Het trekt meestal binnen een dag of twee bij. Als de diarree langer dan 48 uur aanhoudt, bloed bevat of je hond stopt met drinken, bel dan je dierenarts.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Hoe lang duurt het voordat een reddingshond gewend is?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            De meeste reddingshonden hebben ongeveer drie maanden nodig om volledig te wennen aan een nieuw thuis. Je zult week na week verbeteringen zien. De hond die je op dag een ziet, is niet de hond die je over drie maanden hebt. Ze worden met de tijd zelfverzekerder, speelser en aanhankelijker.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Denk je erover om te adopteren?</h2>
+      <p class="text-body mb-6">Al onze honden zijn volledig medisch gecontroleerd, gevaccineerd en klaar voor een gezin. Dien vandaag nog je aanvraag in.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/nl/apply" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Adoptieaanvraag indienen
+        </a>
+        <a href="/nl/adopt" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Beschikbare honden bekijken
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>
