@@ -102,7 +102,7 @@ const i18n: Record<string, Record<string, string>> = {
     blog2: 'Votre première semaine avec un chien de sauvetage',
     ctaText: 'Une question ? Contactez-nous sur Facebook :',
     ctaButton: 'Nous écrire sur Facebook',
-    footer: 'Nous sauvons des chiens en Bosnie et trouvons des familles à travers l'Europe.',
+    footer: "Nous sauvons des chiens en Bosnie et trouvons des familles à travers l'Europe.",
     subjectDog: 'Nous avons reçu votre demande pour %DOG% !',
     subjectGeneric: "Nous avons reçu votre demande d'adoption !",
   },

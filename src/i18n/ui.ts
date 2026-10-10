@@ -8,6 +8,7 @@ export const ui = {
     'nav.donations': 'Donations',
     'nav.contact': 'Contact',
     'nav.donate': 'Donate',
+    'nav.applyToAdopt': 'Apply to Adopt',
 
     // Footer
     'footer.quickLinks': 'Quick Links',
@@ -233,6 +234,7 @@ export const ui = {
     'nav.donations': 'Spenden',
     'nav.contact': 'Kontakt',
     'nav.donate': 'Spenden',
+    'nav.applyToAdopt': 'Adoptionsantrag',
 
     // Footer
     'footer.quickLinks': 'Schnellzugriff',
@@ -458,6 +460,7 @@ export const ui = {
     'nav.donations': 'Donaties',
     'nav.contact': 'Contact',
     'nav.donate': 'Doneer',
+    'nav.applyToAdopt': 'Adoptieaanvraag',
 
     // Footer
     'footer.quickLinks': 'Handige links',
@@ -683,6 +686,7 @@ export const ui = {
     'nav.donations': 'Dons',
     'nav.contact': 'Contact',
     'nav.donate': 'Faire un don',
+    'nav.applyToAdopt': "Demande d'adoption",
 
     // Footer
     'footer.quickLinks': 'Liens rapides',

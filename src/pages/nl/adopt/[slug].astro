@@ -15,6 +15,14 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 const { dog } = Astro.props;
+
+// Detect bonded sibling pairs
+const siblingMap: Record<string, { slug: string; name: string }> = {
+  'luna-2': { slug: 'nami', name: 'Nami' },
+  'nami': { slug: 'luna-2', name: 'Luna' },
+};
+const sibling = siblingMap[dog.slug] ?? null;
+
 const description = dog.nl?.description ?? dog.description;
 const shortLine = dog.nl?.shortLine ?? dog.shortLine;
 const traits = dog.nl?.traits ?? dog.traits;
@@ -46,6 +54,14 @@ const extraPhotos = dogPhotos.slice(1);
         <div class="mt-6">
           <p class="text-body leading-relaxed">{description}</p>
           {traits && traits.length > 0 && (<ul class="mt-4 space-y-2">{traits.map((tr) => (<li class="flex items-start gap-2 text-body"><span class="text-teal mt-0.5">&#10003;</span><span>{tr}</span></li>))}</ul>)}
+          {sibling && (
+            <div class="mt-6 bg-teal/5 rounded-xl p-4 flex items-center gap-3">
+              <span class="text-2xl">🐾</span>
+              <p class="text-body text-sm">
+                {dog.name} heeft een zus, <a href={`/nl/adopt/${sibling.slug}`} class="text-teal font-semibold hover:underline">{sibling.name}</a>. Ze worden het liefst samen geadopteerd, maar apart kan ook.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -66,7 +82,7 @@ const extraPhotos = dogPhotos.slice(1);
       <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('adoptSlug.interestedIn').replace('{name}', dog.name)}</h2>
       <p class="text-body mb-6">{t('adoptSlug.interestedText')}</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href={`/apply/${dog.slug}`} class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Adoptieaanvraag indienen</a>
+        <a href={`/nl/apply?dog=${dog.slug}`} class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Adoptieaanvraag indienen</a>
         <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('adoptSlug.messageFb')}</a>
         <a href={`mailto:donate2mypaws@gmail.com?subject=Adoptie aanvraag voor ${dog.name}`} class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">{t('adoptSlug.emailUs')}</a>
       </div>

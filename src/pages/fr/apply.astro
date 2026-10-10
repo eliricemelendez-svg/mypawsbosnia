@@ -393,7 +393,7 @@ const dogPhotoData = currentDogs.map((dog) => {
         <!-- Success stories -->
         <div class="bg-light-bg rounded-2xl p-6 text-center">
           <p class="text-body mb-2">Au fil des ans, nous avons aide des chiens comme Bridgette, Nero, Flint et bien d'autres a trouver des familles aimantes a travers l'Europe.</p>
-          <a href="/success-stories" class="text-teal font-medium hover:underline">Voir leurs histoires &rarr;</a>
+          <a href="/fr/success-stories" class="text-teal font-medium hover:underline">Voir leurs histoires &rarr;</a>
         </div>
 
         <!-- Submit -->
@@ -593,7 +593,7 @@ const dogPhotoData = currentDogs.map((dog) => {
 
     if (showcaseName) showcaseName.textContent = name;
     if (showcaseLine && info) showcaseLine.textContent = info.shortLine;
-    if (showcaseLink && info) showcaseLink.href = `/adopt/${info.slug}`;
+    if (showcaseLink && info) showcaseLink.href = `/fr/adopt/${info.slug}`;
 
     dogShowcase?.classList.remove('hidden');
     formFields?.classList.remove('hidden');
@@ -624,10 +624,10 @@ const dogPhotoData = currentDogs.map((dog) => {
   changeDogBarBtn?.addEventListener('click', resetDogSelection);
 
   // Pre-select from URL param
-  const params = new URLSearchParams(window.location.search);
-  const dogParam = params.get('dog');
+  const dogParam = new URLSearchParams(window.location.search).get('dog');
   if (dogParam) {
-    const match = dogInfo.find((d: any) => d.name.toLowerCase() === dogParam.toLowerCase());
+    const lc = dogParam.toLowerCase();
+    const match = dogInfo.find((d: any) => d.name.toLowerCase() === lc || d.slug.toLowerCase() === lc);
     if (match) {
       selectDog(match.name, match.slug);
     }
@@ -838,6 +838,21 @@ const dogPhotoData = currentDogs.map((dog) => {
         });
 
         if (res.ok) {
+          // Send confirmation email (fire and forget — don't block the success screen)
+          const emailData = {
+            name: applicantName,
+            email: (document.getElementById('email') as HTMLInputElement)?.value || '',
+            dogName: selectedDogName,
+            dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
+            country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
+            lang: document.documentElement.lang || 'en',
+          };
+          fetch('/api/confirm-application', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(emailData),
+          }).catch(() => {}); // silent fail — Web3Forms already has the data
+
           if (selectedDogName && selectedDogName !== 'Not sure yet') {
             const successText = document.getElementById('success-dog-text');
             if (successText) {
