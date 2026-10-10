@@ -13,4 +13,12 @@ const matched = currentDogs.find((d) => d.slug === dog);
 const dogName = matched?.name ?? dog;
 ---
 
-<meta http-equiv="refresh" content={`0;url=/apply?dog=${encodeURIComponent(dogName)}`} />
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content={`0;url=/apply?dog=${encodeURIComponent(dogName)}`} />
+  <title>Apply to Adopt {dogName}</title>
+</head>
+<body></body>
+</html>
