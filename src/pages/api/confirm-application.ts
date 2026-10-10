@@ -159,8 +159,8 @@ export const POST: APIRoute = async ({ request }) => {
                 <!-- CTA -->
                 <tr>
                   <td style="padding: 28px; text-align: center;">
-                    <p style="font-size: 14px; color: #64748B; margin: 0 0 16px;">Can't wait? Reach us directly:</p>
-                    <a href="https://wa.me/38765628636" style="display: inline-block; padding: 14px 32px; background-color: #25D366; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 50px;">Message us on WhatsApp</a>
+                    <p style="font-size: 14px; color: #64748B; margin: 0 0 16px;">Have a question? Reach us on Facebook:</p>
+                    <a href="https://www.facebook.com/profile.php?id=61590021437450" style="display: inline-block; padding: 14px 32px; background-color: #1877F2; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 50px;">Message us on Facebook</a>
                   </td>
                 </tr>
 
