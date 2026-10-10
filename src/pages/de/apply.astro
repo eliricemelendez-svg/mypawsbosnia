@@ -623,9 +623,10 @@ const dogPhotoData = currentDogs.map((dog) => {
   changeDogBtn?.addEventListener('click', resetDogSelection);
   changeDogBarBtn?.addEventListener('click', resetDogSelection);
 
-  // Pre-select from URL param
-  const dogParam = new URLSearchParams(window.location.search).get('dog');
-  if (dogParam) {
+  // Pre-select from URL param (?dog=leia) or path (/de/apply/leia)
+  const dogParam = new URLSearchParams(window.location.search).get('dog')
+    || window.location.pathname.replace(/\/$/, '').split('/').pop();
+  if (dogParam && dogParam !== 'apply') {
     const lc = dogParam.toLowerCase();
     const match = dogInfo.find((d: any) => d.name.toLowerCase() === lc || d.slug.toLowerCase() === lc);
     if (match) {

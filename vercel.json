@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/apply/:dog", "destination": "/apply" }
+    { "source": "/apply/:dog", "destination": "/apply" },
+    { "source": "/de/apply/:dog", "destination": "/de/apply" },
+    { "source": "/nl/apply/:dog", "destination": "/nl/apply" },
+    { "source": "/fr/apply/:dog", "destination": "/fr/apply" }
   ]
 }
