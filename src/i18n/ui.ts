@@ -119,6 +119,7 @@ export const ui = {
     'adoptSlug.interestedText': 'Send us a message on our Facebook page to learn more about the adoption process.',
     'adoptSlug.messageFb': 'Message us on Facebook',
     'adoptSlug.years': 'years',
+    'adoptSlug.months': 'months',
 
     // Donate page
     'donatePage.title': 'Donate to Help Rescue Dogs in Bosnia | My Paws Bosnia',
@@ -343,6 +344,7 @@ export const ui = {
     'adoptSlug.interestedText': 'Schreibe uns eine Nachricht auf unserer Facebook-Seite, um mehr \u00fcber den Adoptionsprozess zu erfahren.',
     'adoptSlug.messageFb': 'Schreib uns auf Facebook',
     'adoptSlug.years': 'Jahre',
+    'adoptSlug.months': 'Monate',
 
     // Donate page
     'donatePage.title': 'Spenden f\u00fcr Rettungshunde in Bosnien | My Paws Bosnia',
@@ -567,6 +569,7 @@ export const ui = {
     'adoptSlug.interestedText': 'Stuur ons een bericht via onze Facebook-pagina voor meer informatie over het adoptieproces.',
     'adoptSlug.messageFb': 'Stuur ons een bericht',
     'adoptSlug.years': 'jaar',
+    'adoptSlug.months': 'maanden',
 
     // Donate page
     'donatePage.title': 'Doneer om asielhonden in Bosni\u00eb te helpen | My Paws Bosnia',
@@ -791,6 +794,7 @@ export const ui = {
     'adoptSlug.interestedText': '\u00c9crivez-nous sur notre page Facebook pour en savoir plus sur le processus d\u2019adoption.',
     'adoptSlug.messageFb': '\u00c9crivez-nous sur Facebook',
     'adoptSlug.years': 'ans',
+    'adoptSlug.months': 'mois',
 
     // Donate page
     'donatePage.title': 'Faire un don pour les chiens sauv\u00e9s de Bosnie | My Paws Bosnia',

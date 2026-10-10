@@ -68,7 +68,7 @@ const extraPhotos = dogPhotos.slice(1);
         <div class="flex flex-wrap gap-3 mt-4">
           <div class="bg-light-bg rounded-xl px-5 py-3 text-center">
             <p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.age')}</p>
-            <p class="text-base font-semibold text-slate-dark mt-1">{dog.ageYears ? `${dog.ageYears} ${t('adoptSlug.years')}` : dog.age}</p>
+            <p class="text-base font-semibold text-slate-dark mt-1">{dog.ageYears ? (dog.ageYears < 1 ? `${Math.round(dog.ageYears * 12)} ${t('adoptSlug.months')}` : `${dog.ageYears} ${t('adoptSlug.years')}`) : dog.age}</p>
           </div>
           <div class="bg-light-bg rounded-xl px-5 py-3 text-center">
             <p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.size')}</p>
