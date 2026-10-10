@@ -852,6 +852,20 @@ const dogPhotoData = currentDogs.map((dog) => {
         });
 
         if (res.ok) {
+          // Send confirmation email (fire and forget — don't block the success screen)
+          const emailData = {
+            name: applicantName,
+            email: (document.getElementById('email') as HTMLInputElement)?.value || '',
+            dogName: selectedDogName,
+            dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
+            country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
+          };
+          fetch('/api/confirm-application', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(emailData),
+          }).catch(() => {}); // silent fail — Web3Forms already has the data
+
           if (selectedDogName && selectedDogName !== 'Not sure yet') {
             const successText = document.getElementById('success-dog-text');
             if (successText) {
