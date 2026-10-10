@@ -12,7 +12,7 @@ const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const dogPhotoData = currentDogs.map((dog) => {
-  const prefix = `../assets/current-dogs/${dog.slug}/`;
+  const prefix = `../../assets/current-dogs/${dog.slug}/`;
   const photos = Object.entries(allPhotos)
     .filter(([path]) => path.startsWith(prefix))
     .sort(([a], [b]) => a.localeCompare(b))
