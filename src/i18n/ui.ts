@@ -336,7 +336,7 @@ export const ui = {
     'adoptSlug.sex': 'Geschlecht',
     'adoptSlug.morePhotos': 'Weitere Fotos',
     'adoptSlug.feesTitle': 'Transportkosten',
-    'adoptSlug.feesIntro': 'Es gibt keine Adoptionsgebühr \u2014 der Hund ist kostenlos. Du zahlst nur die Transportkosten zu dir nach Hause: lizenzierter Transport, Heimtierausweis und Entwurmung gemäß den Anforderungen deines Landes. Jeder Hund ist bereits kastriert, geimpft und gechipt. Die Kosten sind für jeden Hund gleich.',
+    'adoptSlug.feesIntro': 'Es gibt keine Adoptionsgebühr \u2014 der Hund ist kostenlos. Du zahlst nur die Transportkosten zu dir nach Hause: genehmigter Transport, Heimtierausweis und Entwurmung gemäß den Anforderungen deines Landes. Jeder Hund ist bereits kastriert, geimpft und gechipt. Die Kosten sind für jeden Hund gleich.',
     'adoptSlug.uk': 'Gro\u00dfbritannien',
     'adoptSlug.europe': 'Europa',
     'adoptSlug.switzerland': 'Schweiz',
