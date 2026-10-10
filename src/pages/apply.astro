@@ -620,6 +620,15 @@ const dogPhotoData = currentDogs.map((dog) => {
     });
   });
 
+  // Auto-select dog from URL parameter (e.g. /apply?dog=Luna)
+  const urlDog = new URLSearchParams(window.location.search).get('dog');
+  if (urlDog) {
+    const match = dogInfo.find((d: any) => d.name === urlDog || d.slug === urlDog);
+    if (match) {
+      selectDog(match.name, match.slug);
+    }
+  }
+
   function resetDogSelection() {
     if (showcaseAutoplay) { clearInterval(showcaseAutoplay); showcaseAutoplay = null; }
     dogShowcase?.classList.add('hidden');
