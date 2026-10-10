@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/vercel": "^10.0.8",
+    "@astrojs/vercel": "10.0.8",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.4",
     "resend": "^6.32.1",
