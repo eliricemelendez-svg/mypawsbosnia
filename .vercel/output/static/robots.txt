@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mypawsbosnia.org/sitemap-index.xml
