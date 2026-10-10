@@ -620,14 +620,6 @@ const dogPhotoData = currentDogs.map((dog) => {
     });
   });
 
-  // Auto-select dog from URL parameter (e.g. /apply?dog=Luna)
-  const urlDog = new URLSearchParams(window.location.search).get('dog');
-  if (urlDog) {
-    const match = dogInfo.find((d: any) => d.name === urlDog || d.slug === urlDog);
-    if (match) {
-      selectDog(match.name, match.slug);
-    }
-  }
 
   function resetDogSelection() {
     if (showcaseAutoplay) { clearInterval(showcaseAutoplay); showcaseAutoplay = null; }
@@ -646,11 +638,11 @@ const dogPhotoData = currentDogs.map((dog) => {
   changeDogBtn?.addEventListener('click', resetDogSelection);
   changeDogBarBtn?.addEventListener('click', resetDogSelection);
 
-  // Pre-select from URL param
-  const params = new URLSearchParams(window.location.search);
-  const dogParam = params.get('dog');
+  // Pre-select from URL param (e.g. /apply?dog=Leia or /apply?dog=leia)
+  const dogParam = new URLSearchParams(window.location.search).get('dog');
   if (dogParam) {
-    const match = dogInfo.find((d: any) => d.name.toLowerCase() === dogParam.toLowerCase());
+    const lc = dogParam.toLowerCase();
+    const match = dogInfo.find((d: any) => d.name.toLowerCase() === lc || d.slug.toLowerCase() === lc);
     if (match) {
       selectDog(match.name, match.slug);
     }
