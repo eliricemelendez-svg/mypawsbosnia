@@ -861,6 +861,7 @@ const dogPhotoData = currentDogs.map((dog) => {
             dogName: selectedDogName,
             dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
             country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
+            lang: document.documentElement.lang || 'en',
           };
           fetch('/api/confirm-application', {
             method: 'POST',
