@@ -64,9 +64,9 @@ export const POST: APIRoute = async ({ request }) => {
           <!-- Greeting -->
           <tr>
             <td style="padding: 24px 24px 0;">
-              <p style="font-size: 16px; color: #1E293B; margin: 0 0 8px;">Hi ${name},</p>
-              <p style="font-size: 16px; color: #475569; margin: 0; line-height: 1.6;">
-                Thank you for your application! ${dogLine}
+              <p style="font-size: 16px; color: #1E293B; margin: 0 0 16px;">Hi ${name},</p>
+              <p style="font-size: 16px; color: #475569; margin: 0 0 12px; line-height: 1.6;">Thank you for your application!</p>
+              <p style="font-size: 16px; color: #475569; margin: 0; line-height: 1.6;">${dogLine}
               </p>
               ${dogProfileLink ? `<p style="margin: 8px 0 0;">${dogProfileLink}</p>` : ''}
             </td>
