@@ -19,6 +19,13 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 const { dog } = Astro.props;
 
+// Detect bonded sibling pairs
+const siblingMap: Record<string, { slug: string; name: string }> = {
+  'luna-2': { slug: 'nami', name: 'Nami' },
+  'nami': { slug: 'luna-2', name: 'Luna' },
+};
+const sibling = siblingMap[dog.slug] ?? null;
+
 const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
   "../../assets/current-dogs/**/*.{jpeg,jpg,png}",
   { eager: true }
@@ -93,6 +100,14 @@ const extraPhotos = dogPhotos.slice(1);
                 <li class="flex items-start gap-2 text-body"><span class="text-teal mt-0.5">&#10003;</span><span>{trait}</span></li>
               ))}
             </ul>
+          )}
+          {sibling && (
+            <div class="mt-6 bg-teal/5 rounded-xl p-4 flex items-center gap-3">
+              <span class="text-2xl">🐾</span>
+              <p class="text-body text-sm">
+                {dog.name} has a sister, <a href={`/adopt/${sibling.slug}`} class="text-teal font-semibold hover:underline">{sibling.name}</a>. They'd love to be adopted together, but can go to separate homes too.
+              </p>
+            </div>
           )}
         </div>
       </div>
