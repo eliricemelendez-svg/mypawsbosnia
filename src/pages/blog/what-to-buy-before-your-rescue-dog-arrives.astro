@@ -17,11 +17,12 @@ const articleSchema = {
 
 <Layout title={title} description={description} lang="en" jsonLd={[articleSchema]}>
   <!-- Hero -->
-  <section class="bg-light-bg py-12 md:py-16">
+  <section class="bg-[#FDF8F0] py-14 md:py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Preparing for Your Dog</p>
-      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">What to Buy Before Your Rescue Dog Arrives</h1>
-      <p class="text-lg text-body mt-4 leading-relaxed">
+      <span class="inline-block px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-bold uppercase tracking-wide mb-4">New Dog Guide</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark leading-tight">What to Buy Before Your Rescue Dog Arrives</h1>
+      <p class="text-sm text-body mt-3">Published October 2026</p>
+      <p class="text-lg text-body mt-5 leading-relaxed">
         Your dog has been approved and transport is booked. Now it is time to get your home ready. You do not need to buy everything at once, but having the basics sorted before arrival day will make the transition much easier for both of you.
       </p>
     </div>
@@ -29,8 +30,17 @@ const articleSchema = {
 
   <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
+    <!-- Tip: quiet corner -->
+    <div class="rounded-xl p-5 flex gap-3 bg-amber-50 border-l-4 border-amber-400 mb-12">
+      <span class="text-xl shrink-0">💡</span>
+      <div>
+        <p class="font-semibold text-slate-dark text-sm mb-1">Set up before they arrive</p>
+        <p class="text-body text-sm leading-relaxed">Set up a quiet corner with a bed, water bowl, and crate before arrival day. Having a calm, dedicated space ready means your dog can decompress immediately instead of wandering a chaotic house.</p>
+      </div>
+    </div>
+
     <!-- Essentials -->
-    <section class="mb-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold text-slate-dark mb-4">The essentials</h2>
       <p class="text-body leading-relaxed mb-4">
         These are the things your dog will need from the very first day.
@@ -63,10 +73,12 @@ const articleSchema = {
       </ul>
     </section>
 
+    <div class="border-t border-gray-100 my-12"></div>
+
     <!-- Food -->
-    <section class="mb-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold text-slate-dark mb-4">Food</h2>
-      <ul class="space-y-2">
+      <ul class="space-y-2 mb-6">
         <li class="flex items-start gap-3">
           <span class="text-teal mt-0.5">&#10003;</span>
           <span class="text-body">A bag of good quality kibble suitable for your dog's size and age</span>
@@ -80,15 +92,23 @@ const articleSchema = {
           <span class="text-body">Pick up some small, soft training treats for rewarding good behaviour in those early days</span>
         </li>
       </ul>
+
+      <!-- Stat highlight -->
+      <div class="bg-teal/5 rounded-xl p-5 text-center">
+        <p class="text-3xl font-bold text-teal mb-1">7-10 days</p>
+        <p class="text-body text-sm">to gradually switch food brands</p>
+      </div>
     </section>
 
+    <div class="border-t border-gray-100 my-12"></div>
+
     <!-- Comfort -->
-    <section class="mb-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold text-slate-dark mb-4">Comfort items</h2>
       <p class="text-body leading-relaxed mb-4">
         Your dog has just travelled a long way and everything is new. A few comfort items go a long way.
       </p>
-      <ul class="space-y-2">
+      <ul class="space-y-2 mb-6">
         <li class="flex items-start gap-3">
           <span class="text-teal mt-0.5">&#10003;</span>
           <span class="text-body"><strong>Blankets.</strong> Old towels or fleece blankets for the bed, the crate, and the car. Expect some accidents in the first week.</span>
@@ -102,10 +122,21 @@ const articleSchema = {
           <span class="text-body"><strong>A couple of soft toys.</strong> Some dogs love them, some ignore them. Start with one or two and see what your dog enjoys.</span>
         </li>
       </ul>
+
+      <!-- Tip: frozen Kong -->
+      <div class="rounded-xl p-5 flex gap-3 bg-amber-50 border-l-4 border-amber-400">
+        <span class="text-xl shrink-0">💡</span>
+        <div>
+          <p class="font-semibold text-slate-dark text-sm mb-1">Frozen Kong trick</p>
+          <p class="text-body text-sm leading-relaxed">A frozen Kong with peanut butter is a great way to keep your dog calm and occupied. Prepare a couple in advance and keep them in the freezer so they are ready when you need them.</p>
+        </div>
+      </div>
     </section>
 
+    <div class="border-t border-gray-100 my-12"></div>
+
     <!-- Safety -->
-    <section class="mb-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold text-slate-dark mb-4">Safety</h2>
       <p class="text-body leading-relaxed mb-4">
         Rescue dogs can be unpredictable in a new environment. A little preparation prevents problems.
@@ -126,8 +157,19 @@ const articleSchema = {
       </ul>
     </section>
 
+    <!-- Reassurance callout -->
+    <div class="rounded-xl p-5 flex gap-3 bg-emerald-50 border-l-4 border-emerald-400 mb-16">
+      <span class="text-xl shrink-0">&#10024;</span>
+      <div>
+        <p class="font-semibold text-slate-dark text-sm mb-1">You do not need everything on day one</p>
+        <p class="text-body text-sm leading-relaxed">It is completely normal to add things as you go. Focus on the basics first and build from there as you learn what your dog likes and needs.</p>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-100 my-12"></div>
+
     <!-- Grooming -->
-    <section class="mb-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold text-slate-dark mb-4">Grooming basics</h2>
       <p class="text-body leading-relaxed mb-4">
         You do not need a full grooming kit straight away. Just the basics to keep your dog comfortable.
@@ -148,8 +190,10 @@ const articleSchema = {
       </ul>
     </section>
 
+    <div class="border-t border-gray-100 my-12"></div>
+
     <!-- First vet visit -->
-    <section class="mb-12">
+    <section class="mb-16">
       <h2 class="text-2xl font-bold text-slate-dark mb-4">First vet visit supplies</h2>
       <p class="text-body leading-relaxed mb-4">
         Book a vet appointment within the first week of your dog arriving. Bring these along.
@@ -168,10 +212,31 @@ const articleSchema = {
           <span class="text-body">Treats to reward your dog for staying calm at the vet</span>
         </li>
       </ul>
-      <p class="text-body leading-relaxed mt-4">
+      <p class="text-body leading-relaxed mt-4 mb-6">
         Every dog from My Paws Bosnia arrives fully vaccinated, neutered, microchipped, and with a pet passport. Your vet can register the microchip to your name and set up ongoing parasite prevention.
       </p>
+
+      <!-- Info callout: vet visit -->
+      <div class="rounded-xl p-5 flex gap-3 bg-blue-50 border-l-4 border-blue-400">
+        <span class="text-xl shrink-0">&#128221;</span>
+        <div>
+          <p class="font-semibold text-slate-dark text-sm mb-1">Book your first vet visit before your dog arrives</p>
+          <p class="text-body text-sm leading-relaxed">Many vets have wait times of a week or more. Booking ahead means your dog gets seen within the first few days, when it matters most.</p>
+        </div>
+      </div>
     </section>
+
+    <!-- Related articles -->
+    <div class="bg-light-bg rounded-xl p-6 mb-12">
+      <p class="text-xs font-bold uppercase tracking-wide text-body mb-3">Read next</p>
+      <a href="/blog/your-first-week-with-a-rescue-dog" class="flex items-center justify-between group">
+        <div>
+          <p class="font-semibold text-slate-dark group-hover:text-teal transition-colors">Your first week with a rescue dog</p>
+          <p class="text-sm text-body">What to expect and how to help them settle in.</p>
+        </div>
+        <span class="text-teal text-xl">&rarr;</span>
+      </a>
+    </div>
 
     <!-- CTA -->
     <section class="bg-light-bg rounded-2xl p-8 text-center">
