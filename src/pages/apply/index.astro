@@ -1,0 +1,934 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import { currentDogs } from "../../data/current-dogs";
+
+const dogNames = currentDogs.map((d) => d.name);
+
+// Build photo data for each dog
+const allPhotos = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/current-dogs/**/*.{jpeg,jpg,png}",
+  { eager: true }
+);
+
+const dogPhotoData = currentDogs.map((dog) => {
+  const prefix = `../assets/current-dogs/${dog.slug}/`;
+  const photos = Object.entries(allPhotos)
+    .filter(([path]) => path.startsWith(prefix))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, mod]) => mod.default);
+  return { name: dog.name, slug: dog.slug, shortLine: dog.shortLine, photos };
+});
+---
+
+<Layout title="Apply to Adopt | My Paws Bosnia" description="Fill out our adoption application form. We review every application and usually respond within a few days." lang="en">
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">Apply to Adopt</h1>
+      <p class="mt-4 text-lg text-body max-w-2xl mx-auto">Choose your dog and tell us a little about yourself. We review every application and usually respond within a few days.</p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <form id="adopt-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="82e1cf41-2872-4b2a-92e3-8d373b609503" />
+      <input type="hidden" name="subject" value="New Adoption Application - My Paws Bosnia" />
+      <input type="hidden" name="from_name" value="My Paws Bosnia Adoption Form" />
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+      <input type="hidden" id="whatsapp_link" name="WhatsApp Link (click to chat)" value="" />
+
+      <!-- STEP 1: Choose your dog -->
+      <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100 mb-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+          </div>
+          <h2 class="text-xl font-semibold text-slate-dark">Who are you interested in?</h2>
+        </div>
+
+        <!-- Dog selection grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="dog-selector">
+          {dogPhotoData.map((dog) => (
+            <button
+              type="button"
+              class="dog-select-btn group relative rounded-xl overflow-hidden border-2 border-gray-100 hover:border-teal transition-all text-left"
+              data-dog={dog.name}
+              data-slug={dog.slug}
+            >
+              {dog.photos[0] && (
+                <Image
+                  src={dog.photos[0]}
+                  alt={dog.name}
+                  width={300}
+                  class="w-full aspect-square object-cover object-top"
+                />
+              )}
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+                <span class="text-white font-semibold text-sm">{dog.name}</span>
+              </div>
+            </button>
+          ))}
+          <button
+            type="button"
+            class="dog-select-btn flex items-center justify-center rounded-xl border-2 border-gray-100 hover:border-teal transition-all aspect-square bg-light-bg"
+            data-dog="Not sure yet"
+            data-slug=""
+          >
+            <div class="text-center p-3">
+              <div class="text-3xl mb-2">🐾</div>
+              <span class="text-sm text-body font-medium">Not sure yet</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Collapsed state (shown after selection) -->
+        <div id="dog-selected-bar" class="hidden flex items-center justify-between bg-light-bg rounded-xl p-4">
+          <div class="flex items-center gap-3">
+            <img id="selected-dog-thumb" src="" alt="" class="w-12 h-12 rounded-full object-cover" />
+            <div>
+              <p class="font-semibold text-slate-dark" id="selected-dog-name-text"></p>
+              <p class="text-xs text-body">Selected for adoption</p>
+            </div>
+          </div>
+          <button type="button" id="change-dog-bar-btn" class="text-sm text-teal font-medium hover:underline">Change</button>
+        </div>
+
+        <input type="hidden" id="dog_interest" name="dog_interest" value="" required />
+        <p id="dog-select-error" class="text-red-500 text-sm mt-2 hidden">Please select a dog to continue.</p>
+      </div>
+
+      <!-- Photo data for JS -->
+      {dogPhotoData.map((dog) => (
+        <template data-dog-photos={dog.name}>
+          {dog.photos.map((photo, i) => (
+            <img src={photo.src} data-width={photo.width} data-height={photo.height} alt={`${dog.name} photo ${i + 1}`} />
+          ))}
+        </template>
+      ))}
+      <script id="dog-info" type="application/json" set:html={JSON.stringify(
+        dogPhotoData.map(d => ({ name: d.name, slug: d.slug, shortLine: d.shortLine, photoCount: d.photos.length }))
+      )} />
+
+      <!-- TWO-COLUMN LAYOUT: Dog on left, form on right (hidden until dog selected) -->
+      <div id="form-fields" class="hidden">
+        <div class="flex flex-col lg:flex-row gap-8">
+
+          <!-- LEFT: Dog showcase (sticky on desktop) -->
+          <div id="dog-showcase" class="lg:w-5/12">
+            <div class="lg:sticky lg:top-24">
+              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <!-- Photo carousel -->
+                <div class="relative">
+                  <div class="aspect-square relative overflow-hidden" id="showcase-carousel">
+                    <div class="flex h-full transition-transform duration-300 ease-in-out" id="showcase-track">
+                      <!-- Photos injected by JS -->
+                    </div>
+                    <button type="button" id="showcase-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
+                    <button type="button" id="showcase-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="showcase-dots"></div>
+                  </div>
+                </div>
+                <!-- Dog info -->
+                <div class="p-5">
+                  <h3 id="showcase-name" class="text-2xl font-bold text-slate-dark"></h3>
+                  <p id="showcase-line" class="text-body mt-2 text-sm"></p>
+                  <div class="mt-3 flex items-center gap-4">
+                    <a id="showcase-profile-link" href="#" class="text-teal font-medium hover:underline text-sm">View full profile &rarr;</a>
+                    <button type="button" id="change-dog-btn" class="text-sm text-body hover:text-teal transition-colors underline">Change dog</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Form fields -->
+          <div class="lg:w-7/12 space-y-8">
+
+        <!-- About You -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">About you</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-body mb-2">Full name *</label>
+              <input type="text" id="name" name="name" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-body mb-2">Email address *</label>
+              <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-body mb-2">Phone number (with country code) *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+44 7700 900000" pattern="[\+\d\s\-\(\)]{7,20}" inputmode="tel" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="country" class="block text-sm font-medium text-body mb-2">Country *</label>
+                <select id="country" name="country" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                  <option value="">Select...</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option value="Netherlands">Netherlands</option>
+                  <option value="Belgium">Belgium</option>
+                  <option value="France">France</option>
+                  <option value="Austria">Austria</option>
+                  <option value="Ireland">Ireland</option>
+                  <option value="Denmark">Denmark</option>
+                  <option value="Sweden">Sweden</option>
+                  <option value="Norway">Norway</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="city" class="block text-sm font-medium text-body mb-2">City *</label>
+                <input type="text" id="city" name="city" required list="city-list" autocomplete="address-level2" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+                <datalist id="city-list">
+                  <option value="London" /><option value="Manchester" /><option value="Birmingham" /><option value="Leeds" /><option value="Liverpool" /><option value="Bristol" /><option value="Edinburgh" /><option value="Glasgow" /><option value="Cardiff" /><option value="Belfast" />
+                  <option value="Berlin" /><option value="Munich" /><option value="Hamburg" /><option value="Frankfurt" /><option value="Cologne" /><option value="Stuttgart" /><option value="Düsseldorf" /><option value="Leipzig" /><option value="Dortmund" /><option value="Dresden" />
+                  <option value="Zurich" /><option value="Geneva" /><option value="Basel" /><option value="Bern" /><option value="Lausanne" />
+                  <option value="Amsterdam" /><option value="Rotterdam" /><option value="The Hague" /><option value="Utrecht" /><option value="Eindhoven" />
+                  <option value="Brussels" /><option value="Antwerp" /><option value="Ghent" /><option value="Bruges" /><option value="Liège" />
+                  <option value="Paris" /><option value="Lyon" /><option value="Marseille" /><option value="Toulouse" /><option value="Nice" /><option value="Strasbourg" /><option value="Bordeaux" />
+                  <option value="Vienna" /><option value="Graz" /><option value="Salzburg" /><option value="Innsbruck" />
+                  <option value="Dublin" /><option value="Cork" /><option value="Galway" />
+                  <option value="Copenhagen" /><option value="Stockholm" /><option value="Oslo" /><option value="Milan" /><option value="Rome" /><option value="Madrid" /><option value="Barcelona" />
+                </datalist>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Your Home -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">Your home</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="home_type" class="block text-sm font-medium text-body mb-2">Do you live in a house or apartment? *</label>
+              <select id="home_type" name="home_type" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Farm / Rural property">Farm / Rural property</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="garden" class="block text-sm font-medium text-body mb-2">Do you have a garden or yard? *</label>
+              <select id="garden" name="garden" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div id="fence-row" class="hidden">
+              <label for="fence_height" class="block text-sm font-medium text-body mb-2">Roughly how high is the fencing?</label>
+              <select id="fence_height" name="fence_height" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Under 1 metre">Under 1 metre</option>
+                <option value="1 - 1.5 metres">1 - 1.5 metres</option>
+                <option value="1.5 - 2 metres">1.5 - 2 metres</option>
+                <option value="Over 2 metres">Over 2 metres</option>
+                <option value="Not sure">Not sure</option>
+              </select>
+              <p class="text-xs text-body mt-1">A rough estimate is fine. We can check during the home visit.</p>
+            </div>
+            <div>
+              <label for="own_rent" class="block text-sm font-medium text-body mb-2">Do you own or rent? *</label>
+              <select id="own_rent" name="own_rent" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Own">Own</option>
+                <option value="Rent - landlord allows dogs">Rent - landlord allows dogs</option>
+                <option value="Rent - need to check with landlord">Rent - need to check with landlord</option>
+              </select>
+            </div>
+            <div>
+              <p class="text-base font-medium text-slate-dark mb-2">Who lives in your home? *</p>
+              <div class="flex flex-wrap gap-2 mb-3" id="household-bubbles">
+                <button type="button" data-person="Partner / Spouse" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Partner / Spouse</button>
+                <button type="button" data-person="Children" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Children</button>
+                <button type="button" data-person="Flatmates" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Flatmates</button>
+                <button type="button" data-person="Grandparents" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Grandparents</button>
+                <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Other</button>
+              </div>
+              <div id="household-counts" class="space-y-3"></div>
+              <input type="hidden" id="household_types" name="household" value="Just me" />
+              <div id="household-children-ages" class="hidden mt-3">
+                <label for="children_ages" class="block text-sm font-medium text-body mb-2">Ages of children</label>
+                <input type="text" id="children_ages" name="children_ages" placeholder="e.g. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              </div>
+              <div class="mt-3">
+                <label for="household_extra" class="block text-sm font-medium text-body mb-2">Extra details?</label>
+                <input type="text" id="household_extra" name="household_extra" placeholder="e.g. my partner works from home" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              </div>
+              <p class="text-xs text-body mt-1">Select all that apply. If you live alone, leave them unselected.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pets & Experience -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">Pets & experience</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="dog_experience" class="block text-sm font-medium text-body mb-2">Have you owned a dog before? *</label>
+              <select id="dog_experience" name="dog_experience" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No, first time">No, this would be my first dog</option>
+              </select>
+              <p class="text-xs text-body mt-1">First-time owners are welcome. We're here to help.</p>
+            </div>
+            <div id="rescue-row" class="hidden">
+              <label for="was_rescue" class="block text-sm font-medium text-body mb-2">Was your dog a rescue?</label>
+              <select id="was_rescue" name="was_rescue" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div>
+              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">What does a typical day look like for you? *</label>
+              <select id="daily_routine" name="daily_routine" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Work from home">I work from home</option>
+                <option value="Work outside (full-time)">I work outside the home (full-time)</option>
+                <option value="Work outside (part-time)">I work outside the home (part-time)</option>
+                <option value="Retired">I'm retired</option>
+                <option value="Student">I'm a student</option>
+                <option value="Stay-at-home parent">I'm a stay-at-home parent</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="has_pets" class="block text-sm font-medium text-body mb-2">Do you currently have any pets? *</label>
+              <select id="has_pets" name="has_pets" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div id="pets-detail" class="hidden space-y-4">
+              <div>
+                <p class="text-base font-medium text-slate-dark mb-2">What pets do you have?</p>
+                <div class="flex flex-wrap gap-2" id="pet-bubbles">
+                  <button type="button" data-pet="Dogs" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Dogs</button>
+                  <button type="button" data-pet="Cats" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Cats</button>
+                  <button type="button" data-pet="Rabbits" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Rabbits</button>
+                  <button type="button" data-pet="Birds" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Birds</button>
+                  <button type="button" data-pet="Fish" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Fish</button>
+                  <button type="button" data-pet="Other" class="pet-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Other</button>
+                </div>
+                <input type="hidden" id="pet_types" name="pet_types" />
+              </div>
+              <div id="pet-counts" class="space-y-3"></div>
+              <div>
+                <label for="pets_extra" class="block text-sm font-medium text-body mb-2">Any extra details? (ages, breeds, etc.)</label>
+                <input type="text" id="pets_extra" name="pets_extra" placeholder="e.g. Labrador, 5 years old, very friendly" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final details -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h2 class="text-xl font-semibold text-slate-dark">A few more details</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label for="hours_alone" class="block text-sm font-medium text-body mb-2">How many hours per day will the dog be left alone? *</label>
+              <select id="hours_alone" name="hours_alone" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="0-2 hours">0-2 hours</option>
+                <option value="2-4 hours">2-4 hours</option>
+                <option value="4-6 hours">4-6 hours</option>
+                <option value="6-8 hours">6-8 hours</option>
+                <option value="8+ hours">8+ hours</option>
+              </select>
+            </div>
+            <div>
+              <label for="sleep" class="block text-sm font-medium text-body mb-2">Where will the dog sleep?</label>
+              <input type="text" id="sleep" name="sleep" placeholder="e.g. in the living room, in our bedroom" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+            </div>
+            <div>
+              <label for="home_check" class="block text-sm font-medium text-body mb-2">Are you willing to do a home check? *</label>
+              <select id="home_check" name="home_check" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <p class="text-xs text-body mt-1">In the UK this is usually a video call. In Germany and Austria, the home check will most likely be in person. Either way, it's quick and friendly.</p>
+            </div>
+            <div>
+              <label for="questions" class="block text-sm font-medium text-body mb-2">Any questions about the dog?</label>
+              <textarea id="questions" name="questions" rows="3" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-body mb-2">Anything else you'd like us to know?</label>
+              <textarea id="message" name="message" rows="3" placeholder="Tell us about yourself, your lifestyle, or why you're interested in this dog..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success stories -->
+        <div class="bg-light-bg rounded-2xl p-6 text-center">
+          <p class="text-body mb-2">Over the years, we've helped dogs like Bridgette, Nero, Flint, and many others find loving families across Europe.</p>
+          <a href="/success-stories" class="text-teal font-medium hover:underline">See their stories &rarr;</a>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center pt-2">
+          <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Submit Application</button>
+          <p class="text-xs text-body mt-3">We review every application and will be in touch within a few days.</p>
+        </div>
+
+        <!-- FAQ -->
+        <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
+          <h2 class="text-xl font-semibold text-slate-dark mb-4">Frequently asked questions</h2>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">What happens after I apply?</summary>
+            <p class="pb-4 text-body text-sm">We'll review your application and contact you via WhatsApp within 24 hours. From there, we'll arrange a home check and discuss the next steps.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">What is the home check?</summary>
+            <p class="pb-4 text-body text-sm">It's a quick, friendly check to make sure your home is a good fit for the dog. In the UK, this is usually a video call. In Germany and Austria, it will most likely be an in-person visit. Nothing to worry about — we're just here to help.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">How long does transport take?</summary>
+            <p class="pb-4 text-body text-sm">It usually takes about a month to arrange transport and get the dog ready for travel. This may vary depending on the time of year and how busy we are.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">What's included with the dog?</summary>
+            <p class="pb-4 text-body text-sm">Every dog comes vaccinated, microchipped, dewormed, and with a pet passport. Older dogs are typically spayed or neutered before travel. Puppies may not yet be spayed or neutered due to their age.</p>
+          </details>
+          <details class="border-b border-gray-100">
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Is there an adoption fee?</summary>
+            <p class="pb-4 text-body text-sm">There is no adoption fee — the dog is free. You only cover the cost of transport to your home: approximately &pound;500 to the UK, &euro;300–400 within Europe, or CHF 500–550 to Switzerland.</p>
+          </details>
+          <details>
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Can I adopt if I've never had a dog before?</summary>
+            <p class="pb-4 text-body text-sm">Absolutely! First-time dog owners are welcome. We'll support you through the process and help you prepare for your new family member.</p>
+          </details>
+        </div>
+
+          </div><!-- end right column -->
+        </div><!-- end flex row -->
+      </div><!-- end form-fields -->
+    </form>
+
+    <!-- Success message -->
+    <div id="success-msg" class="hidden py-16">
+      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-100 text-center">
+        <div class="text-5xl mb-4">🐾</div>
+        <h2 class="text-2xl font-bold text-slate-dark mb-2">Thank you for applying!</h2>
+        <p class="text-lg text-body mb-6" id="success-dog-text">We're so excited that you're interested in giving a rescue dog a loving home.</p>
+
+        <!-- Dog photos on success screen -->
+        <div id="success-photos" class="hidden mb-8">
+          <div class="relative rounded-2xl overflow-hidden max-w-md mx-auto">
+            <div class="aspect-square relative overflow-hidden" id="success-carousel">
+              <div class="flex h-full transition-transform duration-300 ease-in-out" id="success-track"></div>
+              <button type="button" id="success-prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8249;</button>
+              <button type="button" id="success-next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full w-10 h-10 flex items-center justify-center shadow text-slate-700 text-xl z-10">&#8250;</button>
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="success-dots"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-light-bg rounded-xl p-6 mb-8 text-left max-w-md mx-auto">
+          <h3 class="font-semibold text-slate-dark mb-3 text-center">What happens next?</h3>
+          <ol class="space-y-3 text-sm text-body">
+            <li class="flex gap-3">
+              <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">1</span>
+              <span>We'll review your application and <strong>contact you via WhatsApp within 24 hours</strong>.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
+              <span>We'll arrange a <strong>home check</strong> — a video call (UK) or an in-person visit (Germany/Austria) to make sure it's a good fit.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
+              <span>Once approved, we'll organise <strong>licensed transport</strong> directly to your door.</span>
+            </li>
+          </ol>
+        </div>
+
+        <p class="text-body mb-6">Can't wait? You can also reach us directly:</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Message us on WhatsApp</a>
+          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Message us on Facebook</a>
+        </div>
+        <div class="mt-8">
+          <a href="/adopt" class="text-teal font-medium hover:underline">&larr; Back to all dogs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Dog selection
+  const dogBtns = document.querySelectorAll<HTMLButtonElement>('.dog-select-btn');
+  const dogInput = document.getElementById('dog_interest') as HTMLInputElement;
+  const dogShowcase = document.getElementById('dog-showcase');
+  const dogSelector = document.getElementById('dog-selector');
+  const dogSelectedBar = document.getElementById('dog-selected-bar');
+  const selectedDogThumb = document.getElementById('selected-dog-thumb') as HTMLImageElement;
+  const selectedDogNameText = document.getElementById('selected-dog-name-text');
+  const changeDogBarBtn = document.getElementById('change-dog-bar-btn');
+  const formFields = document.getElementById('form-fields');
+  const showcaseTrack = document.getElementById('showcase-track');
+  const showcaseDots = document.getElementById('showcase-dots');
+  const showcaseName = document.getElementById('showcase-name');
+  const showcaseLine = document.getElementById('showcase-line');
+  const showcaseLink = document.getElementById('showcase-profile-link') as HTMLAnchorElement;
+  const changeDogBtn = document.getElementById('change-dog-btn');
+  const dogError = document.getElementById('dog-select-error');
+  const dogInfoEl = document.getElementById('dog-info');
+  const dogInfo = dogInfoEl ? JSON.parse(dogInfoEl.textContent || '[]') : [];
+
+  let showcaseCurrent = 0;
+  let showcaseCount = 0;
+
+  function showcaseGoTo(i: number) {
+    showcaseCurrent = (i + showcaseCount) % showcaseCount;
+    if (showcaseTrack) showcaseTrack.style.transform = `translateX(-${showcaseCurrent * 100}%)`;
+    showcaseDots?.querySelectorAll('span').forEach((d, idx) => {
+      d.className = `block w-2.5 h-2.5 rounded-full ${idx === showcaseCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
+    });
+  }
+
+  let showcaseAutoplay: ReturnType<typeof setInterval> | null = null;
+
+  function startShowcaseAutoplay() {
+    if (showcaseAutoplay) clearInterval(showcaseAutoplay);
+    showcaseAutoplay = setInterval(() => showcaseGoTo(showcaseCurrent + 1), 4000);
+  }
+
+  function resetShowcaseAutoplay() {
+    startShowcaseAutoplay(); // restart timer after manual interaction
+  }
+
+  document.getElementById('showcase-prev')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent - 1); resetShowcaseAutoplay(); });
+  document.getElementById('showcase-next')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent + 1); resetShowcaseAutoplay(); });
+
+  // Touch swipe on showcase
+  let sStartX = 0;
+  document.getElementById('showcase-carousel')?.addEventListener('touchstart', (e) => { sStartX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
+  document.getElementById('showcase-carousel')?.addEventListener('touchend', (e) => {
+    const diff = sStartX - (e as TouchEvent).changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1)); resetShowcaseAutoplay(); }
+  });
+
+  function selectDog(name: string, slug: string) {
+    dogInput.value = name;
+    dogError?.classList.add('hidden');
+
+    // Collapse the grid, show the selected bar
+    dogSelector?.classList.add('hidden');
+
+    // Get the first photo for the thumb
+    const thumbTemplate = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const firstImg = thumbTemplate?.content.querySelector('img');
+
+    if (selectedDogThumb && firstImg && name !== 'Not sure yet') {
+      selectedDogThumb.src = firstImg.src;
+      selectedDogThumb.alt = name;
+      selectedDogThumb.classList.remove('hidden');
+    } else if (selectedDogThumb) {
+      selectedDogThumb.classList.add('hidden');
+    }
+    if (selectedDogNameText) selectedDogNameText.textContent = name;
+    dogSelectedBar?.classList.remove('hidden');
+
+    if (name === 'Not sure yet') {
+      dogShowcase?.classList.add('hidden');
+      formFields?.classList.remove('hidden');
+      formFields?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Load photos into carousel
+    const template = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const info = dogInfo.find((d: any) => d.name === name);
+
+    if (showcaseTrack && template) {
+      showcaseTrack.innerHTML = '';
+      const imgs = template.content.querySelectorAll('img');
+      showcaseCount = imgs.length;
+      showcaseCurrent = 0;
+
+      imgs.forEach((img) => {
+        const slide = document.createElement('div');
+        slide.className = 'w-full h-full flex-shrink-0';
+        const newImg = document.createElement('img');
+        newImg.src = img.src;
+        newImg.alt = img.alt;
+        newImg.className = 'w-full h-full object-cover object-top';
+        slide.appendChild(newImg);
+        showcaseTrack.appendChild(slide);
+      });
+
+      showcaseTrack.style.transform = 'translateX(0)';
+
+      // Build dots
+      if (showcaseDots) {
+        showcaseDots.innerHTML = '';
+        for (let i = 0; i < showcaseCount; i++) {
+          const dot = document.createElement('span');
+          dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
+          showcaseDots.appendChild(dot);
+        }
+      }
+    }
+
+    if (showcaseName) showcaseName.textContent = name;
+    if (showcaseLine && info) showcaseLine.textContent = info.shortLine;
+    if (showcaseLink && info) showcaseLink.href = `/adopt/${info.slug}`;
+
+    startShowcaseAutoplay();
+
+    dogShowcase?.classList.remove('hidden');
+    formFields?.classList.remove('hidden');
+
+    dogShowcase?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  dogBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectDog(btn.dataset.dog!, btn.dataset.slug!);
+    });
+  });
+
+  // Auto-select dog from URL parameter (e.g. /apply?dog=Luna)
+  const urlDog = new URLSearchParams(window.location.search).get('dog');
+  if (urlDog) {
+    const match = dogInfo.find((d: any) => d.name === urlDog || d.slug === urlDog);
+    if (match) {
+      selectDog(match.name, match.slug);
+    }
+  }
+
+  function resetDogSelection() {
+    if (showcaseAutoplay) { clearInterval(showcaseAutoplay); showcaseAutoplay = null; }
+    dogShowcase?.classList.add('hidden');
+    formFields?.classList.add('hidden');
+    dogSelectedBar?.classList.add('hidden');
+    dogSelector?.classList.remove('hidden');
+    dogInput.value = '';
+    dogBtns.forEach((btn) => {
+      btn.classList.remove('border-teal', 'ring-2', 'ring-teal');
+      btn.classList.add('border-gray-100');
+    });
+    dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  changeDogBtn?.addEventListener('click', resetDogSelection);
+  changeDogBarBtn?.addEventListener('click', resetDogSelection);
+
+  // Pre-select from URL param
+  const params = new URLSearchParams(window.location.search);
+  const dogParam = params.get('dog');
+  if (dogParam) {
+    const match = dogInfo.find((d: any) => d.name.toLowerCase() === dogParam.toLowerCase());
+    if (match) {
+      selectDog(match.name, match.slug);
+    }
+  }
+
+  // Show/hide fence height based on garden answer
+  const gardenSelect = document.getElementById('garden') as HTMLSelectElement;
+  const fenceRow = document.getElementById('fence-row');
+  if (gardenSelect && fenceRow) {
+    gardenSelect.addEventListener('change', () => {
+      const isYes = gardenSelect.value === 'Yes';
+      fenceRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
+    });
+  }
+
+  // Show/hide rescue question based on dog experience
+  const dogExpSelect = document.getElementById('dog_experience') as HTMLSelectElement;
+  const rescueRow = document.getElementById('rescue-row');
+  if (dogExpSelect && rescueRow) {
+    dogExpSelect.addEventListener('change', () => {
+      const isYes = dogExpSelect.value === 'Yes';
+      rescueRow.classList.toggle('hidden', !isYes);
+      if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
+    });
+  }
+
+  // Show/hide pet details based on has_pets answer
+  const hasPetsSelect = document.getElementById('has_pets') as HTMLSelectElement;
+  const petsDetail = document.getElementById('pets-detail');
+  if (hasPetsSelect && petsDetail) {
+    hasPetsSelect.addEventListener('change', () => {
+      const isYes = hasPetsSelect.value === 'Yes';
+      petsDetail.classList.toggle('hidden', !isYes);
+      if (!isYes) {
+        selectedPets.clear();
+        petBubbles.forEach((b) => { b.classList.remove('bg-teal', 'text-white', 'border-teal'); b.classList.add('text-body', 'border-gray-200'); });
+        if (petCountsDiv) petCountsDiv.innerHTML = '';
+        if (petTypesInput) petTypesInput.value = '';
+      }
+    });
+  }
+
+  // Pet type bubbles
+  const selectedPets = new Set<string>();
+  const petBubbles = document.querySelectorAll<HTMLButtonElement>('.pet-bubble');
+  const petTypesInput = document.getElementById('pet_types') as HTMLInputElement;
+  const petCountsDiv = document.getElementById('pet-counts');
+
+  function updatePetCounts() {
+    if (!petCountsDiv) return;
+    petCountsDiv.innerHTML = '';
+    selectedPets.forEach((pet) => {
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-3';
+      row.innerHTML = `
+        <label class="text-sm text-slate-dark w-20">${pet}</label>
+        <div class="flex items-center gap-2">
+          <button type="button" class="pet-minus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-pet="${pet}">-</button>
+          <span class="pet-count text-sm font-semibold text-slate-dark w-6 text-center" data-pet="${pet}">1</span>
+          <button type="button" class="pet-plus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-pet="${pet}">+</button>
+        </div>
+        <input type="hidden" name="pet_count_${pet.toLowerCase()}" value="1" class="pet-count-input" data-pet="${pet}" />
+      `;
+      petCountsDiv.appendChild(row);
+    });
+    petCountsDiv.querySelectorAll('.pet-plus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pet = (btn as HTMLElement).dataset.pet!;
+        const countEl = petCountsDiv!.querySelector(`.pet-count[data-pet="${pet}"]`) as HTMLElement;
+        const inputEl = petCountsDiv!.querySelector(`.pet-count-input[data-pet="${pet}"]`) as HTMLInputElement;
+        const val = Math.min(parseInt(countEl.textContent || '1') + 1, 20);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+    petCountsDiv.querySelectorAll('.pet-minus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pet = (btn as HTMLElement).dataset.pet!;
+        const countEl = petCountsDiv!.querySelector(`.pet-count[data-pet="${pet}"]`) as HTMLElement;
+        const inputEl = petCountsDiv!.querySelector(`.pet-count-input[data-pet="${pet}"]`) as HTMLInputElement;
+        const val = Math.max(parseInt(countEl.textContent || '1') - 1, 1);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+    if (petTypesInput) petTypesInput.value = Array.from(selectedPets).join(', ');
+  }
+
+  // Household bubbles
+  const selectedHousehold = new Set<string>();
+  const householdBubbles = document.querySelectorAll<HTMLButtonElement>('.household-bubble');
+  const householdTypesInput = document.getElementById('household_types') as HTMLInputElement;
+  const householdCountsDiv = document.getElementById('household-counts');
+  const childrenAgesDiv = document.getElementById('household-children-ages');
+
+  function updateHouseholdCounts() {
+    if (!householdCountsDiv) return;
+    householdCountsDiv.innerHTML = '';
+    selectedHousehold.forEach((person) => {
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-3';
+      row.innerHTML = `
+        <label class="text-sm text-slate-dark w-32">${person}</label>
+        <div class="flex items-center gap-2">
+          <button type="button" class="hh-minus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-person="${person}">-</button>
+          <span class="hh-count text-sm font-semibold text-slate-dark w-6 text-center" data-person="${person}">1</span>
+          <button type="button" class="hh-plus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-person="${person}">+</button>
+        </div>
+        <input type="hidden" name="household_count_${person.toLowerCase().replace(/[\s\/]/g, '_')}" value="1" class="hh-count-input" data-person="${person}" />
+      `;
+      householdCountsDiv.appendChild(row);
+    });
+    householdCountsDiv.querySelectorAll('.hh-plus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const person = (btn as HTMLElement).dataset.person!;
+        const countEl = householdCountsDiv!.querySelector(`.hh-count[data-person="${person}"]`) as HTMLElement;
+        const inputEl = householdCountsDiv!.querySelector(`.hh-count-input[data-person="${person}"]`) as HTMLInputElement;
+        const val = Math.min(parseInt(countEl.textContent || '1') + 1, 20);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+    householdCountsDiv.querySelectorAll('.hh-minus').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const person = (btn as HTMLElement).dataset.person!;
+        const countEl = householdCountsDiv!.querySelector(`.hh-count[data-person="${person}"]`) as HTMLElement;
+        const inputEl = householdCountsDiv!.querySelector(`.hh-count-input[data-person="${person}"]`) as HTMLInputElement;
+        const val = Math.max(parseInt(countEl.textContent || '1') - 1, 1);
+        countEl.textContent = String(val);
+        inputEl.value = String(val);
+      });
+    });
+    if (householdTypesInput) {
+      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Just me';
+    }
+    if (childrenAgesDiv) {
+      childrenAgesDiv.classList.toggle('hidden', !selectedHousehold.has('Children'));
+    }
+  }
+
+  householdBubbles.forEach((bubble) => {
+    bubble.addEventListener('click', () => {
+      const person = bubble.dataset.person!;
+      if (selectedHousehold.has(person)) {
+        selectedHousehold.delete(person);
+        bubble.classList.remove('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.add('text-body', 'border-gray-200');
+      } else {
+        selectedHousehold.add(person);
+        bubble.classList.add('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.remove('text-body', 'border-gray-200');
+      }
+      updateHouseholdCounts();
+    });
+  });
+
+  petBubbles.forEach((bubble) => {
+    bubble.addEventListener('click', () => {
+      const pet = bubble.dataset.pet!;
+      if (selectedPets.has(pet)) {
+        selectedPets.delete(pet);
+        bubble.classList.remove('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.add('text-body', 'border-gray-200');
+      } else {
+        selectedPets.add(pet);
+        bubble.classList.add('bg-teal', 'text-white', 'border-teal');
+        bubble.classList.remove('text-body', 'border-gray-200');
+      }
+      updatePetCounts();
+    });
+  });
+
+  // Handle form submission
+  const form = document.getElementById('adopt-form') as HTMLFormElement;
+  const successMsg = document.getElementById('success-msg');
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  if (form && successMsg) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate dog selection
+      if (!dogInput.value) {
+        dogError?.classList.remove('hidden');
+        dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      // Build WhatsApp click-to-chat link
+      const phoneInput = (document.getElementById('phone') as HTMLInputElement)?.value || '';
+      const cleanPhone = phoneInput.replace(/[\s\-\(\)]/g, '').replace(/^\+/, '');
+      const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
+      const selectedDogName = dogInput.value;
+      const waMessage = encodeURIComponent(`Hi ${applicantName}! This is My Paws Bosnia. We received your adoption application${selectedDogName && selectedDogName !== 'Not sure yet' ? ` for ${selectedDogName}` : ''}. We'd love to chat with you about the next steps!`);
+      const waLink = document.getElementById('whatsapp_link') as HTMLInputElement;
+      if (waLink && cleanPhone) {
+        waLink.value = `https://wa.me/${cleanPhone}?text=${waMessage}`;
+      }
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+
+        if (res.ok) {
+          // Send confirmation email (fire and forget — don't block the success screen)
+          const emailData = {
+            name: applicantName,
+            email: (document.getElementById('email') as HTMLInputElement)?.value || '',
+            dogName: selectedDogName,
+            dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
+            country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
+          };
+          fetch('/api/confirm-application', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(emailData),
+          }).catch(() => {}); // silent fail — Web3Forms already has the data
+
+          if (selectedDogName && selectedDogName !== 'Not sure yet') {
+            const successText = document.getElementById('success-dog-text');
+            if (successText) {
+              successText.textContent = `We're so excited that you're interested in ${selectedDogName}! Here's what happens next.`;
+            }
+            // Show dog photos on success screen
+            const successPhotos = document.getElementById('success-photos');
+            const successTrack = document.getElementById('success-track');
+            const successDotsEl = document.getElementById('success-dots');
+            const tmpl = document.querySelector(`template[data-dog-photos="${selectedDogName}"]`);
+            if (successPhotos && successTrack && successDotsEl && tmpl) {
+              successTrack.innerHTML = '';
+              successDotsEl.innerHTML = '';
+              const imgs = tmpl.content.querySelectorAll('img');
+              let sCurrent = 0;
+              const sCount = imgs.length;
+              imgs.forEach((img) => {
+                const slide = document.createElement('div');
+                slide.className = 'w-full h-full flex-shrink-0';
+                const newImg = document.createElement('img');
+                newImg.src = img.src;
+                newImg.alt = img.alt;
+                newImg.className = 'w-full h-full object-cover object-top';
+                slide.appendChild(newImg);
+                successTrack.appendChild(slide);
+              });
+              for (let i = 0; i < sCount; i++) {
+                const dot = document.createElement('span');
+                dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
+                successDotsEl.appendChild(dot);
+              }
+              function sGoTo(i: number) {
+                sCurrent = (i + sCount) % sCount;
+                successTrack!.style.transform = `translateX(-${sCurrent * 100}%)`;
+                successDotsEl!.querySelectorAll('span').forEach((d, idx) => {
+                  d.className = `block w-2.5 h-2.5 rounded-full ${idx === sCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
+                });
+              }
+              document.getElementById('success-prev')?.addEventListener('click', () => sGoTo(sCurrent - 1));
+              document.getElementById('success-next')?.addEventListener('click', () => sGoTo(sCurrent + 1));
+              successPhotos.classList.remove('hidden');
+            }
+          }
+          form.classList.add('hidden');
+          successMsg.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          throw new Error('Failed');
+        }
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Application';
+        alert('Something went wrong. Please try again or contact us directly on Facebook or WhatsApp.');
+      }
+    });
+  }
+</script>

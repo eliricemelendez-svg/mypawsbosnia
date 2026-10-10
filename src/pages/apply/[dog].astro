@@ -1,0 +1,16 @@
+---
+import { currentDogs } from "../../data/current-dogs";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return currentDogs.map((dog) => ({
+    params: { dog: dog.slug },
+  }));
+};
+
+const { dog } = Astro.params;
+const matched = currentDogs.find((d) => d.slug === dog);
+const dogName = matched?.name ?? dog;
+---
+
+<meta http-equiv="refresh" content={`0;url=/apply?dog=${encodeURIComponent(dogName)}`} />
