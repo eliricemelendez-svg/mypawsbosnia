@@ -1,0 +1,320 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { currentDogs } from "../../../data/current-dogs";
+import { successStories } from "../../../data/success-stories";
+
+const title = "Een hond adopteren uit Bosnië | My Paws Bosnia";
+const description = "Stap-voor-stap handleiding voor het adopteren van een reddingshond uit Bosnië. Volledig medisch verzorgd, EU-dierenpaspoort, transport naar Nederland, België en heel Europa. Meer dan 60 honden wachten op een thuis.";
+
+const dogCount = currentDogs.length;
+const adoptedCount = successStories.length;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Een hond adopteren uit Bosnië",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/nl/blog/how-to-adopt-a-dog-from-bosnia",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Hoeveel kost het om een hond uit Bosnië te adopteren?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Er zijn geen adoptiekosten. Je betaalt alleen de transportkosten: ongeveer £500 naar het Verenigd Koninkrijk, €300–400 naar het Europese vasteland, of CHF 500–550 naar Zwitserland. Dit dekt de gelicentieerde transporteur, brandstof, veer- of tolkosten en alle benodigde grenspapieren."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Wat is inbegrepen bij elke adoptie?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Elke hond wordt gecastreerd of gesteriliseerd, volledig gevaccineerd (inclusief rabiës), ontwormd, behandeld tegen parasieten, gechipt en voorzien van een dierenpaspoort. Bloedonderzoek (inclusief brucellose) is op verzoek beschikbaar."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Hoe lang duurt het adoptieproces?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Vanaf het eerste bericht tot de aankomst van je hond duurt het proces doorgaans 4 tot 8 weken. De tijdlijn hangt af van de huiscontrole, het regelen van transport en het afronden van alle dierenartsenpapieren."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Kan ik na de Brexit een hond uit Bosnië naar het VK adopteren?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja. Honden uit Bosnië kunnen nog steeds naar het VK reizen. Ze hebben een rabiësvaccinatie, een dierenpaspoort en een lintwormenbehandeling nodig voor de reis. Wij regelen dit allemaal. Meerdere van onze honden zijn al geadopteerd door Britse gezinnen."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Moet ik naar Bosnië reizen om te adopteren?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nee. Wij regelen gelicentieerd transport rechtstreeks naar je voordeur. Je hoeft niet naar Bosnië te reizen. We sturen regelmatig foto's en video's zodat je je hond kunt leren kennen voordat hij of zij aankomt."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="nl" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Adoptiegids</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Een hond adopteren uit Bosnië</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        Er wachten momenteel {dogCount} honden in ons asiel in Brcko, Bosnië, op een gezin. Elke hond is gecastreerd, gevaccineerd, ontwormd en heeft een dierenpaspoort voor de reis. Zo werkt het proces.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Waarom adopteren uit Bosnië -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Waarom adopteren uit Bosnië?</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Bosnië heeft geen landelijk castratie- of sterilisatieprogramma. Zwerfhonden worden routinematig gedood of achtergelaten in ondergefinancierde openbare asiels. Onze oprichtster Vesna redt sinds 2019 honden van straat en uit deze asiels. Ze runt een privéasiel in Brcko waar elke hond dierenartsenzorg, socialisatie en een veilige plek krijgt om te wachten op een thuis.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        Dit zijn geen verwilderde honden. Het zijn vriendelijke, gesocialiseerde dieren die samengeleefd hebben met mensen en andere honden in het asiel. Veel zijn puppy's die in het asiel geboren zijn. Anderen zijn volwassen honden die gered zijn van verwaarlozing of uit openbare asiels waar ze het risico liepen te worden ingeslapen. Ze zijn allemaal gezond, medisch verzorgd en klaar om te reizen.
+      </p>
+      <p class="text-body leading-relaxed">
+        We hebben al {adoptedCount} honden geplaatst bij gezinnen in het Verenigd Koninkrijk, België, Oostenrijk en andere Europese landen. Elke adoptie is succesvol verlopen.
+      </p>
+    </section>
+
+    <!-- Stap voor stap -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Stap-voor-stap adoptieproces</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Bekijk en stuur ons een bericht</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Bekijk onze <a href="/nl/adopt" class="text-teal font-medium hover:underline">beschikbare honden</a>. Wanneer je er een vindt die je aanspreekt, stuur ons een bericht via <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">Facebook</a> of <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">WhatsApp</a>. Vertel ons over je woning, je ervaring met honden en welke hond je interesse heeft gewekt.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Huiscontrole</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              We doen een eenvoudige huiscontrole om er zeker van te zijn dat de hond veilig en goed verzorgd zal worden. In het VK is dit meestal een videogesprek. In Duitsland en Oostenrijk is het zeer waarschijnlijk een persoonlijk bezoek. We letten op veilige omheining, voldoende ruimte en een oprechte toewijding aan het welzijn van de hond.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Goedkeuring en voorbereiding</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Na goedkeuring ronden we de medische verzorging van de hond af. Dit omvat castratie/sterilisatie (als dat nog niet is gedaan), rabiësvaccinatie, ontworming, parasitenbehandeling, microchip en het uitreiken van het dierenpaspoort. Bloedonderzoek op brucellose en andere aandoeningen is op verzoek beschikbaar.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">4</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Transport tot aan je voordeur</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Wij regelen gelicentieerd dierentransport van Bosnië rechtstreeks naar je huis. De transporteur is ervaren, volledig gelicentieerd en maakt onderweg ruststops. Je hoeft niet naar Bosnië te reizen. Van eerste bericht tot aankomst duurt het proces doorgaans 4 tot 8 weken.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transportkosten -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Transportkosten</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Er zijn geen adoptiekosten. De enige kosten zijn voor transport, dat de gelicentieerde transporteur, brandstof, veer- of tolkosten en grenspapieren dekt.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-teal/20">
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Bestemming</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Geschatte kosten</th>
+            </tr>
+          </thead>
+          <tbody class="text-body">
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Verenigd Koninkrijk</td>
+              <td class="py-3 pr-4 tabular-nums">~&pound;500</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Europees vasteland (Duitsland, Nederland, België, Frankrijk, Oostenrijk)</td>
+              <td class="py-3 pr-4 tabular-nums">&euro;300&ndash;400</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Zwitserland</td>
+              <td class="py-3 pr-4 tabular-nums">CHF&nbsp;500&ndash;550</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-body mt-3">Kosten variëren licht afhankelijk van de exacte locatie en route. We bevestigen de exacte prijs voordat je je vastlegt.</p>
+    </section>
+
+    <!-- Wat is inbegrepen -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Wat is inbegrepen bij elke adoptie</h2>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Castratie of sterilisatie</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Volledige vaccinaties (inclusief rabiës)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Ontworming</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Parasitenbehandeling (vlooien, teken)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Microchip</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Dierenpaspoort</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Bloedonderzoek (brucellose, enz.) op verzoek beschikbaar</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Honden die wachten -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Honden die momenteel wachten op een thuis</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Hier zijn enkele honden die nu in ons asiel verblijven. Elke hond is volledig medisch verzorgd en klaar om te reizen.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {currentDogs.map((dog) => (
+          <a href={`/nl/adopt/${dog.slug}`} class="block bg-light-bg rounded-xl p-4 hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-slate-dark">{dog.name}</h3>
+            <p class="text-sm text-body mt-1">{dog.shortLine}</p>
+            <p class="text-xs text-teal font-medium mt-2">
+              {dog.sex === 'male' ? 'Reu' : 'Teef'} · {dog.age} · {dog.size}
+            </p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-6">
+        <a href="/nl/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Alle beschikbare honden bekijken
+        </a>
+      </div>
+    </section>
+
+    <!-- Succesverhalen -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Honden die we al geplaatst hebben</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Deze honden hebben hetzelfde proces doorlopen en wonen nu bij hun gezinnen.
+      </p>
+      <ul class="space-y-3">
+        {successStories.map((story) => (
+          <li class="flex items-start gap-3">
+            <span class="text-teal mt-0.5">&#10003;</span>
+            <span class="text-body">
+              <a href={`/nl/success-stories/${story.slug}`} class="text-teal font-medium hover:underline">{story.name}</a>
+              {story.adoptedTo ? ` geadopteerd naar ${story.adoptedTo}` : ` geadopteerd ${story.adoptedDate}`}.
+              {' '}{story.shortLine}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Veelgestelde vragen</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Hoeveel kost het om een hond uit Bosnië te adopteren?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Er zijn geen adoptiekosten. Je betaalt alleen de transportkosten: ongeveer £500 naar het VK, €300–400 naar het Europese vasteland, of CHF 500–550 naar Zwitserland. Dit dekt de gelicentieerde transporteur, brandstof, veer- of tolkosten en alle benodigde grenspapieren.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Wat is inbegrepen bij elke adoptie?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Elke hond wordt gecastreerd of gesteriliseerd, volledig gevaccineerd (inclusief rabiës), ontwormd, behandeld tegen parasieten, gechipt en voorzien van een dierenpaspoort. Bloedonderzoek (inclusief brucellose) is op verzoek beschikbaar.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Hoe lang duurt het adoptieproces?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Vanaf het eerste bericht tot de aankomst van je hond duurt het proces doorgaans 4 tot 8 weken. De tijdlijn hangt af van de huiscontrole, het regelen van transport en het afronden van alle dierenartsenpapieren.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Kan ik na de Brexit een hond uit Bosnië naar het VK adopteren?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Ja. Honden uit Bosnië kunnen nog steeds naar het VK reizen. Ze hebben een rabiësvaccinatie, een dierenpaspoort en een lintwormenbehandeling nodig voor de reis. Wij regelen dit allemaal. Meerdere van onze honden zijn al geadopteerd door Britse gezinnen.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Moet ik naar Bosnië reizen om te adopteren?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Nee. Wij regelen gelicentieerd transport rechtstreeks naar je voordeur. Je hoeft niet naar Bosnië te reizen. We sturen regelmatig foto's en video's zodat je je hond kunt leren kennen voordat hij of zij aankomt.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Klaar om te adopteren?</h2>
+      <p class="text-body mb-6">Bekijk onze beschikbare honden en stuur ons een bericht om het proces te starten.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/nl/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Beschikbare honden bekijken
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Stuur ons een bericht op Facebook
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>

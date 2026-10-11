@@ -263,7 +263,7 @@ const dogPhotoData = currentDogs.map((dog) => {
                 <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Andere</button>
               </div>
               <div id="household-counts" class="space-y-3"></div>
-              <input type="hidden" id="household_types" name="household" value="Just me" />
+              <input type="hidden" id="household_types" name="household" value="Nur ich" />
               <div id="household-children-ages" class="hidden mt-3">
                 <label for="children_ages" class="block text-sm font-medium text-body mb-2">Alter der Kinder</label>
                 <input type="text" id="children_ages" name="children_ages" placeholder="z.B. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
@@ -777,7 +777,7 @@ const dogPhotoData = currentDogs.map((dog) => {
       });
     });
     if (householdTypesInput) {
-      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Just me';
+      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Nur ich';
     }
     if (childrenAgesDiv) {
       childrenAgesDiv.classList.toggle('hidden', !selectedHousehold.has('Children'));

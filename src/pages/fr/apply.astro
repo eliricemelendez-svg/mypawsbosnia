@@ -43,7 +43,7 @@ const dogPhotoData = currentDogs.map((dog) => {
           <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
           </div>
-          <h2 class="text-xl font-semibold text-slate-dark">Quel chien vous interesse ?</h2>
+          <h2 class="text-xl font-semibold text-slate-dark">Quel chien vous intéresse ?</h2>
         </div>
 
         <!-- Dog selection grid -->
@@ -150,7 +150,7 @@ const dogPhotoData = currentDogs.map((dog) => {
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
             </div>
-            <h2 class="text-xl font-semibold text-slate-dark">A propos de vous</h2>
+            <h2 class="text-xl font-semibold text-slate-dark">À propos de vous</h2>
           </div>
           <div class="space-y-6">
             <div>
@@ -162,7 +162,7 @@ const dogPhotoData = currentDogs.map((dog) => {
               <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div>
-              <label for="phone" class="block text-sm font-medium text-body mb-2">Numero de telephone (avec indicatif pays) *</label>
+              <label for="phone" class="block text-sm font-medium text-body mb-2">Numéro de téléphone (avec indicatif pays) *</label>
               <input type="tel" id="phone" name="phone" required placeholder="+33 6 12 34 56 78" pattern="[\+\d\s\-\(\)]{7,20}" inputmode="tel" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -179,8 +179,8 @@ const dogPhotoData = currentDogs.map((dog) => {
                   <option value="Austria">Autriche</option>
                   <option value="Ireland">Irlande</option>
                   <option value="Denmark">Danemark</option>
-                  <option value="Sweden">Suede</option>
-                  <option value="Norway">Norvege</option>
+                  <option value="Sweden">Suède</option>
+                  <option value="Norway">Norvège</option>
                   <option value="Italy">Italie</option>
                   <option value="Spain">Espagne</option>
                   <option value="Other">Autre</option>
@@ -220,7 +220,7 @@ const dogPhotoData = currentDogs.map((dog) => {
                 <option value="">Choisir...</option>
                 <option value="House">Maison</option>
                 <option value="Apartment">Appartement</option>
-                <option value="Farm / Rural property">Ferme / Propriete rurale</option>
+                <option value="Farm / Rural property">Ferme / Propriété rurale</option>
                 <option value="Other">Autre</option>
               </select>
             </div>
@@ -233,24 +233,24 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
             </div>
             <div id="fence-row" class="hidden">
-              <label for="fence_height" class="block text-sm font-medium text-body mb-2">Quelle est la hauteur approximative de la cloture ?</label>
+              <label for="fence_height" class="block text-sm font-medium text-body mb-2">Quelle est la hauteur approximative de la clôture ?</label>
               <select id="fence_height" name="fence_height" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Choisir...</option>
-                <option value="Under 1 metre">Moins d'1 metre</option>
-                <option value="1 - 1.5 metres">1 - 1,5 metres</option>
-                <option value="1.5 - 2 metres">1,5 - 2 metres</option>
-                <option value="Over 2 metres">Plus de 2 metres</option>
+                <option value="Under 1 metre">Moins d'1 mètre</option>
+                <option value="1 - 1.5 metres">1 - 1,5 mètres</option>
+                <option value="1.5 - 2 metres">1,5 - 2 mètres</option>
+                <option value="Over 2 metres">Plus de 2 mètres</option>
                 <option value="Not sure">Pas certain</option>
               </select>
-              <p class="text-xs text-body mt-1">Une estimation approximative suffit. Nous pourrons verifier lors de la visite a domicile.</p>
+              <p class="text-xs text-body mt-1">Une estimation approximative suffit. Nous pourrons vérifier lors de la visite à domicile.</p>
             </div>
             <div>
-              <label for="own_rent" class="block text-sm font-medium text-body mb-2">Etes-vous proprietaire ou locataire ? *</label>
+              <label for="own_rent" class="block text-sm font-medium text-body mb-2">Êtes-vous propriétaire ou locataire ? *</label>
               <select id="own_rent" name="own_rent" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Choisir...</option>
-                <option value="Own">Proprietaire</option>
-                <option value="Rent - landlord allows dogs">Locataire - le proprietaire autorise les chiens</option>
-                <option value="Rent - need to check with landlord">Locataire - a verifier avec le proprietaire</option>
+                <option value="Own">Propriétaire</option>
+                <option value="Rent - landlord allows dogs">Locataire - le propriétaire autorise les chiens</option>
+                <option value="Rent - need to check with landlord">Locataire - à vérifier avec le propriétaire</option>
               </select>
             </div>
             <div>
@@ -263,16 +263,16 @@ const dogPhotoData = currentDogs.map((dog) => {
                 <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Autre</button>
               </div>
               <div id="household-counts" class="space-y-3"></div>
-              <input type="hidden" id="household_types" name="household" value="Just me" />
+              <input type="hidden" id="household_types" name="household" value="Juste moi" />
               <div id="household-children-ages" class="hidden mt-3">
-                <label for="children_ages" class="block text-sm font-medium text-body mb-2">Ages des enfants</label>
+                <label for="children_ages" class="block text-sm font-medium text-body mb-2">Âges des enfants</label>
                 <input type="text" id="children_ages" name="children_ages" placeholder="ex. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
               <div class="mt-3">
-                <label for="household_extra" class="block text-sm font-medium text-body mb-2">Details supplementaires ?</label>
-                <input type="text" id="household_extra" name="household_extra" placeholder="ex. mon conjoint travaille a domicile" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+                <label for="household_extra" class="block text-sm font-medium text-body mb-2">Détails supplémentaires ?</label>
+                <input type="text" id="household_extra" name="household_extra" placeholder="ex. mon conjoint travaille à domicile" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
-              <p class="text-xs text-body mt-1">Selectionnez toutes les options qui s'appliquent. Si vous vivez seul, ne selectionnez rien.</p>
+              <p class="text-xs text-body mt-1">Sélectionnez toutes les options qui s'appliquent. Si vous vivez seul, ne sélectionnez rien.</p>
             </div>
           </div>
         </div>
@@ -283,17 +283,17 @@ const dogPhotoData = currentDogs.map((dog) => {
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
             </div>
-            <h2 class="text-xl font-semibold text-slate-dark">Animaux & experience</h2>
+            <h2 class="text-xl font-semibold text-slate-dark">Animaux & expérience</h2>
           </div>
           <div class="space-y-6">
             <div>
-              <label for="dog_experience" class="block text-sm font-medium text-body mb-2">Avez-vous deja eu un chien ? *</label>
+              <label for="dog_experience" class="block text-sm font-medium text-body mb-2">Avez-vous déjà eu un chien ? *</label>
               <select id="dog_experience" name="dog_experience" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Choisir...</option>
                 <option value="Yes">Oui</option>
                 <option value="No, first time">Non, ce serait mon premier chien</option>
               </select>
-              <p class="text-xs text-body mt-1">Les nouveaux proprietaires sont les bienvenus. Nous sommes la pour vous aider.</p>
+              <p class="text-xs text-body mt-1">Les nouveaux propriétaires sont les bienvenus. Nous sommes là pour vous aider.</p>
             </div>
             <div id="rescue-row" class="hidden">
               <label for="was_rescue" class="block text-sm font-medium text-body mb-2">Votre chien venait-il d'un refuge ?</label>
@@ -304,14 +304,14 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
             </div>
             <div>
-              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">A quoi ressemble une journee type pour vous ? *</label>
+              <label for="daily_routine" class="block text-sm font-medium text-body mb-2">À quoi ressemble une journée type pour vous ? *</label>
               <select id="daily_routine" name="daily_routine" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Choisir...</option>
-                <option value="Work from home">Je travaille a domicile</option>
-                <option value="Work outside (full-time)">Je travaille a l'exterieur (temps plein)</option>
-                <option value="Work outside (part-time)">Je travaille a l'exterieur (temps partiel)</option>
-                <option value="Retired">Je suis a la retraite</option>
-                <option value="Student">Je suis etudiant(e)</option>
+                <option value="Work from home">Je travaille à domicile</option>
+                <option value="Work outside (full-time)">Je travaille à l'extérieur (temps plein)</option>
+                <option value="Work outside (part-time)">Je travaille à l'extérieur (temps partiel)</option>
+                <option value="Retired">Je suis à la retraite</option>
+                <option value="Student">Je suis étudiant(e)</option>
                 <option value="Stay-at-home parent">Je suis parent au foyer</option>
                 <option value="Other">Autre</option>
               </select>
@@ -339,8 +339,8 @@ const dogPhotoData = currentDogs.map((dog) => {
               </div>
               <div id="pet-counts" class="space-y-3"></div>
               <div>
-                <label for="pets_extra" class="block text-sm font-medium text-body mb-2">Details supplementaires ? (ages, races, etc.)</label>
-                <input type="text" id="pets_extra" name="pets_extra" placeholder="ex. Labrador, 5 ans, tres sociable" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
+                <label for="pets_extra" class="block text-sm font-medium text-body mb-2">Détails supplémentaires ? (âges, races, etc.)</label>
+                <input type="text" id="pets_extra" name="pets_extra" placeholder="ex. Labrador, 5 ans, très sociable" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
             </div>
           </div>
@@ -352,7 +352,7 @@ const dogPhotoData = currentDogs.map((dog) => {
             <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             </div>
-            <h2 class="text-xl font-semibold text-slate-dark">Quelques details supplementaires</h2>
+            <h2 class="text-xl font-semibold text-slate-dark">Quelques détails supplémentaires</h2>
           </div>
           <div class="space-y-6">
             <div>
@@ -367,17 +367,17 @@ const dogPhotoData = currentDogs.map((dog) => {
               </select>
             </div>
             <div>
-              <label for="sleep" class="block text-sm font-medium text-body mb-2">Ou dormira le chien ?</label>
+              <label for="sleep" class="block text-sm font-medium text-body mb-2">Où dormira le chien ?</label>
               <input type="text" id="sleep" name="sleep" placeholder="ex. dans le salon, dans notre chambre" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
             <div>
-              <label for="home_check" class="block text-sm font-medium text-body mb-2">Acceptez-vous une visite a domicile ? *</label>
+              <label for="home_check" class="block text-sm font-medium text-body mb-2">Acceptez-vous une visite à domicile ? *</label>
               <select id="home_check" name="home_check" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark bg-white focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
                 <option value="">Choisir...</option>
                 <option value="Yes">Oui</option>
                 <option value="No">Non</option>
               </select>
-              <p class="text-xs text-body mt-1">En Allemagne et en Autriche, la visite se fait en personne. Au Royaume-Uni, c'est en general un appel video. Dans tous les cas, c'est rapide et convivial.</p>
+              <p class="text-xs text-body mt-1">En Allemagne et en Autriche, la visite se fait en personne. Au Royaume-Uni, c'est en général un appel vidéo. Dans tous les cas, c'est rapide et convivial.</p>
             </div>
             <div>
               <label for="questions" class="block text-sm font-medium text-body mb-2">Avez-vous des questions sur le chien ?</label>
@@ -392,7 +392,7 @@ const dogPhotoData = currentDogs.map((dog) => {
 
         <!-- Success stories -->
         <div class="bg-light-bg rounded-2xl p-6 text-center">
-          <p class="text-body mb-2">Au fil des ans, nous avons aide des chiens comme Bridgette, Nero, Flint et bien d'autres a trouver des familles aimantes a travers l'Europe.</p>
+          <p class="text-body mb-2">Au fil des ans, nous avons aidé des chiens comme Bridgette, Nero, Flint et bien d'autres à trouver des familles aimantes à travers l'Europe.</p>
           <a href="/fr/success-stories" class="text-teal font-medium hover:underline">Voir leurs histoires &rarr;</a>
         </div>
 
@@ -404,22 +404,22 @@ const dogPhotoData = currentDogs.map((dog) => {
 
         <!-- FAQ -->
         <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100">
-          <h2 class="text-xl font-semibold text-slate-dark mb-4">Questions frequemment posees</h2>
+          <h2 class="text-xl font-semibold text-slate-dark mb-4">Questions fréquemment posées</h2>
           <details class="border-b border-gray-100">
-            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Que se passe-t-il apres ma demande ?</summary>
-            <p class="pb-4 text-body text-sm">Nous examinons votre demande et vous contactons par WhatsApp dans les 24 heures. Ensuite, nous organisons une visite a domicile et discutons des prochaines etapes.</p>
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Que se passe-t-il après ma demande ?</summary>
+            <p class="pb-4 text-body text-sm">Nous examinons votre demande et vous contactons par WhatsApp dans les 24 heures. Ensuite, nous organisons une visite à domicile et discutons des prochaines étapes.</p>
           </details>
           <details class="border-b border-gray-100">
-            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Qu'est-ce que la visite a domicile ?</summary>
-            <p class="pb-4 text-body text-sm">En Allemagne et en Autriche, la visite se fait en personne. Au Royaume-Uni, c'est en general un appel video. Pas d'inquietude, c'est rapide et convivial.</p>
+            <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Qu'est-ce que la visite à domicile ?</summary>
+            <p class="pb-4 text-body text-sm">En Allemagne et en Autriche, la visite se fait en personne. Au Royaume-Uni, c'est en général un appel vidéo. Pas d'inquiétude, c'est rapide et convivial.</p>
           </details>
           <details class="border-b border-gray-100">
             <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Combien de temps dure le transport ?</summary>
-            <p class="pb-4 text-body text-sm">Il faut generalement environ un mois pour organiser le transport et preparer le chien au voyage. Cela peut varier selon la saison et notre charge de travail.</p>
+            <p class="pb-4 text-body text-sm">Il faut généralement environ un mois pour organiser le transport et préparer le chien au voyage. Cela peut varier selon la saison et notre charge de travail.</p>
           </details>
           <details class="border-b border-gray-100">
             <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Qu'est-ce qui est inclus avec le chien ?</summary>
-            <p class="pb-4 text-body text-sm">Chaque chien arrive vaccine, puce, vermifuge et avec un passeport pour animaux. Les chiens adultes sont generalement sterilises avant le voyage. Les chiots peuvent ne pas encore etre sterilises en raison de leur age.</p>
+            <p class="pb-4 text-body text-sm">Chaque chien arrive vacciné, pucé, vermifugé et avec un passeport pour animaux. Les chiens adultes sont généralement stérilisés avant le voyage. Les chiots peuvent ne pas encore être stérilisés en raison de leur âge.</p>
           </details>
           <details class="border-b border-gray-100">
             <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Y a-t-il des frais d'adoption ?</summary>
@@ -427,7 +427,7 @@ const dogPhotoData = currentDogs.map((dog) => {
           </details>
           <details>
             <summary class="py-4 cursor-pointer text-base font-medium text-slate-dark hover:text-teal">Puis-je adopter si je n'ai jamais eu de chien ?</summary>
-            <p class="pb-4 text-body text-sm">Absolument ! Les nouveaux proprietaires sont les bienvenus. Nous vous accompagnons tout au long du processus et vous aidons a vous preparer pour votre nouveau membre de la famille.</p>
+            <p class="pb-4 text-body text-sm">Absolument ! Les nouveaux propriétaires sont les bienvenus. Nous vous accompagnons tout au long du processus et vous aidons à vous préparer pour votre nouveau membre de la famille.</p>
           </details>
         </div>
 
@@ -464,22 +464,22 @@ const dogPhotoData = currentDogs.map((dog) => {
             </li>
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
-              <span>Nous organisons une <strong>visite a domicile</strong> : en Allemagne et en Autriche, en personne. Au Royaume-Uni, par appel video.</span>
+              <span>Nous organisons une <strong>visite à domicile</strong> : en Allemagne et en Autriche, en personne. Au Royaume-Uni, par appel vidéo.</span>
             </li>
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
-              <span>Une fois approuve, nous organisons un <strong>transport agree</strong> directement jusqu'a chez vous.</span>
+              <span>Une fois approuvé, nous organisons un <strong>transport agréé</strong> directement jusqu'a chez vous.</span>
             </li>
           </ol>
         </div>
 
         <p class="text-body mb-6">Vous ne pouvez pas attendre ? Contactez-nous directement :</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Ecrivez-nous sur WhatsApp</a>
-          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Ecrivez-nous sur Facebook</a>
+          <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 transition-colors">Écrivez-nous sur WhatsApp</a>
+          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">Écrivez-nous sur Facebook</a>
         </div>
         <div class="mt-8">
-          <a href="/fr/adopt" class="text-teal font-medium hover:underline">&larr; Retour a tous les chiens</a>
+          <a href="/fr/adopt" class="text-teal font-medium hover:underline">&larr; Retour à tous les chiens</a>
         </div>
       </div>
     </div>
@@ -777,7 +777,7 @@ const dogPhotoData = currentDogs.map((dog) => {
       });
     });
     if (householdTypesInput) {
-      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Just me';
+      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Juste moi';
     }
     if (childrenAgesDiv) {
       childrenAgesDiv.classList.toggle('hidden', !selectedHousehold.has('Children'));
@@ -871,7 +871,7 @@ const dogPhotoData = currentDogs.map((dog) => {
           if (selectedDogName && selectedDogName !== 'Not sure yet') {
             const successText = document.getElementById('success-dog-text');
             if (successText) {
-              successText.textContent = `Nous sommes ravis que vous vous interessiez a ${selectedDogName} ! Voici la suite.`;
+              successText.textContent = `Nous sommes ravis que vous vous intéressiez à ${selectedDogName} ! Voici la suite.`;
             }
             // Show dog photos on success screen
             const successPhotos = document.getElementById('success-photos');
@@ -920,7 +920,7 @@ const dogPhotoData = currentDogs.map((dog) => {
       } catch {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Envoyer la demande';
-        alert('Une erreur s\'est produite. Veuillez reessayer ou nous contacter directement sur Facebook ou WhatsApp.');
+        alert('Une erreur s\'est produite. Veuillez réessayer ou nous contacter directement sur Facebook ou WhatsApp.');
       }
     });
   }

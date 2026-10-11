@@ -1,0 +1,320 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { currentDogs } from "../../../data/current-dogs";
+import { successStories } from "../../../data/success-stories";
+
+const title = "Einen Hund aus Bosnien adoptieren | My Paws Bosnia";
+const description = "Schritt-für-Schritt-Anleitung zur Adoption eines Rettungshundes aus Bosnien. Vollständig tierärztlich versorgt, mit EU-Heimtierausweis, Transport nach Deutschland, Österreich, in die Schweiz und ganz Europa. Über 60 Hunde warten auf ein Zuhause.";
+
+const dogCount = currentDogs.length;
+const adoptedCount = successStories.length;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Einen Hund aus Bosnien adoptieren",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/de/blog/how-to-adopt-a-dog-from-bosnia",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Wie viel kostet es, einen Hund aus Bosnien zu adoptieren?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Es gibt keine Adoptionsgebühr. Du zahlst nur die Transportkosten: ca. 500 £ nach Großbritannien, 300–400 € nach Kontinentaleuropa oder CHF 500–550 in die Schweiz. Das deckt den lizenzierten Transporter, Treibstoff, Fähr- oder Mautgebühren und alle erforderlichen Grenzpapiere ab."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Was ist bei jeder Adoption inbegriffen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Jeder Hund wird kastriert oder sterilisiert, vollständig geimpft (einschließlich Tollwut), entwurmt, gegen Parasiten behandelt, gechipt und erhält einen EU-Heimtierausweis. Blutuntersuchungen (einschließlich Brucellose) sind auf Anfrage möglich."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Wie lange dauert der Adoptionsprozess?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Von der ersten Nachricht bis zur Ankunft des Hundes bei dir dauert es in der Regel 4 bis 8 Wochen. Der Zeitrahmen hängt von der Hausprüfung, der Transportorganisation und der Fertigstellung aller tierärztlichen Unterlagen ab."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Kann ich einen Hund aus Bosnien nach dem Brexit nach Großbritannien adoptieren?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja. Hunde aus Bosnien können weiterhin nach Großbritannien reisen. Sie brauchen eine Tollwutimpfung, einen Heimtierausweis und eine Bandwurmbehandlung vor der Reise. Wir kümmern uns um alles. Mehrere unserer Hunde wurden bereits an britische Familien vermittelt."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Muss ich nach Bosnien reisen, um zu adoptieren?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nein. Wir organisieren einen lizenzierten Transport direkt zu dir nach Hause. Du musst nicht nach Bosnien reisen. Wir schicken regelmäßig Fotos und Videos, damit du deinen Hund schon vor seiner Ankunft kennenlernen kannst."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="de" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Adoptionsleitfaden</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Einen Hund aus Bosnien adoptieren</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        Aktuell warten {dogCount} Hunde in unserem Tierheim in Brcko, Bosnien, auf Familien. Jeder Hund ist kastriert, geimpft, entwurmt und erhält vor der Reise einen Heimtierausweis. So funktioniert der Prozess.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Warum aus Bosnien adoptieren -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Warum aus Bosnien adoptieren?</h2>
+      <p class="text-body leading-relaxed mb-4">
+        In Bosnien gibt es kein landesweites Kastrationsprogramm. Streunende Hunde werden routinemäßig getötet oder in unterfinanzierten öffentlichen Tierheimen zurückgelassen. Unsere Gründerin Vesna rettet seit 2019 Hunde von der Straße und aus diesen Tierheimen. Sie betreibt ein privates Tierheim in Brcko, wo jeder Hund tierärztliche Versorgung, Sozialisierung und einen sicheren Platz zum Warten auf ein Zuhause erhält.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        Das sind keine verwilderten Hunde. Es sind freundliche, sozialisierte Tiere, die mit Menschen und anderen Hunden im Tierheim zusammenleben. Viele sind Welpen, die im Tierheim geboren wurden. Andere sind erwachsene Hunde, die vor Aussetzung oder aus öffentlichen Tötungsstationen gerettet wurden. Alle sind gesund, tierärztlich versorgt und reisebereit.
+      </p>
+      <p class="text-body leading-relaxed">
+        Wir haben bereits {adoptedCount} Hunde in Familien in Großbritannien, Belgien, Österreich und anderen europäischen Ländern vermittelt. Jede einzelne Adoption war erfolgreich.
+      </p>
+    </section>
+
+    <!-- Schritt für Schritt -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Schritt-für-Schritt-Adoptionsprozess</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Stöbern und uns schreiben</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Schau dir unsere <a href="/de/adopt" class="text-teal font-medium hover:underline">verfügbaren Hunde</a> an. Wenn du einen findest, der dich anspricht, schreibe uns eine Nachricht auf <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">Facebook</a> oder <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">WhatsApp</a>. Erzähle uns von deinem Zuhause, deiner Erfahrung mit Hunden und welcher Hund dein Interesse geweckt hat.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Hausprüfung</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Wir führen eine einfache Hausprüfung durch, um sicherzustellen, dass der Hund sicher und gut versorgt sein wird. In Großbritannien ist das normalerweise ein Videogespräch. In Deutschland und Österreich wird es sehr wahrscheinlich ein persönlicher Besuch sein. Wir achten auf sichere Einzäunung, ausreichend Platz und ein echtes Engagement für das Wohlbefinden des Hundes.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Genehmigung und Vorbereitung</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Nach der Genehmigung schließen wir die tierärztliche Versorgung des Hundes ab. Das umfasst Kastration/Sterilisation (falls noch nicht erfolgt), Tollwutimpfung, Entwurmung, Parasitenbehandlung, Mikrochip und die Ausstellung des Heimtierausweises. Blutuntersuchungen auf Brucellose und andere Erkrankungen sind auf Anfrage möglich.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">4</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Transport bis zu deiner Haustür</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Wir organisieren einen lizenzierten Tiertransport von Bosnien direkt zu dir nach Hause. Der Transporter ist erfahren, vollständig lizenziert und macht unterwegs Pausen. Du musst nicht nach Bosnien reisen. Von der ersten Nachricht bis zur Ankunft dauert der Prozess in der Regel 4 bis 8 Wochen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transportkosten -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Transportkosten</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Es gibt keine Adoptionsgebühr. Die einzigen Kosten sind der Transport, der den lizenzierten Transporter, Treibstoff, Fähr- oder Mautgebühren und Grenzpapiere abdeckt.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-teal/20">
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Zielort</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Ungefähre Kosten</th>
+            </tr>
+          </thead>
+          <tbody class="text-body">
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Großbritannien</td>
+              <td class="py-3 pr-4 tabular-nums">~&pound;500</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Kontinentaleuropa (Deutschland, Niederlande, Belgien, Frankreich, Österreich)</td>
+              <td class="py-3 pr-4 tabular-nums">&euro;300&ndash;400</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Schweiz</td>
+              <td class="py-3 pr-4 tabular-nums">CHF&nbsp;500&ndash;550</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-body mt-3">Die Kosten variieren je nach genauem Standort und Route leicht. Wir bestätigen den genauen Preis, bevor du dich entscheidest.</p>
+    </section>
+
+    <!-- Was ist inbegriffen -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Was bei jeder Adoption inbegriffen ist</h2>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Kastration oder Sterilisation</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Vollständige Impfungen (einschließlich Tollwut)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Entwurmung</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Parasitenbehandlung (Flöhe, Zecken)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Mikrochip</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">EU-Heimtierausweis</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Blutuntersuchungen (Brucellose usw.) auf Anfrage möglich</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Hunde, die warten -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Hunde, die aktuell auf ein Zuhause warten</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Hier sind einige der Hunde, die sich gerade in unserem Tierheim befinden. Jeder ist vollständig tierärztlich versorgt und reisebereit.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {currentDogs.map((dog) => (
+          <a href={`/de/adopt/${dog.slug}`} class="block bg-light-bg rounded-xl p-4 hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-slate-dark">{dog.name}</h3>
+            <p class="text-sm text-body mt-1">{dog.shortLine}</p>
+            <p class="text-xs text-teal font-medium mt-2">
+              {dog.sex === 'male' ? 'Rüde' : 'Hündin'} · {dog.age} · {dog.size}
+            </p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-6">
+        <a href="/de/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Alle verfügbaren Hunde ansehen
+        </a>
+      </div>
+    </section>
+
+    <!-- Erfolgsgeschichten -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Bereits vermittelte Hunde</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Diese Hunde haben denselben Prozess durchlaufen und leben jetzt bei ihren Familien.
+      </p>
+      <ul class="space-y-3">
+        {successStories.map((story) => (
+          <li class="flex items-start gap-3">
+            <span class="text-teal mt-0.5">&#10003;</span>
+            <span class="text-body">
+              <a href={`/de/success-stories/${story.slug}`} class="text-teal font-medium hover:underline">{story.name}</a>
+              {story.adoptedTo ? ` adoptiert nach ${story.adoptedTo}` : ` adoptiert ${story.adoptedDate}`}.
+              {' '}{story.shortLine}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Häufig gestellte Fragen</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Wie viel kostet es, einen Hund aus Bosnien zu adoptieren?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Es gibt keine Adoptionsgebühr. Du zahlst nur die Transportkosten: ca. 500 £ nach Großbritannien, 300–400 € nach Kontinentaleuropa oder CHF 500–550 in die Schweiz. Das deckt den lizenzierten Transporter, Treibstoff, Fähr- oder Mautgebühren und alle erforderlichen Grenzpapiere ab.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Was ist bei jeder Adoption inbegriffen?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Jeder Hund wird kastriert oder sterilisiert, vollständig geimpft (einschließlich Tollwut), entwurmt, gegen Parasiten behandelt, gechipt und erhält einen Heimtierausweis. Blutuntersuchungen (einschließlich Brucellose) sind auf Anfrage möglich.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Wie lange dauert der Adoptionsprozess?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Von der ersten Nachricht bis zur Ankunft des Hundes bei dir dauert es in der Regel 4 bis 8 Wochen. Der Zeitrahmen hängt von der Hausprüfung, der Transportorganisation und der Fertigstellung aller tierärztlichen Unterlagen ab.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Kann ich einen Hund aus Bosnien nach dem Brexit nach Großbritannien adoptieren?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Ja. Hunde aus Bosnien können weiterhin nach Großbritannien reisen. Sie brauchen eine Tollwutimpfung, einen Heimtierausweis und eine Bandwurmbehandlung vor der Reise. Wir kümmern uns um alles. Mehrere unserer Hunde wurden bereits an britische Familien vermittelt.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Muss ich nach Bosnien reisen, um zu adoptieren?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Nein. Wir organisieren einen lizenzierten Transport direkt zu dir nach Hause. Du musst nicht nach Bosnien reisen. Wir schicken regelmäßig Fotos und Videos, damit du deinen Hund schon vor seiner Ankunft kennenlernen kannst.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Bereit zu adoptieren?</h2>
+      <p class="text-body mb-6">Sieh dir unsere verfügbaren Hunde an und schreibe uns, um den Prozess zu starten.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/de/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Verfügbare Hunde ansehen
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Schreib uns auf Facebook
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>

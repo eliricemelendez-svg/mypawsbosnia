@@ -43,7 +43,7 @@ const dogPhotoData = currentDogs.map((dog) => {
           <div class="w-10 h-10 bg-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
           </div>
-          <h2 class="text-xl font-semibold text-slate-dark">In welke hond ben je geinteresseerd?</h2>
+          <h2 class="text-xl font-semibold text-slate-dark">In welke hond ben je geïnteresseerd?</h2>
         </div>
 
         <!-- Dog selection grid -->
@@ -263,7 +263,7 @@ const dogPhotoData = currentDogs.map((dog) => {
                 <button type="button" data-person="Other" class="household-bubble px-4 py-2 rounded-full border border-gray-200 text-base text-body hover:border-teal hover:text-teal transition-colors">Anders</button>
               </div>
               <div id="household-counts" class="space-y-3"></div>
-              <input type="hidden" id="household_types" name="household" value="Just me" />
+              <input type="hidden" id="household_types" name="household" value="Alleen ik" />
               <div id="household-children-ages" class="hidden mt-3">
                 <label for="children_ages" class="block text-sm font-medium text-body mb-2">Leeftijd van de kinderen</label>
                 <input type="text" id="children_ages" name="children_ages" placeholder="bijv. 4, 7, 12" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
@@ -385,7 +385,7 @@ const dogPhotoData = currentDogs.map((dog) => {
             </div>
             <div>
               <label for="message" class="block text-sm font-medium text-body mb-2">Wil je ons nog iets laten weten?</label>
-              <textarea id="message" name="message" rows="3" placeholder="Vertel ons over jezelf, je levensstijl of waarom je geinteresseerd bent in deze hond..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
+              <textarea id="message" name="message" rows="3" placeholder="Vertel ons over jezelf, je levensstijl of waarom je geïnteresseerd bent in deze hond..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent resize-y"></textarea>
             </div>
           </div>
         </div>
@@ -777,7 +777,7 @@ const dogPhotoData = currentDogs.map((dog) => {
       });
     });
     if (householdTypesInput) {
-      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Just me';
+      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : 'Alleen ik';
     }
     if (childrenAgesDiv) {
       childrenAgesDiv.classList.toggle('hidden', !selectedHousehold.has('Children'));
@@ -871,7 +871,7 @@ const dogPhotoData = currentDogs.map((dog) => {
           if (selectedDogName && selectedDogName !== 'Not sure yet') {
             const successText = document.getElementById('success-dog-text');
             if (successText) {
-              successText.textContent = `We vinden het geweldig dat je geinteresseerd bent in ${selectedDogName}! Dit is wat er nu gebeurt.`;
+              successText.textContent = `We vinden het geweldig dat je geïnteresseerd bent in ${selectedDogName}! Dit is wat er nu gebeurt.`;
             }
             // Show dog photos on success screen
             const successPhotos = document.getElementById('success-photos');
