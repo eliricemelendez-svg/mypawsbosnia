@@ -88,7 +88,7 @@ export const ui = {
 
     // Adopt page
     'adopt.title': 'Adopt a Rescue Dog | Dogs Available Now | My Paws Bosnia',
-    'adopt.description': 'Browse rescue dogs available for adoption from Bosnia. We rehome vaccinated, neutered dogs to families across Europe \u2014 Switzerland, Germany, UK, and more.',
+    'adopt.description': 'Browse rescue dogs available for adoption from Bosnia. We rehome vaccinated, neutered dogs to families across Europe: Switzerland, Germany, UK, and more.',
     'adopt.heading': 'Adopt a dog',
     'adopt.count': '{total} dogs currently looking for a home.',
     'adopt.filter': 'Filter:',
@@ -110,7 +110,7 @@ export const ui = {
     'adoptSlug.sex': 'Sex',
     'adoptSlug.morePhotos': 'More photos',
     'adoptSlug.feesTitle': 'Transport costs',
-    'adoptSlug.feesIntro': 'There is no adoption fee \u2014 the dog is free. You only cover the cost of transport to your home: licensed transport, pet passport processing, and deworming based on your country\'s requirements. Every dog is already neutered, vaccinated, and microchipped before travel. The cost is the same for any dog.',
+    'adoptSlug.feesIntro': 'There is no adoption fee. The dog is free. You only cover the cost of transport to your home: licensed transport, pet passport processing, and deworming based on your country\'s requirements. Every dog is already neutered, vaccinated, and microchipped before travel. The cost is the same for any dog.',
     'adoptSlug.uk': 'United Kingdom',
     'adoptSlug.europe': 'Europe',
     'adoptSlug.switzerland': 'Switzerland',
@@ -124,7 +124,7 @@ export const ui = {
 
     // Donate page
     'donatePage.title': 'Donate to Help Rescue Dogs in Bosnia | My Paws Bosnia',
-    'donatePage.description': 'Your donation feeds, vaccinates, and shelters 60 rescue dogs in Bosnia. \u20ac25 feeds a dog for a week. Every euro goes directly to the dogs \u2014 no admin costs.',
+    'donatePage.description': 'Your donation feeds, vaccinates, and shelters 60 rescue dogs in Bosnia. \u20ac25 feeds a dog for a week. Every euro goes directly to the dogs, no admin costs.',
     'donatePage.heading': 'Every euro keeps them alive.',
     'donatePage.subtitle': 'No government funding. No corporate sponsors. Just one family and 60 dogs.',
     'donatePage.proofTitle': 'This is what your donations pay for',
@@ -153,11 +153,12 @@ export const ui = {
     'contact.fbTitle': 'Facebook',
     'contact.fbText': 'Message us directly or follow for daily updates on the dogs.',
     'contact.fbButton': 'Visit our Facebook page',
+    'contact.whatsappText': 'Send us a message on WhatsApp. We usually reply within a few hours.',
     'contact.locationTitle': 'Location',
 
     // Your Impact page
     'impact.title': 'Your Impact | How Donations Help Rescue Dogs | My Paws Bosnia',
-    'impact.description': 'See exactly where your donation goes \u2014 food for 60 dogs, veterinary care, vaccinations, spay/neuter surgery, and shelter improvements at our rescue in Brcko, Bosnia.',
+    'impact.description': 'See exactly where your donation goes: food for 60 dogs, veterinary care, vaccinations, spay/neuter surgery, and shelter improvements at our rescue in Brcko, Bosnia.',
     'impact.heading': 'Your impact',
     'impact.subtitle': 'Every donation makes a direct difference. Here is where your support goes.',
     'impact.foodTitle': 'Food',
@@ -336,7 +337,7 @@ export const ui = {
     'adoptSlug.sex': 'Geschlecht',
     'adoptSlug.morePhotos': 'Weitere Fotos',
     'adoptSlug.feesTitle': 'Transportkosten',
-    'adoptSlug.feesIntro': 'Es gibt keine Adoptionsgebühr \u2014 der Hund ist kostenlos. Du zahlst nur die Transportkosten zu dir nach Hause: genehmigter Transport, Heimtierausweis und Entwurmung gemäß den Anforderungen deines Landes. Jeder Hund ist bereits kastriert, geimpft und gechipt. Die Kosten sind für jeden Hund gleich.',
+    'adoptSlug.feesIntro': 'Es gibt keine Adoptionsgeb\u00fchr. Der Hund ist kostenlos. Du zahlst nur die Transportkosten zu dir nach Hause: genehmigter Transport, Heimtierausweis und Entwurmung gemäß den Anforderungen deines Landes. Jeder Hund ist bereits kastriert, geimpft und gechipt. Die Kosten sind für jeden Hund gleich.',
     'adoptSlug.uk': 'Gro\u00dfbritannien',
     'adoptSlug.europe': 'Europa',
     'adoptSlug.switzerland': 'Schweiz',
@@ -379,6 +380,7 @@ export const ui = {
     'contact.fbTitle': 'Facebook',
     'contact.fbText': 'Schreibe uns direkt oder folge uns f\u00fcr t\u00e4gliche Updates zu den Hunden.',
     'contact.fbButton': 'Unsere Facebook-Seite besuchen',
+    'contact.whatsappText': 'Schreib uns auf WhatsApp. Wir antworten meistens innerhalb weniger Stunden.',
     'contact.locationTitle': 'Standort',
 
     // Your Impact page
@@ -562,7 +564,7 @@ export const ui = {
     'adoptSlug.sex': 'Geslacht',
     'adoptSlug.morePhotos': 'Meer foto\u2019s',
     'adoptSlug.feesTitle': 'Transportkosten',
-    'adoptSlug.feesIntro': 'Er zijn geen adoptiekosten \u2014 de hond is gratis. Je betaalt alleen de transportkosten naar je huis: gelicentieerd transport, huisdierpaspoort en ontworming volgens de eisen van jouw land. Elke hond is al gecastreerd, gevaccineerd en gechipt. De kosten zijn voor elke hond gelijk.',
+    'adoptSlug.feesIntro': 'Er zijn geen adoptiekosten. De hond is gratis. Je betaalt alleen de transportkosten naar je huis: gelicentieerd transport, huisdierpaspoort en ontworming volgens de eisen van jouw land. Elke hond is al gecastreerd, gevaccineerd en gechipt. De kosten zijn voor elke hond gelijk.',
     'adoptSlug.uk': 'Verenigd Koninkrijk',
     'adoptSlug.europe': 'Europa',
     'adoptSlug.switzerland': 'Zwitserland',
@@ -605,6 +607,7 @@ export const ui = {
     'contact.fbTitle': 'Facebook',
     'contact.fbText': 'Stuur ons een bericht of volg ons voor dagelijkse updates over de honden.',
     'contact.fbButton': 'Bezoek onze Facebook-pagina',
+    'contact.whatsappText': 'Stuur ons een bericht op WhatsApp. We reageren meestal binnen een paar uur.',
     'contact.locationTitle': 'Locatie',
 
     // Your Impact page
@@ -788,7 +791,7 @@ export const ui = {
     'adoptSlug.sex': 'Sexe',
     'adoptSlug.morePhotos': 'Plus de photos',
     'adoptSlug.feesTitle': 'Frais de transport',
-    'adoptSlug.feesIntro': 'Il n\u2019y a pas de frais d\u2019adoption \u2014 le chien est gratuit. Vous ne payez que les frais de transport jusqu\u2019\u00e0 chez vous\u00a0: transport autoris\u00e9, passeport pour animaux et vermifugation selon les exigences de votre pays. Chaque chien est d\u00e9j\u00e0 st\u00e9rilis\u00e9, vaccin\u00e9 et puc\u00e9. Les frais sont les m\u00eames pour tous les chiens.',
+    'adoptSlug.feesIntro': 'Il n\u2019y a pas de frais d\u2019adoption. Le chien est gratuit. Vous ne payez que les frais de transport jusqu\u2019\u00e0 chez vous\u00a0: transport autoris\u00e9, passeport pour animaux et vermifugation selon les exigences de votre pays. Chaque chien est d\u00e9j\u00e0 st\u00e9rilis\u00e9, vaccin\u00e9 et puc\u00e9. Les frais sont les m\u00eames pour tous les chiens.',
     'adoptSlug.uk': 'Royaume-Uni',
     'adoptSlug.europe': 'Europe',
     'adoptSlug.switzerland': 'Suisse',
@@ -831,6 +834,7 @@ export const ui = {
     'contact.fbTitle': 'Facebook',
     'contact.fbText': '\u00c9crivez-nous directement ou suivez-nous pour les nouvelles quotidiennes sur les chiens.',
     'contact.fbButton': 'Visiter notre page Facebook',
+    'contact.whatsappText': 'Envoyez-nous un message sur WhatsApp. Nous r\u00e9pondons g\u00e9n\u00e9ralement en quelques heures.',
     'contact.locationTitle': 'Adresse',
 
     // Your Impact page

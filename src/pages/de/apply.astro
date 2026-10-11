@@ -464,7 +464,7 @@ const dogPhotoData = currentDogs.map((dog) => {
             </li>
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">2</span>
-              <span>Wir vereinbaren einen <strong>Hausbesuch</strong> — in Deutschland und Österreich in der Regel persönlich, in Großbritannien per Videoanruf.</span>
+              <span>Wir vereinbaren einen <strong>Hausbesuch</strong>: in Deutschland und Österreich in der Regel persönlich, in Großbritannien per Videoanruf.</span>
             </li>
             <li class="flex gap-3">
               <span class="w-6 h-6 bg-teal text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">3</span>
@@ -518,15 +518,26 @@ const dogPhotoData = currentDogs.map((dog) => {
     });
   }
 
-  document.getElementById('showcase-prev')?.addEventListener('click', () => showcaseGoTo(showcaseCurrent - 1));
-  document.getElementById('showcase-next')?.addEventListener('click', () => showcaseGoTo(showcaseCurrent + 1));
+  let showcaseAutoplay: ReturnType<typeof setInterval> | null = null;
+
+  function startShowcaseAutoplay() {
+    if (showcaseAutoplay) clearInterval(showcaseAutoplay);
+    showcaseAutoplay = setInterval(() => showcaseGoTo(showcaseCurrent + 1), 4000);
+  }
+
+  function resetShowcaseAutoplay() {
+    startShowcaseAutoplay(); // restart timer after manual interaction
+  }
+
+  document.getElementById('showcase-prev')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent - 1); resetShowcaseAutoplay(); });
+  document.getElementById('showcase-next')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent + 1); resetShowcaseAutoplay(); });
 
   // Touch swipe on showcase
   let sStartX = 0;
   document.getElementById('showcase-carousel')?.addEventListener('touchstart', (e) => { sStartX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
   document.getElementById('showcase-carousel')?.addEventListener('touchend', (e) => {
     const diff = sStartX - (e as TouchEvent).changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1));
+    if (Math.abs(diff) > 50) { showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1)); resetShowcaseAutoplay(); }
   });
 
   function selectDog(name: string, slug: string) {
@@ -595,6 +606,8 @@ const dogPhotoData = currentDogs.map((dog) => {
     if (showcaseLine && info) showcaseLine.textContent = info.shortLine;
     if (showcaseLink && info) showcaseLink.href = `/de/adopt/${info.slug}`;
 
+    startShowcaseAutoplay();
+
     dogShowcase?.classList.remove('hidden');
     formFields?.classList.remove('hidden');
 
@@ -608,6 +621,7 @@ const dogPhotoData = currentDogs.map((dog) => {
   });
 
   function resetDogSelection() {
+    if (showcaseAutoplay) { clearInterval(showcaseAutoplay); showcaseAutoplay = null; }
     dogShowcase?.classList.add('hidden');
     formFields?.classList.add('hidden');
     dogSelectedBar?.classList.add('hidden');
