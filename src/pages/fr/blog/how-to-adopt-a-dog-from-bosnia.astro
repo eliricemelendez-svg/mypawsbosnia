@@ -1,0 +1,320 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { currentDogs } from "../../../data/current-dogs";
+import { successStories } from "../../../data/success-stories";
+
+const title = "Comment adopter un chien de Bosnie | My Paws Bosnia";
+const description = "Guide étape par étape pour adopter un chien de sauvetage de Bosnie. Entièrement vacciné, passeport européen, transport vers la France, la Belgique, la Suisse et toute l'Europe. Plus de 60 chiens attendent un foyer.";
+
+const dogCount = currentDogs.length;
+const adoptedCount = successStories.length;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Comment adopter un chien de Bosnie",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/fr/blog/how-to-adopt-a-dog-from-bosnia",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Combien coûte l'adoption d'un chien de Bosnie ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Il n'y a pas de frais d'adoption. Vous ne payez que le transport : environ 500 £ vers le Royaume-Uni, 300 à 400 € vers l'Europe continentale, ou CHF 500 à 550 vers la Suisse. Cela couvre le transporteur agréé, le carburant, les péages ou les frais de ferry, et tous les documents douaniers nécessaires."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Qu'est-ce qui est inclus dans chaque adoption ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Chaque chien est castré ou stérilisé, entièrement vacciné (y compris contre la rage), vermifugé, traité contre les parasites, pucé et muni d'un passeport pour animal de compagnie. Des analyses sanguines (dont la brucellose) sont disponibles sur demande."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Combien de temps dure le processus d'adoption ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Du premier message à l'arrivée du chien chez vous, le processus prend généralement 4 à 8 semaines. Le délai dépend de la visite du domicile, de l'organisation du transport et de la finalisation de tous les documents vétérinaires."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Puis-je adopter un chien de Bosnie vers le Royaume-Uni après le Brexit ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui. Les chiens de Bosnie peuvent toujours voyager vers le Royaume-Uni. Ils ont besoin d'un vaccin antirabique, d'un passeport pour animal de compagnie et d'un traitement vermifuge avant le voyage. Nous nous occupons de tout. Plusieurs de nos chiens ont déjà été adoptés par des familles britanniques."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Dois-je me rendre en Bosnie pour adopter ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Non. Nous organisons un transport agréé directement jusqu'à votre porte. Vous n'avez pas besoin de vous rendre en Bosnie. Nous envoyons régulièrement des photos et des vidéos pour que vous puissiez faire connaissance avec votre chien avant son arrivée."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="fr" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Guide d'adoption</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Comment adopter un chien de Bosnie</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        Il y a actuellement {dogCount} chiens dans notre refuge à Brcko, en Bosnie, qui attendent une famille. Chaque chien est castré, vacciné, vermifugé et muni d'un passeport pour animal de compagnie avant le voyage. Voici comment le processus fonctionne.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Pourquoi adopter de Bosnie -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Pourquoi adopter de Bosnie ?</h2>
+      <p class="text-body leading-relaxed mb-4">
+        La Bosnie n'a pas de programme national de stérilisation. Les chiens errants sont régulièrement tués ou laissés dans des refuges publics sous-financés. Notre fondatrice, Vesna, sauve des chiens de la rue et de ces refuges depuis 2019. Elle gère un refuge privé à Brcko où chaque chien reçoit des soins vétérinaires, une socialisation et un endroit sûr en attendant un foyer.
+      </p>
+      <p class="text-body leading-relaxed mb-4">
+        Ce ne sont pas des chiens sauvages. Ce sont des animaux amicaux et socialisés qui vivent avec des humains et d'autres chiens au refuge. Beaucoup sont des chiots nés au refuge. D'autres sont des adultes sauvés de l'abandon ou de refuges municipaux. Tous sont en bonne santé, suivis par un vétérinaire et prêts à voyager.
+      </p>
+      <p class="text-body leading-relaxed">
+        Nous avons déjà placé {adoptedCount} chiens dans des familles au Royaume-Uni, en Belgique, en Autriche et dans d'autres pays européens. Chaque adoption a été un succès.
+      </p>
+    </section>
+
+    <!-- Étape par étape -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Processus d'adoption étape par étape</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Parcourez et envoyez-nous un message</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Consultez nos <a href="/fr/adopt" class="text-teal font-medium hover:underline">chiens disponibles</a>. Quand vous en trouvez un qui vous touche, envoyez-nous un message sur <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">Facebook</a> ou <a href="https://wa.me/38765628636" target="_blank" rel="noopener noreferrer" class="text-teal font-medium hover:underline">WhatsApp</a>. Parlez-nous de votre domicile, de votre expérience avec les chiens et du chien qui a retenu votre attention.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Visite du domicile</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Nous effectuons une simple visite du domicile pour nous assurer que le chien sera en sécurité et bien soigné. Au Royaume-Uni, c'est généralement un appel vidéo. En Allemagne et en Autriche, ce sera très probablement une visite en personne. Nous vérifions la clôture sécurisée, l'espace suffisant et un engagement sincère envers le bien-être du chien.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Approbation et préparation</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Une fois approuvé, nous finalisons les soins vétérinaires du chien. Cela comprend la castration/stérilisation (si ce n'est pas déjà fait), la vaccination antirabique, le vermifuge, le traitement antiparasitaire, le puçage et l'émission du passeport pour animal de compagnie. Des analyses sanguines pour la brucellose et d'autres maladies sont disponibles sur demande.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-none w-10 h-10 bg-teal/10 rounded-xl flex items-center justify-center text-teal font-bold">4</div>
+          <div>
+            <h3 class="font-semibold text-slate-dark text-lg">Transport jusqu'à votre porte</h3>
+            <p class="text-body mt-1 leading-relaxed">
+              Nous organisons un transport agréé de Bosnie directement jusqu'à votre domicile. Le transporteur est expérimenté, entièrement agréé et fait des pauses en cours de route. Vous n'avez pas besoin de vous rendre en Bosnie. Du premier message à l'arrivée, le processus prend généralement 4 à 8 semaines.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coûts de transport -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Coûts de transport</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Il n'y a pas de frais d'adoption. Le seul coût est le transport, qui couvre le transporteur agréé, le carburant, les péages ou frais de ferry et les documents douaniers.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-teal/20">
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Destination</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-slate-dark">Coût approximatif</th>
+            </tr>
+          </thead>
+          <tbody class="text-body">
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Royaume-Uni</td>
+              <td class="py-3 pr-4 tabular-nums">~&pound;500</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Europe continentale (Allemagne, Pays-Bas, Belgique, France, Autriche)</td>
+              <td class="py-3 pr-4 tabular-nums">&euro;300&ndash;400</td>
+            </tr>
+            <tr class="border-b border-gray-100">
+              <td class="py-3 pr-4">Suisse</td>
+              <td class="py-3 pr-4 tabular-nums">CHF&nbsp;500&ndash;550</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-body mt-3">Les coûts varient légèrement selon la localisation exacte et l'itinéraire. Nous confirmons le prix exact avant votre engagement.</p>
+    </section>
+
+    <!-- Ce qui est inclus -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Ce qui est inclus dans chaque adoption</h2>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Castration ou stérilisation</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Vaccinations complètes (y compris la rage)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Vermifuge</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Traitement antiparasitaire (puces, tiques)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Puce électronique</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Passeport pour animal de compagnie</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-teal mt-0.5">&#10003;</span>
+          <span class="text-body">Analyses sanguines (brucellose, etc.) disponibles sur demande</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Chiens en attente -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Chiens actuellement en attente d'un foyer</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Voici quelques-uns des chiens qui se trouvent actuellement dans notre refuge. Chacun est entièrement suivi par un vétérinaire et prêt à voyager.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {currentDogs.map((dog) => (
+          <a href={`/fr/adopt/${dog.slug}`} class="block bg-light-bg rounded-xl p-4 hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-slate-dark">{dog.name}</h3>
+            <p class="text-sm text-body mt-1">{dog.shortLine}</p>
+            <p class="text-xs text-teal font-medium mt-2">
+              {dog.sex === 'male' ? 'Mâle' : 'Femelle'} · {dog.age} · {dog.size}
+            </p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-6">
+        <a href="/fr/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Voir tous les chiens disponibles
+        </a>
+      </div>
+    </section>
+
+    <!-- Histoires de succès -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Chiens que nous avons déjà placés</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Ces chiens ont suivi le même processus et vivent maintenant avec leurs familles.
+      </p>
+      <ul class="space-y-3">
+        {successStories.map((story) => (
+          <li class="flex items-start gap-3">
+            <span class="text-teal mt-0.5">&#10003;</span>
+            <span class="text-body">
+              <a href={`/fr/success-stories/${story.slug}`} class="text-teal font-medium hover:underline">{story.name}</a>
+              {story.adoptedTo ? ` adopté vers ${story.adoptedTo}` : ` adopté ${story.adoptedDate}`}.
+              {' '}{story.shortLine}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Questions fréquentes</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Combien coûte l'adoption d'un chien de Bosnie ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Il n'y a pas de frais d'adoption. Vous ne payez que le transport : environ 500 £ vers le Royaume-Uni, 300 à 400 € vers l'Europe continentale, ou CHF 500 à 550 vers la Suisse. Cela couvre le transporteur agréé, le carburant, les péages ou frais de ferry et tous les documents douaniers nécessaires.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Qu'est-ce qui est inclus dans chaque adoption ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Chaque chien est castré ou stérilisé, entièrement vacciné (y compris contre la rage), vermifugé, traité contre les parasites, pucé et muni d'un passeport pour animal de compagnie. Des analyses sanguines (dont la brucellose) sont disponibles sur demande.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Combien de temps dure le processus d'adoption ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Du premier message à l'arrivée du chien chez vous, le processus prend généralement 4 à 8 semaines. Le délai dépend de la visite du domicile, de l'organisation du transport et de la finalisation de tous les documents vétérinaires.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Puis-je adopter un chien de Bosnie vers le Royaume-Uni après le Brexit ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Oui. Les chiens de Bosnie peuvent toujours voyager vers le Royaume-Uni. Ils ont besoin d'un vaccin antirabique, d'un passeport pour animal de compagnie et d'un traitement vermifuge avant le voyage. Nous nous occupons de tout. Plusieurs de nos chiens ont déjà été adoptés par des familles britanniques.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Dois-je me rendre en Bosnie pour adopter ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Non. Nous organisons un transport agréé directement jusqu'à votre porte. Vous n'avez pas besoin de vous rendre en Bosnie. Nous envoyons régulièrement des photos et des vidéos pour que vous puissiez faire connaissance avec votre chien avant son arrivée.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Prêt à adopter ?</h2>
+      <p class="text-body mb-6">Consultez nos chiens disponibles et envoyez-nous un message pour démarrer le processus.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/fr/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Voir les chiens disponibles
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Écrivez-nous sur Facebook
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>

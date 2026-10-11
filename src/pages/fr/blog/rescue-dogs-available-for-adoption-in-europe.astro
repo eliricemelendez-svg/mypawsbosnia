@@ -1,0 +1,303 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { currentDogs } from "../../../data/current-dogs";
+import { successStories } from "../../../data/success-stories";
+
+const title = "Chiens de sauvetage disponibles à l'adoption en Europe | My Paws Bosnia";
+const description = "Chiens de sauvetage disponibles à l'adoption dans toute l'Europe, au Royaume-Uni et en Suisse. Entièrement suivis par un vétérinaire, vaccinés et avec passeport européen. Parcourez les chiens et adoptez aujourd'hui.";
+
+const dogCount = currentDogs.length;
+const adoptedCount = successStories.length;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Chiens de sauvetage disponibles à l'adoption en Europe",
+  description,
+  author: { "@type": "Organization", name: "My Paws Bosnia" },
+  publisher: { "@type": "Organization", name: "My Paws Bosnia" },
+  mainEntityOfPage: "https://mypawsbosnia.org/fr/blog/rescue-dogs-available-for-adoption-in-europe",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Vers quels pays ces chiens de sauvetage peuvent-ils être adoptés ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nos chiens peuvent voyager vers n'importe quel pays de l'UE, le Royaume-Uni et la Suisse. Nous avons placé des chiens en Angleterre, en Belgique, en Autriche, en Allemagne, aux Pays-Bas et en France."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Ces chiens sont-ils compatibles avec les enfants ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "La plupart de nos chiens s'entendent bien avec les enfants. Le profil de chaque chien contient des informations précises sur son comportement avec les enfants. Nous faisons toujours correspondre les chiens avec les familles en fonction du cadre de vie."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Quelles races sont disponibles ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nos chiens sont des croisés. Les mélanges courants incluent Labrador, Berger, Épagneul-Setter, Retriever-Spitz et croisements de Terrier. Les chiens croisés ont généralement moins de problèmes de santé héréditaires et une espérance de vie plus longue que les chiens de race."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Comment savoir si ces chiens sont en bonne santé ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Chaque chien est examiné par un vétérinaire, vacciné (y compris contre la rage), castré ou stérilisé, vermifugé, traité contre les parasites et pucé avant le voyage. Des analyses sanguines pour la brucellose et d'autres maladies sont disponibles sur demande."
+      }
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} lang="fr" jsonLd={[articleSchema, faqSchema]}>
+  <!-- Hero -->
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold text-teal uppercase tracking-wide mb-3">Adoptez un chien de sauvetage</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-dark leading-tight">Chiens de sauvetage disponibles à l'adoption en Europe</h1>
+      <p class="text-lg text-body mt-4 leading-relaxed">
+        {dogCount} chiens de sauvetage dans notre refuge en Bosnie sont prêts à voyager vers des familles dans toute l'Europe, au Royaume-Uni et en Suisse. Chaque chien est entièrement suivi par un vétérinaire, vacciné et muni d'un passeport pour animal de compagnie.
+      </p>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- La situation -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">La situation des chiens de sauvetage en Bosnie</h2>
+      <p class="text-body leading-relaxed mb-4">
+        La Bosnie compte des dizaines de milliers de chiens errants. Il n'y a pas de programme national de stérilisation, et les refuges publics sont gravement sous-financés. Les chiens dans les refuges municipaux font face à la surpopulation, aux maladies et, dans de nombreux cas, à l'euthanasie.
+      </p>
+      <p class="text-body leading-relaxed">
+        My Paws Bosnia (Moje Sape) est un refuge privé à Brcko, géré par Vesna et sa famille depuis 2019. Nous sauvons des chiens de la rue et des refuges publics, leur offrons des soins vétérinaires complets et leur trouvons des foyers permanents dans toute l'Europe. Nous avons placé {adoptedCount} chiens dans des familles jusqu'à présent, et {dogCount} autres sont actuellement en attente.
+      </p>
+    </section>
+
+    <!-- Pourquoi ces chiens font d'excellents compagnons -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Pourquoi ces chiens font d'excellents compagnons</h2>
+      <div class="space-y-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Socialisés et proches de l'humain</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Nos chiens vivent ensemble au refuge avec un contact humain quotidien. Ils sont habitués aux personnes, aux autres chiens et, dans de nombreux cas, aux enfants et aux chats. Ce ne sont pas des animaux sauvages.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Entièrement suivis par un vétérinaire avant le voyage</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Chaque chien est castré/stérilisé, vacciné (y compris contre la rage), vermifugé, traité contre les parasites, pucé et muni d'un passeport pour animal de compagnie. Des analyses sanguines pour la brucellose sont disponibles sur demande.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Tempérament évalué</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Vesna connaît chaque chien personnellement. Elle peut vous dire exactement comment il se comporte avec les enfants, les chats, les autres chiens et les inconnus. Nous faisons correspondre les chiens avec les familles en nous basant sur l'observation quotidienne, pas sur des suppositions.
+          </p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <h3 class="font-semibold text-slate-dark">Croisés avec moins de problèmes de santé</h3>
+          <p class="text-body mt-1 text-sm leading-relaxed">
+            Nos chiens sont des croisés. Les mélanges courants incluent Labrador, Berger, Épagneul-Setter, Retriever-Spitz et croisements de Terrier. Les chiens croisés ont généralement moins de problèmes de santé héréditaires et une espérance de vie plus longue que les chiens de race.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Où ils peuvent voyager -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Où nos chiens peuvent voyager</h2>
+      <p class="text-body leading-relaxed mb-4">
+        Nous organisons un transport agréé de Bosnie jusqu'à votre porte. Nos chiens ont été adoptés vers :
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Royaume-Uni</p>
+          <p class="text-xs text-body mt-1">~&pound;500 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Allemagne</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Pays-Bas</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Belgique</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Autriche</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">Suisse</p>
+          <p class="text-xs text-body mt-1">CHF&nbsp;500&ndash;550 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center">
+          <p class="font-semibold text-slate-dark text-sm">France</p>
+          <p class="text-xs text-body mt-1">&euro;300&ndash;400 transport</p>
+        </div>
+        <div class="bg-light-bg rounded-lg px-4 py-3 text-center col-span-2 sm:col-span-2">
+          <p class="font-semibold text-slate-dark text-sm">Tout autre pays de l'UE</p>
+          <p class="text-xs text-body mt-1">Contactez-nous pour un devis</p>
+        </div>
+      </div>
+      <p class="text-sm text-body mt-4">Il n'y a pas de frais d'adoption. Vous ne payez que le transport.</p>
+    </section>
+
+    <!-- Chiens disponibles maintenant -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Chiens disponibles maintenant</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Chaque chien ci-dessous se trouve dans notre refuge à Brcko, en Bosnie. Ils sont suivis par un vétérinaire, en bonne santé et prêts à voyager.
+      </p>
+      <div class="space-y-4">
+        {currentDogs.map((dog) => (
+          <a href={`/fr/adopt/${dog.slug}`} class="block bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-semibold text-slate-dark text-lg">{dog.name}</h3>
+                <p class="text-body mt-1 leading-relaxed">{dog.shortLine}</p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <span class="inline-block bg-teal/10 text-teal text-xs font-medium px-3 py-1 rounded-full">
+                    {dog.sex === 'male' ? 'Mâle' : 'Femelle'}
+                  </span>
+                  <span class="inline-block bg-teal/10 text-teal text-xs font-medium px-3 py-1 rounded-full">
+                    {dog.age === 'puppy' ? 'Chiot' : dog.age === 'young' ? 'Jeune' : dog.age === 'adult' ? 'Adulte' : 'Senior'}
+                  </span>
+                  <span class="inline-block bg-teal/10 text-teal text-xs font-medium px-3 py-1 rounded-full">
+                    {dog.size === 'small' ? 'Petit' : dog.size === 'medium' ? 'Moyen' : 'Grand'}
+                  </span>
+                </div>
+              </div>
+              <span class="text-teal text-sm font-medium whitespace-nowrap">Voir le profil &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/fr/adopt" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Voir les {dogCount} chiens
+        </a>
+      </div>
+    </section>
+
+    <!-- Adoptions récentes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Adoptions réussies récentes</h2>
+      <p class="text-body leading-relaxed mb-6">
+        Ces chiens étaient dans le même refuge. Ils ont suivi le même processus et sont maintenant installés avec leurs familles.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {successStories.map((story) => (
+          <a href={`/fr/success-stories/${story.slug}`} class="block bg-light-bg rounded-xl p-5 hover:shadow-md transition-shadow">
+            <h3 class="font-semibold text-slate-dark">{story.name}</h3>
+            {story.adoptedTo && <p class="text-xs text-teal font-medium mt-1">Adopté vers {story.adoptedTo}</p>}
+            <p class="text-sm text-body mt-2">{story.shortLine}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Comment fonctionne l'adoption -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-4">Comment fonctionne l'adoption</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">1</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Envoyez-nous un message</h3>
+          <p class="text-sm text-body mt-1">Envoyez-nous un message sur Facebook ou WhatsApp. Dites-nous quel chien vous intéresse et parlez-nous de votre domicile.</p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">2</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Visite du domicile</h3>
+          <p class="text-sm text-body mt-1">Nous effectuons une visite du domicile rapide et conviviale. Au Royaume-Uni, c'est généralement un appel vidéo. En Allemagne et en Autriche, ce sera très probablement en personne.</p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">3</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Vétérinaire et passeport</h3>
+          <p class="text-sm text-body mt-1">Nous effectuons toutes les vaccinations, la castration, le vermifuge et émettons le passeport pour animal de compagnie.</p>
+        </div>
+        <div class="bg-light-bg rounded-xl p-5">
+          <p class="text-teal font-bold text-lg">4</p>
+          <h3 class="font-semibold text-slate-dark mt-1">Transport vers chez vous</h3>
+          <p class="text-sm text-body mt-1">Un transporteur agréé amène votre chien directement chez vous. Le processus complet prend 4 à 8 semaines.</p>
+        </div>
+      </div>
+      <p class="text-sm text-body mt-4">
+        Pour le guide complet étape par étape, lisez notre <a href="/fr/blog/how-to-adopt-a-dog-from-bosnia" class="text-teal font-medium hover:underline">guide d'adoption</a>.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-dark mb-6">Questions fréquentes</h2>
+      <div class="space-y-4">
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Vers quels pays ces chiens de sauvetage peuvent-ils être adoptés ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Nos chiens peuvent voyager vers n'importe quel pays de l'UE, le Royaume-Uni et la Suisse. Nous avons placé des chiens en Angleterre, en Belgique, en Autriche, en Allemagne, aux Pays-Bas et en France.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Ces chiens sont-ils compatibles avec les enfants ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            La plupart de nos chiens s'entendent bien avec les enfants. Le profil de chaque chien contient des informations précises sur son comportement avec les enfants. Nous faisons toujours correspondre les chiens avec les familles en fonction du cadre de vie.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Quelles races sont disponibles ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Nos chiens sont des croisés. Les mélanges courants incluent Labrador, Berger, Épagneul-Setter, Retriever-Spitz et croisements de Terrier. Les chiens croisés ont généralement moins de problèmes de santé héréditaires et une espérance de vie plus longue que les chiens de race.
+          </div>
+        </details>
+        <details class="group border border-gray-100 rounded-xl">
+          <summary class="flex items-center justify-between cursor-pointer px-5 py-4 font-semibold text-slate-dark">
+            Comment savoir si ces chiens sont en bonne santé ?
+            <span class="text-teal text-xl transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-5 pb-4 text-body leading-relaxed">
+            Chaque chien est examiné par un vétérinaire, vacciné (y compris contre la rage), castré ou stérilisé, vermifugé, traité contre les parasites, pucé et muni d'un passeport pour animal de compagnie avant le voyage. Des analyses sanguines pour la brucellose et d'autres maladies sont disponibles sur demande.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-light-bg rounded-2xl p-8 text-center">
+      <h2 class="text-2xl font-bold text-slate-dark mb-3">Lancez le processus d'adoption</h2>
+      <p class="text-body mb-6">Envoyez-nous un message et dites-nous quel chien vous intéresse. Nous vous guiderons à chaque étape.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">
+          Écrivez-nous sur Facebook
+        </a>
+        <a href="/fr/adopt" class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">
+          Voir tous les chiens
+        </a>
+      </div>
+    </section>
+
+  </article>
+</Layout>
