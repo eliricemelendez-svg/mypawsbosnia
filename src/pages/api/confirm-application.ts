@@ -306,6 +306,14 @@ export const POST: APIRoute = async ({ request }) => {
       html,
     });
 
+    // Log to Google Sheet (fire and forget)
+    const sheetUrl = 'https://script.google.com/macros/s/AKfycbw0wn_nz3RZBlrlT4t7XHZ_5Tu6sCEsFnBx81NirmjnTTGM24L9qFXLVSAA52yoHfn8vQ/exec';
+    fetch(sheetUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(body),
+    }).catch(() => {});
+
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.error('Email send error:', error);

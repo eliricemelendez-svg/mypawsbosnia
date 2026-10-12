@@ -871,49 +871,35 @@ const dogPhotoData = currentDogs.map((dog) => {
         });
 
         if (res.ok) {
-          // Send confirmation email (fire and forget — don't block the success screen)
-          const emailData = {
-            name: applicantName,
-            email: (document.getElementById('email') as HTMLInputElement)?.value || '',
-            dogName: selectedDogName,
-            dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
-            country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
-            lang: document.documentElement.lang || 'en',
-          };
+          // Send confirmation email + log to Google Sheet (fire and forget)
           fetch('/api/confirm-application', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(emailData),
+            body: JSON.stringify({
+              name: applicantName,
+              email: (document.getElementById('email') as HTMLInputElement)?.value || '',
+              phone: phoneInput,
+              dogName: selectedDogName,
+              dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
+              country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
+              city: (document.getElementById('city') as HTMLInputElement)?.value || '',
+              homeType: (document.getElementById('home_type') as HTMLSelectElement)?.value || '',
+              garden: (document.getElementById('garden') as HTMLSelectElement)?.value || '',
+              fence: (document.getElementById('fence_height') as HTMLSelectElement)?.value || '',
+              ownRent: (document.getElementById('own_rent') as HTMLSelectElement)?.value || '',
+              household: (document.getElementById('household_types') as HTMLInputElement)?.value || '',
+              dogExperience: (document.getElementById('dog_experience') as HTMLSelectElement)?.value || '',
+              wasRescue: (document.getElementById('was_rescue') as HTMLSelectElement)?.value || '',
+              dailyRoutine: (document.getElementById('daily_routine') as HTMLSelectElement)?.value || '',
+              pets: (document.getElementById('pet_types') as HTMLInputElement)?.value || '',
+              hoursAlone: (document.getElementById('hours_alone') as HTMLSelectElement)?.value || '',
+              sleep: (document.getElementById('sleep') as HTMLInputElement)?.value || '',
+              homeCheck: (document.getElementById('home_check') as HTMLSelectElement)?.value || '',
+              questions: (document.getElementById('questions') as HTMLTextAreaElement)?.value || '',
+              message: (document.getElementById('message') as HTMLTextAreaElement)?.value || '',
+              lang: document.documentElement.lang || 'en',
+            }),
           }).catch(() => {});
-
-          // Log to Google Sheet (fire and forget)
-          const sheetData = {
-            name: applicantName,
-            email: emailData.email,
-            phone: phoneInput,
-            country: emailData.country,
-            city: (document.getElementById('city') as HTMLInputElement)?.value || '',
-            dog: selectedDogName,
-            homeType: (document.getElementById('home_type') as HTMLSelectElement)?.value || '',
-            garden: (document.getElementById('garden') as HTMLSelectElement)?.value || '',
-            fence: (document.getElementById('fence_height') as HTMLSelectElement)?.value || '',
-            ownRent: (document.getElementById('own_rent') as HTMLSelectElement)?.value || '',
-            household: (document.getElementById('household_types') as HTMLInputElement)?.value || '',
-            dogExperience: (document.getElementById('dog_experience') as HTMLSelectElement)?.value || '',
-            wasRescue: (document.getElementById('was_rescue') as HTMLSelectElement)?.value || '',
-            dailyRoutine: (document.getElementById('daily_routine') as HTMLSelectElement)?.value || '',
-            pets: (document.getElementById('pet_types') as HTMLInputElement)?.value || '',
-            hoursAlone: (document.getElementById('hours_alone') as HTMLSelectElement)?.value || '',
-            sleep: (document.getElementById('sleep') as HTMLInputElement)?.value || '',
-            homeCheck: (document.getElementById('home_check') as HTMLSelectElement)?.value || '',
-            questions: (document.getElementById('questions') as HTMLTextAreaElement)?.value || '',
-            message: (document.getElementById('message') as HTMLTextAreaElement)?.value || '',
-            lang: emailData.lang,
-          };
-          fetch('https://script.google.com/macros/s/AKfycbz9MEgZfZyqI78MHoGEgYJprD3Eiw_GgAqN4Nyc8MCrblKuaTFXsGLpSuijDymLyjgjig/exec', {
-            method: 'POST',
-            body: JSON.stringify(sheetData),
-          }).catch(() => {}); // silent fail
 
           if (selectedDogName && selectedDogName !== 'Not sure yet') {
             const successText = document.getElementById('success-dog-text');
