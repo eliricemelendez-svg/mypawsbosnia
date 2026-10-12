@@ -837,7 +837,17 @@ const dogPhotoData = currentDogs.map((dog) => {
 
       // Build WhatsApp click-to-chat link
       const phoneInput = (document.getElementById('phone') as HTMLInputElement)?.value || '';
-      const cleanPhone = phoneInput.replace(/[\s\-\(\)]/g, '').replace(/^\+/, '');
+      const countryDialCodes: Record<string, string> = {
+        'United Kingdom': '44', 'Germany': '49', 'Switzerland': '41',
+        'Netherlands': '31', 'Belgium': '32', 'France': '33',
+        'Austria': '43', 'Ireland': '353', 'Denmark': '45',
+        'Sweden': '46', 'Norway': '47', 'Italy': '39', 'Spain': '34',
+      };
+      const selectedCountry = (document.getElementById('country') as HTMLSelectElement)?.value || '';
+      let cleanPhone = phoneInput.replace(/[\s\-\(\)]/g, '').replace(/^\+/, '');
+      if (cleanPhone.startsWith('0') && countryDialCodes[selectedCountry]) {
+        cleanPhone = countryDialCodes[selectedCountry] + cleanPhone.slice(1);
+      }
       const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
       const selectedDogName = dogInput.value;
       const waMessage = encodeURIComponent(`Hi ${applicantName}! This is My Paws Bosnia. We received your adoption application${selectedDogName && selectedDogName !== 'Not sure yet' ? ` for ${selectedDogName}` : ''}. We'd love to chat with you about the next steps!`);
