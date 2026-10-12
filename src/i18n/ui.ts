@@ -19,6 +19,7 @@ export const ui = {
     'footer.pastRescues': 'Past Rescues',
     'footer.yourImpact': 'Your Impact',
     'footer.rights': 'My Paws Bosnia. All rights reserved.',
+    'footer.privacy': 'Privacy Policy',
 
     // Floating donate button
     'donate.float': 'Donate',
@@ -250,6 +251,7 @@ export const ui = {
     'footer.pastRescues': 'Fr\u00fchere Rettungen',
     'footer.yourImpact': 'Deine Wirkung',
     'footer.rights': 'My Paws Bosnia. Alle Rechte vorbehalten.',
+    'footer.privacy': 'Datenschutz',
 
     // Floating donate button
     'donate.float': 'Spenden',
@@ -481,6 +483,7 @@ export const ui = {
     'footer.pastRescues': 'Eerdere reddingen',
     'footer.yourImpact': 'Jouw impact',
     'footer.rights': 'My Paws Bosnia. Alle rechten voorbehouden.',
+    'footer.privacy': 'Privacybeleid',
 
     // Floating donate button
     'donate.float': 'Doneer',
@@ -712,6 +715,7 @@ export const ui = {
     'footer.pastRescues': 'Anciens sauvetages',
     'footer.yourImpact': 'Votre impact',
     'footer.rights': 'My Paws Bosnia. Tous droits r\u00e9serv\u00e9s.',
+    'footer.privacy': 'Politique de confidentialité',
 
     // Floating donate button
     'donate.float': 'Donner',

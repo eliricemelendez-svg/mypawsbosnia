@@ -396,6 +396,12 @@ const dogPhotoData = currentDogs.map((dog) => {
           <a href="/fr/success-stories" class="text-teal font-medium hover:underline">Voir leurs histoires &rarr;</a>
         </div>
 
+        <!-- Privacy consent -->
+        <div class="flex items-start gap-3 mb-6">
+          <input type="checkbox" id="privacy_consent" name="privacy_consent" required class="mt-1 w-4 h-4 rounded border-gray-300 text-teal focus:ring-teal" />
+          <label for="privacy_consent" class="text-sm text-body">J'ai lu et j'accepte la <a href="/fr/privacy" class="text-teal hover:underline">politique de confidentialité</a>. *</label>
+        </div>
+
         <!-- Submit -->
         <div class="text-center pt-2">
           <button type="submit" id="submit-btn" class="inline-block px-10 py-3.5 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors text-base shadow-md hover:shadow-lg">Envoyer la demande</button>
