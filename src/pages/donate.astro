@@ -8,6 +8,8 @@ import type { Lang } from "../i18n/utils";
 const lang: Lang = 'en';
 const t = useTranslations(lang);
 
+import flintPhoto from "../assets/success-stories/flint/flint-1.jpeg";
+import bridgettePhoto from "../assets/success-stories/bridgette/bridgette-1.jpg";
 import vesnaWithDog from "../assets/vesna/706517929_122100551391334047_1761713277840422103_n.jpg";
 import vetBillPhoto from "../assets/vet/hires-vet-bill.jpg";
 import passportDog from "../assets/past-rescues/hires-passport-1.jpg";
@@ -40,6 +42,33 @@ const allPhotos = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('donatePage.heading')}</h1>
       <p class="mt-4 text-lg text-body max-w-2xl mx-auto">{t('donatePage.subtitle')}</p>
+    </div>
+  </section>
+
+  <!-- Rotating rescue story -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <p class="text-xs font-semibold uppercase tracking-wider text-teal text-center mb-6">{t('donatePage.storyLabel')}</p>
+    <div class="relative">
+      <div id="story-flint" class="story-slide flex flex-col sm:flex-row items-center gap-6 bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-opacity duration-500">
+        <Image src={flintPhoto} alt="Flint the rescue dog" width={200} height={200} class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover flex-shrink-0" />
+        <div>
+          <h3 class="text-lg font-bold text-slate-dark mb-2">Flint</h3>
+          <p class="text-body text-sm leading-relaxed mb-3">{t('donatePage.flintStory')}</p>
+          <a href="/success-stories/flint" class="text-sm font-semibold text-teal hover:underline">{t('donatePage.readStory')} &rarr;</a>
+        </div>
+      </div>
+      <div id="story-bridgette" class="story-slide flex flex-col sm:flex-row items-center gap-6 bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-opacity duration-500 absolute inset-0 opacity-0">
+        <Image src={bridgettePhoto} alt="Bridgette the rescue dog" width={200} height={200} class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover flex-shrink-0" />
+        <div>
+          <h3 class="text-lg font-bold text-slate-dark mb-2">Bridgette</h3>
+          <p class="text-body text-sm leading-relaxed mb-3">{t('donatePage.bridgetteStory')}</p>
+          <a href="/success-stories/bridgette" class="text-sm font-semibold text-teal hover:underline">{t('donatePage.readStory')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center gap-2 mt-4">
+      <button class="story-dot w-2.5 h-2.5 rounded-full bg-teal transition-colors" data-story="0" aria-label="Story 1"></button>
+      <button class="story-dot w-2.5 h-2.5 rounded-full bg-gray-300 transition-colors" data-story="1" aria-label="Story 2"></button>
     </div>
   </section>
 
@@ -119,4 +148,32 @@ const allPhotos = [
       <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block mt-6 px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('donatePage.contactFb')}</a>
     </div>
   </section>
+
+  <script>
+    const slides = document.querySelectorAll('.story-slide');
+    const dots = document.querySelectorAll('.story-dot');
+    let current = 0;
+
+    function showStory(index: number) {
+      slides.forEach((s, i) => {
+        (s as HTMLElement).style.opacity = i === index ? '1' : '0';
+        (s as HTMLElement).style.pointerEvents = i === index ? 'auto' : 'none';
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('bg-teal', i === index);
+        d.classList.toggle('bg-gray-300', i !== index);
+      });
+      current = index;
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        showStory(Number((dot as HTMLElement).dataset.story));
+      });
+    });
+
+    setInterval(() => {
+      showStory((current + 1) % slides.length);
+    }, 8000);
+  </script>
 </Layout>
