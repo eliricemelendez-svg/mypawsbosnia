@@ -161,10 +161,6 @@ const dogPhotoData = currentDogs.map((dog) => {
               <label for="email" class="block text-sm font-medium text-body mb-2">E-Mail-Adresse *</label>
               <input type="email" id="email" name="email" required class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
             </div>
-            <div>
-              <label for="phone" class="block text-sm font-medium text-body mb-2">Telefonnummer (mit Landesvorwahl) *</label>
-              <input type="tel" id="phone" name="phone" required placeholder="+49 170 1234567" pattern="[\+\d\s\-\(\)]{7,20}" inputmode="tel" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
-            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="country" class="block text-sm font-medium text-body mb-2">Land *</label>
@@ -200,6 +196,13 @@ const dogPhotoData = currentDogs.map((dog) => {
                   <option value="Dublin" /><option value="Cork" /><option value="Galway" />
                   <option value="Copenhagen" /><option value="Stockholm" /><option value="Oslo" /><option value="Milan" /><option value="Rome" /><option value="Madrid" /><option value="Barcelona" />
                 </datalist>
+              </div>
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-body mb-2">Telefonnummer *</label>
+              <div class="flex gap-2">
+                <input type="text" id="dial-code" name="dial_code" readonly tabindex="-1" value="" class="w-20 rounded-xl border border-gray-200 px-3 py-3 text-base text-slate-dark bg-gray-50 text-center focus:outline-none cursor-default" />
+                <input type="tel" id="phone" name="phone" required placeholder="7700 900000" pattern="[\d\s\-\(\)]{6,18}" inputmode="tel" class="flex-1 rounded-xl border border-gray-200 px-4 py-3 text-base text-slate-dark focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent" />
               </div>
             </div>
           </div>
@@ -822,6 +825,21 @@ const dogPhotoData = currentDogs.map((dog) => {
     });
   });
 
+  // Auto-fill dial code from country selection
+  const countryDialCodes: Record<string, string> = {
+    'United Kingdom': '+44', 'Germany': '+49', 'Switzerland': '+41',
+    'Netherlands': '+31', 'Belgium': '+32', 'France': '+33',
+    'Austria': '+43', 'Ireland': '+353', 'Denmark': '+45',
+    'Sweden': '+46', 'Norway': '+47', 'Italy': '+39', 'Spain': '+34',
+  };
+  const countrySelect = document.getElementById('country') as HTMLSelectElement;
+  const dialCodeInput = document.getElementById('dial-code') as HTMLInputElement;
+
+  countrySelect?.addEventListener('change', () => {
+    const code = countryDialCodes[countrySelect.value] || '';
+    dialCodeInput.value = code;
+  });
+
   // Handle form submission
   const form = document.getElementById('adopt-form') as HTMLFormElement;
   const successMsg = document.getElementById('success-msg');
@@ -842,17 +860,14 @@ const dogPhotoData = currentDogs.map((dog) => {
       submitBtn.textContent = 'Wird gesendet...';
 
       // Build WhatsApp click-to-chat link
-      const phoneInput = (document.getElementById('phone') as HTMLInputElement)?.value || '';
-      const countryDialCodes: Record<string, string> = {
-        'United Kingdom': '44', 'Germany': '49', 'Switzerland': '41',
-        'Netherlands': '31', 'Belgium': '32', 'France': '33',
-        'Austria': '43', 'Ireland': '353', 'Denmark': '45',
-        'Sweden': '46', 'Norway': '47', 'Italy': '39', 'Spain': '34',
-      };
-      const selectedCountry = (document.getElementById('country') as HTMLSelectElement)?.value || '';
-      let cleanPhone = phoneInput.replace(/[\s\-\(\)]/g, '').replace(/^\+/, '');
-      if (cleanPhone.startsWith('0') && countryDialCodes[selectedCountry]) {
-        cleanPhone = countryDialCodes[selectedCountry] + cleanPhone.slice(1);
+      const dialCode = (document.getElementById('dial-code') as HTMLInputElement)?.value || '';
+      const phoneRaw = (document.getElementById('phone') as HTMLInputElement)?.value || '';
+      const phoneInput = dialCode + ' ' + phoneRaw;
+      let cleanPhone = (dialCode + phoneRaw).replace(/[\s\-\(\)\+]/g, '');
+      // Strip leading 0 if dial code is present
+      if (dialCode && cleanPhone.startsWith(dialCode.replace('+', '')) && phoneRaw.replace(/[\s\-\(\)]/g, '').startsWith('0')) {
+        const codeDigits = dialCode.replace('+', '');
+        cleanPhone = codeDigits + phoneRaw.replace(/[\s\-\(\)]/g, '').slice(1);
       }
       const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
       const selectedDogName = dogInput.value;
