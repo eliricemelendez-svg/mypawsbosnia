@@ -306,12 +306,35 @@ export const POST: APIRoute = async ({ request }) => {
       html,
     });
 
-    // Log to Google Sheet (fire and forget)
+    // Log to Google Sheet
     const sheetUrl = 'https://script.google.com/macros/s/AKfycbw0wn_nz3RZBlrlT4t7XHZ_5Tu6sCEsFnBx81NirmjnTTGM24L9qFXLVSAA52yoHfn8vQ/exec';
+    const sheetData = {
+      name: body.name || '',
+      email: body.email || '',
+      phone: body.phone || '',
+      country: body.country || '',
+      city: body.city || '',
+      dog: body.dogName || '',
+      dogSlug: body.dogSlug || '',
+      homeType: body.homeType || '',
+      garden: body.garden || '',
+      fence: body.fence || '',
+      ownRent: body.ownRent || '',
+      household: body.household || '',
+      dogExperience: body.dogExperience || '',
+      wasRescue: body.wasRescue || '',
+      dailyRoutine: body.dailyRoutine || '',
+      pets: body.pets || '',
+      hoursAlone: body.hoursAlone || '',
+      sleep: body.sleep || '',
+      homeCheck: body.homeCheck || '',
+      questions: body.questions || '',
+      message: body.message || '',
+      lang: body.lang || 'en',
+    };
     fetch(sheetUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(sheetData),
     }).catch(() => {});
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
