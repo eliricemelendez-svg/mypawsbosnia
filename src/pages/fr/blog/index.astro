@@ -1,0 +1,52 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { useTranslations } from "../../../i18n/utils";
+import type { Lang } from "../../../i18n/utils";
+
+const lang: Lang = 'fr';
+const t = useTranslations(lang);
+
+const articles = [
+  {
+    slug: 'how-to-adopt-a-dog-from-bosnia',
+    title: 'Comment adopter un chien de Bosnie',
+    description: 'Guide étape par étape pour adopter un chien de sauvetage de Bosnie. Entièrement vacciné, passeport européen, transport vers la France, la Belgique, la Suisse et toute l\'Europe.',
+  },
+  {
+    slug: 'rescue-dogs-available-for-adoption-in-europe',
+    title: 'Chiens de sauvetage disponibles à l\'adoption en Europe',
+    description: 'Chiens de sauvetage disponibles à l\'adoption dans toute l\'Europe, au Royaume-Uni et en Suisse. Entièrement suivis par un vétérinaire, vaccinés et avec passeport européen.',
+  },
+  {
+    slug: 'what-to-buy-before-your-rescue-dog-arrives',
+    title: 'Que faut-il acheter avant l\'arrivée de votre chien adopté',
+    description: 'Une checklist simple de tout ce dont vous avez besoin avant d\'accueillir votre chien adopté. Équipement de base, alimentation, articles de confort, sécurité et soins essentiels.',
+  },
+  {
+    slug: 'your-first-week-with-a-rescue-dog',
+    title: 'Votre première semaine avec un chien adopté',
+    description: 'Ce à quoi vous pouvez vous attendre dans les premiers jours et semaines après avoir accueilli un chien adopté. La règle des 3-3-3, les comportements de stress courants, quand appeler le vétérinaire et comment aider votre chien à s\'adapter.',
+  },
+];
+---
+
+<Layout title={t('blog.title')} description={t('blog.description')} lang={lang}>
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('blog.heading')}</h1>
+      <p class="mt-4 text-lg text-body">{t('blog.subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {articles.map((article) => (
+        <a href={`/fr/blog/${article.slug}`} class="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6">
+          <h2 class="text-xl font-bold text-slate-dark mb-2">{article.title}</h2>
+          <p class="text-body text-sm mb-4">{article.description}</p>
+          <span class="text-teal font-semibold text-sm">{t('blog.readMore')} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

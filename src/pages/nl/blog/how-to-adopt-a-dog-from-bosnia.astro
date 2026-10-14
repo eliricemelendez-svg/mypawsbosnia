@@ -216,9 +216,9 @@ const faqSchema = {
         {currentDogs.map((dog) => (
           <a href={`/nl/adopt/${dog.slug}`} class="block bg-light-bg rounded-xl p-4 hover:shadow-md transition-shadow">
             <h3 class="font-semibold text-slate-dark">{dog.name}</h3>
-            <p class="text-sm text-body mt-1">{dog.shortLine}</p>
+            <p class="text-sm text-body mt-1">{dog.nl?.shortLine ?? dog.shortLine}</p>
             <p class="text-xs text-teal font-medium mt-2">
-              {dog.sex === 'male' ? 'Reu' : 'Teef'} · {dog.age} · {dog.size}
+              {dog.sex === 'male' ? 'Reu' : 'Teef'} · {dog.age === 'puppy' ? 'Puppy' : dog.age === 'young' ? 'Jong' : dog.age === 'adult' ? 'Volwassen' : 'Senior'} · {dog.size === 'small' ? 'Klein' : dog.size === 'medium' ? 'Middelgroot' : 'Groot'}
             </p>
           </a>
         ))}
@@ -243,7 +243,7 @@ const faqSchema = {
             <span class="text-body">
               <a href={`/nl/success-stories/${story.slug}`} class="text-teal font-medium hover:underline">{story.name}</a>
               {story.adoptedTo ? ` geadopteerd naar ${story.adoptedTo}` : ` geadopteerd ${story.adoptedDate}`}.
-              {' '}{story.shortLine}
+              {' '}{story.nl?.shortLine ?? story.shortLine}
             </span>
           </li>
         ))}

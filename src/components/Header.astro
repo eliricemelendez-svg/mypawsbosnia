@@ -15,6 +15,7 @@ const navLinks = [
   { href: localizedPath("/about", lang), label: t('nav.about') },
   { href: localizedPath("/adopt", lang), label: t('nav.adopt') },
   { href: localizedPath("/success-stories", lang), label: t('nav.successStories') },
+  { href: localizedPath("/blog", lang), label: t('blog.heading') },
   { href: localizedPath("/donate", lang), label: t('nav.donations') },
   { href: localizedPath("/contact", lang), label: t('nav.contact') },
 ];
@@ -169,6 +170,7 @@ const langLinks = [
       toast.classList.add('opacity-0', 'translate-y-4');
     }, 3000);
   }
+  (window as any).showToast = showToast;
 
   function handleDonate(e: Event) {
     const btn = e.currentTarget as HTMLElement;

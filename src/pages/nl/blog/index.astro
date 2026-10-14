@@ -1,0 +1,52 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { useTranslations } from "../../../i18n/utils";
+import type { Lang } from "../../../i18n/utils";
+
+const lang: Lang = 'nl';
+const t = useTranslations(lang);
+
+const articles = [
+  {
+    slug: 'how-to-adopt-a-dog-from-bosnia',
+    title: 'Een hond adopteren uit Bosnië',
+    description: 'Stap-voor-stap handleiding voor het adopteren van een reddingshond uit Bosnië. Volledig medisch verzorgd, EU-dierenpaspoort, transport naar Nederland, België en heel Europa.',
+  },
+  {
+    slug: 'rescue-dogs-available-for-adoption-in-europe',
+    title: 'Reddingshonden beschikbaar voor adoptie in Europa',
+    description: 'Reddingshonden beschikbaar voor adoptie in heel Europa, het VK en Zwitserland. Volledig medisch verzorgd, gevaccineerd en met EU-dierenpaspoort.',
+  },
+  {
+    slug: 'what-to-buy-before-your-rescue-dog-arrives',
+    title: 'Wat je moet kopen voordat je reddingshond aankomt',
+    description: 'Een eenvoudige checklist met alles wat je nodig hebt voordat je reddingshond thuiskomt. Basisbenodigdheden, voeding, comfortartikelen, veiligheidsuitrusting en verzorgingsbasics.',
+  },
+  {
+    slug: 'your-first-week-with-a-rescue-dog',
+    title: 'Je eerste week met een reddingshond',
+    description: 'Wat je kunt verwachten in de eerste dagen en weken nadat je een reddingshond in huis hebt genomen. De 3-3-3-regel, veelvoorkomend stressgedrag, wanneer je de dierenarts moet bellen en hoe je je hond helpt wennen.',
+  },
+];
+---
+
+<Layout title={t('blog.title')} description={t('blog.description')} lang={lang}>
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('blog.heading')}</h1>
+      <p class="mt-4 text-lg text-body">{t('blog.subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {articles.map((article) => (
+        <a href={`/nl/blog/${article.slug}`} class="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6">
+          <h2 class="text-xl font-bold text-slate-dark mb-2">{article.title}</h2>
+          <p class="text-body text-sm mb-4">{article.description}</p>
+          <span class="text-teal font-semibold text-sm">{t('blog.readMore')} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

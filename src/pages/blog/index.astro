@@ -1,0 +1,52 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
+
+const lang: Lang = 'en';
+const t = useTranslations(lang);
+
+const articles = [
+  {
+    slug: 'how-to-adopt-a-dog-from-bosnia',
+    title: 'How to Adopt a Dog from Bosnia',
+    description: 'Step-by-step guide to adopting a rescue dog from Bosnia. Fully vetted, EU passport ready, transported to the UK, Europe, and Switzerland.',
+  },
+  {
+    slug: 'rescue-dogs-available-for-adoption-in-europe',
+    title: 'Rescue Dogs Available for Adoption in Europe',
+    description: 'Rescue dogs available for adoption across Europe, the UK, and Switzerland. Fully vetted, vaccinated, and EU passport ready.',
+  },
+  {
+    slug: 'what-to-buy-before-your-rescue-dog-arrives',
+    title: 'What to Buy Before Your Rescue Dog Arrives',
+    description: 'A simple checklist of everything you need before bringing your rescue dog home. Essentials, food, comfort items, safety gear, and grooming basics.',
+  },
+  {
+    slug: 'your-first-week-with-a-rescue-dog',
+    title: 'Your First Week with a Rescue Dog',
+    description: 'What to expect in the first days and weeks after bringing a rescue dog home. The 3-3-3 rule, common stress behaviours, when to call the vet, and how to help your dog settle.',
+  },
+];
+---
+
+<Layout title={t('blog.title')} description={t('blog.description')} lang={lang}>
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('blog.heading')}</h1>
+      <p class="mt-4 text-lg text-body">{t('blog.subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {articles.map((article) => (
+        <a href={`/blog/${article.slug}`} class="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6">
+          <h2 class="text-xl font-bold text-slate-dark mb-2">{article.title}</h2>
+          <p class="text-body text-sm mb-4">{article.description}</p>
+          <span class="text-teal font-semibold text-sm">{t('blog.readMore')} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

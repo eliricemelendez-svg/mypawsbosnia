@@ -220,6 +220,13 @@ export const ui = {
     '404.text': 'The page you are looking for does not exist. Maybe the dog found a home already.',
     '404.backToAdopt': 'See our dogs',
 
+    // Blog index
+    'blog.title': 'Blog | Rescue Dog Guides & Tips | My Paws Bosnia',
+    'blog.description': 'Guides, tips, and stories about adopting and caring for rescue dogs from Bosnia. Everything you need to know before and after adoption.',
+    'blog.heading': 'Blog',
+    'blog.subtitle': 'Guides and tips for adopting and caring for a rescue dog.',
+    'blog.readMore': 'Read more',
+
     // Time at shelter
     'time.unknown': 'Unknown',
     'time.lessThanMonth': 'Less than a month',
@@ -451,6 +458,13 @@ export const ui = {
     '404.heading': 'Dieser Hund muss weggelaufen sein...',
     '404.text': 'Die Seite, die du suchst, gibt es nicht. Vielleicht hat der Hund schon ein Zuhause gefunden.',
     '404.backToAdopt': 'Unsere Hunde ansehen',
+
+    // Blog index
+    'blog.title': 'Blog | Ratgeber & Tipps zu Rettungshunden | My Paws Bosnia',
+    'blog.description': 'Ratgeber, Tipps und Geschichten rund um die Adoption und Pflege von Rettungshunden aus Bosnien. Alles, was du vor und nach der Adoption wissen musst.',
+    'blog.heading': 'Blog',
+    'blog.subtitle': 'Ratgeber und Tipps zur Adoption und Pflege eines Rettungshundes.',
+    'blog.readMore': 'Weiterlesen',
 
     // Time at shelter
     'time.unknown': 'Unbekannt',
@@ -684,6 +698,13 @@ export const ui = {
     '404.text': 'De pagina die je zoekt bestaat niet. Misschien heeft de hond al een thuis gevonden.',
     '404.backToAdopt': 'Bekijk onze honden',
 
+    // Blog index
+    'blog.title': 'Blog | Gidsen & tips over asielhonden | My Paws Bosnia',
+    'blog.description': 'Gidsen, tips en verhalen over het adopteren en verzorgen van asielhonden uit Bosnie. Alles wat je moet weten voor en na de adoptie.',
+    'blog.heading': 'Blog',
+    'blog.subtitle': 'Gidsen en tips voor het adopteren en verzorgen van een asielhond.',
+    'blog.readMore': 'Lees meer',
+
     // Time at shelter
     'time.unknown': 'Onbekend',
     'time.lessThanMonth': 'Minder dan een maand',
@@ -915,6 +936,13 @@ export const ui = {
     '404.heading': 'Ce chien a d\u00fb s\u2019\u00e9chapper...',
     '404.text': 'La page que vous cherchez n\u2019existe pas. Peut-\u00eatre que ce chien a d\u00e9j\u00e0 trouv\u00e9 une famille.',
     '404.backToAdopt': 'Voir nos chiens',
+
+    // Blog index
+    'blog.title': 'Blog | Guides & conseils sur les chiens adoptes | My Paws Bosnia',
+    'blog.description': 'Guides, conseils et histoires sur l\'adoption et les soins des chiens sauves de Bosnie. Tout ce que vous devez savoir avant et apres l\'adoption.',
+    'blog.heading': 'Blog',
+    'blog.subtitle': 'Guides et conseils pour adopter et prendre soin d\'un chien de sauvetage.',
+    'blog.readMore': 'Lire la suite',
 
     // Time at shelter
     'time.unknown': 'Inconnu',

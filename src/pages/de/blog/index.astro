@@ -1,0 +1,52 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { useTranslations } from "../../../i18n/utils";
+import type { Lang } from "../../../i18n/utils";
+
+const lang: Lang = 'de';
+const t = useTranslations(lang);
+
+const articles = [
+  {
+    slug: 'how-to-adopt-a-dog-from-bosnia',
+    title: 'Einen Hund aus Bosnien adoptieren',
+    description: 'Schritt-für-Schritt-Anleitung zur Adoption eines Rettungshundes aus Bosnien. Vollständig tierärztlich versorgt, mit EU-Heimtierausweis, Transport nach Deutschland, Österreich, in die Schweiz und ganz Europa.',
+  },
+  {
+    slug: 'rescue-dogs-available-for-adoption-in-europe',
+    title: 'Rettungshunde zur Adoption in Europa verfügbar',
+    description: 'Rettungshunde zur Adoption in ganz Europa, Großbritannien und der Schweiz. Vollständig tierärztlich versorgt, geimpft und mit EU-Heimtierausweis.',
+  },
+  {
+    slug: 'what-to-buy-before-your-rescue-dog-arrives',
+    title: 'Was du kaufen solltest, bevor dein Rettungshund ankommt',
+    description: 'Eine einfache Checkliste mit allem, was du brauchst, bevor dein Rettungshund zu Hause ankommt. Grundausstattung, Futter, Wohlfühlartikel, Sicherheitszubehör und Pflegebasics.',
+  },
+  {
+    slug: 'your-first-week-with-a-rescue-dog',
+    title: 'Deine erste Woche mit einem Rettungshund',
+    description: 'Was dich in den ersten Tagen und Wochen erwartet, nachdem du einen Rettungshund aufgenommen hast. Die 3-3-3-Regel, typische Stressreaktionen, wann du zum Tierarzt solltest und wie du deinem Hund hilfst, sich einzuleben.',
+  },
+];
+---
+
+<Layout title={t('blog.title')} description={t('blog.description')} lang={lang}>
+  <section class="bg-light-bg py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('blog.heading')}</h1>
+      <p class="mt-4 text-lg text-body">{t('blog.subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {articles.map((article) => (
+        <a href={`/de/blog/${article.slug}`} class="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6">
+          <h2 class="text-xl font-bold text-slate-dark mb-2">{article.title}</h2>
+          <p class="text-body text-sm mb-4">{article.description}</p>
+          <span class="text-teal font-semibold text-sm">{t('blog.readMore')} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
