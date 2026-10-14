@@ -373,6 +373,8 @@ export const ui = {
     'apply.backToAll': 'Back to all dogs',
     'apply.sending': 'Sending...',
     'apply.errorAlert': 'Something went wrong. Please try again or contact us directly on Facebook or WhatsApp.',
+    'apply.waMessage': 'Hi {name}! This is My Paws Bosnia. We received your adoption application for {dog}. We\'d love to chat with you about the next steps!',
+    'apply.waMessageGeneric': 'Hi {name}! This is My Paws Bosnia. We received your adoption application. We\'d love to chat with you about the next steps!',
   },
 
   de: {
@@ -749,6 +751,8 @@ export const ui = {
     'apply.backToAll': 'Zur\u00fcck zu allen Hunden',
     'apply.sending': 'Wird gesendet...',
     'apply.errorAlert': 'Etwas ist schiefgelaufen. Bitte versuche es erneut oder kontaktiere uns direkt auf Facebook oder WhatsApp.',
+    'apply.waMessage': 'Hallo {name}! Hier ist My Paws Bosnia. Wir haben deinen Adoptionsantrag f\u00fcr {dog} erhalten. Wir w\u00fcrden uns freuen, mit dir \u00fcber die n\u00e4chsten Schritte zu sprechen!',
+    'apply.waMessageGeneric': 'Hallo {name}! Hier ist My Paws Bosnia. Wir haben deinen Adoptionsantrag erhalten. Wir w\u00fcrden uns freuen, mit dir \u00fcber die n\u00e4chsten Schritte zu sprechen!',
   },
 
   nl: {
@@ -1125,6 +1129,8 @@ export const ui = {
     'apply.backToAll': 'Terug naar alle honden',
     'apply.sending': 'Wordt verzonden...',
     'apply.errorAlert': 'Er is iets misgegaan. Probeer het opnieuw of neem direct contact met ons op via Facebook of WhatsApp.',
+    'apply.waMessage': 'Hallo {name}! Dit is My Paws Bosnia. We hebben je adoptieaanvraag voor {dog} ontvangen. We zouden graag met je praten over de volgende stappen!',
+    'apply.waMessageGeneric': 'Hallo {name}! Dit is My Paws Bosnia. We hebben je adoptieaanvraag ontvangen. We zouden graag met je praten over de volgende stappen!',
   },
 
   fr: {
@@ -1501,5 +1507,7 @@ export const ui = {
     'apply.backToAll': 'Retour \u00e0 tous les chiens',
     'apply.sending': 'Envoi en cours...',
     'apply.errorAlert': 'Une erreur s\'est produite. Veuillez r\u00e9essayer ou nous contacter directement sur Facebook ou WhatsApp.',
+    'apply.waMessage': 'Bonjour {name} ! Ici My Paws Bosnia. Nous avons re\u00e7u votre demande d\'adoption pour {dog}. Nous aimerions discuter avec vous des prochaines \u00e9tapes !',
+    'apply.waMessageGeneric': 'Bonjour {name} ! Ici My Paws Bosnia. Nous avons re\u00e7u votre demande d\'adoption. Nous aimerions discuter avec vous des prochaines \u00e9tapes !',
   },
 } as const;

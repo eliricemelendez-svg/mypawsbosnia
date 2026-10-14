@@ -40,6 +40,8 @@ const jsStrings = JSON.stringify({
   successDog: t('apply.successDog'),
   householdDefault: t('apply.householdDefault'),
   adoptPrefix: localizedPath('/adopt/', lang),
+  waMessage: t('apply.waMessage'),
+  waMessageGeneric: t('apply.waMessageGeneric'),
 });
 ---
 
@@ -902,7 +904,11 @@ const jsStrings = JSON.stringify({
       }
       const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
       const selectedDogName = dogInput.value;
-      const waMessage = encodeURIComponent(`Hi ${applicantName}! This is My Paws Bosnia. We received your adoption application${selectedDogName && selectedDogName !== 'Not sure yet' ? ` for ${selectedDogName}` : ''}. We'd love to chat with you about the next steps!`);
+      const selectedDogSlug = dogSlugInput?.value || '';
+      const waMsg = selectedDogName && selectedDogName !== 'Not sure yet'
+        ? i18n.waMessage.replace('{name}', applicantName).replace('{dog}', selectedDogName)
+        : i18n.waMessageGeneric.replace('{name}', applicantName);
+      const waMessage = encodeURIComponent(waMsg);
       const waLink = document.getElementById('whatsapp_link') as HTMLInputElement;
       if (waLink && cleanPhone) {
         waLink.value = `https://wa.me/${cleanPhone}?text=${waMessage}`;
@@ -924,7 +930,7 @@ const jsStrings = JSON.stringify({
               email: (document.getElementById('email') as HTMLInputElement)?.value || '',
               phone: phoneInput,
               dogName: selectedDogName,
-              dogSlug: dogInfo.find((d: any) => d.name === selectedDogName)?.slug || '',
+              dogSlug: selectedDogSlug,
               country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
               city: (document.getElementById('city') as HTMLInputElement)?.value || '',
               homeType: (document.getElementById('home_type') as HTMLSelectElement)?.value || '',
