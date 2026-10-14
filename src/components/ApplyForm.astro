@@ -116,6 +116,7 @@ const jsStrings = JSON.stringify({
         </div>
 
         <input type="hidden" id="dog_interest" name="dog_interest" value="" required />
+        <input type="hidden" id="dog_slug" name="dog_slug" value="" />
         <p id="dog-select-error" class="text-red-500 text-sm mt-2 hidden">{t('apply.selectDogError')}</p>
       </div>
 
@@ -576,8 +577,10 @@ const jsStrings = JSON.stringify({
     if (Math.abs(diff) > 50) { showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1)); resetShowcaseAutoplay(); }
   });
 
+  const dogSlugInput = document.getElementById('dog_slug') as HTMLInputElement;
   function selectDog(name: string, slug: string) {
     dogInput.value = name;
+    if (dogSlugInput) dogSlugInput.value = slug;
     dogError?.classList.add('hidden');
 
     // Collapse the grid, show the selected bar
