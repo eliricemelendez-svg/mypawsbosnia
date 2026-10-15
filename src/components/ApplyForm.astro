@@ -124,7 +124,7 @@ const jsStrings = JSON.stringify({
 
       <!-- Photo data for JS -->
       {dogPhotoData.map((dog) => (
-        <template data-dog-photos={dog.name}>
+        <template data-dog-photos={dog.slug}>
           {dog.photos.map((photo, i) => (
             <img src={photo.src} data-width={photo.width} data-height={photo.height} alt={`${dog.name} photo ${i + 1}`} />
           ))}
@@ -590,7 +590,7 @@ const jsStrings = JSON.stringify({
     dogSelector?.classList.add('hidden');
 
     // Get the first photo for the thumb
-    const thumbTemplate = document.querySelector(`template[data-dog-photos="${name}"]`);
+    const thumbTemplate = document.querySelector(`template[data-dog-photos="${slug}"]`);
     const firstImg = thumbTemplate?.content.querySelector('img');
 
     if (selectedDogThumb && firstImg && name !== 'Not sure yet') {
@@ -611,8 +611,8 @@ const jsStrings = JSON.stringify({
     }
 
     // Load photos into carousel
-    const template = document.querySelector(`template[data-dog-photos="${name}"]`);
-    const info = dogInfo.find((d: any) => d.name === name);
+    const template = document.querySelector(`template[data-dog-photos="${slug}"]`);
+    const info = dogInfo.find((d: any) => d.slug === slug);
 
     if (showcaseTrack && template) {
       showcaseTrack.innerHTML = '';
@@ -872,6 +872,17 @@ const jsStrings = JSON.stringify({
   countrySelect?.addEventListener('change', () => {
     const code = countryDialCodes[countrySelect.value] || '';
     dialCodeInput.value = code;
+    // Allow manual entry for "Other" country
+    dialCodeInput.readOnly = countrySelect.value !== 'Other';
+    if (countrySelect.value === 'Other') {
+      dialCodeInput.classList.remove('bg-gray-50', 'cursor-default');
+      dialCodeInput.classList.add('bg-white');
+      dialCodeInput.placeholder = '+__';
+    } else {
+      dialCodeInput.classList.add('bg-gray-50', 'cursor-default');
+      dialCodeInput.classList.remove('bg-white');
+      dialCodeInput.placeholder = '';
+    }
   });
 
   // Handle form submission
@@ -961,7 +972,7 @@ const jsStrings = JSON.stringify({
             const successPhotos = document.getElementById('success-photos');
             const successTrack = document.getElementById('success-track');
             const successDotsEl = document.getElementById('success-dots');
-            const tmpl = document.querySelector(`template[data-dog-photos="${selectedDogName}"]`);
+            const tmpl = document.querySelector(`template[data-dog-photos="${selectedDogSlug}"]`);
             if (successPhotos && successTrack && successDotsEl && tmpl) {
               successTrack.innerHTML = '';
               successDotsEl.innerHTML = '';

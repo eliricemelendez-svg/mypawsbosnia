@@ -299,14 +299,7 @@ export const POST: APIRoute = async ({ request }) => {
       ? t.subjectDog.replace('%DOG%', dogName)
       : t.subjectGeneric;
 
-    await resend.emails.send({
-      from: 'My Paws Bosnia <hello@mypawsbosnia.org>',
-      to: email,
-      subject,
-      html,
-    });
-
-    // Log to Google Sheet
+    // Log to Google Sheet and send email in parallel
     const sheetUrl = 'https://script.google.com/macros/s/AKfycbw0wn_nz3RZBlrlT4t7XHZ_5Tu6sCEsFnBx81NirmjnTTGM24L9qFXLVSAA52yoHfn8vQ/exec';
     const sheetData = {
       name: body.name || '',
@@ -332,14 +325,30 @@ export const POST: APIRoute = async ({ request }) => {
       message: body.message || '',
       lang: body.lang || 'en',
     };
-    fetch(sheetUrl, {
-      method: 'POST',
-      body: JSON.stringify(sheetData),
-    }).catch(() => {});
+
+    const [emailResult, sheetResult] = await Promise.allSettled([
+      resend.emails.send({
+        from: 'My Paws Bosnia <hello@mypawsbosnia.org>',
+        to: email,
+        subject,
+        html,
+      }),
+      fetch(sheetUrl, {
+        method: 'POST',
+        body: JSON.stringify(sheetData),
+      }),
+    ]);
+
+    if (emailResult.status === 'rejected') {
+      console.error('Email send error:', emailResult.reason);
+    }
+    if (sheetResult.status === 'rejected') {
+      console.error('Sheet log error:', sheetResult.reason);
+    }
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
-    console.error('Email send error:', error);
+    console.error('API error:', error);
     return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 500 });
   }
 };
