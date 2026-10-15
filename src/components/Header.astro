@@ -175,12 +175,18 @@ const langLinks = [
   function handleDonate(e: Event) {
     const btn = e.currentTarget as HTMLElement;
     const msg = btn.dataset.toastMsg || "Email copied! PayPal is opening. Paste the email to send your donation.";
-    navigator.clipboard.writeText(email).then(() => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(() => {
+        showToast(msg);
+        window.open(paypalUrl, "_blank");
+      }).catch(() => {
+        showToast(msg);
+        window.open(paypalUrl, "_blank");
+      });
+    } else {
       showToast(msg);
       window.open(paypalUrl, "_blank");
-    }).catch(() => {
-      window.open(paypalUrl, "_blank");
-    });
+    }
   }
 
   document.getElementById("donate-btn")?.addEventListener("click", handleDonate);

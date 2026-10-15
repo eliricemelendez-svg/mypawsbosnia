@@ -66,7 +66,19 @@ const paypalSendLink = `https://www.paypal.com/myaccount/transfer/homepage/pay`;
     const failedText = btn.dataset.failedText || "Failed";
     btn.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(btn.dataset.email ?? "");
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(btn.dataset.email ?? "");
+        } else {
+          // Fallback: select the email text so user can copy manually
+          const emailEl = document.getElementById("paypal-email");
+          if (emailEl) {
+            const range = document.createRange();
+            range.selectNodeContents(emailEl);
+            const sel = window.getSelection();
+            sel?.removeAllRanges();
+            sel?.addRange(range);
+          }
+        }
         btn.textContent = copiedText;
         btn.classList.add("bg-green-500");
         btn.classList.remove("bg-teal");
