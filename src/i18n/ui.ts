@@ -51,7 +51,7 @@ export const ui = {
     'index.title': 'Adopt a Rescue Dog from Bosnia | My Paws Bosnia',
     'index.description': 'Rescue dogs available for adoption in Europe. My Paws Bosnia rescues stray dogs in Bosnia and rehomes them to families in Switzerland, Germany, the UK, and beyond.',
     'index.heroMeet': 'Meet',
-    'index.heroDonate': 'Give \u20ac25 to feed a dog',
+    'index.heroDonate': 'Donate to feed our dogs',
     'index.featuredTitle': 'Dogs looking for homes',
     'index.featuredSubtitle': '60 dogs in our care. These are the ones looking for families right now.',
     'index.seeAllDogs': 'See all dogs',
@@ -125,7 +125,7 @@ export const ui = {
 
     // Donate page
     'donatePage.title': 'Donate to Help Rescue Dogs in Bosnia | My Paws Bosnia',
-    'donatePage.description': 'Your donation feeds, vaccinates, and shelters 60 rescue dogs in Bosnia. \u20ac25 feeds a dog for a week. Every euro goes directly to the dogs, no admin costs.',
+    'donatePage.description': 'Your donation feeds, vaccinates, and shelters 60 rescue dogs in Bosnia. \u00a3210 feeds all the dogs for a week. Every penny goes directly to the dogs, no admin costs.',
     'donatePage.heading': 'Every euro keeps them alive.',
     'donatePage.subtitle': 'No government funding. No corporate sponsors. Just one family and 60 dogs.',
     'donatePage.proofTitle': 'This is what your donations pay for',
@@ -430,7 +430,7 @@ export const ui = {
     'index.title': 'Rettungshund aus Bosnien adoptieren | My Paws Bosnia',
     'index.description': 'Rettungshunde zur Adoption in Europa. My Paws Bosnia rettet Stra\u00dfenhunde in Bosnien und vermittelt sie an Familien in der Schweiz, Deutschland, Gro\u00dfbritannien und darüber hinaus.',
     'index.heroMeet': 'Das ist',
-    'index.heroDonate': 'Spende \u20ac25 f\u00fcr Hundefutter',
+    'index.heroDonate': 'Spenden f\u00fcr unsere Hunde',
     'index.featuredTitle': 'Hunde suchen ein Zuhause',
     'index.featuredSubtitle': '60 Hunde in unserer Obhut. Diese hier suchen gerade eine Familie.',
     'index.seeAllDogs': 'Alle Hunde ansehen',
@@ -504,7 +504,7 @@ export const ui = {
 
     // Donate page
     'donatePage.title': 'Spenden f\u00fcr Rettungshunde in Bosnien | My Paws Bosnia',
-    'donatePage.description': 'Deine Spende f\u00fcttert, impft und sch\u00fctzt 60 Rettungshunde in Bosnien. \u20ac25 f\u00fcttert einen Hund eine Woche lang. Jeder Euro geht direkt an die Hunde \u2013 keine Verwaltungskosten.',
+    'donatePage.description': 'Deine Spende f\u00fcttert, impft und sch\u00fctzt 60 Rettungshunde in Bosnien. \u20ac250 f\u00fcttert alle Hunde eine Woche lang. Jeder Cent geht direkt an die Hunde \u2013 keine Verwaltungskosten.',
     'donatePage.heading': 'Jeder Euro h\u00e4lt sie am Leben.',
     'donatePage.subtitle': 'Keine staatliche F\u00f6rderung. Keine Firmensponsoren. Nur eine Familie und 60 Hunde.',
     'donatePage.proofTitle': 'Daf\u00fcr werden deine Spenden verwendet',
@@ -809,7 +809,7 @@ export const ui = {
     'index.title': 'Adopteer een asielhond uit Bosni\u00eb | My Paws Bosnia',
     'index.description': 'Asielhonden beschikbaar voor adoptie in Europa. My Paws Bosnia redt zwerfhonden in Bosni\u00eb en herplaatst ze bij gezinnen in Zwitserland, Duitsland, het VK en verder.',
     'index.heroMeet': 'Dit is',
-    'index.heroDonate': 'Doneer \u20ac25 voor hondenvoer',
+    'index.heroDonate': 'Doneer voor onze honden',
     'index.featuredTitle': 'Honden op zoek naar een thuis',
     'index.featuredSubtitle': '60 honden in onze zorg. Dit zijn de honden die nu een gezin zoeken.',
     'index.seeAllDogs': 'Bekijk alle honden',
@@ -883,7 +883,7 @@ export const ui = {
 
     // Donate page
     'donatePage.title': 'Doneer om asielhonden in Bosni\u00eb te helpen | My Paws Bosnia',
-    'donatePage.description': 'Jouw donatie voert, vaccineert en beschermt 60 asielhonden in Bosni\u00eb. \u20ac25 voert een hond een week lang. Elke euro gaat rechtstreeks naar de honden \u2013 geen overheadkosten.',
+    'donatePage.description': 'Jouw donatie voert, vaccineert en beschermt 60 asielhonden in Bosni\u00eb. \u20ac250 voert alle honden een week lang. Elke cent gaat rechtstreeks naar de honden \u2013 geen overheadkosten.',
     'donatePage.heading': 'Elke euro houdt ze in leven.',
     'donatePage.subtitle': 'Geen overheidssubsidie. Geen bedrijfssponsors. Gewoon \u00e9\u00e9n gezin en 60 honden.',
     'donatePage.proofTitle': 'Hier gaan je donaties naartoe',
@@ -1188,7 +1188,7 @@ export const ui = {
     'index.title': 'Adoptez un chien sauv\u00e9 de Bosnie | My Paws Bosnia',
     'index.description': 'Chiens sauv\u00e9s \u00e0 adopter en Europe. My Paws Bosnia recueille des chiens errants en Bosnie et leur trouve des familles en Suisse, en Allemagne, au Royaume-Uni et ailleurs.',
     'index.heroMeet': 'Voici',
-    'index.heroDonate': 'Donnez 25\u00a0\u20ac pour nourrir un chien',
+    'index.heroDonate': 'Faites un don pour nos chiens',
     'index.featuredTitle': 'Des chiens qui cherchent une famille',
     'index.featuredSubtitle': '60 chiens sous notre protection. Ceux-ci cherchent une famille en ce moment.',
     'index.seeAllDogs': 'Voir tous les chiens',
@@ -1262,7 +1262,7 @@ export const ui = {
 
     // Donate page
     'donatePage.title': 'Faire un don pour les chiens sauv\u00e9s de Bosnie | My Paws Bosnia',
-    'donatePage.description': 'Votre don nourrit, vaccine et prot\u00e8ge 60 chiens sauv\u00e9s en Bosnie. 25\u00a0\u20ac nourrissent un chien pendant une semaine. Chaque euro va directement aux chiens, sans frais administratifs.',
+    'donatePage.description': 'Votre don nourrit, vaccine et prot\u00e8ge 60 chiens sauv\u00e9s en Bosnie. 250\u00a0\u20ac nourrissent tous les chiens pendant une semaine. Chaque centime va directement aux chiens, sans frais administratifs.',
     'donatePage.heading': 'Chaque euro les maintient en vie.',
     'donatePage.subtitle': 'Pas de financement public. Pas de sponsors. Juste une famille et 60 chiens.',
     'donatePage.proofTitle': 'Voici \u00e0 quoi servent vos dons',
