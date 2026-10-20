@@ -36,6 +36,7 @@ const allPhotos = [
     ],
   }}
 >
+  <!-- 1. Emotional hook -->
   <section class="bg-light-bg py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{t('donatePage.heading')}</h1>
@@ -43,10 +44,23 @@ const allPhotos = [
     </div>
   </section>
 
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <!-- 2. What your money does -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.impactTitle')}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;50</p><p class="text-sm text-body mt-2">{t('donatePage.impact50')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;25</p><p class="text-sm text-body mt-2">{t('donatePage.impact25')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;10</p><p class="text-sm text-body mt-2">{t('donatePage.impact10')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;5</p><p class="text-sm text-body mt-2">{t('donatePage.impact5')}</p></div>
+    </div>
+  </section>
+
+  <!-- 3. Donate action -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
     <DonateBlock lang={lang} />
   </section>
 
+  <!-- 4. Proof and transparency -->
   <section class="bg-light-bg py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-2xl font-bold text-slate-dark text-center mb-3">{t('donatePage.proofTitle')}</h2>
@@ -74,7 +88,23 @@ const allPhotos = [
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-4 md:grid-cols-8 gap-1.5">
+
+      <!-- Transparency numbers -->
+      <h3 class="text-xl font-bold text-slate-dark text-center mb-6 mt-12">{t('donatePage.transparencyTitle')}</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl mx-auto mb-6">
+        <div class="bg-white rounded-2xl p-6 text-center">
+          <p class="text-3xl font-bold text-teal">&pound;210</p>
+          <p class="text-sm text-body mt-2">{t('donatePage.transparencyDogs')}</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 text-center">
+          <p class="text-3xl font-bold text-teal">&pound;70</p>
+          <p class="text-sm text-body mt-2">{t('donatePage.transparencyCats')}</p>
+        </div>
+      </div>
+      <p class="text-sm text-body text-center">{t('donatePage.transparencyNote')}</p>
+
+      <!-- Photo grid -->
+      <div class="grid grid-cols-4 md:grid-cols-8 gap-1.5 mt-10">
         {allPhotos.map((photo, i) => (
           <Image src={photo} alt={`Daily life at the dog rescue shelter in Bosnia`} width={120} height={120} class="w-full aspect-square object-cover rounded-md" />
         ))}
@@ -82,36 +112,8 @@ const allPhotos = [
     </div>
   </section>
 
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.impactTitle')}</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;50</p><p class="text-sm text-body mt-2">{t('donatePage.impact50')}</p></div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;25</p><p class="text-sm text-body mt-2">{t('donatePage.impact25')}</p></div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;10</p><p class="text-sm text-body mt-2">{t('donatePage.impact10')}</p></div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&pound;5</p><p class="text-sm text-body mt-2">{t('donatePage.impact5')}</p></div>
-    </div>
-  </section>
-
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.transparencyTitle')}</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl mx-auto mb-6">
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">&pound;210</p>
-        <p class="text-sm text-body mt-2">{t('donatePage.transparencyDogs')}</p>
-      </div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">&pound;70</p>
-        <p class="text-sm text-body mt-2">{t('donatePage.transparencyCats')}</p>
-      </div>
-    </div>
-    <p class="text-sm text-body text-center">{t('donatePage.transparencyNote')}</p>
-  </section>
-
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-    <DonateBlock lang={lang} />
-  </section>
-
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+  <!-- 5. Sponsor alternative -->
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="bg-slate-dark rounded-2xl p-8 md:p-12 text-center text-white">
       <h2 class="text-2xl font-bold mb-3">{t('donatePage.sponsorTitle')}</h2>
       <p class="text-white/80 mb-2">{t('donatePage.sponsorText1')}</p>

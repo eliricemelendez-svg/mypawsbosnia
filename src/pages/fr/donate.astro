@@ -28,7 +28,17 @@ const allPhotos = [...Object.values(vesnaImports).map((m) => m.default), ...Obje
     </div>
   </section>
 
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><DonateBlock lang={lang} /></section>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.impactTitle')}</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;60</p><p class="text-sm text-body mt-2">{t('donatePage.impact60')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;30</p><p class="text-sm text-body mt-2">{t('donatePage.impact30')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;10</p><p class="text-sm text-body mt-2">{t('donatePage.impact10')}</p></div>
+      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;5</p><p class="text-sm text-body mt-2">{t('donatePage.impact5')}</p></div>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16"><DonateBlock lang={lang} /></section>
 
   <section class="bg-light-bg py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,40 +58,19 @@ const allPhotos = [...Object.values(vesnaImports).map((m) => m.default), ...Obje
           <div class="p-4"><p class="text-sm font-semibold text-slate-dark">{t('donatePage.passportCaption')}</p><p class="text-xs text-body mt-1">{t('donatePage.passportText')}</p></div>
         </div>
       </div>
-      <div class="grid grid-cols-4 md:grid-cols-8 gap-1.5">
+      <h3 class="text-xl font-bold text-slate-dark text-center mb-6 mt-12">{t('donatePage.transparencyTitle')}</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl mx-auto mb-6">
+        <div class="bg-white rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;250</p><p class="text-sm text-body mt-2">{t('donatePage.transparencyDogs')}</p></div>
+        <div class="bg-white rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;85</p><p class="text-sm text-body mt-2">{t('donatePage.transparencyCats')}</p></div>
+      </div>
+      <p class="text-sm text-body text-center">{t('donatePage.transparencyNote')}</p>
+      <div class="grid grid-cols-4 md:grid-cols-8 gap-1.5 mt-10">
         {allPhotos.map((photo) => (<Image src={photo} alt="Le quotidien au refuge en Bosnie" width={120} height={120} class="w-full aspect-square object-cover rounded-md" />))}
       </div>
     </div>
   </section>
 
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.impactTitle')}</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;60</p><p class="text-sm text-body mt-2">{t('donatePage.impact60')}</p></div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;30</p><p class="text-sm text-body mt-2">{t('donatePage.impact30')}</p></div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;10</p><p class="text-sm text-body mt-2">{t('donatePage.impact10')}</p></div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center"><p class="text-3xl font-bold text-teal">&euro;5</p><p class="text-sm text-body mt-2">{t('donatePage.impact5')}</p></div>
-    </div>
-  </section>
-
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h2 class="text-2xl font-bold text-slate-dark text-center mb-8">{t('donatePage.transparencyTitle')}</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl mx-auto mb-6">
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">&euro;250</p>
-        <p class="text-sm text-body mt-2">{t('donatePage.transparencyDogs')}</p>
-      </div>
-      <div class="bg-light-bg rounded-2xl p-6 text-center">
-        <p class="text-3xl font-bold text-teal">&euro;85</p>
-        <p class="text-sm text-body mt-2">{t('donatePage.transparencyCats')}</p>
-      </div>
-    </div>
-    <p class="text-sm text-body text-center">{t('donatePage.transparencyNote')}</p>
-  </section>
-
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12"><DonateBlock lang={lang} /></section>
-
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="bg-slate-dark rounded-2xl p-8 md:p-12 text-center text-white">
       <h2 class="text-2xl font-bold mb-3">{t('donatePage.sponsorTitle')}</h2>
       <p class="text-white/80 mb-2">{t('donatePage.sponsorText1')}</p>
