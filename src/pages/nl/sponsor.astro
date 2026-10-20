@@ -40,7 +40,6 @@ const t = useTranslations(lang);
 
   <section class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="sponsor-form-section">
     <div id="sponsor-form-container" class="hidden"><div id="sponsor-selected-dog"></div></div>
-    <div id="sponsor-prompt" class="text-center py-8"><p class="text-lg text-body">{t('sponsor.chooseDog')}</p></div>
   </section>
 </Layout>
 
@@ -48,7 +47,6 @@ const t = useTranslations(lang);
   const formSection = document.getElementById('sponsor-form-section')!;
   const formContainer = document.getElementById('sponsor-form-container')!;
   const selectedDogEl = document.getElementById('sponsor-selected-dog')!;
-  const prompt = document.getElementById('sponsor-prompt')!;
   const paypalUrl = "https://www.paypal.com/myaccount/transfer/homepage/pay";
 
   document.querySelectorAll('.sponsor-select-btn').forEach((btn) => {
@@ -58,7 +56,6 @@ const t = useTranslations(lang);
       const dogSlug = el.dataset.dogSlug || '';
       const prices = { month: '€17', quarter: '€51', year: '€204' };
 
-      prompt.classList.add('hidden');
       formContainer.classList.remove('hidden');
 
       selectedDogEl.innerHTML = `
