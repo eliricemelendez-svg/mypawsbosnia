@@ -148,7 +148,7 @@ export const ui = {
     'donatePage.sponsorTitle': 'Sponsor a dog',
     'donatePage.sponsorText1': '30 of our 60 dogs still do not have a sponsor.',
     'donatePage.sponsorText2': 'A monthly contribution of any amount helps cover a dog\'s food and basic vet care.',
-    'donatePage.contactFb': 'Contact us on Facebook',
+    'donatePage.contactFb': 'Choose your sponsor dog',
 
     // Contact page
     'contact.title': 'Contact My Paws Bosnia | Adopt a Dog from Bosnia',
@@ -563,7 +563,7 @@ export const ui = {
     'donatePage.sponsorTitle': 'Patenschaft \u00fcbernehmen',
     'donatePage.sponsorText1': '30 unserer 60 Hunde haben noch keinen Paten.',
     'donatePage.sponsorText2': 'Ein monatlicher Beitrag in beliebiger H\u00f6he hilft, Futter und tier\u00e4rztliche Grundversorgung eines Hundes zu decken.',
-    'donatePage.contactFb': 'Kontaktiere uns auf Facebook',
+    'donatePage.contactFb': 'W\u00e4hle deinen Patenhund',
 
     // Contact page
     'contact.title': 'Kontakt | My Paws Bosnia \u2013 Hund aus Bosnien adoptieren',
@@ -978,7 +978,7 @@ export const ui = {
     'donatePage.sponsorTitle': 'Sponsor een hond',
     'donatePage.sponsorText1': '30 van onze 60 honden hebben nog geen sponsor.',
     'donatePage.sponsorText2': 'Een maandelijkse bijdrage van elk bedrag helpt om het voer en de basisverzorging van een hond te dekken.',
-    'donatePage.contactFb': 'Neem contact op via Facebook',
+    'donatePage.contactFb': 'Kies jouw sponsorhond',
 
     // Contact page
     'contact.title': 'Contact | My Paws Bosnia \u2013 Hond uit Bosni\u00eb adopteren',
@@ -1393,7 +1393,7 @@ export const ui = {
     'donatePage.sponsorTitle': 'Parrainer un chien',
     'donatePage.sponsorText1': '30 de nos 60 chiens n\u2019ont pas encore de parrain.',
     'donatePage.sponsorText2': 'Une contribution mensuelle, quel que soit le montant, aide \u00e0 couvrir la nourriture et les soins de base d\u2019un chien.',
-    'donatePage.contactFb': 'Contactez-nous sur Facebook',
+    'donatePage.contactFb': 'Choisissez votre chien \u00e0 sponsoriser',
 
     // Contact page
     'contact.title': 'Contact | My Paws Bosnia \u2013 Adopter un chien de Bosnie',
