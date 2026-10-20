@@ -156,7 +156,10 @@ export const POST: APIRoute = async ({ request }) => {
       <p>Reply to this person to thank them personally!</p>
     `;
 
-    const [thankYouResult, notifyResult] = await Promise.allSettled([
+    // Log to Google Sheet, send thank-you email, and notify admin in parallel
+    const sheetUrl = 'https://script.google.com/macros/s/AKfycbyw8WRcLhyNX1R7BNHtpadxZFR34UAvtPR8egneG8mXDGh_Teln4-GpSuTrDtox45OrJA/exec';
+
+    const [thankYouResult, notifyResult, sheetResult] = await Promise.allSettled([
       resend.emails.send({
         from: 'My Paws Bosnia <hello@mypawsbosnia.org>',
         to: email,
@@ -170,6 +173,10 @@ export const POST: APIRoute = async ({ request }) => {
         html: notificationHtml,
         replyTo: email,
       }),
+      fetch(sheetUrl, {
+        method: 'POST',
+        body: JSON.stringify({ firstName, email, dogName: dogName || '', dogSlug: dogSlug || '', tier: tierText, lang }),
+      }),
     ]);
 
     if (thankYouResult.status === 'rejected') {
@@ -177,6 +184,9 @@ export const POST: APIRoute = async ({ request }) => {
     }
     if (notifyResult.status === 'rejected') {
       console.error('Notification email error:', notifyResult.reason);
+    }
+    if (sheetResult.status === 'rejected') {
+      console.error('Sheet log error:', sheetResult.reason);
     }
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
