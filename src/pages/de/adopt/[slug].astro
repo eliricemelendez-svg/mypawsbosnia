@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Layout from "../../../layouts/Layout.astro";
 import PhotoLightbox from "../../../components/PhotoLightbox.astro";
+import SponsorSection from "../../../components/SponsorSection.astro";
 import { currentDogs } from "../../../data/current-dogs";
 import { useTranslations } from "../../../i18n/utils";
 import type { Lang } from "../../../i18n/utils";
@@ -78,6 +79,7 @@ const extraPhotos = dogPhotos.slice(1);
       <p class="text-sm text-body mb-4">{t('adoptSlug.brucellosis')}</p>
       <p class="text-sm text-body">{t('adoptSlug.feesNote')}</p>
     </div>
+    <SponsorSection dogName={dog.name} dogSlug={dog.slug} lang={lang} />
     <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
       <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('adoptSlug.interestedIn').replace('{name}', dog.name)}</h2>
       <p class="text-body mb-6">{t('adoptSlug.interestedText')}</p>

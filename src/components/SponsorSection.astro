@@ -1,0 +1,177 @@
+---
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  dogName: string;
+  dogSlug: string;
+  lang: Lang;
+}
+
+const { dogName, dogSlug, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const paypalUrl = "https://www.paypal.com/myaccount/transfer/homepage/pay";
+
+const tiers = [
+  {
+    id: "month",
+    label: t("sponsor.month").replace("{name}", dogName),
+    price: t("sponsor.monthPrice"),
+  },
+  {
+    id: "quarter",
+    label: t("sponsor.quarter").replace("{name}", dogName),
+    price: t("sponsor.quarterPrice"),
+  },
+  {
+    id: "year",
+    label: t("sponsor.year").replace("{name}", dogName),
+    price: t("sponsor.yearPrice"),
+  },
+];
+---
+
+<div class="mt-12 bg-amber-50 rounded-2xl p-8" id="sponsor-section">
+  <div class="text-center mb-6">
+    <span class="text-3xl">💛</span>
+    <h2 class="text-2xl font-bold text-slate-dark mt-2">
+      {t("sponsor.title").replace("{name}", dogName)}
+    </h2>
+    <p class="text-body mt-2 max-w-lg mx-auto">
+      {t("sponsor.text").replace("{name}", dogName)}
+    </p>
+  </div>
+
+  <!-- Tier cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+    {tiers.map((tier) => (
+      <div class="bg-white rounded-xl p-5 text-center border-2 border-transparent hover:border-teal transition-colors">
+        <p class="text-2xl font-bold text-teal">{tier.price}</p>
+        <p class="text-sm text-body mt-1">{tier.label}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- PayPal button -->
+  <div class="text-center mb-8">
+    <a
+      href={paypalUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors"
+      id="sponsor-paypal-btn"
+      data-dog-name={dogName}
+    >
+      {t("sponsor.donateBtn")}
+    </a>
+    <p class="text-xs text-body mt-2">
+      donate2mypaws@gmail.com
+    </p>
+  </div>
+
+  <!-- Confirmation form -->
+  <div class="max-w-md mx-auto bg-white rounded-xl p-6">
+    <p class="text-sm font-semibold text-slate-dark mb-4 text-center">
+      {t("sponsor.formTitle")}
+    </p>
+    <form id="sponsor-form" data-dog-name={dogName} data-dog-slug={dogSlug} data-lang={lang}>
+      <div class="space-y-3">
+        <input
+          type="text"
+          name="firstName"
+          placeholder={t("sponsor.firstName")}
+          required
+          class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder={t("sponsor.email")}
+          required
+          class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal"
+        />
+        <select
+          name="tier"
+          class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal text-body"
+        >
+          <option value="">{t("sponsor.tierLabel")}</option>
+          <option value="month">{t("sponsor.tierMonth")}</option>
+          <option value="quarter">{t("sponsor.tierQuarter")}</option>
+          <option value="year">{t("sponsor.tierYear")}</option>
+          <option value="other">{t("sponsor.tierOther")}</option>
+        </select>
+        <button
+          type="submit"
+          class="w-full px-4 py-2.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal/90 transition-colors text-sm"
+        >
+          {t("sponsor.submit")}
+        </button>
+      </div>
+      <p id="sponsor-msg" class="text-sm text-center mt-3 hidden"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("sponsor-form") as HTMLFormElement;
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const msg = document.getElementById("sponsor-msg")!;
+      const data = new FormData(form);
+
+      btn.disabled = true;
+      btn.style.opacity = "0.5";
+
+      try {
+        const res = await fetch("/api/sponsor", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: data.get("firstName"),
+            email: data.get("email"),
+            tier: data.get("tier"),
+            dogName: form.dataset.dogName,
+            dogSlug: form.dataset.dogSlug,
+            lang: form.dataset.lang,
+          }),
+        });
+
+        if (res.ok) {
+          msg.textContent = msg.dataset.thanks || "Thank you!";
+          msg.className = "text-sm text-center mt-3 text-teal font-medium";
+          form.reset();
+        } else {
+          msg.textContent = msg.dataset.error || "Something went wrong.";
+          msg.className = "text-sm text-center mt-3 text-red-500";
+        }
+      } catch {
+        msg.textContent = msg.dataset.error || "Something went wrong.";
+        msg.className = "text-sm text-center mt-3 text-red-500";
+      }
+
+      btn.disabled = false;
+      btn.style.opacity = "1";
+    });
+
+    // Set data attributes for success/error messages
+    const msgEl = document.getElementById("sponsor-msg")!;
+    const lang = form.dataset.lang || "en";
+    const thanksMap: Record<string, string> = {
+      en: "Thank you! We\u2019ll be in touch to say thanks properly.",
+      de: "Danke! Wir melden uns, um uns pers\u00f6nlich zu bedanken.",
+      nl: "Bedankt! We nemen contact op om je persoonlijk te bedanken.",
+      fr: "Merci ! Nous vous contacterons pour vous remercier personnellement.",
+    };
+    const errorMap: Record<string, string> = {
+      en: "Something went wrong. Please try again.",
+      de: "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      nl: "Er is iets misgegaan. Probeer het opnieuw.",
+      fr: "Une erreur est survenue. Veuillez r\u00e9essayer.",
+    };
+    msgEl.dataset.thanks = thanksMap[lang] || thanksMap.en;
+    msgEl.dataset.error = errorMap[lang] || errorMap.en;
+  }
+</script>
