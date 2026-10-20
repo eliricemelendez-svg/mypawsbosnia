@@ -69,13 +69,15 @@ const extraPhotos = dogPhotos.slice(1);
     </a>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
-      {leadPhoto ? (
-        <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger="0">
-          <Image src={leadPhoto} alt={`${dog.name}, a ${dog.size} rescue dog available for adoption from Bosnia`} width={500} class="w-full rounded-2xl hover:opacity-90 transition-opacity" />
-        </button>
-      ) : (
-        <div class="aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-8xl">🐕</div>
-      )}
+      <div class="md:sticky md:top-8">
+        {leadPhoto ? (
+          <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger="0">
+            <Image src={leadPhoto} alt={`${dog.name}, a ${dog.size} rescue dog available for adoption from Bosnia`} width={500} class="w-full rounded-2xl hover:opacity-90 transition-opacity" />
+          </button>
+        ) : (
+          <div class="aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-8xl">🐕</div>
+        )}
+      </div>
 
       <div>
         <h1 class="text-4xl font-bold text-slate-dark">{dog.name}</h1>
