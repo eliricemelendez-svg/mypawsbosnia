@@ -211,6 +211,20 @@ export const ui = {
     'adoptSlug.emailUs': 'Email us',
     'adoptSlug.share': "Share {name}'s profile",
 
+    // Sponsor page
+    'sponsor.pageTitle': 'Sponsor a Dog | My Paws Bosnia',
+    'sponsor.pageDescription': 'Sponsor a rescue dog at our shelter in Bosnia. From \u00a314 a month, you can help keep a dog fed, healthy, and safe.',
+    'sponsor.heading': 'Sponsor a dog',
+    'sponsor.subtitle': 'Can\'t adopt? You can still change a life. Choose a dog to sponsor and help cover their food, vet care, and shelter costs.',
+    'sponsor.fromPrice': 'From \u00a314/month',
+    'sponsor.chooseDog': 'Choose your sponsor dog',
+    'sponsor.sponsorBtn': 'Sponsor {name}',
+    'sponsor.whatYouGet': 'What sponsors get',
+    'sponsor.benefit1': 'A personal thank-you from our team',
+    'sponsor.benefit2': 'Monthly photo updates of your sponsored dog',
+    'sponsor.benefit3': 'The knowledge that every penny goes directly to the dogs',
+    'sponsor.navLabel': 'Sponsor',
+
     // Sponsor section
     'sponsor.title': 'Sponsor {name}',
     'sponsor.text': 'Can\'t adopt right now? Help keep {name} fed, healthy, and safe at our shelter.',
@@ -611,6 +625,20 @@ export const ui = {
     'adoptSlug.whatsapp': 'WhatsApp ans Tierheim',
     'adoptSlug.emailUs': 'E-Mail schreiben',
     'adoptSlug.share': '{name}s Profil teilen',
+
+    // Sponsor page
+    'sponsor.pageTitle': 'Einen Hund sponsern | My Paws Bosnia',
+    'sponsor.pageDescription': 'Sponsere einen Rettungshund in unserem Tierheim in Bosnien. Ab \u20ac17 im Monat kannst du helfen, einen Hund zu f\u00fcttern, gesund und sicher zu halten.',
+    'sponsor.heading': 'Einen Hund sponsern',
+    'sponsor.subtitle': 'Kannst du nicht adoptieren? Du kannst trotzdem ein Leben ver\u00e4ndern. W\u00e4hle einen Hund zum Sponsern und hilf mit, Futter, Tierarztkosten und Unterkunft zu decken.',
+    'sponsor.fromPrice': 'Ab \u20ac17/Monat',
+    'sponsor.chooseDog': 'W\u00e4hle deinen Patenhund',
+    'sponsor.sponsorBtn': '{name} sponsern',
+    'sponsor.whatYouGet': 'Was Paten bekommen',
+    'sponsor.benefit1': 'Ein pers\u00f6nliches Dankesch\u00f6n von unserem Team',
+    'sponsor.benefit2': 'Monatliche Foto-Updates deines Patenhundes',
+    'sponsor.benefit3': 'Das Wissen, dass jeder Cent direkt an die Hunde geht',
+    'sponsor.navLabel': 'Sponsern',
 
     // Sponsor section
     'sponsor.title': '{name} sponsern',
@@ -1013,6 +1041,20 @@ export const ui = {
     'adoptSlug.emailUs': 'E-mail ons',
     'adoptSlug.share': 'Deel het profiel van {name}',
 
+    // Sponsor page
+    'sponsor.pageTitle': 'Sponsor een hond | My Paws Bosnia',
+    'sponsor.pageDescription': 'Sponsor een reddingshond in ons asiel in Bosni\u00eb. Vanaf \u20ac17 per maand kun je helpen een hond te voeden, gezond en veilig te houden.',
+    'sponsor.heading': 'Sponsor een hond',
+    'sponsor.subtitle': 'Kun je niet adopteren? Je kunt toch een leven veranderen. Kies een hond om te sponsoren en help met voer, dierenartszorg en onderdak.',
+    'sponsor.fromPrice': 'Vanaf \u20ac17/maand',
+    'sponsor.chooseDog': 'Kies jouw sponsorhond',
+    'sponsor.sponsorBtn': 'Sponsor {name}',
+    'sponsor.whatYouGet': 'Wat sponsors krijgen',
+    'sponsor.benefit1': 'Een persoonlijk bedankje van ons team',
+    'sponsor.benefit2': 'Maandelijkse foto-updates van jouw sponsorhond',
+    'sponsor.benefit3': 'De wetenschap dat elke cent rechtstreeks naar de honden gaat',
+    'sponsor.navLabel': 'Sponsoren',
+
     // Sponsor section
     'sponsor.title': 'Sponsor {name}',
     'sponsor.text': 'Kun je nu niet adopteren? Help {name} gevoed, gezond en veilig te houden in ons asiel.',
@@ -1413,6 +1455,20 @@ export const ui = {
     'adoptSlug.whatsapp': 'WhatsApp notre refuge',
     'adoptSlug.emailUs': 'Envoyez un e-mail',
     'adoptSlug.share': 'Partager le profil de {name}',
+
+    // Sponsor page
+    'sponsor.pageTitle': 'Sponsoriser un chien | My Paws Bosnia',
+    'sponsor.pageDescription': 'Sponsorisez un chien sauv\u00e9 dans notre refuge en Bosnie. \u00c0 partir de 17\u00a0\u20ac par mois, vous pouvez aider \u00e0 nourrir un chien, le garder en bonne sant\u00e9 et en s\u00e9curit\u00e9.',
+    'sponsor.heading': 'Sponsoriser un chien',
+    'sponsor.subtitle': 'Vous ne pouvez pas adopter ? Vous pouvez quand m\u00eame changer une vie. Choisissez un chien \u00e0 sponsoriser et aidez \u00e0 couvrir sa nourriture, ses soins v\u00e9t\u00e9rinaires et son h\u00e9bergement.',
+    'sponsor.fromPrice': '\u00c0 partir de 17\u00a0\u20ac/mois',
+    'sponsor.chooseDog': 'Choisissez votre chien \u00e0 sponsoriser',
+    'sponsor.sponsorBtn': 'Sponsoriser {name}',
+    'sponsor.whatYouGet': 'Ce que les sponsors re\u00e7oivent',
+    'sponsor.benefit1': 'Un remerciement personnel de notre \u00e9quipe',
+    'sponsor.benefit2': 'Des photos mensuelles de votre chien sponsoris\u00e9',
+    'sponsor.benefit3': 'La certitude que chaque centime va directement aux chiens',
+    'sponsor.navLabel': 'Sponsoriser',
 
     // Sponsor section
     'sponsor.title': 'Sponsoriser {name}',
