@@ -32,7 +32,7 @@ const t = useTranslations(lang);
       {currentDogs.map((dog) => (
         <div class="flex flex-col">
           <div class="pointer-events-none"><DogCard slug={dog.slug} name={dog.name} shortLine={dog.fr?.shortLine ?? dog.shortLine} sex={dog.sex} age={dog.age} size={dog.size} linkPrefix="/fr/adopt" lang={lang} /></div>
-          <button type="button" class="sponsor-select-btn mx-5 -mt-2 mb-4 px-6 py-3 bg-amber-500 text-white font-bold rounded-full hover:bg-amber-600 transition-colors text-sm shadow-lg relative z-10" data-dog-name={dog.name} data-dog-slug={dog.slug}>{t('sponsor.sponsorBtn').replace('{name}', dog.name)}</button>
+          <button type="button" class="sponsor-select-btn mx-5 mt-3 mb-4 px-6 py-3 bg-amber-500 text-white font-bold rounded-full hover:bg-amber-600 transition-colors text-sm shadow-lg relative z-10" data-dog-name={dog.name} data-dog-slug={dog.slug}>{t('sponsor.sponsorBtn').replace('{name}', dog.name)}</button>
         </div>
       ))}
     </div>
