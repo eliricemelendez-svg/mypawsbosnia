@@ -14,6 +14,7 @@ import flintSuccessImg from "../../assets/success-stories/flint/flint-1.jpeg";
 
 const lang: Lang = 'de';
 const t = useTranslations(lang);
+const countryDE: Record<string, string> = { "Austria": "\u00d6sterreich", "United Kingdom": "Gro\u00dfbritannien", "Belgium": "Belgien", "England": "England" };
 
 const featured = currentDogs;
 
@@ -129,7 +130,7 @@ const happyCards = [
           <Image src={story.img} alt={`${story.name}, adoptiert von My Paws Bosnia`} width={400} class="w-full aspect-[4/3] object-cover object-top" />
           <div class="p-5">
             <h3 class="text-lg font-semibold text-slate-dark group-hover:text-teal transition-colors">{story.name}</h3>
-            {story.adoptedTo && <p class="text-sm text-teal font-medium mt-1">{t('dog.adoptedTo')} {story.adoptedTo}</p>}
+            {story.adoptedTo && <p class="text-sm text-teal font-medium mt-1">{t('dog.adoptedTo')} {countryDE[story.adoptedTo] ?? story.adoptedTo}</p>}
             <p class="text-sm text-body mt-1">{story.shortLine}</p>
           </div>
         </a>

@@ -1109,7 +1109,7 @@ export const ui = {
 
     // Blog index
     'blog.title': 'Blog | Gidsen & tips over asielhonden | My Paws Bosnia',
-    'blog.description': 'Gidsen, tips en verhalen over het adopteren en verzorgen van asielhonden uit Bosnie. Alles wat je moet weten voor en na de adoptie.',
+    'blog.description': 'Gidsen, tips en verhalen over het adopteren en verzorgen van asielhonden uit Bosni\u00eb. Alles wat je moet weten voor en na de adoptie.',
     'blog.heading': 'Blog',
     'blog.subtitle': 'Gidsen en tips voor het adopteren en verzorgen van een asielhond.',
     'blog.readMore': 'Lees meer',
@@ -1530,8 +1530,8 @@ export const ui = {
     '404.backToAdopt': 'Voir nos chiens',
 
     // Blog index
-    'blog.title': 'Blog | Guides & conseils sur les chiens adoptes | My Paws Bosnia',
-    'blog.description': 'Guides, conseils et histoires sur l\'adoption et les soins des chiens sauves de Bosnie. Tout ce que vous devez savoir avant et apres l\'adoption.',
+    'blog.title': 'Blog | Guides & conseils sur les chiens adopt\u00e9s | My Paws Bosnia',
+    'blog.description': 'Guides, conseils et histoires sur l\'adoption et les soins des chiens sauv\u00e9s de Bosnie. Tout ce que vous devez savoir avant et apr\u00e8s l\'adoption.',
     'blog.heading': 'Blog',
     'blog.subtitle': 'Guides et conseils pour adopter et prendre soin d\'un chien de sauvetage.',
     'blog.readMore': 'Lire la suite',

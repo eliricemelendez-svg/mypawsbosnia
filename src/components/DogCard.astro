@@ -18,6 +18,13 @@ interface Props {
 const { slug, name, shortLine, sex, age, size, linkPrefix, adoptedTo, lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 
+const countryNames: Record<string, Record<string, string>> = {
+  de: { "Austria": "\u00d6sterreich", "United Kingdom": "Gro\u00dfbritannien", "Belgium": "Belgien", "England": "England" },
+  nl: { "Austria": "Oostenrijk", "United Kingdom": "Verenigd Koninkrijk", "Belgium": "Belgi\u00eb", "England": "Engeland" },
+  fr: { "Austria": "Autriche", "United Kingdom": "Royaume-Uni", "Belgium": "Belgique", "England": "Angleterre" },
+};
+const localAdoptedTo = adoptedTo ? (countryNames[lang]?.[adoptedTo] ?? adoptedTo) : undefined;
+
 const pillColors: Record<string, string> = {
   male: "bg-blue-100 text-blue-700",
   female: "bg-pink-100 text-pink-700",
@@ -117,7 +124,7 @@ const leadPhoto = photos[0] ?? null;
     <p class="text-sm text-body mt-1">{shortLine}</p>
 
     {adoptedTo && (
-      <p class="text-sm text-teal font-medium mt-2">{t('dog.adoptedTo')} {adoptedTo}</p>
+      <p class="text-sm text-teal font-medium mt-2">{t('dog.adoptedTo')} {localAdoptedTo}</p>
     )}
 
     <div class="flex flex-wrap gap-2 mt-3">

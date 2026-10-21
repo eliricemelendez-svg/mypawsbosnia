@@ -2,6 +2,7 @@ export interface SuccessStoryTranslation {
   shortLine: string;
   story: string;
   traits: string[];
+  adoptedTo?: string;
 }
 
 export interface SuccessStory {
@@ -54,6 +55,7 @@ export const successStories: SuccessStory[] = [
         "Kastriert und vollst\u00e4ndig geimpft",
         "Hat Blut gespendet, um einen anderen Hund zu retten",
       ],
+      adoptedTo: "\u00d6sterreich",
     },
     nl: {
       shortLine: "Een echte held die bloed doneerde om een andere hond te redden. Nu op weg naar zijn thuis in Oostenrijk.",
@@ -67,6 +69,7 @@ export const successStories: SuccessStory[] = [
         "Gecastreerd en volledig gevaccineerd",
         "Doneerde bloed om een andere hond te redden",
       ],
+      adoptedTo: "Oostenrijk",
     },
     fr: {
       shortLine: "Un vrai h\u00e9ros qui a donn\u00e9 son sang pour sauver un autre chien. En route vers son foyer en Autriche.",
@@ -80,6 +83,7 @@ export const successStories: SuccessStory[] = [
         "St\u00e9rilis\u00e9 et enti\u00e8rement vaccin\u00e9",
         "A donn\u00e9 son sang pour sauver un autre chien",
       ],
+      adoptedTo: "Autriche",
     },
   },
   {
@@ -110,6 +114,7 @@ export const successStories: SuccessStory[] = [
         "Adoptiert von Bosnien nach Gro\u00dfbritannien",
         "Transportkosten ca. \u00a3500",
       ],
+      adoptedTo: "Gro\u00dfbritannien",
     },
     nl: {
       shortLine: "Van een bange pup in Bosni\u00eb tot een blije, moddergekke hond in het VK.",
@@ -121,6 +126,7 @@ export const successStories: SuccessStory[] = [
         "Geadopteerd van Bosni\u00eb naar het VK",
         "Transportkosten ca. \u00a3500",
       ],
+      adoptedTo: "Verenigd Koninkrijk",
     },
     fr: {
       shortLine: "D\u2019un chiot apeur\u00e9 en Bosnie \u00e0 une chienne heureuse et couverte de boue au Royaume-Uni.",
@@ -132,6 +138,7 @@ export const successStories: SuccessStory[] = [
         "Adopt\u00e9e de Bosnie vers le Royaume-Uni",
         "Transport environ 500\u00a0\u00a3",
       ],
+      adoptedTo: "Royaume-Uni",
     },
   },
   {
@@ -213,6 +220,7 @@ export const successStories: SuccessStory[] = [
         "Toll mit Kindern",
         "Mischling (Border Collie / Sch\u00e4ferhund)",
       ],
+      adoptedTo: "Belgien",
     },
     nl: {
       shortLine: "Een lieve ziel die zijn thuis vond in Belgi\u00eb.",
@@ -224,6 +232,7 @@ export const successStories: SuccessStory[] = [
         "Heel goed met kinderen",
         "Kruising (Border Collie / Herder)",
       ],
+      adoptedTo: "Belgi\u00eb",
     },
     fr: {
       shortLine: "Une \u00e2me douce qui a trouv\u00e9 son foyer en Belgique.",
@@ -235,6 +244,7 @@ export const successStories: SuccessStory[] = [
         "Super avec les enfants",
         "Crois\u00e9 Border Collie / berger",
       ],
+      adoptedTo: "Belgique",
     },
   },
   {
@@ -265,6 +275,7 @@ export const successStories: SuccessStory[] = [
         "Schwarzer Sch\u00e4ferhundmischling, wird 25\u201330 kg",
         "Eine von drei Schwestern, Bruder ebenfalls nach UK adoptiert",
       ],
+      adoptedTo: "England",
     },
     nl: {
       shortLine: "De vriendelijkste pup van het asiel heeft haar thuis gevonden in Engeland.",
@@ -276,6 +287,7 @@ export const successStories: SuccessStory[] = [
         "Zwarte herdersmix, groeit uit tot 25\u201330 kg",
         "Een van drie zussen, broer ook geadopteerd naar het VK",
       ],
+      adoptedTo: "Engeland",
     },
     fr: {
       shortLine: "La petite la plus amicale du refuge a trouvé sa famille en Angleterre.",
@@ -287,6 +299,7 @@ export const successStories: SuccessStory[] = [
         "Croisée berger noir, atteindra 25–30 kg",
         "L'une des trois sœurs, frère aussi adopté au Royaume-Uni",
       ],
+      adoptedTo: "Angleterre",
     },
   },
   {
@@ -319,6 +332,7 @@ export const successStories: SuccessStory[] = [
         "Sch\u00f6nes dichtes Fell",
         "Vollst\u00e4ndig geimpft und kastriert",
       ],
+      adoptedTo: "Gro\u00dfbritannien",
     },
     nl: {
       shortLine: "Een lieve reus van 40 kg die werd achtergelaten, maar altijd lief bleef. Nu thuis in het VK.",
@@ -331,6 +345,7 @@ export const successStories: SuccessStory[] = [
         "Dikke, mooie vacht",
         "Volledig gevaccineerd en gesteriliseerd",
       ],
+      adoptedTo: "Verenigd Koninkrijk",
     },
     fr: {
       shortLine: "Une g\u00e9ante douce de 40 kg, abandonn\u00e9e mais qui n\u2019a jamais perdu son grand c\u0153ur. Maintenant chez elle au Royaume-Uni.",
@@ -343,6 +358,7 @@ export const successStories: SuccessStory[] = [
         "Beau pelage \u00e9pais",
         "Enti\u00e8rement vaccin\u00e9e et st\u00e9rilis\u00e9e",
       ],
+      adoptedTo: "Royaume-Uni",
     },
   },
 ];

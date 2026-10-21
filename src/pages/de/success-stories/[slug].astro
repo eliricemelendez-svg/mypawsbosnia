@@ -44,7 +44,7 @@ const extraPhotos = dogPhotos.slice(1);
           <div class="bg-light-bg rounded-xl px-5 py-3 text-center"><p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.size')}</p><p class="text-base font-semibold text-slate-dark mt-1 capitalize">{dog.size}</p></div>
           <div class="bg-light-bg rounded-xl px-5 py-3 text-center"><p class="text-xs text-body uppercase tracking-wide">{t('adoptSlug.sex')}</p><p class="text-base font-semibold text-slate-dark mt-1 capitalize">{dog.sex}</p></div>
         </div>
-        {dog.adoptedTo && (<div class="bg-light-bg rounded-xl px-5 py-3 mt-3"><p class="text-xs text-body uppercase tracking-wide">{t('successSlug.newHome')}</p><p class="text-base font-semibold text-slate-dark mt-1">{dog.adoptedTo}</p></div>)}
+        {dog.adoptedTo && (<div class="bg-light-bg rounded-xl px-5 py-3 mt-3"><p class="text-xs text-body uppercase tracking-wide">{t('successSlug.newHome')}</p><p class="text-base font-semibold text-slate-dark mt-1">{dog.de?.adoptedTo ?? dog.adoptedTo}</p></div>)}
         <div class="mt-6">
           <p class="text-body leading-relaxed">{story}</p>
           {traits && traits.length > 0 && (<ul class="mt-4 space-y-2">{traits.map((tr) => (<li class="flex items-start gap-2 text-body"><span class="text-teal mt-0.5">&#10003;</span><span>{tr}</span></li>))}</ul>)}
