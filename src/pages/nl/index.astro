@@ -8,7 +8,7 @@ import { useTranslations, localizedPath } from "../../i18n/utils";
 import type { Lang } from "../../i18n/utils";
 import bridgetteImg from "../../assets/success-stories/bridgette/bridgette-1.jpg";
 import pjuskeImg from "../../assets/success-stories/pjuske/pjuske-1.jpeg";
-import neroImg from "../../assets/success-stories/nero/nero-1.png";
+import neroImg from "../../assets/current-dogs/nero/nero-1.png";
 import eliImg from "../../assets/success-stories/eli/eli-1.jpg";
 import flintSuccessImg from "../../assets/success-stories/flint/flint-1.jpeg";
 
@@ -29,6 +29,7 @@ import mausImg from "../../assets/current-dogs/maus/maus-1.jpg";
 import freyaImg from "../../assets/current-dogs/freya/freya-1.jpg";
 import luna2Img from "../../assets/current-dogs/luna-2/01.jpg";
 import namiImg from "../../assets/current-dogs/nami/01.jpg";
+import neroHeroImg from "../../assets/current-dogs/nero/nero-1.png";
 const heroSlides = [
   { img: barneyImg, slug: "barney", name: "Barney", line: "Twee jaar oud, vol energie en klaar om naar zijn nieuwe gezin te reizen.", alt: "Barney, een reddingshond bij My Paws Bosnia" },
   { img: klaraImg, slug: "klara", name: "Klara", line: "Een dappere kleine vechter die ziekte overwon en klaar is voor haar eigen thuis.", alt: "Klara, een reddingshond bij My Paws Bosnia" },
@@ -41,6 +42,7 @@ const heroSlides = [
   { img: freyaImg, slug: "freya", name: "Freya", line: "Haar hele familie werd geadopteerd. Zij is de enige die nog wacht.", alt: "Freya, een reddingshond bij My Paws Bosnia" },
   { img: luna2Img, slug: "luna-2", name: "Luna", line: "Een prachtig, liefdevol meisje dat al jaren wacht op een gezin. Geweldig met kinderen en vol genegenheid.", alt: "Luna, een reddingshond bij My Paws Bosnia" },
   { img: namiImg, slug: "nami", name: "Nami", line: "Een prachtig, liefdevol meisje dat al jaren wacht op een gezin. Vol persoonlijkheid, genegenheid en energie.", alt: "Nami, een reddingshond bij My Paws Bosnia" },
+  { img: neroHeroImg, slug: "nero", name: "Nero", line: "Een lieve reu met een heel zacht karakter. Houdt van buiten zijn en van mensen.", alt: "Nero, een reddingshond bij My Paws Bosnia" },
 ];
 
 import vesnaWithDog from "../../assets/vesna/706517929_122100551391334047_1761713277840422103_n.jpg";
@@ -53,7 +55,6 @@ const pastList = Object.values(pastPhotos).map((m) => m.default);
 const happyCards = [
   { img: bridgetteImg, slug: 'bridgette', name: 'Bridgette', adoptedTo: successStories.find(s => s.slug === 'bridgette')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'bridgette')?.nl?.shortLine ?? successStories.find(s => s.slug === 'bridgette')?.shortLine ?? '' },
   { img: pjuskeImg, slug: 'pjuske', name: 'Pjuske', adoptedTo: successStories.find(s => s.slug === 'pjuske')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'pjuske')?.nl?.shortLine ?? successStories.find(s => s.slug === 'pjuske')?.shortLine ?? '' },
-  { img: neroImg, slug: 'nero', name: 'Nero', adoptedTo: successStories.find(s => s.slug === 'nero')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'nero')?.nl?.shortLine ?? successStories.find(s => s.slug === 'nero')?.shortLine ?? '' },
   { img: eliImg, slug: 'eli', name: 'Eli', adoptedTo: successStories.find(s => s.slug === 'eli')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'eli')?.nl?.shortLine ?? successStories.find(s => s.slug === 'eli')?.shortLine ?? '' },
   { img: flintSuccessImg, slug: 'flint', name: 'Flint', adoptedTo: successStories.find(s => s.slug === 'flint')?.adoptedTo, shortLine: successStories.find(s => s.slug === 'flint')?.nl?.shortLine ?? successStories.find(s => s.slug === 'flint')?.shortLine ?? '' },
 ];
