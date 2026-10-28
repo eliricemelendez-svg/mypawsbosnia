@@ -51,11 +51,18 @@ const extraPhotos = dogPhotos.slice(1);
     <a href="/fr/adopt" class="inline-flex items-center text-teal font-medium hover:underline mb-6">&larr; {t('adoptSlug.backToAll')}</a>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-8">
       <div class="md:sticky md:top-8">
-        {leadPhoto ? (
-          <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger="0">
-            <Image src={leadPhoto} alt={`${dog.name}, chien sauv\u00e9 \u00e0 adopter depuis la Bosnie`} width={500} class="w-full rounded-2xl hover:opacity-90 transition-opacity" />
-          </button>
-        ) : (<div class="aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-8xl">🐕</div>)}
+        <div class="hidden rounded-2xl overflow-hidden bg-black" id="lead-video-wrapper">
+          <video class="w-full rounded-2xl" id="lead-video" autoplay muted loop playsinline preload="metadata">
+            <source id="lead-video-src" type="video/mp4" />
+          </video>
+        </div>
+        <div id="lead-photo-wrapper">
+          {leadPhoto ? (
+            <button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger="0">
+              <Image src={leadPhoto} alt={`${dog.name}, chien sauv\u00e9 \u00e0 adopter depuis la Bosnie`} width={500} class="w-full rounded-2xl hover:opacity-90 transition-opacity" />
+            </button>
+          ) : (<div class="aspect-square bg-gray-100 rounded-2xl flex items-center justify-center text-8xl">🐕</div>)}
+        </div>
       </div>
       <div>
         <h1 class="text-4xl font-bold text-slate-dark md:sticky md:top-0 bg-white pb-2 z-10">{dog.name}</h1>
@@ -81,16 +88,16 @@ const extraPhotos = dogPhotos.slice(1);
       </div>
     </div>
 
-    <div class="mt-10" id="dog-video-section" data-slug={dog.slug}>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="hidden aspect-square rounded-xl overflow-hidden bg-black" id="dog-video-wrapper">
-          <video class="w-full h-full object-cover" id="dog-video" controls playsinline preload="metadata">
-            <source id="dog-video-src" type="video/mp4" />
-          </video>
+    <div class="hidden" id="dog-video-section" data-slug={dog.slug}></div>
+
+    {extraPhotos.length > 0 && (
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold text-slate-dark mb-4">{t('adoptSlug.morePhotos')}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {extraPhotos.map((photo, i) => (<button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger={i + 1}><Image src={photo} alt={`${dog.name} photo ${i + 2}`} width={400} height={400} class="w-full aspect-square object-cover rounded-xl hover:opacity-90 transition-opacity" /></button>))}
         </div>
-        {extraPhotos.map((photo, i) => (<button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger={i + 1}><Image src={photo} alt={`${dog.name} photo ${i + 2}`} width={400} height={400} class="w-full aspect-square object-cover rounded-xl hover:opacity-90 transition-opacity" /></button>))}
       </div>
-    </div>
+    )}
 
     <PhotoLightbox photos={dogPhotos} name={dog.name} lang={lang} />
 
@@ -144,11 +151,12 @@ const extraPhotos = dogPhotos.slice(1);
     });
   }
   const videoSection = document.getElementById('dog-video-section');
-  const video = document.getElementById('dog-video') as HTMLVideoElement;
-  const videoWrapper = document.getElementById('dog-video-wrapper');
-  if (videoSection && video && videoWrapper) {
+  const leadVideoWrapper = document.getElementById('lead-video-wrapper');
+  const leadVideo = document.getElementById('lead-video') as HTMLVideoElement;
+  const leadPhotoWrapper = document.getElementById('lead-photo-wrapper');
+  if (videoSection && leadVideoWrapper && leadVideo && leadPhotoWrapper) {
     const slug = videoSection.dataset.slug;
     const videoUrl = `/videos/${slug}.mp4`;
-    fetch(videoUrl, { method: 'HEAD' }).then((res) => { if (res.ok) { const source = document.getElementById('dog-video-src') as HTMLSourceElement; source.src = videoUrl; video.load(); videoWrapper.classList.remove('hidden'); } }).catch(() => {});
+    fetch(videoUrl, { method: 'HEAD' }).then((res) => { if (res.ok) { const source = document.getElementById('lead-video-src') as HTMLSourceElement; source.src = videoUrl; leadVideo.load(); leadVideoWrapper.classList.remove('hidden'); leadPhotoWrapper.classList.add('hidden'); } }).catch(() => {});
   }
 </script>
