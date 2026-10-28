@@ -67,6 +67,7 @@ const extraPhotos = dogPhotos.slice(1);
     </div>
     {extraPhotos.length > 0 && (<div class="mt-10"><h2 class="text-xl font-semibold text-slate-dark mb-4">{t('adoptSlug.morePhotos')}</h2><div class="grid grid-cols-2 md:grid-cols-3 gap-4">{extraPhotos.map((photo, i) => (<button type="button" class="cursor-pointer border-0 p-0 bg-transparent" data-lightbox-trigger={i + 1}><Image src={photo} alt={`${dog.name} foto ${i + 2}`} width={400} height={400} class="w-full aspect-square object-cover rounded-xl hover:opacity-90 transition-opacity" /></button>))}</div></div>)}
     <PhotoLightbox photos={dogPhotos} name={dog.name} lang={lang} />
+    <div class="mt-10" id="dog-video-section" data-slug={dog.slug}><video class="w-full max-w-sm mx-auto rounded-2xl hidden" id="dog-video" controls playsinline preload="metadata"><source id="dog-video-src" type="video/mp4" /></video></div>
     <div class="mt-12 bg-light-bg rounded-2xl p-8">
       <h2 class="text-2xl font-bold text-slate-dark mb-2">{t('adoptSlug.feesTitle')}</h2>
       <p class="text-body mb-6">{t('adoptSlug.feesIntro')}</p>
@@ -114,5 +115,12 @@ const extraPhotos = dogPhotos.slice(1);
         setTimeout(() => { shareBtn.textContent = label; }, 2000);
       }
     });
+  }
+  const videoSection = document.getElementById('dog-video-section');
+  const video = document.getElementById('dog-video') as HTMLVideoElement;
+  if (videoSection && video) {
+    const slug = videoSection.dataset.slug;
+    const videoUrl = `/videos/${slug}.mp4`;
+    fetch(videoUrl, { method: 'HEAD' }).then((res) => { if (res.ok) { const source = document.getElementById('dog-video-src') as HTMLSourceElement; source.src = videoUrl; video.load(); video.classList.remove('hidden'); } }).catch(() => {});
   }
 </script>
