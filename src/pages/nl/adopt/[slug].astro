@@ -122,7 +122,13 @@ const extraPhotos = dogPhotos.slice(1);
   const leadPhotoWrapper = document.getElementById('lead-photo-wrapper');
   if (videoSection && leadVideoWrapper && leadVideo && leadPhotoWrapper) {
     const slug = videoSection.dataset.slug;
-    const videoUrl = `/videos/${slug}.mp4`;
-    fetch(videoUrl, { method: 'HEAD' }).then((res) => { if (res.ok) { const source = document.getElementById('lead-video-src') as HTMLSourceElement; source.src = videoUrl; leadVideo.load(); leadVideoWrapper.classList.remove('hidden'); leadPhotoWrapper.classList.add('hidden'); } }).catch(() => {});
+    const loadVideo = (url: string) => {
+      const source = document.getElementById('lead-video-src') as HTMLSourceElement;
+      source.src = url; leadVideo.load(); leadVideoWrapper.classList.remove('hidden'); leadPhotoWrapper.classList.add('hidden');
+    };
+    fetch(`/videos/${slug}-nl.mp4`, { method: 'HEAD' }).then((res) => {
+      if (res.ok) { loadVideo(`/videos/${slug}-nl.mp4`); }
+      else { return fetch(`/videos/${slug}.mp4`, { method: 'HEAD' }).then((r) => { if (r.ok) loadVideo(`/videos/${slug}.mp4`); }); }
+    }).catch(() => {});
   }
 </script>
