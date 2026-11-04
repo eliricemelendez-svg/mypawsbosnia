@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { currentDogs } from "../data/current-dogs";
 import { useTranslations, localizedPath } from "../i18n/utils";
 import type { Lang } from "../i18n/utils";
+import { getLocalizedDog } from "../utils/dog-i18n";
 
 interface Props {
   lang: Lang;
@@ -26,9 +27,7 @@ const dogPhotoData = currentDogs.map((dog) => {
     .filter(([path]) => path.startsWith(prefix))
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([, mod]) => mod.default);
-  const shortLine = lang !== 'en' && (dog as any)[lang]?.shortLine
-    ? (dog as any)[lang].shortLine
-    : dog.shortLine;
+  const shortLine = getLocalizedDog(dog, lang).shortLine;
   return { name: dog.name, slug: dog.slug, shortLine, photos };
 });
 
@@ -58,7 +57,7 @@ const jsStrings = JSON.stringify({
       <input type="hidden" name="access_key" value="82e1cf41-2872-4b2a-92e3-8d373b609503" />
       <input type="hidden" name="subject" value="New Adoption Application - My Paws Bosnia" />
       <input type="hidden" name="from_name" value="My Paws Bosnia Adoption Form" />
-      <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+      <input type="checkbox" name="botcheck" class="hidden" />
       <input type="hidden" id="whatsapp_link" name="WhatsApp Link (click to chat)" value="" />
 
       <!-- STEP 1: Choose your dog -->
@@ -523,78 +522,82 @@ const jsStrings = JSON.stringify({
 </Layout>
 
 <script>
+  import { CarouselController } from '../utils/carousel';
+  import { BubbleSelector } from '../utils/bubble-selector';
+
   // Load i18n strings for client-side JS
   const i18nEl = document.getElementById('apply-i18n');
   const i18n = i18nEl ? JSON.parse(i18nEl.textContent || '{}') : {};
+  const dogInfoEl = document.getElementById('dog-info');
+  const dogInfo = dogInfoEl ? JSON.parse(dogInfoEl.textContent || '[]') : [];
 
-  // Dog selection
+  // DOM elements
   const dogBtns = document.querySelectorAll<HTMLButtonElement>('.dog-select-btn');
   const dogInput = document.getElementById('dog_interest') as HTMLInputElement;
+  const dogSlugInput = document.getElementById('dog_slug') as HTMLInputElement;
   const dogShowcase = document.getElementById('dog-showcase');
   const dogSelector = document.getElementById('dog-selector');
   const dogSelectedBar = document.getElementById('dog-selected-bar');
   const selectedDogThumb = document.getElementById('selected-dog-thumb') as HTMLImageElement;
   const selectedDogNameText = document.getElementById('selected-dog-name-text');
-  const changeDogBarBtn = document.getElementById('change-dog-bar-btn');
   const formFields = document.getElementById('form-fields');
-  const showcaseTrack = document.getElementById('showcase-track');
-  const showcaseDots = document.getElementById('showcase-dots');
   const showcaseName = document.getElementById('showcase-name');
   const showcaseLine = document.getElementById('showcase-line');
   const showcaseLink = document.getElementById('showcase-profile-link') as HTMLAnchorElement;
-  const changeDogBtn = document.getElementById('change-dog-btn');
   const dogError = document.getElementById('dog-select-error');
-  const dogInfoEl = document.getElementById('dog-info');
-  const dogInfo = dogInfoEl ? JSON.parse(dogInfoEl.textContent || '[]') : [];
 
-  let showcaseCurrent = 0;
-  let showcaseCount = 0;
+  // Showcase carousel (reusable controller)
+  const showcaseTrack = document.getElementById('showcase-track');
+  const showcaseCarousel = showcaseTrack
+    ? new CarouselController(showcaseTrack, document.getElementById('showcase-dots'), 4000)
+    : null;
 
-  function showcaseGoTo(i: number) {
-    showcaseCurrent = (i + showcaseCount) % showcaseCount;
-    if (showcaseTrack) showcaseTrack.style.transform = `translateX(-${showcaseCurrent * 100}%)`;
-    showcaseDots?.querySelectorAll('span').forEach((d, idx) => {
-      d.className = `block w-2.5 h-2.5 rounded-full ${idx === showcaseCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
-    });
+  showcaseCarousel?.attachControls(
+    document.getElementById('showcase-prev'),
+    document.getElementById('showcase-next'),
+    document.getElementById('showcase-carousel'),
+  );
+
+  // Household bubble selector
+  const householdSelector = new BubbleSelector(
+    document.querySelectorAll<HTMLButtonElement>('.household-bubble'),
+    document.getElementById('household-counts'),
+    document.getElementById('household_types') as HTMLInputElement,
+    'person',
+    i18n.householdDefault,
+    (selected) => {
+      document.getElementById('household-children-ages')?.classList.toggle('hidden', !selected.has('Children'));
+    },
+  );
+
+  // Pet bubble selector
+  const petSelector = new BubbleSelector(
+    document.querySelectorAll<HTMLButtonElement>('.pet-bubble'),
+    document.getElementById('pet-counts'),
+    document.getElementById('pet_types') as HTMLInputElement,
+    'pet',
+  );
+
+  // Helper to get photos from template elements
+  function getPhotosFromTemplate(slug: string): { src: string; alt: string }[] {
+    const template = document.querySelector(`template[data-dog-photos="${slug}"]`);
+    if (!template) return [];
+    return Array.from(template.content.querySelectorAll('img')).map((img) => ({
+      src: img.getAttribute('src') || '',
+      alt: img.getAttribute('alt') || '',
+    }));
   }
 
-  let showcaseAutoplay: ReturnType<typeof setInterval> | null = null;
-
-  function startShowcaseAutoplay() {
-    if (showcaseAutoplay) clearInterval(showcaseAutoplay);
-    showcaseAutoplay = setInterval(() => showcaseGoTo(showcaseCurrent + 1), 4000);
-  }
-
-  function resetShowcaseAutoplay() {
-    startShowcaseAutoplay(); // restart timer after manual interaction
-  }
-
-  document.getElementById('showcase-prev')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent - 1); resetShowcaseAutoplay(); });
-  document.getElementById('showcase-next')?.addEventListener('click', () => { showcaseGoTo(showcaseCurrent + 1); resetShowcaseAutoplay(); });
-
-  // Touch swipe on showcase
-  let sStartX = 0;
-  document.getElementById('showcase-carousel')?.addEventListener('touchstart', (e) => { sStartX = (e as TouchEvent).touches[0].clientX; }, { passive: true });
-  document.getElementById('showcase-carousel')?.addEventListener('touchend', (e) => {
-    const diff = sStartX - (e as TouchEvent).changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) { showcaseGoTo(showcaseCurrent + (diff > 0 ? 1 : -1)); resetShowcaseAutoplay(); }
-  });
-
-  const dogSlugInput = document.getElementById('dog_slug') as HTMLInputElement;
   function selectDog(name: string, slug: string) {
     dogInput.value = name;
     if (dogSlugInput) dogSlugInput.value = slug;
     dogError?.classList.add('hidden');
-
-    // Collapse the grid, show the selected bar
     dogSelector?.classList.add('hidden');
 
-    // Get the first photo for the thumb
-    const thumbTemplate = document.querySelector(`template[data-dog-photos="${slug}"]`);
-    const firstImg = thumbTemplate?.content.querySelector('img');
-
-    if (selectedDogThumb && firstImg && name !== 'Not sure yet') {
-      selectedDogThumb.src = firstImg.src;
+    // Show selected bar with thumbnail
+    const photos = getPhotosFromTemplate(slug);
+    if (selectedDogThumb && photos.length > 0 && name !== 'Not sure yet') {
+      selectedDogThumb.src = photos[0].src;
       selectedDogThumb.alt = name;
       selectedDogThumb.classList.remove('hidden');
     } else if (selectedDogThumb) {
@@ -610,61 +613,27 @@ const jsStrings = JSON.stringify({
       return;
     }
 
-    // Load photos into carousel
-    const template = document.querySelector(`template[data-dog-photos="${slug}"]`);
-    const info = dogInfo.find((d: any) => d.slug === slug);
-
-    if (showcaseTrack && template) {
-      showcaseTrack.innerHTML = '';
-      const imgs = template.content.querySelectorAll('img');
-      showcaseCount = imgs.length;
-      showcaseCurrent = 0;
-
-      imgs.forEach((img) => {
-        const slide = document.createElement('div');
-        slide.className = 'w-full h-full flex-shrink-0';
-        const newImg = document.createElement('img');
-        newImg.src = img.src;
-        newImg.alt = img.alt;
-        newImg.className = 'w-full h-full object-cover object-top';
-        slide.appendChild(newImg);
-        showcaseTrack.appendChild(slide);
-      });
-
-      showcaseTrack.style.transform = 'translateX(0)';
-
-      // Build dots
-      if (showcaseDots) {
-        showcaseDots.innerHTML = '';
-        for (let i = 0; i < showcaseCount; i++) {
-          const dot = document.createElement('span');
-          dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
-          showcaseDots.appendChild(dot);
-        }
-      }
+    // Load carousel
+    if (showcaseCarousel && photos.length > 0) {
+      showcaseCarousel.loadImages(photos);
     }
 
+    const info = dogInfo.find((d: any) => d.slug === slug);
     if (showcaseName) showcaseName.textContent = name;
     if (showcaseLine && info) showcaseLine.textContent = info.shortLine;
     if (showcaseLink && info) showcaseLink.href = `${i18n.adoptPrefix}${info.slug}`;
 
-    startShowcaseAutoplay();
-
     dogShowcase?.classList.remove('hidden');
     formFields?.classList.remove('hidden');
-
     dogShowcase?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   dogBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      selectDog(btn.dataset.dog!, btn.dataset.slug!);
-    });
+    btn.addEventListener('click', () => selectDog(btn.dataset.dog!, btn.dataset.slug!));
   });
 
-
   function resetDogSelection() {
-    if (showcaseAutoplay) { clearInterval(showcaseAutoplay); showcaseAutoplay = null; }
+    showcaseCarousel?.stopAutoplay();
     dogShowcase?.classList.add('hidden');
     formFields?.classList.add('hidden');
     dogSelectedBar?.classList.add('hidden');
@@ -677,189 +646,44 @@ const jsStrings = JSON.stringify({
     dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  changeDogBtn?.addEventListener('click', resetDogSelection);
-  changeDogBarBtn?.addEventListener('click', resetDogSelection);
+  document.getElementById('change-dog-btn')?.addEventListener('click', resetDogSelection);
+  document.getElementById('change-dog-bar-btn')?.addEventListener('click', resetDogSelection);
 
-  // Pre-select from URL param (?dog=leia) or path (/apply/leia)
+  // Pre-select from URL param (?dog=slug) or path (/apply/slug)
   const dogParam = new URLSearchParams(window.location.search).get('dog')
     || window.location.pathname.replace(/\/$/, '').split('/').pop();
   if (dogParam && dogParam !== 'apply') {
     const lc = dogParam.toLowerCase();
     const match = dogInfo.find((d: any) => d.name.toLowerCase() === lc || d.slug.toLowerCase() === lc);
-    if (match) {
-      selectDog(match.name, match.slug);
-    }
+    if (match) selectDog(match.name, match.slug);
   }
 
-  // Show/hide fence height based on garden answer
+  // Conditional field visibility
   const gardenSelect = document.getElementById('garden') as HTMLSelectElement;
   const fenceRow = document.getElementById('fence-row');
-  if (gardenSelect && fenceRow) {
-    gardenSelect.addEventListener('change', () => {
-      const isYes = gardenSelect.value === 'Yes';
-      fenceRow.classList.toggle('hidden', !isYes);
-      if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
-    });
-  }
+  gardenSelect?.addEventListener('change', () => {
+    const isYes = gardenSelect.value === 'Yes';
+    fenceRow?.classList.toggle('hidden', !isYes);
+    if (!isYes) (document.getElementById('fence_height') as HTMLSelectElement).value = '';
+  });
 
-  // Show/hide rescue question based on dog experience
   const dogExpSelect = document.getElementById('dog_experience') as HTMLSelectElement;
   const rescueRow = document.getElementById('rescue-row');
-  if (dogExpSelect && rescueRow) {
-    dogExpSelect.addEventListener('change', () => {
-      const isYes = dogExpSelect.value === 'Yes';
-      rescueRow.classList.toggle('hidden', !isYes);
-      if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
-    });
-  }
+  dogExpSelect?.addEventListener('change', () => {
+    const isYes = dogExpSelect.value === 'Yes';
+    rescueRow?.classList.toggle('hidden', !isYes);
+    if (!isYes) (document.getElementById('was_rescue') as HTMLSelectElement).value = '';
+  });
 
-  // Show/hide pet details based on has_pets answer
   const hasPetsSelect = document.getElementById('has_pets') as HTMLSelectElement;
   const petsDetail = document.getElementById('pets-detail');
-  if (hasPetsSelect && petsDetail) {
-    hasPetsSelect.addEventListener('change', () => {
-      const isYes = hasPetsSelect.value === 'Yes';
-      petsDetail.classList.toggle('hidden', !isYes);
-      if (!isYes) {
-        selectedPets.clear();
-        petBubbles.forEach((b) => { b.classList.remove('bg-teal', 'text-white', 'border-teal'); b.classList.add('text-body', 'border-gray-200'); });
-        if (petCountsDiv) petCountsDiv.innerHTML = '';
-        if (petTypesInput) petTypesInput.value = '';
-      }
-    });
-  }
-
-  // Pet type bubbles
-  const selectedPets = new Set<string>();
-  const petBubbles = document.querySelectorAll<HTMLButtonElement>('.pet-bubble');
-  const petTypesInput = document.getElementById('pet_types') as HTMLInputElement;
-  const petCountsDiv = document.getElementById('pet-counts');
-
-  function updatePetCounts() {
-    if (!petCountsDiv) return;
-    petCountsDiv.innerHTML = '';
-    selectedPets.forEach((pet) => {
-      const row = document.createElement('div');
-      row.className = 'flex items-center gap-3';
-      row.innerHTML = `
-        <label class="text-sm text-slate-dark w-20">${pet}</label>
-        <div class="flex items-center gap-2">
-          <button type="button" class="pet-minus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-pet="${pet}">-</button>
-          <span class="pet-count text-sm font-semibold text-slate-dark w-6 text-center" data-pet="${pet}">1</span>
-          <button type="button" class="pet-plus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-pet="${pet}">+</button>
-        </div>
-        <input type="hidden" name="pet_count_${pet.toLowerCase()}" value="1" class="pet-count-input" data-pet="${pet}" />
-      `;
-      petCountsDiv.appendChild(row);
-    });
-    petCountsDiv.querySelectorAll('.pet-plus').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const pet = (btn as HTMLElement).dataset.pet!;
-        const countEl = petCountsDiv!.querySelector(`.pet-count[data-pet="${pet}"]`) as HTMLElement;
-        const inputEl = petCountsDiv!.querySelector(`.pet-count-input[data-pet="${pet}"]`) as HTMLInputElement;
-        const val = Math.min(parseInt(countEl.textContent || '1') + 1, 20);
-        countEl.textContent = String(val);
-        inputEl.value = String(val);
-      });
-    });
-    petCountsDiv.querySelectorAll('.pet-minus').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const pet = (btn as HTMLElement).dataset.pet!;
-        const countEl = petCountsDiv!.querySelector(`.pet-count[data-pet="${pet}"]`) as HTMLElement;
-        const inputEl = petCountsDiv!.querySelector(`.pet-count-input[data-pet="${pet}"]`) as HTMLInputElement;
-        const val = Math.max(parseInt(countEl.textContent || '1') - 1, 1);
-        countEl.textContent = String(val);
-        inputEl.value = String(val);
-      });
-    });
-    if (petTypesInput) petTypesInput.value = Array.from(selectedPets).join(', ');
-  }
-
-  // Household bubbles
-  const selectedHousehold = new Set<string>();
-  const householdBubbles = document.querySelectorAll<HTMLButtonElement>('.household-bubble');
-  const householdTypesInput = document.getElementById('household_types') as HTMLInputElement;
-  const householdCountsDiv = document.getElementById('household-counts');
-  const childrenAgesDiv = document.getElementById('household-children-ages');
-
-  function updateHouseholdCounts() {
-    if (!householdCountsDiv) return;
-    householdCountsDiv.innerHTML = '';
-    selectedHousehold.forEach((person) => {
-      const row = document.createElement('div');
-      row.className = 'flex items-center gap-3';
-      row.innerHTML = `
-        <label class="text-sm text-slate-dark w-32">${person}</label>
-        <div class="flex items-center gap-2">
-          <button type="button" class="hh-minus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-person="${person}">-</button>
-          <span class="hh-count text-sm font-semibold text-slate-dark w-6 text-center" data-person="${person}">1</span>
-          <button type="button" class="hh-plus w-8 h-8 rounded-full border border-gray-200 text-slate-dark hover:border-teal hover:text-teal flex items-center justify-center text-lg font-bold" data-person="${person}">+</button>
-        </div>
-        <input type="hidden" name="household_count_${person.toLowerCase().replace(/[\s\/]/g, '_')}" value="1" class="hh-count-input" data-person="${person}" />
-      `;
-      householdCountsDiv.appendChild(row);
-    });
-    householdCountsDiv.querySelectorAll('.hh-plus').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const person = (btn as HTMLElement).dataset.person!;
-        const countEl = householdCountsDiv!.querySelector(`.hh-count[data-person="${person}"]`) as HTMLElement;
-        const inputEl = householdCountsDiv!.querySelector(`.hh-count-input[data-person="${person}"]`) as HTMLInputElement;
-        const val = Math.min(parseInt(countEl.textContent || '1') + 1, 20);
-        countEl.textContent = String(val);
-        inputEl.value = String(val);
-      });
-    });
-    householdCountsDiv.querySelectorAll('.hh-minus').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const person = (btn as HTMLElement).dataset.person!;
-        const countEl = householdCountsDiv!.querySelector(`.hh-count[data-person="${person}"]`) as HTMLElement;
-        const inputEl = householdCountsDiv!.querySelector(`.hh-count-input[data-person="${person}"]`) as HTMLInputElement;
-        const val = Math.max(parseInt(countEl.textContent || '1') - 1, 1);
-        countEl.textContent = String(val);
-        inputEl.value = String(val);
-      });
-    });
-    if (householdTypesInput) {
-      householdTypesInput.value = selectedHousehold.size > 0 ? Array.from(selectedHousehold).join(', ') : i18n.householdDefault;
-    }
-    if (childrenAgesDiv) {
-      childrenAgesDiv.classList.toggle('hidden', !selectedHousehold.has('Children'));
-    }
-  }
-
-  householdBubbles.forEach((bubble) => {
-    bubble.addEventListener('click', () => {
-      const person = bubble.dataset.person!;
-      if (selectedHousehold.has(person)) {
-        selectedHousehold.delete(person);
-        bubble.classList.remove('bg-teal', 'text-white', 'border-teal');
-        bubble.classList.add('text-body', 'border-gray-200');
-      } else {
-        selectedHousehold.add(person);
-        bubble.classList.add('bg-teal', 'text-white', 'border-teal');
-        bubble.classList.remove('text-body', 'border-gray-200');
-      }
-      updateHouseholdCounts();
-    });
+  hasPetsSelect?.addEventListener('change', () => {
+    const isYes = hasPetsSelect.value === 'Yes';
+    petsDetail?.classList.toggle('hidden', !isYes);
+    if (!isYes) petSelector.clear();
   });
 
-  petBubbles.forEach((bubble) => {
-    bubble.addEventListener('click', () => {
-      const pet = bubble.dataset.pet!;
-      if (selectedPets.has(pet)) {
-        selectedPets.delete(pet);
-        bubble.classList.remove('bg-teal', 'text-white', 'border-teal');
-        bubble.classList.add('text-body', 'border-gray-200');
-      } else {
-        selectedPets.add(pet);
-        bubble.classList.add('bg-teal', 'text-white', 'border-teal');
-        bubble.classList.remove('text-body', 'border-gray-200');
-      }
-      updatePetCounts();
-    });
-  });
-
-  // Auto-fill dial code from country selection
+  // Auto-fill dial code from country
   const countryDialCodes: Record<string, string> = {
     'United Kingdom': '+44', 'Germany': '+49', 'Switzerland': '+41',
     'Netherlands': '+31', 'Belgium': '+32', 'France': '+33',
@@ -868,11 +692,9 @@ const jsStrings = JSON.stringify({
   };
   const countrySelect = document.getElementById('country') as HTMLSelectElement;
   const dialCodeInput = document.getElementById('dial-code') as HTMLInputElement;
-
   countrySelect?.addEventListener('change', () => {
     const code = countryDialCodes[countrySelect.value] || '';
     dialCodeInput.value = code;
-    // Allow manual entry for "Other" country
     dialCodeInput.readOnly = countrySelect.value !== 'Other';
     if (countrySelect.value === 'Other') {
       dialCodeInput.classList.remove('bg-gray-50', 'cursor-default');
@@ -885,7 +707,7 @@ const jsStrings = JSON.stringify({
     }
   });
 
-  // Handle form submission
+  // Form submission
   const form = document.getElementById('adopt-form') as HTMLFormElement;
   const successMsg = document.getElementById('success-msg');
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
@@ -894,7 +716,6 @@ const jsStrings = JSON.stringify({
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Validate dog selection
       if (!dogInput.value) {
         dogError?.classList.remove('hidden');
         dogSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -905,14 +726,12 @@ const jsStrings = JSON.stringify({
       submitBtn.textContent = i18n.sending;
 
       // Build WhatsApp click-to-chat link
-      const dialCode = (document.getElementById('dial-code') as HTMLInputElement)?.value || '';
+      const dialCode = dialCodeInput?.value || '';
       const phoneRaw = (document.getElementById('phone') as HTMLInputElement)?.value || '';
       const phoneInput = dialCode + ' ' + phoneRaw;
       let cleanPhone = (dialCode + phoneRaw).replace(/[\s\-\(\)\+]/g, '');
-      // Strip leading 0 if dial code is present
       if (dialCode && cleanPhone.startsWith(dialCode.replace('+', '')) && phoneRaw.replace(/[\s\-\(\)]/g, '').startsWith('0')) {
-        const codeDigits = dialCode.replace('+', '');
-        cleanPhone = codeDigits + phoneRaw.replace(/[\s\-\(\)]/g, '').slice(1);
+        cleanPhone = dialCode.replace('+', '') + phoneRaw.replace(/[\s\-\(\)]/g, '').slice(1);
       }
       const applicantName = (document.getElementById('name') as HTMLInputElement)?.value || '';
       const selectedDogName = dogInput.value;
@@ -920,98 +739,66 @@ const jsStrings = JSON.stringify({
       const waMsg = selectedDogName && selectedDogName !== 'Not sure yet'
         ? i18n.waMessage.replace('{name}', applicantName).replace('{dog}', selectedDogName)
         : i18n.waMessageGeneric.replace('{name}', applicantName);
-      const waMessage = encodeURIComponent(waMsg);
       const waLink = document.getElementById('whatsapp_link') as HTMLInputElement;
-      if (waLink && cleanPhone) {
-        waLink.value = `https://wa.me/${cleanPhone}?text=${waMessage}`;
-      }
+      if (waLink && cleanPhone) waLink.value = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(waMsg)}`;
 
       try {
-        const res = await fetch(form.action, {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        if (!res.ok) throw new Error('Failed');
+
+        // Fire-and-forget confirmation email
+        fetch('/api/confirm-application', {
           method: 'POST',
-          body: new FormData(form),
-        });
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: applicantName,
+            email: (document.getElementById('email') as HTMLInputElement)?.value || '',
+            phone: phoneInput,
+            dogName: selectedDogName, dogSlug: selectedDogSlug,
+            country: countrySelect?.value || '',
+            city: (document.getElementById('city') as HTMLInputElement)?.value || '',
+            homeType: (document.getElementById('home_type') as HTMLSelectElement)?.value || '',
+            garden: gardenSelect?.value || '',
+            fence: (document.getElementById('fence_height') as HTMLSelectElement)?.value || '',
+            ownRent: (document.getElementById('own_rent') as HTMLSelectElement)?.value || '',
+            household: (document.getElementById('household_types') as HTMLInputElement)?.value || '',
+            dogExperience: dogExpSelect?.value || '',
+            wasRescue: (document.getElementById('was_rescue') as HTMLSelectElement)?.value || '',
+            dailyRoutine: (document.getElementById('daily_routine') as HTMLSelectElement)?.value || '',
+            pets: (document.getElementById('pet_types') as HTMLInputElement)?.value || '',
+            hoursAlone: (document.getElementById('hours_alone') as HTMLSelectElement)?.value || '',
+            sleep: (document.getElementById('sleep') as HTMLInputElement)?.value || '',
+            homeCheck: (document.getElementById('home_check') as HTMLSelectElement)?.value || '',
+            questions: (document.getElementById('questions') as HTMLTextAreaElement)?.value || '',
+            message: (document.getElementById('message') as HTMLTextAreaElement)?.value || '',
+            lang: document.documentElement.lang || 'en',
+          }),
+        }).catch(() => {});
 
-        if (res.ok) {
-          // Send confirmation email + log to Google Sheet (fire and forget)
-          fetch('/api/confirm-application', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: applicantName,
-              email: (document.getElementById('email') as HTMLInputElement)?.value || '',
-              phone: phoneInput,
-              dogName: selectedDogName,
-              dogSlug: selectedDogSlug,
-              country: (document.getElementById('country') as HTMLSelectElement)?.value || '',
-              city: (document.getElementById('city') as HTMLInputElement)?.value || '',
-              homeType: (document.getElementById('home_type') as HTMLSelectElement)?.value || '',
-              garden: (document.getElementById('garden') as HTMLSelectElement)?.value || '',
-              fence: (document.getElementById('fence_height') as HTMLSelectElement)?.value || '',
-              ownRent: (document.getElementById('own_rent') as HTMLSelectElement)?.value || '',
-              household: (document.getElementById('household_types') as HTMLInputElement)?.value || '',
-              dogExperience: (document.getElementById('dog_experience') as HTMLSelectElement)?.value || '',
-              wasRescue: (document.getElementById('was_rescue') as HTMLSelectElement)?.value || '',
-              dailyRoutine: (document.getElementById('daily_routine') as HTMLSelectElement)?.value || '',
-              pets: (document.getElementById('pet_types') as HTMLInputElement)?.value || '',
-              hoursAlone: (document.getElementById('hours_alone') as HTMLSelectElement)?.value || '',
-              sleep: (document.getElementById('sleep') as HTMLInputElement)?.value || '',
-              homeCheck: (document.getElementById('home_check') as HTMLSelectElement)?.value || '',
-              questions: (document.getElementById('questions') as HTMLTextAreaElement)?.value || '',
-              message: (document.getElementById('message') as HTMLTextAreaElement)?.value || '',
-              lang: document.documentElement.lang || 'en',
-            }),
-          }).catch(() => {});
+        // Success screen
+        if (selectedDogName && selectedDogName !== 'Not sure yet') {
+          const successText = document.getElementById('success-dog-text');
+          if (successText) successText.textContent = i18n.successDog.replace('{name}', selectedDogName);
 
-          if (selectedDogName && selectedDogName !== 'Not sure yet') {
-            const successText = document.getElementById('success-dog-text');
-            if (successText) {
-              successText.textContent = i18n.successDog.replace('{name}', selectedDogName);
-            }
-            // Show dog photos on success screen
-            const successPhotos = document.getElementById('success-photos');
-            const successTrack = document.getElementById('success-track');
-            const successDotsEl = document.getElementById('success-dots');
-            const tmpl = document.querySelector(`template[data-dog-photos="${selectedDogSlug}"]`);
-            if (successPhotos && successTrack && successDotsEl && tmpl) {
-              successTrack.innerHTML = '';
-              successDotsEl.innerHTML = '';
-              const imgs = tmpl.content.querySelectorAll('img');
-              let sCurrent = 0;
-              const sCount = imgs.length;
-              imgs.forEach((img) => {
-                const slide = document.createElement('div');
-                slide.className = 'w-full h-full flex-shrink-0';
-                const newImg = document.createElement('img');
-                newImg.src = img.src;
-                newImg.alt = img.alt;
-                newImg.className = 'w-full h-full object-cover object-top';
-                slide.appendChild(newImg);
-                successTrack.appendChild(slide);
-              });
-              for (let i = 0; i < sCount; i++) {
-                const dot = document.createElement('span');
-                dot.className = `block w-2.5 h-2.5 rounded-full ${i === 0 ? 'bg-white' : 'bg-white/50'} transition-colors`;
-                successDotsEl.appendChild(dot);
-              }
-              function sGoTo(i: number) {
-                sCurrent = (i + sCount) % sCount;
-                successTrack!.style.transform = `translateX(-${sCurrent * 100}%)`;
-                successDotsEl!.querySelectorAll('span').forEach((d, idx) => {
-                  d.className = `block w-2.5 h-2.5 rounded-full ${idx === sCurrent ? 'bg-white' : 'bg-white/50'} transition-colors`;
-                });
-              }
-              document.getElementById('success-prev')?.addEventListener('click', () => sGoTo(sCurrent - 1));
-              document.getElementById('success-next')?.addEventListener('click', () => sGoTo(sCurrent + 1));
-              successPhotos.classList.remove('hidden');
+          // Success carousel
+          const successTrack = document.getElementById('success-track');
+          if (successTrack) {
+            const successCarousel = new CarouselController(successTrack, document.getElementById('success-dots'));
+            successCarousel.attachControls(
+              document.getElementById('success-prev'),
+              document.getElementById('success-next'),
+              null,
+            );
+            const photos = getPhotosFromTemplate(selectedDogSlug);
+            if (photos.length > 0) {
+              successCarousel.loadImages(photos);
+              document.getElementById('success-photos')?.classList.remove('hidden');
             }
           }
-          form.classList.add('hidden');
-          successMsg.classList.remove('hidden');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          throw new Error('Failed');
         }
+        form.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch {
         submitBtn.disabled = false;
         submitBtn.textContent = i18n.submitBtn;

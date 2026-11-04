@@ -146,6 +146,8 @@ export const ui = {
     'donatePage.impactTitle': 'What your donation does',
     'donatePage.impact50': 'One vet visit with treatment',
     'donatePage.impact25': 'Feeds all the dogs for a day',
+    'donatePage.impact60': 'One vet visit with treatment',
+    'donatePage.impact30': 'Feeds all the dogs for a day',
     'donatePage.impact10': 'Basic medications',
     'donatePage.impact5': 'Every bit helps',
     'donatePage.transparencyTitle': 'What it costs to run the shelter',

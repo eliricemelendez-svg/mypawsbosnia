@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { escapeHtml, sanitizeField, isValidEmail } from '../../utils/sanitize';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -111,22 +112,31 @@ const i18n: Record<string, Record<string, string>> = {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { name, email, dogName, dogSlug, country, lang: rawLang } = body;
+    const name = sanitizeField(body.name, 100);
+    const email = sanitizeField(body.email, 254);
+    const dogName = sanitizeField(body.dogName, 100);
+    const dogSlug = sanitizeField(body.dogSlug, 50).replace(/[^a-z0-9-]/g, '');
+    const country = sanitizeField(body.country, 100);
+    const rawLang = sanitizeField(body.lang, 2);
 
-    if (!email || !name) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+    if (!email || !name || !isValidEmail(email)) {
+      return new Response(JSON.stringify({ error: 'Missing or invalid required fields' }), { status: 400 });
     }
 
-    const lang = (rawLang && rawLang in i18n) ? rawLang : 'en';
+    const lang = (rawLang in i18n) ? rawLang : 'en';
     const t = i18n[lang];
     const langPrefix = lang === 'en' ? '' : `/${lang}`;
 
-    const isUK = country?.toLowerCase().includes('united kingdom') || country?.toLowerCase().includes('uk');
+    // Escape user input for HTML email templates
+    const safeName = escapeHtml(name);
+    const safeDogName = escapeHtml(dogName);
+
+    const isUK = country.toLowerCase().includes('united kingdom') || country.toLowerCase().includes('uk');
     const homeCheckText = isUK ? t.homeCheckUK : t.homeCheckDE;
 
     const hasDog = dogName && dogName !== 'Not sure yet';
     const dogLine = hasDog
-      ? t.dogInterest.replace('%DOG%', dogName)
+      ? t.dogInterest.replace('%DOG%', safeDogName)
       : t.dogGeneric;
 
     const dogImageURL = dogSlug
@@ -134,7 +144,7 @@ export const POST: APIRoute = async ({ request }) => {
       : null;
 
     const dogProfileLink = dogSlug
-      ? `<a href="https://mypawsbosnia.org${langPrefix}/adopt/${dogSlug}" style="color: #2A9D8F; font-weight: 600; text-decoration: none; border-bottom: 1px solid #2A9D8F;">${t.viewProfile.replace('%DOG%', dogName)} &rarr;</a>`
+      ? `<a href="https://mypawsbosnia.org${langPrefix}/adopt/${dogSlug}" style="color: #2A9D8F; font-weight: 600; text-decoration: none; border-bottom: 1px solid #2A9D8F;">${t.viewProfile.replace('%DOG%', safeDogName)} &rarr;</a>`
       : '';
 
     const blog1Url = `https://mypawsbosnia.org${langPrefix}/blog/what-to-buy-before-your-rescue-dog-arrives`;
@@ -179,7 +189,7 @@ export const POST: APIRoute = async ({ request }) => {
                 <!-- Dog photo -->
                 <tr>
                   <td style="padding: 28px 28px 0;">
-                    <img src="${dogImageURL}" alt="${dogName}" style="width: 100%; border-radius: 14px; display: block;" />
+                    <img src="${dogImageURL}" alt="${safeDogName}" style="width: 100%; border-radius: 14px; display: block;" />
                   </td>
                 </tr>
                 ` : ''}
@@ -187,7 +197,7 @@ export const POST: APIRoute = async ({ request }) => {
                 <!-- Greeting -->
                 <tr>
                   <td style="padding: 28px 28px 0;">
-                    <p style="font-size: 17px; color: #1E293B; margin: 0 0 16px; font-weight: 600;">${t.greeting} ${name},</p>
+                    <p style="font-size: 17px; color: #1E293B; margin: 0 0 16px; font-weight: 600;">${t.greeting} ${safeName},</p>
                     <p style="font-size: 15px; color: #475569; margin: 0 0 12px; line-height: 1.7;">${t.thanks}</p>
                     <p style="font-size: 15px; color: #475569; margin: 0; line-height: 1.7;">${dogLine}</p>
                     ${dogProfileLink ? `<p style="margin: 12px 0 0;">${dogProfileLink}</p>` : ''}
@@ -296,11 +306,11 @@ export const POST: APIRoute = async ({ request }) => {
 </html>`;
 
     const subject = hasDog
-      ? t.subjectDog.replace('%DOG%', dogName)
+      ? t.subjectDog.replace('%DOG%', safeDogName)
       : t.subjectGeneric;
 
     // Log to Google Sheet and send email in parallel
-    const sheetUrl = 'https://script.google.com/macros/s/AKfycbw0wn_nz3RZBlrlT4t7XHZ_5Tu6sCEsFnBx81NirmjnTTGM24L9qFXLVSAA52yoHfn8vQ/exec';
+    const sheetUrl = import.meta.env.GOOGLE_SHEET_APPLICATIONS_URL;
     const sheetData = {
       name: body.name || '',
       email: body.email || '',
@@ -339,14 +349,11 @@ export const POST: APIRoute = async ({ request }) => {
       }),
     ]);
 
-    if (emailResult.status === 'rejected') {
-      console.error('Email send error:', emailResult.reason);
-    }
-    if (sheetResult.status === 'rejected') {
-      console.error('Sheet log error:', sheetResult.reason);
-    }
+    const emailFailed = emailResult.status === 'rejected';
+    if (emailFailed) console.error('Email send error:', emailResult.reason);
+    if (sheetResult.status === 'rejected') console.error('Sheet log error:', sheetResult.reason);
 
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+    return new Response(JSON.stringify({ success: true, emailSent: !emailFailed }), { status: 200 });
   } catch (error) {
     console.error('API error:', error);
     return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 500 });

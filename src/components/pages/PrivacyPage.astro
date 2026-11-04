@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import type { Lang } from "../../i18n/utils";
+import { getPrivacyStrings } from "../../data/privacy-i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const s = getPrivacyStrings(lang);
+---
+
+<Layout title={s.title} description={s.description} lang={lang}>
+  <section class="bg-light-bg py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-dark">{s.pageHeading}</h1>
+      <p class="mt-4 text-lg text-body">{s.lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-gray-100 space-y-8">
+      {s.sections.map((section) => (
+        <div>
+          <h2 class="text-xl font-semibold text-slate-dark mb-3">{section.heading}</h2>
+          <p class="text-body leading-relaxed" set:html={section.body} />
+          {section.list && (
+            <ul class="list-disc pl-6 mt-2 text-body space-y-1">
+              {section.list.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+          {section.bodyAfterList && (
+            <p class="text-body leading-relaxed mt-2" set:html={section.bodyAfterList} />
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { escapeHtml, sanitizeField, isValidEmail } from '../../utils/sanitize';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -46,16 +47,25 @@ const thankYouEmail: Record<string, Record<string, string>> = {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { firstName, email, tier, dogName, dogSlug, lang: rawLang } = body;
+    const firstName = sanitizeField(body.firstName, 100);
+    const email = sanitizeField(body.email, 254);
+    const tier = sanitizeField(body.tier, 20);
+    const dogName = sanitizeField(body.dogName, 100);
+    const dogSlug = sanitizeField(body.dogSlug, 50).replace(/[^a-z0-9-]/g, '');
+    const rawLang = sanitizeField(body.lang, 2);
 
-    if (!email || !firstName) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+    if (!email || !firstName || !isValidEmail(email)) {
+      return new Response(JSON.stringify({ error: 'Missing or invalid required fields' }), { status: 400 });
     }
 
-    const lang = (rawLang && rawLang in thankYouEmail) ? rawLang : 'en';
+    const lang = (rawLang in thankYouEmail) ? rawLang : 'en';
     const t = thankYouEmail[lang];
-    const tierText = tierLabels[lang]?.[tier] || tier || '';
+    const tierText = tierLabels[lang]?.[tier] || escapeHtml(tier) || '';
     const langPrefix = lang === 'en' ? '' : `/${lang}`;
+
+    // Escape user input for HTML email templates
+    const safeFirstName = escapeHtml(firstName);
+    const safeDogName = escapeHtml(dogName);
 
     const dogImageURL = dogSlug ? `https://mypawsbosnia.org/og/${dogSlug}.jpg` : null;
 
@@ -97,7 +107,7 @@ export const POST: APIRoute = async ({ request }) => {
                 <!-- Dog photo -->
                 <tr>
                   <td style="padding: 28px 28px 0;">
-                    <img src="${dogImageURL}" alt="${dogName}" style="width: 100%; border-radius: 14px; display: block;" />
+                    <img src="${dogImageURL}" alt="${safeDogName}" style="width: 100%; border-radius: 14px; display: block;" />
                   </td>
                 </tr>
                 ` : ''}
@@ -105,9 +115,9 @@ export const POST: APIRoute = async ({ request }) => {
                 <!-- Body -->
                 <tr>
                   <td style="padding: 28px;">
-                    <p style="font-size: 17px; color: #1E293B; margin: 0 0 16px; font-weight: 600;">Hi ${firstName},</p>
-                    <p style="font-size: 15px; color: #475569; margin: 0 0 16px; line-height: 1.7;">${t.body.replace(/%DOG%/g, dogName)}</p>
-                    <p style="font-size: 15px; color: #475569; margin: 0 0 16px; line-height: 1.7;">${t.update.replace(/%DOG%/g, dogName)}</p>
+                    <p style="font-size: 17px; color: #1E293B; margin: 0 0 16px; font-weight: 600;">Hi ${safeFirstName},</p>
+                    <p style="font-size: 15px; color: #475569; margin: 0 0 16px; line-height: 1.7;">${t.body.replace(/%DOG%/g, safeDogName)}</p>
+                    <p style="font-size: 15px; color: #475569; margin: 0 0 16px; line-height: 1.7;">${t.update.replace(/%DOG%/g, safeDogName)}</p>
                     <p style="font-size: 15px; color: #475569; margin: 0; line-height: 1.7;">${t.closing}</p>
                   </td>
                 </tr>
@@ -116,7 +126,7 @@ export const POST: APIRoute = async ({ request }) => {
                 ${dogSlug ? `
                 <tr>
                   <td style="padding: 0 28px 28px; text-align: center;">
-                    <a href="https://mypawsbosnia.org${langPrefix}/adopt/${dogSlug}" style="display: inline-block; padding: 14px 32px; background-color: #2A9D8F; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 50px;">See ${dogName}'s profile</a>
+                    <a href="https://mypawsbosnia.org${langPrefix}/adopt/${dogSlug}" style="display: inline-block; padding: 14px 32px; background-color: #2A9D8F; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 50px;">See ${safeDogName}'s profile</a>
                   </td>
                 </tr>
                 ` : ''}
@@ -143,21 +153,21 @@ export const POST: APIRoute = async ({ request }) => {
 </body>
 </html>`;
 
-    const subject = t.subject.replace('%DOG%', dogName || 'a dog');
+    const subject = t.subject.replace('%DOG%', safeDogName || 'a dog');
 
     // Send thank-you email to sponsor AND notification to admin in parallel
     const notificationHtml = `
       <h2>New Sponsor!</h2>
-      <p><strong>Name:</strong> ${firstName}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Dog:</strong> ${dogName || 'General'}</p>
-      <p><strong>Tier:</strong> ${tierText}</p>
-      <p><strong>Language:</strong> ${lang}</p>
+      <p><strong>Name:</strong> ${safeFirstName}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Dog:</strong> ${safeDogName || 'General'}</p>
+      <p><strong>Tier:</strong> ${escapeHtml(tierText)}</p>
+      <p><strong>Language:</strong> ${escapeHtml(lang)}</p>
       <p>Reply to this person to thank them personally!</p>
     `;
 
     // Log to Google Sheet, send thank-you email, and notify admin in parallel
-    const sheetUrl = 'https://script.google.com/macros/s/AKfycbyw8WRcLhyNX1R7BNHtpadxZFR34UAvtPR8egneG8mXDGh_Teln4-GpSuTrDtox45OrJA/exec';
+    const sheetUrl = import.meta.env.GOOGLE_SHEET_SPONSORS_URL;
 
     const [thankYouResult, notifyResult, sheetResult] = await Promise.allSettled([
       resend.emails.send({
@@ -179,17 +189,12 @@ export const POST: APIRoute = async ({ request }) => {
       }),
     ]);
 
-    if (thankYouResult.status === 'rejected') {
-      console.error('Thank-you email error:', thankYouResult.reason);
-    }
-    if (notifyResult.status === 'rejected') {
-      console.error('Notification email error:', notifyResult.reason);
-    }
-    if (sheetResult.status === 'rejected') {
-      console.error('Sheet log error:', sheetResult.reason);
-    }
+    const emailFailed = thankYouResult.status === 'rejected';
+    if (emailFailed) console.error('Thank-you email error:', thankYouResult.reason);
+    if (notifyResult.status === 'rejected') console.error('Notification email error:', notifyResult.reason);
+    if (sheetResult.status === 'rejected') console.error('Sheet log error:', sheetResult.reason);
 
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+    return new Response(JSON.stringify({ success: true, emailSent: !emailFailed }), { status: 200 });
   } catch (error) {
     console.error('Sponsor API error:', error);
     return new Response(JSON.stringify({ error: 'Failed to process' }), { status: 500 });
