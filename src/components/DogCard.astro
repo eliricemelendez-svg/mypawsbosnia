@@ -21,12 +21,6 @@ const t = useTranslations(lang);
 
 const localAdoptedTo = adoptedTo ? translateCountry(adoptedTo, lang) : undefined;
 
-// Custom photo focus for dogs whose face isn't centered
-const photoPosition: Record<string, string> = {
-  nero: "object-[center_45%]",
-  atlas: "object-[center_25%]",
-};
-const objPos = photoPosition[slug] ?? "object-center";
 
 const pillColors: Record<string, string> = {
   male: "bg-blue-100 text-blue-700",
@@ -84,7 +78,7 @@ const leadPhoto = photos[0] ?? null;
   data-age={age}
   data-size={size}
 >
-  <div class="bg-gray-50 relative overflow-hidden aspect-[4/3]">
+  <div class="bg-gray-50 relative overflow-hidden aspect-square">
     {photos.length > 1 ? (
       <div class="card-carousel relative h-full" data-card-carousel>
         <div class="flex h-full transition-transform duration-300 ease-in-out" data-carousel-track>
@@ -94,7 +88,7 @@ const leadPhoto = photos[0] ?? null;
                 src={photo}
                 alt={`${name} photo ${i + 1}`}
                 width={600}
-                class={`w-full h-full object-cover ${objPos}`}
+                class="w-full h-full object-cover object-center"
               />
             </div>
           ))}
@@ -112,7 +106,7 @@ const leadPhoto = photos[0] ?? null;
         src={leadPhoto}
         alt={`${name}, a rescue dog available for adoption from Bosnia`}
         width={600}
-        class={`w-full h-full object-cover ${objPos}`}
+        class="w-full h-full object-cover object-center"
       />
     ) : (
       <div class="h-full bg-gray-100 flex items-center justify-center text-6xl">
