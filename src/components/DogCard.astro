@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import type { Lang } from "../i18n/utils";
 import { useTranslations } from "../i18n/utils";
+import { translateCountry } from "../data/countries";
 
 interface Props {
   slug: string;
@@ -18,12 +19,7 @@ interface Props {
 const { slug, name, shortLine, sex, age, size, linkPrefix, adoptedTo, lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 
-const countryNames: Record<string, Record<string, string>> = {
-  de: { "Austria": "\u00d6sterreich", "United Kingdom": "Gro\u00dfbritannien", "Belgium": "Belgien", "England": "England" },
-  nl: { "Austria": "Oostenrijk", "United Kingdom": "Verenigd Koninkrijk", "Belgium": "Belgi\u00eb", "England": "Engeland" },
-  fr: { "Austria": "Autriche", "United Kingdom": "Royaume-Uni", "Belgium": "Belgique", "England": "Angleterre" },
-};
-const localAdoptedTo = adoptedTo ? (countryNames[lang]?.[adoptedTo] ?? adoptedTo) : undefined;
+const localAdoptedTo = adoptedTo ? translateCountry(adoptedTo, lang) : undefined;
 
 const pillColors: Record<string, string> = {
   male: "bg-blue-100 text-blue-700",
@@ -37,9 +33,10 @@ const pillColors: Record<string, string> = {
   large: "bg-teal/10 text-teal",
 };
 
-const sexLabel = t(`dog.${sex}` as any);
-const ageLabel = t(`dog.${age}` as any);
-const sizeLabel = t(`dog.${size}` as any);
+// Keys are validated: dog.male, dog.female, etc. all exist in ui.ts
+const sexLabel = t(`dog.${sex}` as keyof typeof import('../i18n/ui').ui.en);
+const ageLabel = t(`dog.${age}` as keyof typeof import('../i18n/ui').ui.en);
+const sizeLabel = t(`dog.${size}` as keyof typeof import('../i18n/ui').ui.en);
 
 // Load lead photo (first alphabetically from the dog's folder)
 const allCurrentPhotos = import.meta.glob<{ default: ImageMetadata }>(
@@ -90,7 +87,7 @@ const leadPhoto = photos[0] ?? null;
                 src={photo}
                 alt={`${name} photo ${i + 1}`}
                 width={600}
-                class="w-full h-full object-cover object-top"
+                class="w-full h-full object-cover object-center"
               />
             </div>
           ))}
@@ -108,7 +105,7 @@ const leadPhoto = photos[0] ?? null;
         src={leadPhoto}
         alt={`${name}, a rescue dog available for adoption from Bosnia`}
         width={600}
-        class="w-full h-full object-cover object-top"
+        class="w-full h-full object-cover object-center"
       />
     ) : (
       <div class="h-full bg-gray-100 flex items-center justify-center text-6xl">
