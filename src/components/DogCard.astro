@@ -21,6 +21,12 @@ const t = useTranslations(lang);
 
 const localAdoptedTo = adoptedTo ? translateCountry(adoptedTo, lang) : undefined;
 
+// Custom photo focus for dogs whose face isn't centered
+const photoPosition: Record<string, string> = {
+  nero: "object-[center_60%]",
+};
+const objPos = photoPosition[slug] ?? "object-center";
+
 const pillColors: Record<string, string> = {
   male: "bg-blue-100 text-blue-700",
   female: "bg-pink-100 text-pink-700",
@@ -87,7 +93,7 @@ const leadPhoto = photos[0] ?? null;
                 src={photo}
                 alt={`${name} photo ${i + 1}`}
                 width={600}
-                class="w-full h-full object-cover object-center"
+                class={`w-full h-full object-cover ${objPos}`}
               />
             </div>
           ))}
@@ -105,7 +111,7 @@ const leadPhoto = photos[0] ?? null;
         src={leadPhoto}
         alt={`${name}, a rescue dog available for adoption from Bosnia`}
         width={600}
-        class="w-full h-full object-cover object-center"
+        class={`w-full h-full object-cover ${objPos}`}
       />
     ) : (
       <div class="h-full bg-gray-100 flex items-center justify-center text-6xl">
