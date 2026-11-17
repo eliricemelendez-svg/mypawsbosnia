@@ -35,6 +35,7 @@ export const ui = {
     'dog.small': 'small',
     'dog.medium': 'medium',
     'dog.large': 'large',
+    'dog.pending': 'Adoption pending',
     'dog.adoptedTo': 'Adopted to:',
 
     // DonateBlock
@@ -119,6 +120,7 @@ export const ui = {
     'adoptSlug.feesNote': 'Fees may vary slightly depending on transport costs at the time of adoption. Every dog travels with a passport, fully vaccinated, neutered, dewormed, and flea-treated before departure. We recommend budgeting for a vet check-up once your dog arrives and settles in.',
     'adoptSlug.interestedIn': 'Interested in adopting {name}?',
     'adoptSlug.interestedText': 'Send us a message on our Facebook page to learn more about the adoption process.',
+    'adoptSlug.pendingText': 'This dog is currently in the adoption process. If the adoption does not go through, they will become available again.',
     'adoptSlug.messageFb': 'Message us on Facebook',
     'adoptSlug.years': 'years',
     'adoptSlug.months': 'months',
@@ -459,6 +461,7 @@ export const ui = {
     'dog.small': 'Klein',
     'dog.medium': 'Mittel',
     'dog.large': 'Gro\u00df',
+    'dog.pending': 'Adoption ausstehend',
     'dog.adoptedTo': 'Vermittelt nach:',
 
     // DonateBlock
@@ -543,6 +546,7 @@ export const ui = {
     'adoptSlug.feesNote': 'Die Kosten k\u00f6nnen je nach Transportkosten zum Zeitpunkt der Adoption leicht variieren. Jeder Hund reist mit Pass, vollst\u00e4ndig geimpft, kastriert, entwurmt und gegen Fl\u00f6he behandelt. Wir empfehlen, nach der Ankunft einen Tierarztbesuch einzuplanen.',
     'adoptSlug.interestedIn': 'Möchtest du {name} adoptieren?',
     'adoptSlug.interestedText': 'Schreibe uns eine Nachricht auf unserer Facebook-Seite, um mehr \u00fcber den Adoptionsprozess zu erfahren.',
+    'adoptSlug.pendingText': 'Dieser Hund befindet sich derzeit im Adoptionsprozess. Sollte die Adoption nicht zustande kommen, wird er wieder verfügbar.',
     'adoptSlug.messageFb': 'Schreib uns auf Facebook',
     'adoptSlug.years': 'Jahre',
     'adoptSlug.months': 'Monate',
@@ -881,6 +885,7 @@ export const ui = {
     'dog.small': 'klein',
     'dog.medium': 'middelgroot',
     'dog.large': 'groot',
+    'dog.pending': 'Adoptie in behandeling',
     'dog.adoptedTo': 'Nieuw thuis in:',
 
     // DonateBlock
@@ -965,6 +970,7 @@ export const ui = {
     'adoptSlug.feesNote': 'Kosten kunnen licht vari\u00ebren afhankelijk van transportkosten op het moment van adoptie. Elke hond reist met paspoort, volledig gevaccineerd, gecastreerd, ontwormd en tegen vlooien behandeld. We raden aan om na aankomst een dierenartscontrole in te plannen.',
     'adoptSlug.interestedIn': 'Interesse in het adopteren van {name}?',
     'adoptSlug.interestedText': 'Stuur ons een bericht via onze Facebook-pagina voor meer informatie over het adoptieproces.',
+    'adoptSlug.pendingText': 'Deze hond zit momenteel in het adoptieproces. Als de adoptie niet doorgaat, wordt hij of zij weer beschikbaar.',
     'adoptSlug.messageFb': 'Stuur ons een bericht',
     'adoptSlug.years': 'jaar',
     'adoptSlug.months': 'maanden',
@@ -1303,6 +1309,7 @@ export const ui = {
     'dog.small': 'petit',
     'dog.medium': 'moyen',
     'dog.large': 'grand',
+    'dog.pending': 'Adoption en cours',
     'dog.adoptedTo': 'Adopt\u00e9 en\u00a0:',
 
     // DonateBlock
@@ -1387,6 +1394,7 @@ export const ui = {
     'adoptSlug.feesNote': 'Les frais peuvent varier l\u00e9g\u00e8rement en fonction des co\u00fbts de transport au moment de l\u2019adoption. Chaque chien voyage avec son passeport, enti\u00e8rement vaccin\u00e9, st\u00e9rilis\u00e9, vermifug\u00e9 et trait\u00e9 contre les puces. Nous vous conseillons de pr\u00e9voir une visite v\u00e9t\u00e9rinaire apr\u00e8s l\u2019arriv\u00e9e de votre chien.',
     'adoptSlug.interestedIn': 'Vous souhaitez adopter {name}\u00a0?',
     'adoptSlug.interestedText': '\u00c9crivez-nous sur notre page Facebook pour en savoir plus sur le processus d\u2019adoption.',
+    'adoptSlug.pendingText': 'Ce chien est actuellement en cours d\'adoption. Si l\'adoption n\'aboutit pas, il redeviendra disponible.',
     'adoptSlug.messageFb': '\u00c9crivez-nous sur Facebook',
     'adoptSlug.years': 'ans',
     'adoptSlug.months': 'mois',

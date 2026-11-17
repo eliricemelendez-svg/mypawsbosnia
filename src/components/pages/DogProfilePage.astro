@@ -170,15 +170,22 @@ const pageDesc = s.descTemplate
       <p class="text-sm text-body">{t('adoptSlug.feesNote')}</p>
     </div>
 
-    <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
-      <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('adoptSlug.interestedIn').replace('{name}', dog.name)}</h2>
-      <p class="text-body mb-6">{t('adoptSlug.interestedText')}</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href={`${prefix}/apply/${dog.slug}`} class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{s.applyBtn}</a>
-        <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('adoptSlug.messageFb')}</a>
-        <a href={`mailto:donate2mypaws@gmail.com?subject=${encodeURIComponent(s.emailSubject.replace("{name}", dog.name))}`} class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">{t('adoptSlug.emailUs')}</a>
+    {dog.pending ? (
+      <div class="mt-12 bg-amber-50 rounded-2xl p-8 text-center">
+        <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('dog.pending')}</h2>
+        <p class="text-body">{t('adoptSlug.pendingText')}</p>
       </div>
-    </div>
+    ) : (
+      <div class="mt-12 bg-teal/5 rounded-2xl p-8 text-center">
+        <h2 class="text-2xl font-bold text-slate-dark mb-3">{t('adoptSlug.interestedIn').replace('{name}', dog.name)}</h2>
+        <p class="text-body mb-6">{t('adoptSlug.interestedText')}</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={`${prefix}/apply/${dog.slug}`} class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{s.applyBtn}</a>
+          <a href="https://www.facebook.com/profile.php?id=61590021437450" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-teal text-white font-semibold rounded-full hover:bg-teal/90 transition-colors">{t('adoptSlug.messageFb')}</a>
+          <a href={`mailto:donate2mypaws@gmail.com?subject=${encodeURIComponent(s.emailSubject.replace("{name}", dog.name))}`} class="inline-block px-8 py-3 border-2 border-teal text-teal font-semibold rounded-full hover:bg-teal hover:text-white transition-colors">{t('adoptSlug.emailUs')}</a>
+        </div>
+      </div>
+    )}
 
     <div class="mt-6 text-center">
       <button

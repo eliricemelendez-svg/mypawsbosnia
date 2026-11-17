@@ -14,6 +14,7 @@ export interface Dog {
   shortLine: string;
   description: string;
   traits: string[];
+  pending?: boolean;
   arrivedAt?: string;
   de?: DogTranslation;
   nl?: DogTranslation;
@@ -76,72 +77,6 @@ export const currentDogs: Dog[] = [
         "Environ 22\u201325 kg",
         "Id\u00e9al pour une famille active",
         "St\u00e9rilis\u00e9, soins v\u00e9t\u00e9rinaires termin\u00e9s, pr\u00eat \u00e0 voyager",
-      ],
-    },
-  },
-  {
-    slug: "klara",
-    name: "Klara",
-    sex: "female",
-    age: "young",
-    ageYears: 0.5,
-    size: "large",
-    shortLine: "A brave little fighter who beat illness and is ready to find her forever home.",
-    description: "Klara is one of three sisters born in April 2026 at our shelter in Br\u010dko. As a young puppy she fell seriously ill, but after veterinary treatment and lots of care she made a full recovery. Despite being a puppy, Klara is the calmest of her litter. She's gentle, easy-going, and happy just being near people. Her brother has already been adopted to the UK, and Klara deserves the same chance. She's a black sheepdog mix who will grow to around 25\u201330 kg.",
-    traits: [
-      "Calmest of her litter",
-      "Fully recovered from illness",
-      "Sweet and gentle",
-      "Good with children",
-      "Good with other dogs",
-      "Good with cats",
-      "One of three sisters. Her brother was adopted to the UK",
-      "Black sheepdog mix, will grow to 25\u201330 kg",
-      "Ready to travel",
-    ],
-    de: {
-      shortLine: "Eine tapfere kleine K\u00e4mpferin, die eine Krankheit besiegt hat und bereit f\u00fcr ihr Zuhause ist.",
-      description: "Klara ist eine von drei Schwestern, die im April 2026 in unserem Tierheim in Br\u010dko geboren wurden. Als junger Welpe wurde sie schwer krank, hat sich aber nach tier\u00e4rztlicher Behandlung und viel Pflege vollst\u00e4ndig erholt. Obwohl sie noch ein Welpe ist, ist Klara die ruhigste ihres Wurfs. Sie ist sanft, unkompliziert und am gl\u00fccklichsten, wenn sie einfach bei Menschen sein kann. Ihr Bruder wurde bereits nach Gro\u00dfbritannien adoptiert, und Klara wartet auf die gleiche Chance. Sie ist ein schwarzer Sch\u00e4ferhundmischling und wird etwa 25\u201330 kg wiegen.",
-      traits: [
-        "Die Ruhigste ihres Wurfs",
-        "Vollst\u00e4ndig genesen",
-        "Lieb und sanft",
-        "Gut mit Kindern",
-        "Vertr\u00e4glich mit anderen Hunden",
-        "Vertr\u00e4glich mit Katzen",
-        "Eine von drei Schwestern. Ihr Bruder wurde nach Gro\u00dfbritannien adoptiert",
-        "Schwarzer Sch\u00e4ferhundmischling \u2013 wird 25\u201330 kg",
-        "Reisefertig",
-      ],
-    },
-    nl: {
-      shortLine: "Een dappere kleine vechter die ziekte overwon en klaar is voor haar eigen thuis.",
-      description: "Klara is een van drie zussen, geboren in april 2026 in ons asiel in Br\u010dko. Als jonge pup werd ze ernstig ziek, maar na behandeling bij de dierenarts en veel zorg is ze volledig hersteld. Ondanks dat ze nog een pup is, is Klara de rustigste van het nest. Ze is lief, makkelijk in de omgang en gelukkig als ze gewoon bij mensen kan zijn. Haar broer is al geadopteerd naar het VK, en Klara wacht op dezelfde kans. Ze is een zwarte herdersmix en zal uitgroeien tot ongeveer 25\u201330 kg.",
-      traits: [
-        "De rustigste van het nest",
-        "Volledig hersteld van ziekte",
-        "Lief en zachtaardig",
-        "Goed met kinderen",
-        "Goed met andere honden",
-        "Goed met katten",
-        "Een van drie zussen. Haar broer werd geadopteerd naar het VK",
-        "Zwarte herdersmix \u2013 groeit uit tot 25\u201330 kg",
-        "Klaar om te reizen",
-      ],
-    },
-    fr: {
-      shortLine: "Une petite battante qui a vaincu la maladie et qui est pr\u00eate \u00e0 trouver sa famille pour la vie.",
-      description: "Klara est l\u2019une des trois s\u0153urs n\u00e9es en avril 2026 dans notre refuge \u00e0 Br\u010dko. Toute petite, elle est tomb\u00e9e gravement malade, mais apr\u00e8s des soins v\u00e9t\u00e9rinaires et beaucoup d\u2019attention, elle s\u2019est compl\u00e8tement r\u00e9tablie. Malgr\u00e9 son jeune \u00e2ge, Klara est la plus calme de sa port\u00e9e. Elle est douce, facile \u00e0 vivre et heureuse simplement en compagnie des gens. Son fr\u00e8re a d\u00e9j\u00e0 \u00e9t\u00e9 adopt\u00e9 au Royaume-Uni, et Klara attend la m\u00eame chance. C\u2019est une crois\u00e9e berger noir qui atteindra environ 25\u201330 kg.",
-      traits: [
-        "La plus calme de sa port\u00e9e",
-        "Compl\u00e8tement r\u00e9tablie",
-        "Douce et gentille",
-        "Bonne avec les enfants",
-        "S\u2019entend bien avec les autres chiens",
-        "Bonne avec les chats",
-        "L\u2019une des trois s\u0153urs. Son fr\u00e8re a \u00e9t\u00e9 adopt\u00e9 au Royaume-Uni",
-        "Crois\u00e9e berger noir, atteindra 25\u201330 kg",
-        "Pr\u00eate \u00e0 voyager",
       ],
     },
   },
@@ -322,6 +257,7 @@ export const currentDogs: Dog[] = [
     age: "puppy",
     ageYears: 0.5,
     size: "large",
+    pending: true,
     shortLine: "Playful, active, and great with kids. A big girl with a naturally short tail.",
     description: "Luna is a beautiful, playful and active girl looking for her forever home. She's already over 43 cm tall and will grow into a large dog. She has a naturally short tail, which makes her even more special. She's great with people and children, and full of energy and love.",
     traits: [

@@ -15,12 +15,6 @@ const heroText: Record<string, Record<Lang, HeroText>> = {
     nl: { line: "Twee jaar oud, vol energie en klaar om naar zijn nieuwe gezin te reizen.", alt: "Barney, een reddingshond bij My Paws Bosnia" },
     fr: { line: "Deux ans, plein d\u2019\u00e9nergie et pr\u00eat \u00e0 rejoindre sa nouvelle famille.", alt: "Barney, un chien sauv\u00e9 par My Paws Bosnia" },
   },
-  klara: {
-    en: { line: "A brave little fighter who beat illness and is ready to find her forever home.", alt: "Klara, a rescued dog at My Paws Bosnia" },
-    de: { line: "Eine tapfere kleine K\u00e4mpferin, die eine Krankheit besiegt hat und bereit f\u00fcr ihr Zuhause ist.", alt: "Klara, ein geretteter Hund bei My Paws Bosnia" },
-    nl: { line: "Een dappere kleine vechter die ziekte overwon en klaar is voor haar eigen thuis.", alt: "Klara, een reddingshond bij My Paws Bosnia" },
-    fr: { line: "Une petite battante qui a vaincu la maladie et qui est pr\u00eate pour sa famille.", alt: "Klara, un chien sauv\u00e9 par My Paws Bosnia" },
-  },
   max: {
     en: { line: "Bottle-fed since he was two days old. Gentle, playful, and ready for a family.", alt: "Max, a rescued dog at My Paws Bosnia" },
     de: { line: "Mit der Flasche aufgezogen, seit er zwei Tage alt war. Sanft, verspielt und bereit f\u00fcr eine Familie.", alt: "Max, ein geretteter Hund bei My Paws Bosnia" },
@@ -97,7 +91,7 @@ const heroText: Record<string, Record<Lang, HeroText>> = {
 
 // Ordered slug list for the slideshow
 export const heroSlugs = [
-  "barney", "klara", "max", "nadia", "vanja", "luna", "daphne",
+  "barney", "max", "nadia", "vanja", "luna", "daphne",
   "maus", "freya", "luna-2", "nami", "nero", "atlas", "senka",
 ];
 
