@@ -10,10 +10,10 @@ interface HeroText {
 
 const heroText: Record<string, Record<Lang, HeroText>> = {
   barney: {
-    en: { line: "Two years old, full of energy, and ready to travel to his new family.", alt: "Barney, a rescued dog at My Paws Bosnia" },
-    de: { line: "Zwei Jahre alt, voller Energie und bereit, zu seiner neuen Familie zu reisen.", alt: "Barney, ein geretteter Hund bei My Paws Bosnia" },
-    nl: { line: "Twee jaar oud, vol energie en klaar om naar zijn nieuwe gezin te reizen.", alt: "Barney, een reddingshond bij My Paws Bosnia" },
-    fr: { line: "Deux ans, plein d\u2019\u00e9nergie et pr\u00eat \u00e0 rejoindre sa nouvelle famille.", alt: "Barney, un chien sauv\u00e9 par My Paws Bosnia" },
+    en: { line: "Two and a half years old, full of energy, and ready to travel to his new family.", alt: "Barney, a rescued dog at My Paws Bosnia" },
+    de: { line: "Zweieinhalb Jahre alt, voller Energie und bereit, zu seiner neuen Familie zu reisen.", alt: "Barney, ein geretteter Hund bei My Paws Bosnia" },
+    nl: { line: "Tweeënhalf jaar oud, vol energie en klaar om naar zijn nieuwe gezin te reizen.", alt: "Barney, een reddingshond bij My Paws Bosnia" },
+    fr: { line: "Deux ans et demi, plein d\u2019\u00e9nergie et pr\u00eat \u00e0 rejoindre sa nouvelle famille.", alt: "Barney, un chien sauv\u00e9 par My Paws Bosnia" },
   },
   max: {
     en: { line: "Bottle-fed since he was two days old. Gentle, playful, and ready for a family.", alt: "Max, a rescued dog at My Paws Bosnia" },
